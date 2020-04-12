@@ -1,11 +1,12 @@
-$(document).ready(function(){
+window.onload=function(){
+//$(document).ready(function(){
     var leftBar_path=window.location.pathname;
 
     leftBar_path=leftBar_path.split("/");
     leftBar_path=leftBar_path.pop()
 
-    if(leftBar_path == "" || leftBar_path == "index"){
-        
+    if(leftBar_path == "" || leftBar_path == "index.php"){
+
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar0").css("background-color","darkslateblue");
         $(".leftbar0 a").css("color","#ffffff");
@@ -252,17 +253,17 @@ $(document).ready(function(){
     
     for(i=0;i<menu.length;i++){
         for (key in menu[i]){
-            console.log(key)
+            //console.log(key)
 
             for(j=0;j<menu[i][key].length;j++){
                 for (key2 in menu[i][key][j]){
-                    console.log(menu[i][key][j][key2])
+                    //console.log(menu[i][key][j][key2])
                 }
             }
         }
     }
 
-})
+}
 
 
     

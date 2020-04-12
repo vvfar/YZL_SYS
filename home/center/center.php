@@ -6,20 +6,20 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_个人中心</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php") ?>
+        <?php include '../base/header.php' ?>
+        <?php include '../base/leftBar.php' ?>
 
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
-            <div style="position: relative;top: 30px;margin-left: 50px;">
+        <div style="margin-left: 180px;margin-top:20px">
+            <div style="margin-left: 40px;">
 
                 <?php
-                    include_once("conn/conn.php");
 
                     if(isset($_SESSION['username'])){
 
@@ -44,7 +44,7 @@
                     mysqli_close($conn);
                 ?>
 
-                <h3 style="float: left;margin-bottom: 30px;">我的资料</h3>
+                <h3 style="float: left;margin-bottom: 20px;">我的资料</h3>
 
                 <div style="float: left;width:150px;height:60px;border:1px solid #cccccc;margin-left:900px;padding:5px;display:none">
                     <div style="float: left">
@@ -64,9 +64,9 @@
                     </ul>
                 </div>
 
-                <div style="clear: both;position:relative;top:30px;width:1150px;height:600px;font-size: 16px;border:1px solid #cccccc;padding:20px;border-radius: 5px;">
+                <div style="clear: both;position:relative;top:30px;width:950px;height:400px;font-size: 14px;border:1px solid #cccccc;padding:20px;border-radius: 5px;">
                     <div id="page1">
-                        <p style="font-weight: bold">个人信息</p>
+                        <p style="font-weight: bold;margin-bottom:15px;">个人信息</p>
                         <p>用户名：<?=$username?></p>
                         <div>
                             <p style="float:left;margin-top:5px;">昵称：<span id="nickname"><?=$nickname?></span></p>
@@ -78,7 +78,7 @@
                             </form>
                         </div> 
                         <div style="clear: both;">    
-                            <p style="margin-top:5px;">事业部：<?=$department?></p>
+                            <p style="margin-top:30px;">事业部：<?=$department?></p>
                             <p style="margin-top:5px;">职位：<?=$level?></p>
                         </div>
                         <div>
@@ -143,7 +143,7 @@
     }
 
     .my_nav ul li{
-        font-size: 16px;
+        font-size: 14px;
         float: left;
         width:150px;
         height: 60px;
