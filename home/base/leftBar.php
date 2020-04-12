@@ -33,7 +33,7 @@
             -->
 
             <ul class="leftbarAll">
-                <li class="leftbar0"><i class="layui-icon layui-icon-home"></i><a href="index.php">我的门户</a></li>
+                <li class="leftbar0"><i class="layui-icon layui-icon-home"></i><a href="/index.php">我的门户</a></li>
 
                 <li class="leftbar1"><i class="layui-icon layui-icon-rmb"></i><a href="#">公司授信</a></li>
                 <div class="leftbar1Z zcd">

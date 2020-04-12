@@ -6,23 +6,24 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_辅料申请</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="css\flDone.css" rel="stylesheet"/>
-        <link href="css\leftbar.css" rel="stylesheet"/>
-        <link href="css\header.css" rel="stylesheet"/>
-        <script src="js\flDone.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\css\flDone.css" rel="stylesheet"/>
+        <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css\header.css" rel="stylesheet"/>
+        <script src="..\..\public\js\flDone.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
         
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php")?>
+        <?php include '..\base\header.php' ?>
+        <?php include '..\base\leftBar.php' ?>
 
         <?php
-            include_once("conn/conn.php");
+            
 
             //获取url参数
             if(isset($_GET['status'])){
@@ -177,7 +178,7 @@
                         <span class="label label-success">第<?=$page?>页</span>
                     </h4>
 
-                    <a href="/oldflDone.php">旧系统辅料</a>
+                    <a href="oldflDone.php">旧系统辅料</a>
                 </div>
 
                 <table class="table table-responsive table-bordered table-hover td1" style="margin-bottom:0px;margin-top:15px;">
@@ -263,7 +264,7 @@
                     ?>
                 </table>
 
-                <div style="margin-left: 50px;">
+                <div style="margin-left: 20px;">
                     <ul class="pager" style="float:left;width:150px;">
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                             if($page>1)
@@ -278,7 +279,7 @@
                                 echo $pagecount;  
                         ?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>">下一页</a></li>
                     </ul>
-                    <div style="float:left;margin-left:830px;width:321px;">
+                    <div style="float:left;margin-left:580px;width:321px;">
                         <ul class="pagination" style="float:right">
                             <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>">&laquo;</a></li>
                             <?php

@@ -6,27 +6,28 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_后台管理</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\flotr2\flotr2.min.js"></script>
-        <!-- [if lt IE 9]>
-            <script src="flotr2/excanvas.js"></script>
-        <![endif]-->
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\js\manager_header.js"></script>
+        <script src="..\..\public\js\manager_header.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php") ?>
+        <?php include '..\..\home\base/header.php' ?>
+        <?php include '..\..\home\base/leftBar.php' ?>
 
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
+        <div style="margin-left: 180px;">
             <?php
-                include("base/manager_header.php")
+                include("..\..\home\base\manager_header.php")
             ?>
 
-            <button class="btn btn-sm btn-success" style="margin-left: 670px;" id="createUser">上传文件</button>
+            <div style="width:1040px">
+                <button class="btn btn-sm btn-success" style="float:right" id="createUser">新增公告</button>
+            </div>
             
-            <table class="table table-responsive table-bordered table-hover" style="margin-top: 20px;width: 700px;margin-left: 40px;">
+            <table class="table table-responsive table-bordered table-hover" style="margin-top: 70px;width: 1000px;margin-left: 40px;">
                 <tr>
                     <th style="width:300px;">标题</th>
                     <th>发布者</th>
@@ -35,8 +36,6 @@
                     <th style="width:50px;">操作</th>
                 </tr>
                 <?php
-                    
-                    include_once("conn/conn.php");
 
                     //分页代码
                     if(!isset($_GET["page"]) || !is_numeric($_GET["page"])){

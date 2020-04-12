@@ -6,29 +6,30 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_后台管理</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\js\manager_header.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php") ?>
+        <?php include '../../home/base/header.php' ?>
+        <?php include '../../home/base/leftBar.php' ?>
 
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
+        <div style="margin-left: 180px;">
             <?php
-                include("base/manager_header.php");
-                include_once("conn/conn.php");
+                include("../../home/base/manager_header.php")
             ?>
 
             <div class="nav nav-pills" style="float:left;margin-left:40px;">
                 <li role="presentation" class="active"><a href="#">系统日志</a></li>
                 <li role="presentation"><a href="manager_backup.php">数据备份</a></li>
-                <button id="del_log" class="btn btn-success" style="float:left;margin-left:445px;margin-top:0px;"  data-toggle="modal" data-target="#myModal">清除日志</button>
+                <button id="del_log" class="btn btn-success" style="float:left;margin-left:745px;margin-top:0px;"  data-toggle="modal" data-target="#myModal">清除日志</button>
             </div>
 
-            <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;top: 20px;width: 700px;margin-left: 40px;">
+            <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;top: 20px;width: 1000px;margin-left: 40px;">
                 <tr>
                     <th>登录账号</th>
                     <th>登录时间</th>

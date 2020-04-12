@@ -6,80 +6,97 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_辅料申请</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\flotr2\flotr2.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <link href="../../public/css\flList.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php")?>
+        <?php include '..\base\header.php' ?>
+        <?php include '..\base\leftBar.php' ?>
+
+        <?php
+            
+            $username=$_SESSION["username"];
+
+            $sqlstr1="select department,level from user_form where username='$username'";
+
+            $result=mysqli_query($conn,$sqlstr1);
+    
+            while($myrow=mysqli_fetch_row($result)){
+                $department=$myrow[0];
+                $level=$myrow[1];
+            }
+
+            //分页代码
+            if(!isset($_GET["page"]) || !is_numeric($_GET["page"])){
+                $page=1;
+            }else{
+                $page=intval($_GET["page"]);
+            }
+
+            $pagesize=15;
+
+            $sqlstr3="select count(*) as total from oldflsqd order by id desc";
+
+            $result=mysqli_query($conn,$sqlstr3);
+            $info=mysqli_fetch_array($result);
+            $total=$info['total'];
+
+            if($total%$pagesize==0){
+                $pagecount=intval($total/$pagesize);
+            }else{
+                $pagecount=ceil($total/$pagesize);
+            }
+        ?>
 
         <div class="flList_div">
-            <div style="clear: both;padding-bottom:20px;border-radius: 6px;">
+            <div class="search_bar">
+                <p class="search_bar_p1">辅料单查询</p>
 
-                <div class="nav nav-pills" style="float: left;position:relative;top: 30px;left:50px;">
-                    <?php
-                        include_once("conn/conn.php");
+                <select class="form-control search_bar_s1" id="status">
+                    <option>全部</option>
+                    <option>已完成</option>
+                    <option>未完成</option>
+                </select>
 
-                        $username=$_SESSION["username"];
+                <select class="form-control search_bar_s2" id="time1">
+                    <option>流程开始时间</option>
+                    <option>流程结束时间</option>
+                </select>
 
-                        $sqlstr1="select department,level from user_form where username='$username'";
-
-                        $result=mysqli_query($conn,$sqlstr1);
-                
-                        while($myrow=mysqli_fetch_row($result)){
-                            $department=$myrow[0];
-                            $level=$myrow[1];
-                        }
-                    ?>
-                
-                
-                    <p style="font-size:14px;float:left;margin-top:5px;">辅料单查询</p>
-
-                    <select class="form-control" style="float: left;width:100px;margin-left:20px;" id="status">
-                        <option>全部</option>
-                        <option>已完成</option>
-                        <option>未完成</option>
-                    </select>
-
-                    <select class="form-control" style="float: left;width:135px;margin-left:10px;" id="time1">
-                        <option>流程开始时间</option>
-                        <option>流程结束时间</option>
-                    </select>
-
-                    <div style="float: left;margin-left:10px;width:180px;" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                        <input class="form-control" id="input_time" size="16" type="text" value="" readonly>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>
-                    
-                    <p style="float: left;position:relative;top:6px;margin-left:5px;"> 到 </p>
-
-                    <div style="float: left;margin-left:10px;width:180px;" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                        <input class="form-control" id="input_time2" size="16" type="text" value="" readonly>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                    </div>
-
-                    <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:190px;float: left;margin-left: 10px;">
-                    <button class="btn btn-warning btn-sm" id="query_fl" style="float: left;margin-left:10px;">查询</button>
-                    <button class="btn btn-success btn-sm" id="download_fl" style="float: left;margin-left:10px;">下载全部数据</button>
-                    
-                    <?php
-                        if($department=="数据中心"){
-                            ?>
-                                <button class="btn btn-info btn-sm" id="upload_fl" style="float: left;margin-left:10px;" data-toggle="modal" data-target="#myModal2">上传旧单据</button>
-                            <?php
-                        }
-                    ?>
-                    
+                <div class="input-group date form_datetime  search_bar_t" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" id="input_time" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
+                    
+                <p class="search_bar_p2"> 到 </p>
+
+                <div class="search_bar_t input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" id="input_time2" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+
+                <input type="text" class="form-control company_name" id="clientName" placeholder="请输入公司名称">
+                <button class="btn btn-warning btn-sm" id="query_fl" style="float: left;margin-left:10px;">查询</button>
+                <button class="btn btn-success btn-sm" id="download_fl" style="float: left;margin-left:10px;">下载</button>
+                    
+                <?php
+                    if($department=="数据中心"){
+                        ?>
+                            <button class="btn btn-info btn-sm" id="upload_fl" style="float: left;margin-left:10px;" data-toggle="modal" data-target="#myModal2">上传旧单据</button>
+                        <?php
+                    }
+                ?>
             </div>
 
             <!-- Excel导入模态框 -->
@@ -112,39 +129,16 @@
                 </div>
             </form>
 
-            <div style="clear:both;">
-                <?php
-                    //分页代码
-                    if(!isset($_GET["page"]) || !is_numeric($_GET["page"])){
-                        $page=1;
-                    }else{
-                        $page=intval($_GET["page"]);
-                    }
-
-                    $pagesize=15;
-
-                    $sqlstr3="select count(*) as total from oldflsqd order by id desc";
-
-                    $result=mysqli_query($conn,$sqlstr3);
-                    $info=mysqli_fetch_array($result);
-                    $total=$info['total'];
-
-                    if($total%$pagesize==0){
-                        $pagecount=intval($total/$pagesize);
-                    }else{
-                        $pagecount=ceil($total/$pagesize);
-                    }
-                ?>
-                
-                <div style="margin-top:40px">
+            <div class="clearfix">
+                <div class="fy_span clearfix">
                     <h4>
-                        <span class="label label-info" style="margin-left:50px;position:relative;top:40px;">共<?=$total?>条</span>
-                        <span class="label label-warning" style="margin-left:5px;position:relative;top:40px;">共<?=$pagecount?>页</span>
-                        <span class="label label-success" style="margin-left:5px;position:relative;top:40px;">第<?=$page?>页</span>
+                        <span class="label label-info">共<?=$total?>条</span>
+                        <span class="label label-warning">共<?=$pagecount?>页</span>
+                        <span class="label label-success">第<?=$page?>页</span>
                     </h4>
                 </div>
 
-                <table class="table table-responsive table-bordered table-hover td1" style="margin-bottom:0px;margin-top:55px;">
+                <table class="table table-responsive table-bordered table-hover td1">
                     <tr>
                         <th>编号</th>
                         <th>公司</th>
@@ -188,8 +182,8 @@
                     ?>
                 </table>
 
-                <div style="margin-left: 50px;">
-                    <ul class="pager" style="float:left;width:150px;">
+                <div style="margin-left: 20px;">
+                    <ul class="pager" style="float:left;width:150px;margin:0px">
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                             if($page>1)
                                 echo $page-1;
@@ -204,8 +198,8 @@
                         ?>">下一页</a></li>
                     </ul>
 
-                    <div style="float:left;margin-left:830px;width:321px;">
-                        <ul class="pagination" style="float:right">
+                    <div style="float:left;margin-left:550px;width:321px;">
+                        <ul class="pagination" style="float:right;margin-top:0px">
                             <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1">&laquo;</a></li>
                             <?php
                                 if($pagecount<=5){
@@ -252,15 +246,6 @@
 </html>
 
 <style>
-    th{background-color:#409EFF;text-align: center;color:#ffffff}
-    td{text-align: center;}
-    .flList_div{width: 1660px;height:890px;margin-left: 240px;}
-    .m1{float: left;margin-left:162px;margin-top: 35px;}
-    .m2{float: left;margin-left:262px;margin-top: 35px;}
-    .m3{float: left;margin-left:392px;margin-top: 35px;}
-    .td1{width: 1300px;margin-top:52px;margin-left:50px;}
-    .sbar{float:left;margin-top:35px;}
-    .sbar2{float:left;margin-top:35px;margin-left:20px;}
 
     .pager li a:hover{
         background-color:#337ab7;

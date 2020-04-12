@@ -1,38 +1,17 @@
-@media screen and (min-width:1500px){
-    .header_bar{border-bottom:1px #cccccc solid;height:60px;}
-    .headerBar{margin-left:280px;}
-    .logo{background-color:#70041c;width:240px;float: left;height:60px}
-    .logo p{text-align: center;vertical-align: middle;line-height: 60px;font-size: 1.6em;color: #ffffff;font-weight: 400px;font-size: 'Sim Hei'}
-    .headerBar{float: left;margin-top:0.6em;margin-left:270px}
-    .headerImg{float:left;border-radius: 1.5em;height:3em;width:3em;background-color: #b0b0b0}
-    .userInfo{float: left;margin-left: 15px;margin-top:10px}
-    .rightIcon{float: right;margin-right: 50px;margin-top:20px}
-    .rightIcon img{margin-left: 15px;cursor: pointer}
-    .rightIcon span{color: #b9bbca;margin-left: 15px}
-}
+/*
+@media screen and (min-width:1500px){}
 
-@media screen and (min-width:1300px) and (max-width:1499px){
-    .header_bar{border-bottom:1px #cccccc solid;height:60px;}
-    .headerBar{margin-left:280px;}
-    .logo{background-color:#70041c;width:240px;float: left;height:60px}
-    .logo p{text-align: center;vertical-align: middle;line-height: 60px;font-size: 14px;color: #ffffff;font-weight: 400px;font-size: 'Sim Hei'}
-    .headerBar{float: left;margin-top:0.6em;margin-left:270px}
-    .headerImg{float:left;border-radius: 1.5em;height:3em;width:3em;background-color: #b0b0b0}
-    .userInfo{float: left;margin-left: 15px;margin-top:10px}
-    .rightIcon{float: right;margin-right: 50px;margin-top:20px}
-    .rightIcon img{margin-left: 15px;cursor: pointer}
-    .rightIcon span{color: #b9bbca;margin-left: 15px}
-}
+@media screen and (min-width:1300px) and (max-width:1499px){}
 
-@media screen and (max-width:1299px){
-    .header_bar{border-bottom:1px #cccccc solid;height:40px;width:1600px;}
-    .headerBar{margin-left:280px;}
-    .logo{background-color:#70041c;width:180px;float: left;height:40px}
-    .logo p{text-align: center;vertical-align: middle;line-height: 40px;font-size:16px;color: #ffffff;font-weight: 400px;font-size: 'Sim Hei'}
-    .headerBar{float: left;margin-top:0.6em;margin-left:210px}
-    .headerImg{float:left;border-radius: 1.5em;height:2em;width:2em;background-color: #b0b0b0}
-    .userInfo{float: left;margin-left: 15px;margin-top:2px;font-size: 1em;}
-    .rightIcon{float: right;margin-right: 50px;margin-top:7px}
-    .rightIcon img{margin-left: 15px;cursor: pointer}
-    .rightIcon span{color: #b9bbca;margin-left: 15px}
-}
+@media screen and (max-width:1299px){}
+*/
+.header_bar{border-bottom:1px #cccccc solid;height:40px;}
+.headerBar{margin-left:280px;}
+.logo{background-color:#70041c;width:180px;float: left;height:40px}
+.logo p{text-align: center;vertical-align: middle;line-height: 40px;font-size: 18px;color: #ffffff;font-weight: 400px;}
+.headerBar{float: right;margin-top:5px;margin-right:50px;}
+.headerImg{float:left;border-radius: 15px;height:30px;width:30px;background-color: #b0b0b0}
+.userInfo{float: left;margin-left: 15px;margin-top:3px}
+.rightIcon{float: right;margin-right: 50px;margin-top:20px}
+.rightIcon img{margin-left: 15px;cursor: pointer}
+.rightIcon span{color: #b9bbca;margin-left: 15px}

@@ -6,24 +6,20 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_用户管理</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\flotr2\flotr2.min.js"></script>
-        <!-- [if lt IE 9]>
-            <script src="flotr2/excanvas.js"></script>
-        <![endif]-->
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("..\..\common\conn\conn.php") ?>
+        <?php include '..\..\home\base\header.php' ?>
+        <?php include '..\..\home\base\leftBar.php' ?>
 
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
+        <div style="margin-left: 180px;">
             <?php
-                include("base/manager_header.php");
-                include_once("conn/conn.php");
-
+                include("..\..\home\base/manager_header.php");
+            
                 if(isset($_GET['id'])){
                     $id=$_GET['id'];
                 }else{
@@ -64,7 +60,6 @@
             <form action="formHandle/adminHandle/addUser.php" method="POST" style="padding-top: 10px;margin-left:45px;">                
                 <div>
                     <h4 style="float: left">用户信息</h4>
-                    <p style="float: left;margin-left: 270px;margin-top: 10px;"><a href="manager_index.php">返回</a></p>
                 </div>
                 
                 <div class="form-group" style="clear: both;margin-bottom:0px;display:none">
@@ -72,20 +67,20 @@
                     <input type="text" class="form-control" name="id" value="<?=$id?>" style="width: 250px;float: left;margin-top: 15px;">
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">*用户名</p>
-                    <input type="text" class="form-control" name="username" value="<?=$username?>" placeholder="请输入用户名" style="width: 250px;float: left;margin-top: 15px;">
+                    <p style="width: 80px;font-size: 14px;float: left;margin-top: 20px;">*用户名</p>
+                    <input type="text" class="form-control" name="username" value="<?=$username?>" placeholder="请输入用户名" style="width: 200px;float: left;margin-top: 15px;">
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">*事业部</p>
-                    <input type="text" class="form-control" name="department" value="<?=$department?>" placeholder="请输入事业部" style="width: 250px;float: left;margin-top: 15px;">
+                    <p style="width: 80px;font-size: 14px;float: left;margin-top: 20px;">*事业部</p>
+                    <input type="text" class="form-control" name="department" value="<?=$department?>" placeholder="请输入事业部" style="width: 200px;float: left;margin-top: 15px;">
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">*职位</p>
-                    <input type="text" class="form-control" name="level" value="<?=$level?>" placeholder="请输入职位" style="width: 250px;float: left;margin-top: 15px;">
+                    <p style="width: 80px;font-size: 14px;float: left;margin-top: 20px;">*职位</p>
+                    <input type="text" class="form-control" name="level" value="<?=$level?>" placeholder="请输入职位" style="width: 200px;float: left;margin-top: 15px;">
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">*层级</p>
-                    <select class="form-control" name="newLevel" style="width: 250px;float: left;margin-top: 15px;">
+                    <p style="width: 80px;font-size: 14px;float: left;margin-top: 20px;">*层级</p>
+                    <select class="form-control" name="newLevel" style="width: 200px;float: left;margin-top: 15px;">
                         <?php
                             if($newLevel =="M级别"){
                                 ?>
@@ -134,20 +129,19 @@
                     </select>
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">电话</p>
-                    <input type="text" class="form-control" name="phone" value="<?=$phone?>" placeholder="请输入电话号码" style="width: 250px;float: left;margin-top: 15px;">
+                    <p style="width: 80px;font-size: 14px;float: left;margin-top: 20px;">电话</p>
+                    <input type="text" class="form-control" name="phone" value="<?=$phone?>" placeholder="请输入电话号码" style="width: 200px;float: left;margin-top: 15px;">
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">邮箱</p>
-                    <input type="text" class="form-control" name="email" value="<?=$email?>" placeholder="请输入邮箱地址" style="width: 250px;float: left;margin-top: 15px;">
+                    <p style="width: 80px;font-size: 14px;float: left;margin-top: 20px;">邮箱</p>
+                    <input type="text" class="form-control" name="email" value="<?=$email?>" placeholder="请输入邮箱地址" style="width: 200px;float: left;margin-top: 15px;">
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">昵称</p>
-                    <input type="text" class="form-control" name="nickname" value="<?=$nickname?>" placeholder="请输入昵称" style="width: 250px;float: left;margin-top: 15px;">
+                    <p style="width: 80px;font-size: 14px;float: left;margin-top: 20px;">昵称</p>
+                    <input type="text" class="form-control" name="nickname" value="<?=$nickname?>" placeholder="请输入昵称" style="width: 200px;float: left;margin-top: 15px;">
                 </div>
                 <div style="clear: both">
-                    <button type="submit" class="btn btn-success btn-md" style="margin-top: 20px;position:relative;left:250px;">提交</button>
-                    <button type="reset" class="btn btn-danger btn-md" style="margin-top: 20px;position:relative;left:260px;">重置</button>
+                    <button type="submit" class="btn btn-success btn-md" style="margin-top: 20px;">提交</button>
                 </div>
             </form>
 
