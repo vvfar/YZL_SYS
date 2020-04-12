@@ -1,35 +1,30 @@
-@media screen and (min-width:1500px){
-    .leftBar{width:240px;height:2275px;background-color:#160509;float: left;position: fixed;z-index:99999}
-    .leftbarAll{list-style: none;margin:0px;padding: 0px;margin-top: 40px}
-    .leftbarAll li{width:240px;height:4em;font-size: 1.1em;line-height: 4em;vertical-align: middle;font-weight: 400;font-family: "Sim Hei"}
-    .leftbarAll img{margin-left: 35px}
-    .leftbarAll a{margin-left: 20px;color:#5f78a2;text-decoration: none;}
-    .leftbarAll li:hover{text-decoration: none;}
-    ul li a:hover{text-decoration: none;color:#ffffff}
-    .manager{float:left;color: #ffffff;position: relative;right:97px;}
-    .leftbarAll a:hover{text-decoration: none;}
-}
+/*
+@media screen and (min-width:1500px){}
 
-@media screen and (min-width:1300px) and (max-width:1499px){
-    .leftBar{width:240px;height:1275px;background-color:#160509;float: left;position: fixed;z-index:99999}
-    .leftbarAll{list-style: none;margin:0px;padding: 0px;margin-top: 40px}
-    .leftbarAll li{width:240px;height:4em;font-size: 1.1em;line-height: 4em;vertical-align: middle;font-weight: 400;font-family: "Sim Hei"}
-    .leftbarAll img{margin-left: 35px}
-    .leftbarAll a{margin-left: 20px;color:#5f78a2;text-decoration: none;}
-    .leftbarAll li:hover{text-decoration: none;}
-    ul li a:hover{text-decoration: none;color:#ffffff}
-    .manager{float:left;color: #ffffff;position: relative;right:97px;}
-    .leftbarAll a:hover{text-decoration: none;}
-}
+@media screen and (min-width:1300px) and (max-width:1499px){}
 
-@media screen and (max-width:1299px){
-    .leftBar{width:180px;height:1275px;background-color:#160509;float: left;position: fixed;z-index:99999}
-    .leftbarAll{list-style: none;margin:0px;padding: 0px;margin-top: 40px}
-    .leftbarAll li{width:180px;height:3em;font-size: 1.1em;line-height: 3em;vertical-align: middle;font-weight: 400;font-family: "Sim Hei"}
-    .leftbarAll img{margin-left: 35px}
-    .leftbarAll a{margin-left: 20px;color:#5f78a2;text-decoration: none;}
-    .leftbarAll li:hover{text-decoration: none;}
-    ul li a:hover{text-decoration: none;color:#ffffff}
-    .manager{float:left;color: #ffffff;position: relative;right:46px;}
-    .leftbarAll a:hover{text-decoration: none;}
-}
+@media screen and (max-width:1299px){}
+*/
+/*
+.leftBar{width:240px;height:2275px;background-color:#160509;float: left;position: fixed;z-index:99999}
+.leftbarAll{list-style: none;margin:0px;padding: 0px;margin-top: 40px}
+.leftbarAll li{width:240px;height:4em;font-size: 1.1em;line-height: 4em;vertical-align: middle;font-weight: 400;font-family: "Sim Hei"}
+.leftbarAll img{margin-left: 35px}
+.leftbarAll a{margin-left: 20px;color:#5f78a2;text-decoration: none;}
+.leftbarAll li:hover{text-decoration: none;}
+ul li a:hover{text-decoration: none;color:#ffffff}
+.manager{float:left;color: #ffffff;position: relative;right:97px;}
+.leftbarAll a:hover{text-decoration: none;}
+*/
+
+.leftBar{width:180px;height:2275px;background-color:#160509;float: left;position: fixed;z-index:99999}
+.leftbarAll{list-style: none;margin:0px;padding: 0px;margin-top: 10px}
+.leftbarAll li{width:180px;height:40px;font-size: 14px;line-height: 40px;vertical-align: middle;font-weight: 400;font-family: "Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif"}
+.leftbarAll img{margin-left: 35px}
+.leftbarAll i{margin-left: 30px;color:#5f78a2;text-decoration: none;}
+.leftbarAll a{margin-left: 10px;color:#5f78a2;text-decoration: none;}
+.leftbarAll li:hover{text-decoration: none;}
+ul li a:hover{text-decoration: none;color:#ffffff}
+.manager{float:left;color: #ffffff;position: relative;right:97px;}
+.leftbarAll a:hover{text-decoration: none;}
+.zcd li a{margin-left:55px;}
