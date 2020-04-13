@@ -54,38 +54,38 @@
                     <p style="color: #9b9b9b;">快捷方式</p>
                     <div style="width:75px;height:70px;background-color: #f5eeee;padding: 10px;float:left;margin-top:10px;margin-right:15px;">
                         <a href="#">
-                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:10px;"></i>
-                            <p>填辅料</p>
+                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:13px;"></i>
+                            <p style="text-align: center;">填辅料</p>
                         </a>
                     </div>
                     <div style="width:75px;height:70px;background-color: #f5eeee;padding: 10px;float:left;margin-top:10px;margin-right:15px;">
                         <a href="#">
-                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:10px"></i>
-                            <p>填授信</p>
+                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:13px"></i>
+                            <p style="text-align: center;">填授信</p>
                         </a>
                     </div>
                     <div style="width:75px;height:70px;background-color: #f5eeee;padding: 10px;float:left;margin-top:10px;">
                         <a href="#">
-                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:10px"></i>
-                            <p>填合同</p>
+                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:13px"></i>
+                            <p style="text-align: center;">填合同</p>
                         </a>
                     </div>
                     <div style="width:75px;height:70px;background-color: #f5eeee;padding: 10px;float:left;margin-top:10px;margin-right:15px;">
                         <a href="#">
-                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:10px"></i>
-                            <p>填授权</p>
+                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:13px"></i>
+                            <p style="text-align: center;">填授权</p>
                         </a>
                     </div>
                     <div style="width:75px;height:70px;background-color: #f5eeee;padding: 10px;float:left;margin-top:10px;margin-right:15px;">
                         <a href="#">
-                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:10px"></i>
-                            <p>改密码</p>
+                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:13px"></i>
+                            <p style="text-align: center;">改密码</p>
                         </a>
                     </div>
                     <div style="width:75px;height:70px;background-color: #f5eeee;padding: 10px;float:left;margin-top:10px;">
                         <a href="#">
-                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:10px"></i>
-                            <p>订会议</p>
+                            <i class="layui-icon layui-icon-form" style="font-size:30px;margin-left:13px"></i>
+                            <p style="text-align: center;">订会议</p>
                         </a>
                     </div>
                 </div>
