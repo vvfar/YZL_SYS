@@ -6,24 +6,24 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_公司授信</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.css" rel="stylesheet"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\flotr2\flotr2.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("..\..\common\conn\conn.php")?>
+        <?php include '..\base\header.php' ?>
+        <?php include '..\base\leftBar.php' ?>
 
-        <div style="width: 1660px;height:880px;margin-left: 240px;">
+        <div style="margin-left: 180px;">
             
             <?php
-                include_once("conn/conn.php");
-
+                
                 $username=$_SESSION["username"];
 
                 $sqlstr1="select department from user_form where username='$username'";
@@ -40,7 +40,7 @@
 
             ?>
             
-            <form method="POST" action="formHandle/companyMangerHandle2.php"  style="clear:both;float: left;margin-top: 10px;margin-left: 40px;">
+            <form method="POST" action="../../controller/sx/companyMangerHandle2.php"  style="clear:both;float: left;margin-top: 10px;margin-left: 40px;">
                 <p style="font-size:16px;margin-top:20px">回款单据</p>
                 <hr>
                 
@@ -148,7 +148,7 @@
 
         sxbh=$("#sxbh").val();
 
-        xmlhttp.open("GET","formHandle/searchSX_info.php?sxid=" + sxbh,true);
+        xmlhttp.open("GET","../../controller/sx/searchSX_info.php?sxid=" + sxbh,true);
     
         xmlhttp.onreadystatechange=function(){
             

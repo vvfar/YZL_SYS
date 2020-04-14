@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css\header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
@@ -322,7 +321,7 @@
                     <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
                     <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
                 </h4>
-                <div style="float:right;margin-right:50px;margin-top:20px;">
+                <div style="float:right;margin-right:33px;margin-top:20px;">
                     <?php
                         $sxMoney=0;
                         $syyh=0;
@@ -361,6 +360,9 @@
                     <p style="float: left;margin-left:20px;">授信金额：￥<span style="text-decoration: underline;"><?=$sxMoney?></span></p>
                     <p style="float: left;margin-left:20px;">剩余应还：￥<span style="text-decoration: underline;"><?=$syyh?></span></p>
                     <p style="float: left;margin-left:20px;">剩余额度：￥<span style="text-decoration: underline;"><?=$syed?></span></p>
+                
+                    <a href="timeSX.php" class="btn btn-xs btn-warning" style="float: left;margin-left:10px;">到期授信</a>    
+                    <a href="expireSX.php" class="btn btn-xs btn-danger" style="float: left;margin-left:10px;">逾期授信</a>   
                 </div>
             <div>
             
@@ -551,7 +553,7 @@
         date2=$("#date2").val()
         companyName=$("#companyName").val()
 
-        window.location.href='formHandle/sc_form.php?date1=' + date1 + '&date2=' + date2 +"&companyName=" + companyName + "&option=1"
+        window.location.href='../../controller/sx/sc_form.php?date1=' + date1 + '&date2=' + date2 +"&companyName=" + companyName + "&option=1"
     }
 
     var search=function(){

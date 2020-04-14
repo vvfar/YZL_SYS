@@ -8,9 +8,8 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
-        <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
@@ -209,7 +208,7 @@
                     </div>
                     <div class="form-group" style="float:left">
                         <p style="width: 30px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">金额</p>
-                        <input type="text" class="form-control" name="hkje<?=$a+1?>" placeholder="请输入还款金额" style="width: 90px;float: left;margin-left:20px;">
+                        <input type="text" class="form-control" name="hkje<?=$a+1?>" placeholder="请输入还款金额" style="width: 80px;float: left;margin-left:20px;">
                     </div>
                     <div class="form-group" style="float:left">
                         <p style="width: 30px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">费率</p>

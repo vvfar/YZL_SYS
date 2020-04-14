@@ -1,14 +1,14 @@
 <?php
 
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     $sqid=$_POST["sqid"];
 
     if(!empty($_FILES['upfile']['name'])){
         $fileinfo=$_FILES['upfile'];
         if($fileinfo['size']<2097152 && $fileinfo['size']>0){
-            $path="../sx_file/".$_FILES["upfile"]["name"];
+            $path="../../common/file/sx_file/".$_FILES["upfile"]["name"];
             move_uploaded_file($fileinfo['tmp_name'],$path);
         }else{
             ?>
@@ -25,7 +25,7 @@
         ?>
             <script>
                 alert("提交成功!");
-                window.location.href="../sx_line.php?id=<?=$sqid?>";
+                window.location.href="../../home/sx/sx_line.php?id=<?=$sqid?>";
             </script>
         <?php
     
@@ -33,7 +33,7 @@
         ?>
             <script>
                 alert("提交失败!");
-                window.location.href="../sx_line.php?id=<?=$sqid?>";
+                window.location.href="../../home/sx/sx_line.php?id=<?=$sqid?>";
             </script>
         <?php
     }

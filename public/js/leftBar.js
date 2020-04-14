@@ -1,5 +1,5 @@
-window.onload=function(){
-//$(document).ready(function(){
+//window.onload=function(){
+$(document).ready(function(){
     var leftBar_path=window.location.pathname;
 
     leftBar_path=leftBar_path.split("/");
@@ -19,7 +19,7 @@ window.onload=function(){
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
-    }else if(leftBar_path ==  "writeSX.php" || leftBar_path ==  "companyManger2.php" || leftBar_path ==  "zhangmu.php"  || leftBar_path ==  "zhangmu2.php" || leftBar_path ==  "zhangmu3.php" || leftBar_path ==  "sx_line.php" || leftBar_path ==  "sxmb.php"  || leftBar_path ==  "companyManger1_edit.php" || leftBar_path == "expireSX.php"    || leftBar_path == "timeSX.php"|| leftBar_path == "sx_cw.php" || leftBar_path == "ZFSX.php"){
+    }else if(leftBar_path ==  "writeSX.php" || leftBar_path ==  "companyManger2.php" || leftBar_path ==  "zhangmu.php"  || leftBar_path ==  "zhangmu2.php" || leftBar_path ==  "zhangmu3.php" || leftBar_path ==  "sx_line.php" || leftBar_path ==  "sxmb.php"  || leftBar_path ==  "companyManger1_edit.php" || leftBar_path == "expireSX.php"    || leftBar_path == "timeSX.php"|| leftBar_path == "sx_cw.php" || leftBar_path == "ZFSX.php" || leftBar_path ==  "sx_line2.php"){
 
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar1").css("background-color","darkslateblue");
@@ -197,6 +197,18 @@ window.onload=function(){
         }else if(leftBar_path == "dataStore.php"){
             $(".leftbar11Z4 a").css("color","#fff")
         }
+    }else if(leftBar_path == "manager_index.php"){
+        $(".leftbarAll li").css("background-color","#160509");
+        $(".leftbar12").css("background-color","darkslateblue");
+        $(".leftbar12 a").css("color","#ffffff");
+        $(".leftbar1Z").toggle();
+        $(".leftbar2Z").toggle();
+        $(".leftbar5Z").toggle();
+        $(".leftbar6Z").toggle();
+        $(".leftbar7Z").toggle();
+        $(".leftbar8Z").toggle();
+        $(".leftbar10Z").toggle();
+        $(".leftbar11Z").toggle();
     }else{
         $(".leftbar1Z").toggle();
         $(".leftbar2Z").toggle();
@@ -209,35 +221,45 @@ window.onload=function(){
     }
 
     $(".leftbar1").click(function(){
-        $(".leftbar1Z").toggle(500);
+        $(".leftbar1Z").toggle();
     })
 
     $(".leftbar2").click(function(){
-        $(".leftbar2Z").toggle(500);
+        $(".leftbar2Z").toggle();
     })
 
+    $(".leftbar3").click(function(){
+        $(".leftbar2Z").toggle();
+    })
+
+    $(".leftbar4").click(function(){
+        $(".leftbar2Z").toggle();
+    })
+
+
+
     $(".leftbar5").click(function(){
-        $(".leftbar5Z").toggle(500);
+        $(".leftbar5Z").toggle();
     })
 
     $(".leftbar6").click(function(){
-        $(".leftbar6Z").toggle(500);
+        $(".leftbar6Z").toggle();
     })
 
     $(".leftbar7").click(function(){
-        $(".leftbar7Z").toggle(500);
+        $(".leftbar7Z").toggle();
     })
 
     $(".leftbar8").click(function(){
-        $(".leftbar8Z").toggle(500);
+        $(".leftbar8Z").toggle();
     })
 
     $(".leftbar10").click(function(){
-        $(".leftbar10Z").toggle(500);
+        $(".leftbar10Z").toggle();
     })
 
     $(".leftbar11").click(function(){
-        $(".leftbar11Z").toggle(500);
+        $(".leftbar11Z").toggle();
     })
 
 
@@ -263,7 +285,7 @@ window.onload=function(){
         }
     }
 
-}
+})
 
 
     

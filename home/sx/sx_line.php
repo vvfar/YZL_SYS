@@ -82,7 +82,7 @@
                                     <?php
                                 }else{
                                     ?>
-                                    <button class="btn btn-success btn-sm" style="float:right;margin-left:10px" onclick="window.location.href='sx_file/<?=$myrow[20]?>'">附件下载</button>
+                                    <button class="btn btn-success btn-sm" style="float:right;margin-left:10px" onclick="window.location.href='../../common/file/sx_file/<?=$myrow[20]?>'">附件下载</button>
                                     <?php
                                 }
 
@@ -288,7 +288,7 @@
                 
                 if($department==$my_department and $status=="待生效"){
                     ?>
-                        <form method="POST" action="formHandle/companyMangerHandle3.php" enctype="multipart/form-data" style="margin-top: 10px;margin-left: 51px;">
+                        <form method="POST" action="../../controller/sx/companyMangerHandle3.php" enctype="multipart/form-data" style="margin-top: 10px;margin-left: 51px;">
                             
                             <input type="hidden" class="form-control" name="sqid" value="<?=$sxid?>" readonly = "readonly" placeholder="请输入授信编号" style="width: 250px;float: left;margin-top: 15px;">
                             

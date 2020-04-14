@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
@@ -354,7 +353,7 @@
         date2=$("#date2").val()
         companyName=$("#companyName").val()
 
-        window.location.href='formHandle/sc_form.php?date1=' + date1 + '&date2=' + date2 +"&companyName=" + companyName + "&option=0"
+        window.location.href='../../controller/sx/sc_form.php?date1=' + date1 + '&date2=' + date2 +"&companyName=" + companyName + "&option=0"
     }
 
     var search=function(){

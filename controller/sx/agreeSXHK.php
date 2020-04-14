@@ -1,7 +1,7 @@
 <?php
     //解决中文乱码
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
     error_reporting(E_ALL || ~E_NOTICE);
 
     $id=$_GET["id"];
@@ -100,14 +100,14 @@
     ?>
         <script>
             alert("提交成功！")
-            window.location.href="../sx_line.php?id=<?=$my_id?>"
+            window.location.href="../../home/sx/sx_line.php?id=<?=$my_id?>"
         </script> 
     <?php
     }else{
     ?>
     <script>
         alert("提交失败！");
-        window.location.href="../sx_line2.php?id=<?=$my_id?>";
+        window.location.href="../../home/sx/sx_line2.php?id=<?=$my_id?>";
     </script> 
     <?php
     }

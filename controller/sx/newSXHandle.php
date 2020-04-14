@@ -3,11 +3,13 @@
     header("content-type:text/html;charset=utf-8");
     include_once("../../common/conn/conn.php");
     //error_reporting(E_ALL^E_NOTICE);
-    
+
+    session_start();
+    $username=$_SESSION["username"];
+
     $sx_id_id=$_POST['sx_id_id']; //授信编号对应表单的id
     $sqid=$_POST['sqid'];   //授信编号
-    $companyName=$_POST['cn'];  //公司名称
-    $ywy=$_POST['ywy'];  //申请人
+    $companyName=$_POST['companyName'];  //公司名称
     $sqmoney=$_POST['sqmoney'];  //授信额度
     $sxf=$_POST['sxf'];  //手续费
     $note=$_POST['note'];  //备注
@@ -53,8 +55,7 @@
     $hkjhbz=implode(",",$hkjhbz);
     $wyfl=implode(",",$wyfl);
 
-    session_start();
-    $username=$_SESSION["username"];
+
 
     $sqlstr1="select department from user_form where username='$username'";
 
@@ -99,10 +100,10 @@
 
 
     if($sx_id_id!=""){
-        $sqlstr3="update sx_form set companyName='$companyName',ywy='$ywy',department='$department',date1='$date1',sqid='$sqid',sqmoney='$sqmoney',sxf='$sxf',dateTime='$dateTime',".
+        $sqlstr3="update sx_form set companyName='$companyName',ywy='$username',department='$department',date1='$date1',sqid='$sqid',sqmoney='$sqmoney',sxf='$sxf',dateTime='$dateTime',".
         "hkje='$hkje',wyfl='$wyfl',hkfs='$hkfs',hkfsbz='$hkjhbz',note='$note',date2='$date2',date3='$date3',isgx='$isgx',gxCount_val='$gxCount_val',gxDepartment='$gxDepartment' where sqid='$sqid'";
     }else{
-        $sqlstr3="insert into sx_form values('$maxID'+1,'$companyName','$ywy','$department','$date1','$sqid','$sqmoney','$sxf','$dateTime',".
+        $sqlstr3="insert into sx_form values('$maxID'+1,'$companyName','$username','$department','$date1','$sqid','$sqmoney','$sxf','$dateTime',".
         "'$hkje','$wyfl','$hkfs','$hkjhbz','$note','','','$date2','$date3','待生效','待上传纸质附件','','','$isgx','$gxCount_val','$gxDepartment') ";
     }
 

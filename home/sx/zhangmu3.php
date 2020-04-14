@@ -173,6 +173,7 @@
                     <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
                     <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
                 </h4>
+                <a href="ZFSX.php" style="float:right;margin-right:40px;position: relative;top: 20px;">查看作废单据</a>
             <div>
             
             <div style="clear:both;position: relative;top: 10px;margin-left: 60px;">
@@ -357,7 +358,7 @@
         date2=$("#date2").val()
         companyName=$("#companyName").val()
 
-        window.location.href='formHandle/sc_form.php?date1=' + date1 + '&date2=' + date2 +"&companyName=" + companyName + "&option=2"
+        window.location.href='../../controller/sx/sc_form.php?date1=' + date1 + '&date2=' + date2 +"&companyName=" + companyName + "&option=2"
     }
 
     var search=function(){

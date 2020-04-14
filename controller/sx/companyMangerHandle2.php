@@ -1,7 +1,7 @@
 <?php
     //解决中文乱码
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     $sxbh=$_POST['sxbh'];
 
@@ -36,7 +36,8 @@
     $sql_hkfs2_arr=explode(",",$sql_hkfs2);
     
     for($i=1;$i<13;$i++){
-        $str="实际第".$i."期回款时间";
+        $str="第".$i."期";
+
         if($hkqs==$str){
             $sql_date2_arr[$i-1]=$date2;
             $sql_sjhkje_arr[$i-1]=$sjhkje;
@@ -44,6 +45,7 @@
             $sql_hkfs2_arr[$i-1]=$hkfs2;
         }
     }
+
     
     $sql_date2=implode(",",$sql_date2_arr);
     $sql_sjhkje=implode(",",$sql_sjhkje_arr);
@@ -53,26 +55,12 @@
 
     if((int)$sql_dhkje==0){
         
-        
-        //$sqlstr5="update sx_form set status='已完成' where sqid='$sxbh'";
-        //$result5=mysqli_query($conn,$sqlstr5);
-
-        /*
-            $sqlstr3="update hk_form set date1='$date1',date2='$sql_date2',sjhkje='$sql_sjhkje',".
-            "hkfs='$sql_hkfs',hkfs2='$hkfs2',syjehkfs='$syjehkfs',dhkje='$sql_dhkje' ".
-            "where sqid='$sxbh'";
-        */
         $sqlstr3="update hk_form2 set date1='$date1',date2='$sql_date2',sjhkje='$sql_sjhkje',".
         "hkfs='$sql_hkfs',hkfs2='$hkfs2',syjehkfs='$syjehkfs',dhkje='$sql_dhkje',status='待财务审批' ".
         "where sqid='$sxbh'";
         
-
     }else{
-        /*
-            $sqlstr3="update hk_form set date1='$date1',date2='$sql_date2',sjhkje='$sql_sjhkje',".
-            "hkfs='$sql_hkfs',hkfs2='$hkfs2',syjehkfs='$syjehkfs',dhkje='$sql_dhkje' ".
-            "where sqid='$sxbh'";
-        */
+
         $sqlstr3="update hk_form2 set date1='$date1',date2='$sql_date2',sjhkje='$sql_sjhkje',".
         "hkfs='$sql_hkfs',hkfs2='$hkfs2',syjehkfs='$syjehkfs',dhkje='$sql_dhkje',status='待财务审批' ".
         "where sqid='$sxbh'";
@@ -94,7 +82,7 @@
     ?>
         <script>
             alert("提交成功!");
-            window.location.href="../sx_cw.php";
+            //window.location.href="../../home/sx/sx_cw.php";
         </script>
     
     <?php
@@ -102,7 +90,7 @@
     ?>
         <script>
             alert("提交失败!");
-            //window.location.href="../companyManger2.php";
+            window.location.href="../../home/sx/companyManger2.php";
         </script>
     <?php
     }

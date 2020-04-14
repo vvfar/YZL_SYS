@@ -1,6 +1,6 @@
 <?php
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
     error_reporting(E_ALL^E_NOTICE);
     
     $date1=$_GET['date1'];
@@ -9,12 +9,13 @@
 
     session_start();
     $username=$_SESSION["username"];
-    $sqlstr1="select department from user_form where username='$username'";
+    $sqlstr1="select department,newLevel from user_form where username='$username'";
 
     $result=mysqli_query($conn,$sqlstr1);
 
     while($myrow=mysqli_fetch_row($result)){
         $department=$myrow[0];
+        $newLevel=$myrow[1];
     }
 
     $sqlstr2="select a.sqid,a.date1,a.companyName,a.department,a.ywy,a.sqmoney,". 
@@ -27,7 +28,7 @@
         $sqlstr2=$sqlstr2." and a.date3 >= '$date1' and a.date3 <= '$date2'";
     }
 
-    if($department !="数据中心"){
+    if($newLevel !="数据中心" and $department !="财务部" ){
         $sqlstr2=$sqlstr2." and a.department='$department'";
     }
 

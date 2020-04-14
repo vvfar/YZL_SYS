@@ -41,8 +41,6 @@
                     <li class="leftbar1Z1"><a href="/home/sx/zhangmu.php">待审核授信</a></li>
                     <li class="leftbar1Z4"><a href="/home/sx/zhangmu2.php">待回款授信</a></li>
                     <li class="leftbar1Z5"><a href="/home/sx/zhangmu3.php">已完成授信</a></li>
-                    <li class="leftbar1Z6"><a href="/home/sx/timeSX.php">到期授信单</a></li>
-                    <li class="leftbar1Z7"><a href="/home/sx/ZFSX.php">作废授信单</a></li>
                 </div>
 
 
@@ -110,7 +108,7 @@
                 <?php
                     if($newLevel=="ADMIN"){
                 ?>
-                    <li class="leftbar9"><i class="layui-icon layui-icon-password"></i><a href="/admin/manager/manager_index.php">后台管理</a></li>
+                    <li class="leftbar12"><i class="layui-icon layui-icon-password"></i><a href="/admin/manager/manager_index.php">后台管理</a></li>
                 <?php
                     }
                 ?>

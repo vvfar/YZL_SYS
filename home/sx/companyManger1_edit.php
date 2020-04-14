@@ -6,25 +6,25 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_公司授信</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\flotr2\flotr2.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("..\..\common\conn\conn.php") ?>
+        <?php include '../base/header.php' ?>
+        <?php include '../base/leftBar.php' ?>
 
-        <div style="background-color: rgb(243, 243, 243);width: 1660px;height:auto;margin-left: 240px;">
+        <div style="margin-left: 180px;">
 
-            <form method="POST" action="formHandle/companyMangerHandle1.php" enctype="multipart/form-data" style="clear:both;float: left;margin-top: 10px;margin-left: 40px;">
+            <form method="POST" action="../../controller/sx/newSXHandle.php" enctype="multipart/form-data" style="clear:both;float: left;margin-top: 10px;margin-left: 40px;">
                 <?php
-                    include_once("conn/conn.php");
+                    
                     error_reporting(E_ALL || ~E_NOTICE);
                                         
                     $username=$_SESSION["username"];
@@ -67,7 +67,7 @@
                     }
                 ?>
 
-                <p style="font-size:16px;margin-top:20px">修改授信单据</p>
+                <p style="font-size:16px;">修改授信单据</p>
                 <hr>
 
                 <div class="form-group" style="clear: both;">
@@ -78,11 +78,29 @@
                 </div>
                 <div class="form-group" style="clear: both;">
                     <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">公司名称</p>
-                    <input type="text" class="form-control" style="margin-top:15px;width: 250px;float: left;" id="cn" name="cn" readonly = "readonly"  value="<?=$companyName?>" placeholder="搜索公司名称后自动推荐公司全称"/>
-                    <input type="text" name="companyName" id="companyName" class="form-control" placeholder="搜索公司名称" style="width: 200px;float: left;margin-top: 15px;margin-left:17px;" value="">
-                    <button class="btn btn-info btn-sm"  type="button" style="float: left;margin-left: 20px;margin-top:17px;" id="search">搜索</button>
-                    <button class="btn btn-success btn-sm"  type="button" style="float: left;margin-left: 10px;margin-top:17px;" id="add">添加</button>            
+                    <select name="companyName" class="form-control" style="width: 250px;float: left;margin-top: 15px;">
+                        <option></option>
+                        <?php
+                            $sqlstr1="select client from store where staff='$username' and status='正常' and htsq='合同授权已提交'";
+
+                            echo $sqlstr1;
+
+                            $result=mysqli_query($conn,$sqlstr1);
+        
+                            while($myrow=mysqli_fetch_row($result)){
+                                if($companyName == $myrow[0]){
+                                    echo "<option selected>$myrow[0]</option>";
+                                }else{
+                                    echo "<option>$myrow[0]</option>";
+                                }
+                                
+                            }
+                        ?>
+                    
+                    </select>
                 </div>
+
+
                 <div class="form-group" style="clear: both;">
                     <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">是否共享授信</p>
                     <select class="form-control" style="float: left;width:250px;margin-top: 15px;" id="isgx" name="isgx">
@@ -172,50 +190,6 @@
                     }
                 ?>
                 <div class="form-group" style="clear: both;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">申请人</p>
-                    <select style="float: left;width: 250px;margin-top: 15px;" name="ywy" class="form-control">
-                        <option></option>
-                        <?php
-                            $username=$_SESSION["username"];
-                
-                            $sqlstr1="select department from user_form where username='$username'";
-
-                            $result=mysqli_query($conn,$sqlstr1);
-
-                            while($myrow=mysqli_fetch_row($result)){
-                                $department=$myrow[0];
-                            }
-
-
-                            if($department != "数据中心"){
-                                $sqlstr2="select * from staff where department='$department'";
-                                
-                            }else{
-                                $sqlstr2="select * from staff";
-                            }
-
-                            $result=mysqli_query($conn,$sqlstr2);
-
-                            while($myrow=mysqli_fetch_row($result)){
-                                if($myrow[2]==$ywy){
-                                    ?>
-                                        <option selected><?=$myrow[2]?></option>
-                                    <?php
-                                }else{
-                                    ?>
-                                        <option><?=$myrow[2]?></option>
-                                    <?php
-                                }
-                            }
-
-                            mysqli_free_result($result);
-                            mysqli_close($conn);
-
-                        ?> 
-                    </select>
-
-                </div>
-                <div class="form-group" style="clear: both;">
                     <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">授信额度</p>
                     <input type="text" class="form-control" name="sqmoney" placeholder="请输入金额" style="width: 250px;float: left;margin-top: 15px;" value="<?=$sqmoney?>">
                 </div>
@@ -251,11 +225,8 @@
                                     <option><?=$i?></option>
                                 <?php
                             }
-                        ?>
-                            
-                        <?php
-                            }
-                        ?>
+                        }
+                    ?>
                     
                     </select>
                 </div>
@@ -286,15 +257,15 @@
                         </div>
                     </div>
                     <div class="form-group" style="float:left">
-                        <p style="width: 60px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">回款金额</p>
-                        <input type="text" class="form-control" name="hkje<?=$a+1?>" placeholder="请输入还款金额" style="width: 125px;float: left;margin-left:20px;" value="<?=$hkje_arr[$a]?>">
+                        <p style="width: 30px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">金额</p>
+                        <input type="text" class="form-control" name="hkje<?=$a+1?>" placeholder="请输入还款金额" style="width: 80px;float: left;margin-left:20px;" value="<?=$hkje_arr[$a]?>">
                     </div>
                     <div class="form-group" style="float:left">
-                        <p style="width: 60px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">违约费率</p>
+                        <p style="width: 30px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">费率</p>
                         <input type="text" class="form-control" name="wyfl<?=$a+1?>" placeholder="" style="width: 62px;float: left;margin-left:20px;" value="<?=$wyfl_arr[$a]?>"><span style="position:relative;top:7px;margin-left:5px;font-size:16px;">%</span>
                     </div>
                     <div class="form-group" style="float:left">
-                        <p style="width: 60px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">回款方式</p>
+                        <p style="width: 30px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">方式</p>
                         <select class="form-control" name="hkfs<?=$a+1?>" value="" style="float: left;width: 120px;margin-left:20px;">
                             <?php
                                 if($hkfs_arr[$a]=="现金还款"){
@@ -373,7 +344,7 @@
                         </select>
                     </div>
                     <div class="form-group" style="float:left">
-                        <p style="width: 100px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">还款计划备注</p>
+                        <p style="width: 30px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">备注</p>
                         <input type="text" class="form-control" name="hkjhbz<?=$a+1?>" value="<?=$hkfsbz_arr[$a]?>" placeholder="请输入还款计划备注" style="width: 160px;float: left;margin-left:20px;">
                     </div>
 
