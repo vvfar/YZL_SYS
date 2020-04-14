@@ -6,29 +6,27 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_订会议室</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css\header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php");?>
+        <?php include '../base/header.php' ?>
+        <?php include '../base/leftBar.php' ?>
             
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
+        <div style="margin-left: 180px;">
             
-            <div style="margin-top:50px;margin-left:60px;">
+            <div style="margin-top:20px;margin-left:50px;">
                 <div>
                     <h4 style="float:left">会议室概况</h4>
                     
                     <?php
-
-                        
-
                         if(!isset($_GET["date"])){
                             date_default_timezone_set("Asia/Shanghai");
                             $date=date('Y-m-d', time());
@@ -37,7 +35,7 @@
                         }
                     ?>
 
-                    <div style="float:left;margin-left:765px">
+                    <div style="float:left;margin-left:650px">
                         <p style="float: left;position:relative;top:7px;">选择日期</p>
                         <div style="width: 180px;font-size: 14px;float: left;margin-left:20px" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                             <input class="form-control" id="dateTime" name="dateTime" size="16" type="text" value="<?=$date?>" readonly>
@@ -48,15 +46,14 @@
                 </div>
 
 
-                <div style="width:1300px;clear:both">
-                    <hr>
+                <div style="clear:both">
 
                     <?php
 
                         for($i=0;$i<5;$i++){
                     ?>
                     
-                    <div style="width:350px;height:350px;float:left;margin-right:30px;margin-bottom:30px;" class="meetingBorder">
+                    <div style="width:305px;height:250px;float:left;margin-right:30px;margin-top:20px" class="meetingBorder">
                         <span class="label label-success" style="position:relative;top:10px;left:10px;padding-top:5px;">会议室<?=chr($i+65)?></span>
              
              
@@ -64,12 +61,12 @@
                         <p style="float:right;margin-top:10px;margin-right:10px;">当前状态：空闲</p>
                         
                         <div style="clear:both">
-                            <p style="float:right;margin-right:10px;margin-top:18px;">更多>></p>
+                            <p style="float:right;margin-right:10px;margin-top:5px;">更多>></p>
                         </div>
 
-                        <div style="margin-top:10px;" class="meetingUL">
-                            <div style="height:252px;">
-                                <table class="table" style="width:310px;margin-left:20px;">
+                        <div style="margin-top:15px;" class="meetingUL">
+                            <div style="height:160px;">
+                                <table class="table" style="width:275px;margin-left:20px;margin-top:30px;">
                                     <tr>
                                         <th style="width:100px">时间</th>
                                         <th style="width:100px">主题</th>
@@ -78,7 +75,7 @@
 
                                     <?php
                                         
-                                        include_once("conn/conn.php");
+                                        
 
                                                     
                                         $sqlstr1="select * from meeting where room='$i'+1 and date='$date' and status='已审核' limit 0,5";
@@ -151,10 +148,6 @@
 
     .meetingUL ul li a:hover{
         color:blue;
-    }
-
-    li{
-        margin-top:10px;
     }
 
     a{

@@ -161,7 +161,7 @@
                 $("#cn").attr("value",msg_list[1]);
                 $("#ywy").attr("value",msg_list[2]);
                 if(msg_list[3] != undefined){
-                    $("#hkqs").attr("value","实际第" + msg_list[3] + "期回款时间");
+                    $("#hkqs").attr("value","第" + msg_list[3] + "期");
                 }
                 
 

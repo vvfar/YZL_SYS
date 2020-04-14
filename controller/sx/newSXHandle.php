@@ -1,7 +1,7 @@
 <?php
 
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
     //error_reporting(E_ALL^E_NOTICE);
     
     $sx_id_id=$_POST['sx_id_id']; //授信编号对应表单的id
@@ -161,7 +161,7 @@
         }
         
         alert("提交成功!");
-        window.location.href="../zhangmu.php";
+        window.location.href="../../home/sx/zhangmu.php";
     </script>
         
     <?php
@@ -170,11 +170,11 @@
     ?>
         <script>
             alert("提交失败!");
-            window.location.href="../companyManger1.php";
+            window.location.href="../../home/sx/writeSX.php";
         </script>
     <?php
     }
     
-    //mysqli_free_result($result);
+    mysqli_free_result($result);
     mysqli_close($conn);
 ?>

@@ -6,19 +6,20 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_辅料申请</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="css\leftbar.css" rel="stylesheet"/>
-        <link href="css\header.css" rel="stylesheet"/>
-        <link href="css\flLine.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css\header.css" rel="stylesheet"/>
+        <link href="..\..\public\css\flLine.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("..\..\common\conn\conn.php");?>
+        <?php include '..\base\header.php' ?>
+        <?php include '..\base\leftBar.php' ?>
             
         <?php
-            include_once("conn/conn.php");
+            
             error_reporting(E_ALL || ~E_NOTICE);
 
             $username=$_SESSION["username"];
@@ -94,9 +95,9 @@
 
         ?>
 
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
+        <div style="margin-left: 180px;">
             
-            <div style="float:left;width:1240px;margin-top:50px;">
+            <div style="float:left;width:1040px;margin-top:20px;">
                 <div style="float:left;">
                     <div class="sqd_st" style="margin-left:40px;float:left;">
                         <p>申请单状态：<?=$status_pop?></p>
@@ -130,7 +131,7 @@
             
             
             <form action="formHandle/addFLSQD.php" method="POST" style="clear:both;">
-                <table class="tb1" border="1" cellspacing="0" style="clear:both;position: relative;top:20px;margin-left:40px;width:1200px;margin-bottom:30px;">
+                <table class="tb1" border="1" cellspacing="0" style="clear:both;position: relative;top:20px;margin-left:40px;width:1000px;margin-bottom:30px;">
                     <tr>
                         <td colspan="4" style="width:147px;">申请单位</td>
                         <td colspan="4" style="width:147px;"><?=$company?></td>
@@ -345,16 +346,21 @@
                     }
                 ?>
                     
-                <div style="margin-left: 1135px;position:relative;top:20px;">
+                <div style="margin-left: 933px;">
                     <?php
 
                         $arr_shr=explode(",",$shr);
                         $shr_arr3=array_shift($arr_shr);
                         $shr_arr1=array_pop($arr_shr);
 
+
                         if($shr_arr1 == $username){
-                            if($department != "义乌部" and ($department == "商务运营部" and $status_pop=="商务运营审批授信") and $status_pop !="待KA审核单据"){
-                    ?>
+                            
+
+                            if($department != "义乌部" or ($department == "商务运营部" and $status_pop=="商务运营审批授信") and $status_pop !="待KA审核单据"){
+                        
+                        
+                        ?>
                         <button type="button" class="btn btn-success btn-sm" id="yes">同意</button>
                         <button type="button" class="btn btn-danger btn-sm" id="no" style="margin-left:10px;">拒绝</button>
                 
@@ -444,11 +450,11 @@
         if($shr_arr1==$username and $department != "义乌部" and $status !="义乌打包发货"){
             ?>
             $("#yes").click(function(){
-                window.location.href="formHandle/flLiucheng.php?id=<?=$id?>&option=1"
+                window.location.href="../../controller/fl/flLiucheng.php?id=<?=$id?>&option=1"
             })
         
             $("#no").click(function(){
-                window.location.href="formHandle/flLiucheng.php?id=<?=$id?>&option=0"
+                window.location.href="../../controller/fl/flLiucheng.php?id=<?=$id?>&option=0"
             })
     <?php
         }else{
@@ -460,11 +466,11 @@
                 wlprice=$("#wlprice").val()
                 note=$("#note").val()
 
-                window.location.href="formHandle/flLiucheng.php?id=<?=$id?>&option=3&wlfs=" + wlfs + "&wlno=" + wlno + "&wlprice=" + wlprice + "&note=" + note
+                window.location.href="../../controller/fl/flLiucheng.php?id=<?=$id?>&option=3&wlfs=" + wlfs + "&wlno=" + wlno + "&wlprice=" + wlprice + "&note=" + note
             })
         
             $("#no").click(function(){
-                window.location.href="formHandle/flLiucheng.php?id=<?=$id?>&option=0"
+                window.location.href="../../controller/fl/flLiucheng.php?id=<?=$id?>&option=0"
             })
         <?php
 
@@ -472,7 +478,7 @@
     ?>
    
    $("#yes4").click(function(){
-        window.location.href="formHandle/flLiucheng.php?id=<?=$id?>&option=6"
+        window.location.href="../../controller/fl/flLiucheng.php?id=<?=$id?>&option=6"
     })
 
     //打印页面
@@ -487,7 +493,7 @@
             xmlhttp=new XMLHttpRequest();
         }
 
-        xmlhttp.open("GET","formHandle/isPrint.php?id=<?=$id?>&department=<?=$department?>",true);
+        xmlhttp.open("GET","../../controller/fl/isPrint.php?id=<?=$id?>&department=<?=$department?>",true);
 
         xmlhttp.onreadystatechange=function(){
             
@@ -510,7 +516,7 @@
     }
 
     $("#backEdit").click(function(){
-        window.location.href="formHandle/flLiucheng.php?id=<?=$id?>&option=0"
+        window.location.href="../../controller/fl/flLiucheng.php?id=<?=$id?>&option=0"
     })
 
 </script>

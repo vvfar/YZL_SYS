@@ -1,4 +1,5 @@
-window.onload=function(){
+$(document).ready(function(){
+
 
     $("#download_fl").click(function(){
         status=$("#status").val()
@@ -10,7 +11,7 @@ window.onload=function(){
         if(input_time==""){
             alert("请选择日期！")
         }else{
-            window.location.href="formHandle/download_fl.php?status=" + status + "&time=" + time1 + "&input_time=" + input_time + "&input_time2=" + input_time2 + "&clientName=" +clientName
+            window.location.href="../../controller/fl/download_fl.php?status=" + status + "&time=" + time1 + "&input_time=" + input_time + "&input_time2=" + input_time2 + "&clientName=" +clientName
         }
     })
 
@@ -35,4 +36,4 @@ window.onload=function(){
         language:'cn',
         pickerPosition: "bottom-left"
     });
-}
+})

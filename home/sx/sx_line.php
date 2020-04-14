@@ -6,23 +6,24 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_公司授信</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.css" rel="stylesheet"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.css" rel="stylesheet"/>
+        <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css\header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php")?>
+        <?php include '../base/header.php' ?>
+        <?php include '../base/leftBar.php' ?>
 
-        <div style="width: 1660px;height:auto;margin-left: 240px;">
+        <div style="margin-left: 180px;">
             
             <div style="clear: both;position:relative;top:20px;margin-left:40px;">
                 <?php
-                    include_once("conn/conn.php");
+                    
                     error_reporting(E_ALL || ~E_NOTICE);
 
                     $username=$_SESSION["username"];
@@ -59,13 +60,13 @@
                         }
                     ?>
 
-                        <div style="width:1005px;float:left">
+
                             <p style="float: left;margin-left: 10px;font-size:16px;margin-top:5px"><strong>授信编号：<?=$myrow[0]?></strong></p>
                             <p style="float: left;margin-left:60px;font-size:16px;margin-left: 10px;margin-top:5px"><strong>有效期限：从 <?=$myrow[9]?> 到 <?=$myrow[10]?></strong></p>  
-                        </div>
+
                         
 
-                        <div style="float:left;width:240px;">
+                        <div style="float:right;margin-right:30px;">
                             <button class="btn btn-info btn-sm" style="float:right;margin-left:10px" id="tomb">查看模板</button>
                             
                             <?php
@@ -126,7 +127,7 @@
                         <hr>
                         
                         <p style="margin-left:10px;">授信基本信息：</p>
-                        <table class="base_list table table-responsive table-bordered table-hover" style="clear:both;position:relative;width: 1300px;">
+                        <table class="base_list table table-responsive table-bordered table-hover" style="clear:both;position:relative;width: 1000px;margin-top:10px;">
                             <tr>
                                 <td>公司名称</td>
                                 <td><?=$myrow[1]?></td>
@@ -188,8 +189,8 @@
                 ?>
             </div>
 
-            <p style="margin-left:50px;margin-top:50px;">计划与实际回款信息：</p>
-            <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;width: 1300px;margin-left: 50px;">
+            <p style="margin-left:50px;margin-top:30px;">计划与实际回款信息：</p>
+            <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;width: 1000px;margin-left: 50px;margin-top:10px;">
                 <tr>
                     <th>期数</th>
                     <th>计划回款日期</th>
@@ -264,7 +265,7 @@
             <?php
                 if($syhkje !=0){
                     ?>
-                        <p><a href="companyManger2.php?no=<?=$sqid?>" style="margin-left:50px;">填写回款单</a></p>
+                        <p><a href="companyManger2.php?no=<?=$sqid?>" style="margin-left:50px;margin-top:30px">填写回款单</a></p>
                     <?php
                 }
             ?>
@@ -313,7 +314,7 @@
             
             <p style="margin-left:50px;clear:both;position:relative;top:50px;">扣款明细：</p>
             
-            <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;width: 1300px;margin-left: 50px;top:50px;">
+            <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;width: 1000px;margin-left: 50px;top:50px;">
                 <tr>
                     <th>序号</th>
                     <th>辅料编号</th>

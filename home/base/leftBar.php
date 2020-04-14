@@ -37,7 +37,7 @@
 
                 <li class="leftbar1"><i class="layui-icon layui-icon-rmb"></i><a href="#">公司授信</a></li>
                 <div class="leftbar1Z zcd">
-                    <li class="leftbar1Z2"><a href="/home/sx/companyManger1.php">填写授信单</a></li>
+                    <li class="leftbar1Z2"><a href="/home/sx/writeSX.php">新增授信单</a></li>
                     <li class="leftbar1Z1"><a href="/home/sx/zhangmu.php">待审核授信</a></li>
                     <li class="leftbar1Z4"><a href="/home/sx/zhangmu2.php">待回款授信</a></li>
                     <li class="leftbar1Z5"><a href="/home/sx/zhangmu3.php">已完成授信</a></li>

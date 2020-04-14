@@ -11,8 +11,9 @@
         <link href="../../public/css/leftbar.css" rel="stylesheet"/>
         <link href="../../public/css/header.css" rel="stylesheet"/>
         <link href="../../public/css/flsq.css" rel="stylesheet"/>
-        <script src="../../public/js/flsq.js"></script>
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="../../public/js/flsq.js"></script>
+        
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
@@ -25,8 +26,6 @@
             
             <?php
                 error_reporting(E_ALL || ~E_NOTICE);
-                
-                include_once("conn/conn.php");
 
                 $username=$_SESSION["username"];
                 
@@ -139,7 +138,7 @@
             
             ?>
                     
-            <form action="formHandle/addFLSQD.php?no=1" method="POST" onkeydown="if(event.keyCode==13)return false;" enctype="multipart/form-data" onSubmit="return submitOnce(this)">
+            <form action="../../../controller/fl/addFLSQD.php?no=1" method="POST" onkeydown="if(event.keyCode==13)return false;" enctype="multipart/form-data" onSubmit="return submitOnce(this)">
         
                 <div class="sqdbh">
                     <p>申请单编号</p>
@@ -392,10 +391,10 @@
                         <td class="w1">序号</td>
                         <td class="w1">品类</td>
                         <td class="w1">货号</td>
-                        <td class="w3">品名</td>
+                        <td class="w1">品名</td>
                         <td class="w2">申请数量</td>
                         <td class="w2">
-                            <select style="width: 92px;height: 25px;" name="ishs">
+                            <select style="height: 25px;" name="ishs">
                                 <option></option>
                                 <?php
                                     if($ishs=="含税包装价格"){
@@ -419,11 +418,11 @@
                             </select>
                         </td>
                         <td class="w2">费率 /<br>单价</td>
-                        <td class="w5">服务费<br>小计</td>
-                        <td class="w4">辅料名称</td>
-                        <td class="w1">单价</td>
-                        <td class="w1">辅料数量</td>
-                        <td class="w1">辅料小计</td>
+                        <td class="w2">服务费<br>小计</td>
+                        <td class="w3">辅料名称</td>
+                        <td class="w3">单价</td>
+                        <td class="w3">辅料数量</td>
+                        <td class="w3">辅料小计</td>
                     </tr>
                     <?php
                         $category_arr=explode(',',$category);
@@ -751,4 +750,5 @@
             return false;  
         }  
     }  
+
 </script>

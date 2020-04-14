@@ -11,8 +11,8 @@
         <link href="..\..\public\css\flDone.css" rel="stylesheet"/>
         <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css\header.css" rel="stylesheet"/>
-        <script src="..\..\public\js\flDone.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\js\flDone.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
         

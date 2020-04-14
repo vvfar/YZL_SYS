@@ -183,7 +183,7 @@
                             $sqlstr2=$sqlstr2." and a.companyName like '%$companyName%'";
                         }
                         
-                        if($department !="数据中心" and $department !="财务"){
+                        if($department !="数据中心" and $department !="财务部"){
                             $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%')";
                         }
 

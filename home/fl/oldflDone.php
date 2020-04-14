@@ -62,14 +62,11 @@
                 <p class="search_bar_p1">辅料单查询</p>
 
                 <select class="form-control search_bar_s1" id="status">
-                    <option>全部</option>
                     <option>已完成</option>
-                    <option>未完成</option>
                 </select>
 
                 <select class="form-control search_bar_s2" id="time1">
                     <option>流程开始时间</option>
-                    <option>流程结束时间</option>
                 </select>
 
                 <div class="input-group date form_datetime  search_bar_t" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
@@ -198,7 +195,7 @@
                         ?>">下一页</a></li>
                     </ul>
 
-                    <div style="float:left;margin-left:550px;width:321px;">
+                    <div style="float:left;margin-left:580px;width:321px;">
                         <ul class="pagination" style="float:right;margin-top:0px">
                             <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1">&laquo;</a></li>
                             <?php

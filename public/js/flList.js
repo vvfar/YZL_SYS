@@ -1,4 +1,5 @@
-window.onload=function(){
+$(document).ready(function(){
+
     $("#download_fl").click(function(){
         status=$("#status").val()
         time1=$("#time1").val()
@@ -35,4 +36,4 @@ window.onload=function(){
         language:'cn',
         pickerPosition: "bottom-left"
     });
-}
+})

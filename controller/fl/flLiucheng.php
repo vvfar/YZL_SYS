@@ -1,7 +1,7 @@
 <?php
     header("content-type:text/html;charset=utf-8");  //格式为utf-8格式
     //error_reporting(E_ALL || ~E_NOTICE);  //不抛出异常
-    include_once("../conn/conn.php");  //连接数据库
+    include_once("../../common/conn/conn.php");  //连接数据库
     session_start();
     date_default_timezone_set("Asia/Shanghai");
     
@@ -262,10 +262,10 @@
             $sqlstr6="update use_sx set newMoney= $nowUseMoney + newMoney where sqid='$sqid'";
             $result=mysqli_query($conn,$sqlstr6);
 
-            echo "<script>window.location.href='../flsq.php?id=$id'</script>";
+            echo "<script>window.location.href='../../home/fl/flsq.php?id=$id'</script>";
             
         }else{
-            echo "<script>window.location.href='../flsq.php?id=$id'</script>";
+            echo "<script>window.location.href='../../home/fl/flsq.php?id=$id'</script>";
         }
     }else{
         //拒绝，待业务员审核
@@ -301,7 +301,7 @@
                 window.location.href="../mobile/flsq/flList.php"
             }else{
                 alert("提交成功！")
-                window.location.href="../flList.php"
+                window.location.href="../../home/fl/flList.php"
             }
         </script>
         <?php
@@ -313,7 +313,7 @@
                 window.location.href="../mobile/flsq/flList.php"
             }else{
                 alert("提交失败！")
-                window.location.href="../flList.php"
+                window.location.href="../../home/fl/flList.php"
             }
         </script>
         <?php

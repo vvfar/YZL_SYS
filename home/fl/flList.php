@@ -12,8 +12,8 @@
         <link href="../../public/css\header.css" rel="stylesheet"/>
         <link href="../../public/css\flList.css" rel="stylesheet"/>
         <script src="../../public/lib\flotr2\flotr2.min.js"></script>
-        <script src="../../public/js\flList.js"></script>
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="../../public/js\flList.js"></script>
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>

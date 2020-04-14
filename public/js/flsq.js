@@ -1,4 +1,5 @@
-window.onload=function(){
+$(document).ready(function(){
+
     var del=false
     var add=false
     var add_del=0;
@@ -481,5 +482,6 @@ window.onload=function(){
             $("#option").attr("value",0)
             $("#hd_submit").click()
         }       
-    })
-}
+    })    
+})
+

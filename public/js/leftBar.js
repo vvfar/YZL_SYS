@@ -19,7 +19,7 @@ window.onload=function(){
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
-    }else if(leftBar_path ==  "companyManger1.php" || leftBar_path ==  "companyManger2.php" || leftBar_path ==  "zhangmu.php"  || leftBar_path ==  "zhangmu2.php" || leftBar_path ==  "zhangmu3.php" || leftBar_path ==  "sx_line.php" || leftBar_path ==  "sxmb.php"  || leftBar_path ==  "companyManger1_edit.php" || leftBar_path == "expireSX.php"    || leftBar_path == "timeSX.php"|| leftBar_path == "sx_cw.php" || leftBar_path == "ZFSX.php"){
+    }else if(leftBar_path ==  "writeSX.php" || leftBar_path ==  "companyManger2.php" || leftBar_path ==  "zhangmu.php"  || leftBar_path ==  "zhangmu2.php" || leftBar_path ==  "zhangmu3.php" || leftBar_path ==  "sx_line.php" || leftBar_path ==  "sxmb.php"  || leftBar_path ==  "companyManger1_edit.php" || leftBar_path == "expireSX.php"    || leftBar_path == "timeSX.php"|| leftBar_path == "sx_cw.php" || leftBar_path == "ZFSX.php"){
 
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar1").css("background-color","darkslateblue");
@@ -34,7 +34,7 @@ window.onload=function(){
 
         if(leftBar_path ==  "zhangmu.php"){
             $(".leftbar1Z1 a").css("color","#fff")
-        }else if(leftBar_path == "companyManger1.php"){
+        }else if(leftBar_path == "writeSX.php"){
             $(".leftbar1Z2 a").css("color","#fff")
         }else if(leftBar_path == "companyManger2.php"){
             $(".leftbar1Z3 a").css("color","#fff")
@@ -248,7 +248,7 @@ window.onload=function(){
     $("#center").click(function(){
         window.location.href="center.php";
     })
-
+    
     var menu=[{"我的门户":[{"href":"index.php","name":"我的主页"},{"href":"#","name":"数据查询"},{"href":"#","name":"数据录入"}]},{"公司授信":[{"href":"companyManger1.php","name":"填写授信单"},{"href":"zhangmu.php","name":"待审核授信"},{"href":"zhangmu2.php","name":"待回款授信"},{"href":"zhangmu3.php","name":"已完成授信"},{"href":"timeSX.php","name":"到期授信单"},{"href":"ZFSX.php","name":"作废授信单"}]},{"辅料申请单":[{"href":"flsq.php","name":"新增辅料单"},{"href":"flList.php","name":"未完成辅料"},{"href":"flDone.php","name":"已完成辅料"},{"href":"oldflDone.php","name":"旧系统辅料"}]},{"店铺信息":[{"href":"manStore.php","name":"店铺分配"},{"href":"uploadStore.php","name":"数据提交"},{"href":"dataStore.php","name":"店铺数据"}]},{"店铺合同":[{"href":"contract.php","name":"新增合同"},{"href":"w_contract.php","name":"待归档合同"},{"href":"contractList.php","name":"已归档合同"}]},{"电脑设备":[{"href":"itList.php","name":"设备列表"},{"href":"it.php","name":"新增设备"}]},{"数据统计":[{"href":"data.php?month=","name":"当月数据报表"},{"href":"form.php"},{"name":"日数据报表"},{"href":"sumDayData.php","name":"合计数据报表"},{"href":"powerPage.php","name":"BI可视化报表"}]},{"订会议室":[{"href":"viewMeeting.php","name":"查看会议"}]},{"个人中心":[{"href":"center.php","name":"我的资料"}]},{"文件下载":[{"href":"document.php","name":"文件下载"}]}]
     
     for(i=0;i<menu.length;i++){

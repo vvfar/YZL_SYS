@@ -1,8 +1,8 @@
 <?php
     
     header("content-type:text/html;charset=utf-8");  //格式为utf-8格式
-    error_reporting(E_ALL || ~E_NOTICE);  //不抛出异常
-    include_once("../conn/conn.php");  //连接数据库
+    //error_reporting(E_ALL || ~E_NOTICE);  //不抛出异常
+    include_once("../../common/conn/conn.php");  //连接数据库
     session_start();   
 
 
@@ -90,15 +90,18 @@
     //获取下个节点名称
     $sqlstr3="select name from flprogress where number='$p_no'+1";
 
-    $result=mysqli_query($conn,$sqlstr3);
+    $result2=mysqli_query($conn,$sqlstr3);
 
-    while($myrow=mysqli_fetch_row($result)){
+    while($myrow=mysqli_fetch_row($result2)){
         $name=$myrow[0];
     }
-
+    echo $sqlstr3;
+    echo $name;
 
     //M级审批单据
     if($name == "M级审批单据"){
+
+        
         $sqlstr3="select username from user_form where department like '%$department%' and newLevel='M'";
             
         $result=mysqli_query($conn,$sqlstr3);
@@ -154,6 +157,7 @@
                     "'$wlfs','$wlno','$wlprice','$note','$hd_sqslhj','$hd_fwfhj','$hd_flsl','$hd_flfhjsh',".
                     "'$hd_fwfflfzj','$hd_count'+1,'$ywy','$name','','','$sp','','$date','$fileName')";
                 
+                    
             //已被保存或提交后拒绝的单据
             }else{
                 $sqlstr1="update flsqd set no='$no',company='$company',people='$people',department='$department',date='$date',address='$address',".
@@ -161,6 +165,8 @@
                 "amount='$amount',price='$price',fls='$fls',fwfxj='$fwfxj',flsName='$flsName',dj='$dj',sl='$sl',flfxj='$flfxj',sd='$sd',jkfs='$jkfs',".
                 "wlfs='$wlfs',wlno='$wlno',wlprice='$wlprice',note='$note',hd_sqslhj='$hd_sqslhj',hd_fwfhj='$hd_fwfhj',hd_flsl='$hd_flsl',hd_flfhjsh='$hd_flfhjsh',".
                 "hd_fwfflfzj='$hd_fwfflfzj',hd_count='$hd_count'+1,ywy='$ywy',status='$name',shr='$sp',csr='',allTime='$date',file='$fileName' where id='$id'";
+            
+                
             }    
         }else{
             //点击一键保存的执行流程
@@ -183,7 +189,7 @@
             }
         }
         
-    
+        
         $result=mysqli_query($conn,$sqlstr1);
     
         //提交后扣减授信金额
@@ -228,14 +234,14 @@
 
         if($id ==""){
             //提交后跳转maxID+1
-            echo "<script>window.location.href='../flLine.php?id=".($maxID+1)."'</script>";
+            echo "<script>window.location.href='../../home/fl/flLine.php?id=".($maxID+1)."'</script>";
         }else{
             //提交后跳转当前ID
-            echo "<script>window.location.href='../flLine.php?id=$id'</script>";
+            echo "<script>window.location.href='../../home/fl/flLine.php?id=$id'</script>";
         }
     }else{
         echo "<script>alert('提交失败！')</script>";
-        echo "window.location.href='../flsq.php'";
+        echo "<script>window.location.href='../../home/fl/flsq.php'</script>";
     }
 
     mysqli_free_result($result);

@@ -1,6 +1,6 @@
 <?php
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
     error_reporting(E_ALL || ~E_NOTICE);
     session_start();
 

@@ -8,5 +8,5 @@
 
 <script>
     alert("您已退出登陆！");
-    window.location.href="../../login.php";
+    window.location.href="../../admin/login/login.php";
 </script>

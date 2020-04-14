@@ -6,28 +6,28 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_IT设备</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css\header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php") ?>
+        <?php include '../base/header.php' ?>
+        <?php include '../base/leftBar.php' ?>
 
-        <div style="background-color: rgb(243, 243, 243);width: 1660px;height:auto;margin-left: 240px;">
+        <div style="margin-left: 180px;">
 
-            <div class="nav nav-pills" style="float:left;margin-top:30px;margin-left:30px;">
+            <div class="nav nav-pills" style="float:left;margin-top:10px;margin-left:10px;">
                 <li role="presentation"><a href="itList.php">设备列表</a></li>
                 <li role="presentation" class="active"><a href="#">新增设备</a></li>
             </div>
 
             <?php
-                include_once("conn/conn.php");
+                
 
                 if(isset($_GET['id']) && $_GET['id']!=""){
                     $id=$_GET['id'];
@@ -88,7 +88,7 @@
             ?>
 
 
-            <div style="clear: both;margin-left:43px;position:relative;top:10px;">
+            <div style="clear: both;margin-left:30px;position:relative;top:10px;">
                 <form method="POST" action="formHandle/itHandle.php">
                     <div class="form-group hidden" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">id</p>
@@ -259,8 +259,8 @@
                         <input type="text" class="form-control" name="note" value="<?=$note?>" placeholder="备注" style="width: 250px;float: left;margin-top: 15px;">
                     </div>
 
-                    <div style="clear: both;margin-top:30px;">
-                        <button type="submit" class="btn btn-default btn-md">提交</button>
+                    <div style="clear: both;">
+                        <button type="submit" class="btn btn-success btn-md" style="margin-top:10px;margin-left:315px;">提交</button>
                     </div>
                 </form>
             </div>

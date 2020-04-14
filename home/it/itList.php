@@ -6,25 +6,24 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_IT设备</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\flotr2\flotr2.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php");?>
+        <?php include '../base/header.php' ?>
+        <?php include '../base/leftBar.php' ?>
 
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
+        <div style="margin-left: 180px;">
 
             <?php
-                include_once("conn/conn.php");
-
                 $username=$_SESSION["username"];
 
                 $sqlstr1="select department,level from user_form where username='$username'";
@@ -61,7 +60,7 @@
 
             ?>
                 <div style="clear: both;border-radius: 6px;">
-                    <div class="nav nav-pills" style="float:left;margin-top:30px;margin-left:50px;">
+                    <div class="nav nav-pills" style="float:left;margin-top:10px;margin-left:20px;">
                         <li role="presentation" class="active"><a href="#">设备列表</a></li>
                         <li role="presentation"><a href="it.php">新增设备</a></li>
                     </div>
@@ -71,18 +70,18 @@
             ?>
             
             <div style="clear:both;">
-                <div>
+                <div style="width:1070px;">
                     <h4 style="float:left">
-                        <span class="label label-info" style="margin-left:50px;position:relative;top:20px;">共<?=$total?>条</span>
-                        <span class="label label-warning" style="margin-left:5px;position:relative;top:20px;">共<?=$pagecount?>页</span>
-                        <span class="label label-success" style="margin-left:5px;position:relative;top:20px;">第<?=$page?>页</span>
+                        <span class="label label-info" style="margin-left:20px;position:relative;top:15px;">共<?=$total?>条</span>
+                        <span class="label label-warning" style="margin-left:5px;position:relative;top:15px;">共<?=$pagecount?>页</span>
+                        <span class="label label-success" style="margin-left:5px;position:relative;top:15px;">第<?=$page?>页</span>
                     </h4>
-                    <button class="btn btn-sm btn-success" style="float:left;margin-left:1072px;position:relative;top:20px;" id="download">下载</button>
+                    <button class="btn btn-sm btn-success" style="float:right;position:relative;top:0px;" id="download">下载</button>
                 </div>
             </div>
             
             <div style="clear:both">
-                <table class="table table-responsive table-bordered table-hover" style="width:1300px;margin-top:65px;margin-left:50px;">
+                <table class="table table-responsive table-bordered table-hover" style="width:1050px;margin-top:45px;margin-left:20px;">
                     <tr>
                         <th>型号</th>
                         <th>使用人</th>
@@ -123,7 +122,7 @@
                 </table>
             </div>
 
-            <div style="margin-left: 50px;">
+            <div style="margin-left: 20px;">
                 <ul class="pager" style="float:left;width:150px;margin-top:0px;">
                     <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                         if($page>1)
@@ -139,7 +138,7 @@
                     ?>">下一页</a></li>
                 </ul>
 
-                <div style="float:left;margin-left:830px;width:321px;">
+                <div style="float:left;margin-left:580px;width:321px;">
                     <ul class="pagination" style="float:right;margin-top:0px;">
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1">&laquo;</a></li>
                         <?php
