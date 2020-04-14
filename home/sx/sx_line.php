@@ -61,16 +61,14 @@
                     ?>
 
 
-                            <p style="float: left;margin-left: 10px;font-size:16px;margin-top:5px"><strong>授信编号：<?=$myrow[0]?></strong></p>
-                            <p style="float: left;margin-left:60px;font-size:16px;margin-left: 10px;margin-top:5px"><strong>有效期限：从 <?=$myrow[9]?> 到 <?=$myrow[10]?></strong></p>  
-
-                        
+                        <p style="float: left;margin-left: 10px;font-size:16px;margin-top:5px"><strong>授信编号：<?=$myrow[0]?></strong></p>
+                        <p style="float: left;margin-left:60px;font-size:16px;margin-left: 10px;margin-top:5px"><strong>有效期限：从 <?=$myrow[9]?> 到 <?=$myrow[10]?></strong></p>  
 
                         <div style="float:right;margin-right:30px;">
                             <button class="btn btn-info btn-sm" style="float:right;margin-left:10px" id="tomb">查看模板</button>
                             
                             <?php
-                                if($department=="数据中心"){
+                                if($newLevel=="ADMIN"){
                                     ?>
                                         <button class="btn btn-danger btn-sm"  data-target="#myModal" data-toggle="modal" style="float:right;margin-left:10px">作废单据</button>
                                     <?php

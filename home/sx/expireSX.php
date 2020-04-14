@@ -6,20 +6,21 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_公司授信</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\flotr2\flotr2.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
 
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php");?>
+        <?php include '../base/header.php' ?>
+        <?php include '../base/leftBar.php' ?>
 
         <div class="zhangmu_container">
 
@@ -35,20 +36,16 @@
                     $date2=$_GET["date2"];
                     $companyName=$_GET["companyName"];
                 }
-            
-            ?>
-            <?php
-                include_once("conn/conn.php");
-                
+                            
                 $username=$_SESSION["username"];
 
-                $sqlstr1="select department,level from user_form where username='$username'";
+                $sqlstr1="select department,newLevel from user_form where username='$username'";
 
                 $result=mysqli_query($conn,$sqlstr1);
 
                 while($myrow=mysqli_fetch_row($result)){
                     $department=$myrow[0];
-                    $level=$myrow[1];
+                    $newLevel=$myrow[1];
                 }
 
                 $sqlstr2="select fileName from files where note='授信欠据模板'";
@@ -74,16 +71,15 @@
 
             ?>
 
-            <div style="margin-left:60px;margin-top:30px;">
+            <div style="margin-left:30px;margin-top:15px;">
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="timeSX.php" style="width:120px;float:left">即将到期授信</a></li>
                     <li class="active" style="width:90px;float:left"><a href="#">逾期授信</a></li>
                 </ul>
             </div>
 
-            <div style="margin-top:10px;margin-left:60px;">
-                <p style="float:left">注：待审核授信无法作为辅料单授信，必须完成单据上传后方可使用。</p>
-                <button class="btn btn-success btn-sm" style="float:left;margin-left:772px;" onclick="downloadYQ()">下载逾期单据</button>
+            <div>
+                <button class="btn btn-success btn-sm" style="float:right;margin-right:35px;" onclick="downloadYQ()">下载逾期单据</button>
             </div>
 
             <?php
@@ -106,7 +102,7 @@
                     $sqlstr3= $sqlstr3." and a.companyName like '%$companyName%'";
                 }
 
-                if($department !="数据中心" and $department !="财务" and $level !="总经理"){
+                if($newLevel !="ADMIN" and $department !="财务部"){
                     $sqlstr3=$sqlstr3." and (a.department='$department' or a.gxDepartment like '%$department%')";
                 }
                 
@@ -116,9 +112,9 @@
             ?>
             
             
-            <div style="clear:both;margin-left: 60px;">
+            <div style="clear:both;margin-left: 30px;">
                 
-                <table class="table table-responsive table-bordered table-hover" style="width: 1300px;margin-bottom:10px;margin-top:60px;">
+                <table class="table table-responsive table-bordered table-hover" style="width: 1020px;margin-bottom:10px;margin-top:40px;">
                     <tr>
                         <th>序号</th>
                         <th>授信编号</th>
@@ -147,7 +143,7 @@
                             $sqlstr2=$sqlstr2." and a.companyName like '%$companyName%'";
                         }
                         
-                        if($department !="数据中心" and $department !="财务" and $level !="总经理"){
+                        if($newLevel !="ADMIN" and $department !="财务部"){
                             $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%')";
                         }
 
@@ -244,7 +240,7 @@
                                             <td><?=$myTotal?></td>
                                             <td class="td1"><p style="margin:0 auto"><a href="sx_line.php?id=<?=$myrow[0]?>" style="width: 50px;"><?=$myrow[2]?></a></p></td>
                                             <td class="td2"><p style="margin:0 auto"><?=$myrow[3]?></p></td>
-                                            <td><?=$myrow[4]?></td>
+                                            <td><p style="margin:0"><?=$myrow[4]?></p></td>
                                             <td><?=$myrow[5]?></td>
                                             <td><?=$myrow[6]?></td>
                                             <td><?=$qs?></td>
@@ -304,8 +300,8 @@
                     ?>&date1=<?=$date1?>&date2=<?=$date2?>&companyName=<?=$companyName?>">下一页</a></li>
                 </ul>
 
-                <div style="float:left;margin-left:830px;width:321px;">
-                    <ul class="pagination" style="float:right">
+                <div style="float:left;margin-left:550px;width:321px;">
+                    <ul class="pagination" style="float:right;margin:0">
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1">&laquo;</a></li>
                         <?php
                             if($pagecount<=5){
@@ -351,26 +347,20 @@
 </html>
 
 <style>
-    @media screen and (min-width:1300px){
-        th{background-color:lavender}
-        th,td{text-align: center;margin: 0;overflow: hidden}
-        .to-scroll{overflow-x: scroll;overflow-x: scroll;height: 550px;clear:both}
-        .zhangmu_container{width: 1660px;height:880px;margin-left: 240px;}
-        .nav_div{float:left;margin-top: 20px;margin-left:40px;}
-        .date_form{clear: both;float:left;margin-top:30px;margin-left:60px}
-        .djrq{float:left;margin-top:5px}
-        .template{float:left;margin-left:400px;margin-top:2px;}
-    }
+    th{background-color:lavender}
+    th,td{text-align: center;margin: 0;overflow: hidden}
+    .to-scroll{overflow-x: scroll;overflow-x: scroll;height: 550px;clear:both}
+    .zhangmu_container{margin-left: 180px;}
+    .nav_div{float:left;margin-top: 20px;margin-left:40px;}
+    .date_form{clear: both;float:left;margin-top:30px;margin-left:60px}
+    .djrq{float:left;margin-top:5px}
+    .template{float:left;margin-left:400px;margin-top:2px;}
 
-    @media screen and (min-width:1024px) and (max-width:1299px){
-        th{background-color:lavender}
-        th,td{text-align: center;margin: 0;overflow: hidden}
-        .to-scroll{overflow-x: scroll;overflow-x: scroll;height: 550px;clear:both}
-        .zhangmu_container{width: 1320px;height:880px;margin-left: 150px;}
-        .nav_div{clear:both;float:left;margin-top: 20px;margin-left:60px;}
-        .date_form{clear: both;float:left;margin-top:30px;margin-left:60px}
-        .djrq{float:left;margin-top:5px}
-        .template{float:left;margin-left:350px;margin-top:2px;}
+    table p{
+        width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
     }
 
     .pager li a:hover{

@@ -159,7 +159,7 @@
                 </div>
             <div>
             
-            <div style="clear:both;position: relative;top: 10px;margin-left: 60px;">
+            <div style="clear:both;position: relative;top: 15px;margin-left: 60px;">
                 <table class="table table-responsive table-bordered table-hover" style="width: 1020px;margin-bottom:10px;">
                     <tr>
                         <th style="width: 150px;">授信编号</th>

@@ -1,6 +1,6 @@
 <?php
 
-    include_once("conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     $id=$_GET["id"];
     $ds=$_GET["ds"];

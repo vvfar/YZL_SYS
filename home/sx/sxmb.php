@@ -6,20 +6,20 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_店铺合同</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="..\..\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php") ?>
+        <?php include '../base/header.php' ?>
+        <?php include '../base/leftBar.php' ?>
 
         <?php
-            include_once("conn/conn.php");
 
             $id=$_GET["id"];
 
@@ -50,7 +50,7 @@
 
 
         <div class="content">
-            <div style="width: 1660px;height:890px;margin-left: 240px;">
+            <div style="margin-left: 180px;">
                 <div style="margin-left:788px;position:relative;top:30px;">
                     <button class="btn btn-sm btn-warning btn-download" style="float:left;margin-left:10px;">下载</button>
                     <button class="btn btn-sm btn-success" style="float:left;margin-left:10px;" onclick="print()">打印</button>
@@ -195,14 +195,14 @@
     })
 
     $(".btn-blue").click(function(){
-        window.location.href='/sx_line.php?id=<?=$id?>'
+        window.location.href='sx_line.php?id=<?=$id?>'
     })
 
     $(".btn-download").click(function(){
 
         ds=$("#ds").html();
 
-        window.location.href='/createSX_mb.php?id=<?=$id?>&ds=' + ds
+        window.location.href='createSX_mb.php?id=<?=$id?>&ds=' + ds
     })
 </script>
 

@@ -1,7 +1,7 @@
 <?php
     //解决中文乱码
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     $sxid=trim(isset($_GET['sxid'])?$_GET['sxid']:"");
 
