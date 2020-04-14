@@ -95,8 +95,7 @@
     while($myrow=mysqli_fetch_row($result2)){
         $name=$myrow[0];
     }
-    echo $sqlstr3;
-    echo $name;
+
 
     //M级审批单据
     if($name == "M级审批单据"){

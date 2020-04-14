@@ -82,7 +82,7 @@
     ?>
         <script>
             alert("提交成功!");
-            //window.location.href="../../home/sx/sx_cw.php";
+            window.location.href="../../home/sx/sx_cw.php";
         </script>
     
     <?php

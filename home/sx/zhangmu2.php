@@ -300,7 +300,7 @@
                     $sqlstr3=$sqlstr3." and a.department='$s_department'";
                 }
 
-                if($newLevel !="ADMIN" and $department !="财务部" and $chooseInfo !="事业部" and $level !="总经理"){
+                if($newLevel !="ADMIN" and $department !="财务部" and $chooseInfo !="事业部"){
                     $sqlstr3=$sqlstr3." and (a.department='$department' or a.gxDepartment like '%$department%')";
                 }
 

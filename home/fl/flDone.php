@@ -129,9 +129,7 @@
                 <p class="search_bar_p1">辅料单查询</p>
 
                 <select class="form-control search_bar_s1" id="status">
-                    <option>全部</option>
                     <option>已完成</option>
-                    <option>未完成</option>
                 </select>
 
                 <select class="form-control search_bar_s2" id="time1">
