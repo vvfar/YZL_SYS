@@ -78,7 +78,7 @@
                     mysqli_close($conn); 
                 ?>
                 
-                <form method="POST" action="formHandle/SQHandle.php?option=<?=$option?>&progress=1"  enctype="multipart/form-data">
+                <form method="POST" action="../../controller/contract/SQHandle.php?option=<?=$option?>&progress=1"  enctype="multipart/form-data">
                     <div class="form-group" style="clear: both;display:none">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">id</p>
                         <input type="text" class="form-control" name="id" value="<?=$id?>" placeholder="请输入授权编号" style="width: 250px;float: left;margin-top: 15px;">

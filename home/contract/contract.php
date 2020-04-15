@@ -92,7 +92,7 @@
                     }
                 ?>
                 
-                <form method="POST" action="formHandle/contractHandle.php?option=<?=$option?>&progress=1">
+                <form method="POST" action="../../controller/contract/contractHandle.php?option=<?=$option?>&progress=1">
                     <div class="form-group hidden" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">id</p>
                         <input type="text" class="form-control" name="id" value="<?=$id?>" style="width: 250px;float: left;margin-top: 15px;">

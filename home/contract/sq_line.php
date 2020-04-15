@@ -6,26 +6,23 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_店铺合同</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\flotr2\flotr2.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css\header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("..\..\common\conn\conn.php");?>
+        <?php include '..\base\header.php' ?>
+        <?php include '..\base\leftBar.php' ?>
 
-        <div style="width: 1660px;height:890px;margin-left: 240px;position:relative;top: 30px;">
-            <div class="nav nav-pills" style="float: left;margin-top: 30px;margin-left:50px;">
+        <div style="margin-left: 180px;margin-top:15px;">
+            <div class="nav nav-pills" style="float: left;margin-top: 15px;margin-left:30px;">
                 <?php
                     
-                    include_once("conn/conn.php");
-
                     $username=$_SESSION["username"];
 
                     $sqlstr1="select department,level,newLevel from user_form where username='$username'";
@@ -93,12 +90,12 @@
                 <p style="font-size: 16px;float:left;">授权期限：从 <?=$date1?> 到 <?=$date2?></p>
             </div>
 
-            <div style="clear:both;margin-left:50px;position:relative;top:15px;">
+            <div style="clear:both;margin-left:30px;position:relative;top:15px;">
                 <div>
                     <p style="border-bottom:1px solid #ddd;padding:5px;float:left">登记日期：<?=$re_date?></p>
                     
                     <?php
-                        if($my_department=="品牌部" or $my_department=="数据中心"){
+                        if($my_department=="商务运营部" or $newLevel=="ADMIN"){
                             ?>
                                 <button class="btn btn-sm btn-info" style="float:left;margin-left:698px;" onclick="changeSQ()">修改授权</button>
                                 <button class="btn btn-sm btn-danger" style="float:left;margin-left:10px" onclick="delSQ()">删除授权</button>
@@ -108,7 +105,7 @@
                 </div>
 
                 <div style="clear:both">
-                    <p style="float:left">基本信息：</p>
+                    <p style="float:left;margin-top:20px;">基本信息：</p>
                 
                     <?php
                         $contractID="";
@@ -123,16 +120,16 @@
                         
                         if($contractID !=""){
                             ?>
-                                <a href="/contract_line.php?id=<?=$contractID?>&option=合同" style="float:left;margin-left:845px;" target="_blank">查看店铺合同</a>
+                                <a href="contract_line.php?id=<?=$contractID?>&option=合同" style="float:left;margin-left:845px;margin-top:20px;" target="_blank">查看店铺合同</a>
                             <?php
                         }else{
                             ?>
-                                <a href="#" style="float:left;margin-left:860px;">无店铺合同</a>
+                                <a href="#" style="float:left;margin-left:860px;margin-top:20px;">无店铺合同</a>
                             <?php
                         }
                     ?>
                 </div>
-                <table class="table table-responsive table-bordered table-hover" style="width:1000px;clear:both">
+                <table class="table table-responsive table-bordered table-hover"  style="width:1000px;margin-top:50px">
                     <tr>
                         <th>公司名称</th>
                         <td colspan="7"><?=$companyName?></td>
@@ -189,13 +186,13 @@
                     $file_arr=explode(",",$fileName);
                     if($file_arr[0] !=""){
                         ?>
-                            <a class="btn btn-info btn-sm" href="sq/bzj/<?=$file_arr[0]?>">保证金收据</a>
+                            <a class="btn btn-info btn-sm" href="../../common/file/sq_file/bzj/<?=$file_arr[0]?>">保证金收据</a>
                         <?php
                     }
 
                     if($file_arr[1] !=""){
                         ?>
-                            <a class="btn btn-success btn-sm" href="sq/sq_file/<?=$file_arr[1]?>">授权扫描件</a>
+                            <a class="btn btn-success btn-sm" href="../../common/file/sq_file/sq_file/<?=$file_arr[1]?>">授权扫描件</a>
                         <?php
                     }
 
@@ -277,25 +274,26 @@
 
 <script>
     $("#yes").click(function(){
+
         <?php
-            if($newLevel == "M级别"){
+            if($username == "崔立德"){
                 ?>
-                    window.location.href="formHandle/SQHandle.php?id=<?=$id?>&progress=2"
+                    window.location.href="../../controller/contract/SQHandle.php?id=<?=$id?>&progress=3"
                 <?php
-            }elseif($newLevel == "总M级别"){
+            }elseif($newLevel == "M"){
                 ?>
-                    window.location.href="formHandle/SQHandle.php?id=<?=$id?>&progress=3"
+                    window.location.href="../../controller/contract/SQHandle.php?id=<?=$id?>&progress=2"
                 <?php
-            }elseif($newLevel == "管理员"){
+            }elseif($my_department == "商务运营部"){
                 ?>
-                    window.location.href="formHandle/SQHandle.php?id=<?=$id?>&progress=4"
+                    window.location.href="../../controller/contract/SQHandle.php?id=<?=$id?>&progress=4"
                 <?php
             }
         ?>
     })
 
     $("#no").click(function(){
-        window.location.href="formHandle/SQHandle.php?id=<?=$id?>&progress=5"
+        window.location.href="../../controller/contract/SQHandle.php?id=<?=$id?>&progress=5"
     })
 
     $("#edit").click(function(){
@@ -307,6 +305,6 @@
     }
 
     var delSQ=function(){
-        window.location.href="formHandle/SQHandle.php?id=<?=$id?>&progress=6"
+        window.location.href="../../controller/contract/SQHandle.php?id=<?=$id?>&progress=6"
     }
 </script>

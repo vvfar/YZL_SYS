@@ -1,6 +1,6 @@
 <?php
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     date_default_timezone_set("Asia/Shanghai");
     $time=date('Y-m-d  H:i:s', time());
@@ -49,17 +49,17 @@
                 if($fileinfo['size']<2097152 && $fileinfo['size']>0){
                     echo $fileName;
         
-                    $path="../sq/bzj/".$_FILES["upfile"]["name"];
+                    $path="../../common/file/sq_file/bzj/".$_FILES["upfile"]["name"];
                     move_uploaded_file($fileinfo['tmp_name'],$path);
                     
                     $fileName=$_FILES['upfile']['name'];   
                 }else{
-                    echo "<script>alert('照片过大无法上传！');window.location.href='../newSQ.php'</script>";
+                    echo "<script>alert('照片过大无法上传！');window.location.href='../../home/contract/newSQ.php'</script>";
                     $fileStatus=FALSE;
                 }
             }else{
                 if($id == ""){
-                    echo "<script>alert('保证金不为0必须上传收据！');window.location.href='../newSQ.php'</script>";
+                    echo "<script>alert('保证金不为0必须上传收据！');window.location.href='../../home/contract/newSQ.php'</script>";
                     $fileStatus=FALSE;
                 }
                 
@@ -71,18 +71,18 @@
         if(!empty($_FILES['upfile2']['name'])){
             $fileinfo=$_FILES['upfile2'];
             if($fileinfo['size']<2097152 && $fileinfo['size']>0){
-                $path="../sq/sq_file/".$_FILES["upfile2"]["name"];
+                $path="../../common/file/sq_file/sq_file/".$_FILES["upfile2"]["name"];
                 move_uploaded_file($fileinfo['tmp_name'],$path);
                 
                 $fileName2=$_FILES['upfile2']['name'];
     
             }else{
-                echo "<script>alert('照片过大无法上传！');window.location.href='../newSQ.php'</script>";
+                echo "<script>alert('照片过大无法上传！');window.location.href='../../home/contract/newSQ.php'</script>";
                 $fileStatus=FALSE;
             }
         }else{
             if($id == ""){
-                echo "<script>alert('授信扫描件需上传！');window.location.href='../newSQ.php'</script>";
+                echo "<script>alert('授信扫描件需上传！');window.location.href='../../home/contract/newSQ.php'</script>";
                 $fileStatus=FALSE;
             }
         }
@@ -147,10 +147,15 @@
             $status=$status.",崔总审批单据";
             $shr=$shr.",崔立德";
             $shTime=$shTime.",".$time;
+
+            $sqlstr1="update sq set status = '$status',shr='$shr',shTime='$shTime' where id='$id'";
         }elseif($progress ==3){
-            $status=$status.",数据中心归档单据";
+            $status=$status.",商务运营归档单据";
             $shr=$shr.",楚柳辉";
             $shTime=$shTime.",".$time;
+
+            $sqlstr1="update sq set status = '$status',shr='$shr',shTime='$shTime' where id='$id'";
+
         }elseif($progress == 4){
             //授权归档后新增店铺
             $sqlstr3="select companyName,storeName,pingTai,category,department,contractNo,status,shr from sq where id=$id";
@@ -234,7 +239,7 @@
                     $contract_status_arr=explode(",",$contract_status);
                     $status2=array_pop($contract_status_arr);
 
-                    if($status2=="数据中心已归档"){
+                    if($status2=="商务运营已归档"){
                         
                         $sqlstr7="insert into store values('$maxID'+1,'$storeID','$companyName','$storeName','$pingTai','$category','$department','$staff','','正常','$date','','','$date','合同授权已提交')";
                     
@@ -264,11 +269,12 @@
                 }
             }
 
-            $status=$status.",数据中心已归档";
-            $shr=$shr.",数据中心";
+            $status=$status.",商务运营已归档";
+            $shr=$shr.",商务运营部";
             $shTime=$shTime.",".$time;
             
             $sqlstr1="update sq set status = '$status',shr='$shr',shTime='$shTime' where id='$id'";
+        
         }elseif($progress == 5){
             //审核拒绝
             $status=$status.",审核拒绝";
@@ -287,7 +293,7 @@
             ?>
             <script>
                 alert("提交成功！")
-                window.location.href="../w_contract.php"
+                window.location.href="../../home/contract/w_contract.php"
             </script>
 
     <?php
@@ -295,7 +301,7 @@
         ?>
         <script>
             alert("提交失败！")
-            window.location.href="../newSQ.php"
+            //window.location.href="../../home/contract/newSQ.php"
         </script>
         <?php
     }

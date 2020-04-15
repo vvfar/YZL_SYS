@@ -1,6 +1,6 @@
 <?php
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     date_default_timezone_set("Asia/Shanghai");
     $time=date('Y-m-d  H:i:s', time());
@@ -87,7 +87,7 @@
             $sqlstr1="update contract set status = '$status',shr='$shr',shTime='$shTime' where id='$id'"; 
             $result=mysqli_query($conn,$sqlstr1);
         }elseif($progress ==3){
-            $status=$status.",数据中心归档单据";
+            $status=$status.",商务运营归档单据";
             $shr=$shr.",楚柳辉";
             $shTime=$shTime.",".$time;
 
@@ -113,7 +113,7 @@
             }
             
             if($sq_count == 0){
-                echo "<script>alert('请先提交授权！');window.location.href='../contract_line.php?id=".$id."&option=合同'</script>";
+                echo "<script>alert('请先提交授权！');window.location.href='../../home/contract/contract_line.php?id=".$id."&option=合同'</script>";
 
             }else{
                 $sqlstr5="select count(*) from store where client='$companyName' and storeName='$storeName'";
@@ -124,12 +124,12 @@
                 }
 
                 if($store_count == 0){
-                    echo "<script>alert('请先审核授权！');window.location.href='../contract_line.php?id=".$id."&option=合同'</script>";
+                    echo "<script>alert('请先审核授权！');window.location.href='../../home/contract/contract_line.php?id=".$id."&option=合同'</script>";
                 }else{
                     $sqlstr6="update store set htsq='合同授权已提交' where id=(select id from store where client='$companyName' and storeName='$storeName')";
                 
-                    $status=$status.",数据中心已归档";
-                    $shr=$shr.",数据中心";
+                    $status=$status.",商务运营已归档";
+                    $shr=$shr.",商务运营部";
                     $shTime=$shTime.",".$time;
 
                     $sqlstr1="update contract set status = '$status',shr='$shr',shTime='$shTime' where id='$id'"; 
@@ -156,7 +156,7 @@
             ?>
             <script>
                 alert("提交成功！")
-                window.location.href="../contractList.php"
+                window.location.href="../../home/contract/contractList.php"
             </script>
 
             <?php
@@ -164,7 +164,7 @@
             ?>
             <script>
                 alert("提交成功！")
-                window.location.href="../w_contract.php"
+                window.location.href="../../home/contract/w_contract.php"
             </script>
 
             <?php
@@ -173,7 +173,7 @@
         ?>
         <script>
             alert("提交失败！")
-            window.location.href="../contract.php"
+            window.location.href="../../home/contract/contract.php"
         </script>
         <?php
     }
