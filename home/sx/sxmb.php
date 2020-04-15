@@ -198,12 +198,16 @@
         window.location.href='sx_line.php?id=<?=$id?>'
     })
 
-    $(".btn-download").click(function(){
-
+    window.onload=function(){
         ds=$("#ds").html();
 
         window.location.href='createSX_mb.php?id=<?=$id?>&ds=' + ds
-    })
+
+        window.location.href="javascript:history.go(-1)";
+    }
+
+        
+    
 </script>
 
 <style>

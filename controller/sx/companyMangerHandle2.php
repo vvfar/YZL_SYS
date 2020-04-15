@@ -2,6 +2,8 @@
     //解决中文乱码
     header("content-type:text/html;charset=utf-8");
     include_once("../../common/conn/conn.php");
+    error_reporting(E_ALL || ~E_NOTICE);
+
 
     $sxbh=$_POST['sxbh'];
 

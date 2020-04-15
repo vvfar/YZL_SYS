@@ -68,7 +68,7 @@
                         
 
                         <div style="float:right;margin-right:30px;">
-                            <button class="btn btn-info btn-sm" style="float:right;margin-left:10px" id="tomb">查看模板</button>
+                            <button class="btn btn-info btn-sm" style="float:right;margin-left:10px" id="tomb">下载模板</button>
                             
                             <?php
                                 if($newLevel=="ADMIN"){
@@ -85,7 +85,7 @@
                                     <?php
                                 }else{
                                     ?>
-                                    <button class="btn btn-success btn-sm" style="float:right;margin-left:10px" onclick="window.location.href='sx_file/<?=$myrow[20]?>'">附件下载</button>
+                                    <button class="btn btn-success btn-sm" style="float:right;margin-left:10px" onclick="window.location.href='sx_file/<?=$myrow[20]?>'">查看附件</button>
                                     <?php
                                 }
 
@@ -266,7 +266,7 @@
             <?php
                 if($syhkje !=0){
                     ?>
-                        <p><a href="companyManger2.php?no=<?=$sqid?>" style="margin-left:50px;">填写回款单</a></p>
+                        <p><a href="companyManger2.php?no=<?=$sqid?>" style="margin-left:50px;margin-top:10px" class="btn btn-info btn-sm">填写回款单</a></p>
                     <?php
                 }
             ?>
@@ -325,7 +325,7 @@
                 }
             ?>
 
-            <p style="margin-left:50px;clear:both;position:relative;top:10px;">扣款明细：</p>
+            <p style="margin-left:50px;clear:both;margin-top:50px;">扣款明细：</p>
             
             <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;width: 1000px;margin-left: 50px;top:20px;">
                 <tr>
@@ -340,7 +340,7 @@
                     <th>备注</th>
                 </tr>
                 <?php
-                    $sqlstr1="select a.*,b.id from use_sx a left join flsqd b on a.fl_no=b.no where a.sqid='$sqid' order by a.id asc";
+                    $sqlstr1="select a.*,b.id from use_sx a left join flsqd b on a.fl_no=b.no where a.sqid='$sqid' and a.fl_no <>'' order by a.id asc";
 
                     $result=mysqli_query($conn,$sqlstr1);
                 

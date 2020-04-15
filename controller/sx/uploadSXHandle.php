@@ -1,7 +1,6 @@
 <?php
     header("content-type:text/html;charset=utf-8");
     include_once("../conn/conn.php");
-
     //error_reporting(E_ALL^E_NOTICE);
     error_reporting(0);
 

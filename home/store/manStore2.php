@@ -6,33 +6,33 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_店铺信息</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-    <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("..\..\common\conn/conn.php");?>
+        <?php include '..\base\header.php' ?>
+        <?php include '..\base\leftBar.php' ?>
 
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
+        <div style="margin-left: 180px;">
 
             <?php
-                include_once("conn/conn.php");
-
+            
                 $username=$_SESSION["username"];
 
-                $sqlstr1="select department,level from user_form where username='$username'";
+                $sqlstr1="select department,newLevel from user_form where username='$username'";
 
                 $result=mysqli_query($conn,$sqlstr1);
         
                 while($myrow=mysqli_fetch_row($result)){
                     $department=$myrow[0];
-                    $level=$myrow[1];
+                    $newLevel=$myrow[1];
                 }
 
 
@@ -48,10 +48,9 @@
 
                 $sqlstr3="select count(*) as total from store where status='关闭'";
 
-                if($department !="数据中心"){
+                if($department !="商务运营部" and $newLevel !="ADMIN"){
                     $sqlstr3=$sqlstr3." and department='$department'";
                 }
-
 
                 $result=mysqli_query($conn,$sqlstr3);
                 $info=mysqli_fetch_array($result);
@@ -65,8 +64,8 @@
 
             ?>
                 <div style="clear: both;border-radius: 6px;">
-                    <div class="nav nav-pills" style="float:left;margin-top:30px;margin-left:50px;">
-                        <li role="presentation"><a href="/manStore.php">合作店铺</a></li>
+                    <div class="nav nav-pills" style="float:left;margin-top:15px;margin-left:30px;">
+                        <li role="presentation"><a href="manStore.php">合作店铺</a></li>
                         <li role="presentation" class="active"><a href="#">不合作店铺</a></li>
                     </div>
                 </div>
@@ -75,18 +74,18 @@
             ?>
             
             <div style="clear:both;">
-                <div style="position:relative;top:15px;width:1350px;">
+                <div style="position:relative;top:15px;width:1000px;">
                     <h4 style="float:left">
-                        <span class="label label-info" style="margin-left:50px;">共<?=$total?>条</span>
+                        <span class="label label-info" style="margin-left:30px;">共<?=$total?>条</span>
                         <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
                         <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
                     </h4>
-                    <button class="btn btn-sm btn-success" style="float:right" id="newStore">新增店铺</button>
+                    <!--<button class="btn btn-sm btn-success" style="float:right" id="newStore">新增店铺</button>-->
                 </div>
             </div>
             
             <div style="clear:both">
-                <table class="table table-responsive table-bordered table-hover" style="width:1300px;margin-top:65px;margin-left:50px;">
+                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:45px;margin-left:30px;">
                     <tr>
                         <th>序号</th>
                         <th>店铺编号</th>
@@ -107,7 +106,7 @@
 
                         $sqlstr2="select * from store where 1=1";
                         
-                        if($department !="数据中心"){
+                        if($department !="商务运营部" and $newLevel !="ADMIN"){
                             $sqlstr2=$sqlstr2." and department='$department'";
                         }
 

@@ -44,7 +44,7 @@
                 </div>
 
 
-                <li class="leftbar6"><i class="layui-icon layui-icon-form"></i><a href="#">辅料申请单</a></li>
+                <li class="leftbar6"><i class="layui-icon layui-icon-form"></i><a href="#">辅料申请</a></li>
                 <div class="leftbar6Z zcd">
                     <li class="leftbar6Z1"><a href="/home/fl/flsq.php">新增辅料单</a></li> 
                     <li class="leftbar6Z2"><a href="/home/fl/flList.php">待审核辅料</a></li> 

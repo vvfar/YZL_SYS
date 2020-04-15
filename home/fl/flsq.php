@@ -140,7 +140,7 @@
                     
             <form action="../../../controller/fl/addFLSQD.php?no=1" method="POST" onkeydown="if(event.keyCode==13)return false;" enctype="multipart/form-data" onSubmit="return submitOnce(this)">
         
-                <div class="sqdbh">
+                <div class="sqdbh" style="float:left">
                     <p>申请单编号</p>
                     <?php
                         if($no==""){
@@ -204,11 +204,10 @@
                         <?php 
                         }
                     ?>
-
-                    
-                    <span></span>
                 </div>
-                            
+
+                <button type="reset" class="btn btn-danger btn-sm mt30" style="float:right;margin-right:90px;">重置表单</button>
+
                 <table class="tb1" border="1" cellspacing="0" cellpadding="0">
                     <tr>
                         <td>申请单位</td>
@@ -249,7 +248,7 @@
                         <td>联系人</td>
                         <td><input type="text" value="<?=$connection?>" placeholder="请填写联系人" class="w7" name="connection"/></td>
                         <td>联系电话</td>
-                        <td><input type="text" value="<?=$phone?>" placeholder="请填写联系电话" class="w8" name="phone"/></td>
+                        <td><input type="text" value="<?=$phone?>" placeholder="请填写联系电话" class="w8" name="phone" maxlength="13"/></td>
                         <td>运输方式</td>
                         <td>
                             <select style="height: 25px;" class="w9" name="driving">

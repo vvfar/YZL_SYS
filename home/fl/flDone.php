@@ -23,7 +23,6 @@
         <?php include '..\base\leftBar.php' ?>
 
         <?php
-            
 
             //获取url参数
             if(isset($_GET['status'])){
@@ -191,8 +190,6 @@
                     </tr>
 
                     <?php
-                        $count=$count+1;
-                        $countF=($page-1)*$pagesize;
                         
                         $sqlstr2="select id,no,company,people,date,date2,status,shr,allTime from flsqd where (status like '%已归档单据%' or status like '%作废%') ";
 
@@ -230,6 +227,10 @@
                         $result=mysqli_query($conn,$sqlstr2);
 
                         while($myrow=mysqli_fetch_row($result)){
+
+                            $count=$count+1;
+                            $countF=($page-1)*$pagesize;
+
                             ?>
 
                             <tr>

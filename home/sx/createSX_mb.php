@@ -42,11 +42,11 @@
             <div style="margin-top:150px;">
                 <p>欠款人：<span style="text-decoration: underline;" class="longLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>（盖章）（签字）</p>
                 <p>签署时间：<span style="text-decoration: underline;" class="shortLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>年<span style="text-decoration: underline;" class="vshortLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>月<span style="text-decoration: underline;" class="vshortLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>日</p>
-                <p>签署地点：上海市虹口区东大名路948号白金湾广场19楼</p>
+                <p>签署地点：上海市虹口区东大名路948号19楼</p>
             </div>
             <div style="margin-top:20px;">
                 <p>俞兆林品牌管理有限公司签署：</p>    
-                <p>申请人：<span style="text-decoration: underline;margin-top:10px;" class="middleLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>部门领导：<span style="text-decoration: underline;" class="middleLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>数据中心：<span style="text-decoration: underline;" class="middleLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>总经理：<span style="text-decoration: underline;" class="middleLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+                <p>申请人：<span style="text-decoration: underline;margin-top:10px;" class="middleLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>部门领导：<span style="text-decoration: underline;" class="middleLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>总经理：<span style="text-decoration: underline;" class="middleLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>商务运营(COC)：<span style="text-decoration: underline;" class="middleLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
             </div>
         </div>
 

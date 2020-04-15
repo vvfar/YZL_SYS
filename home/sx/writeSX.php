@@ -208,7 +208,7 @@
                     </div>
                     <div class="form-group" style="float:left">
                         <p style="width: 30px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">金额</p>
-                        <input type="text" class="form-control" name="hkje<?=$a+1?>" placeholder="请输入还款金额" style="width: 80px;float: left;margin-left:20px;">
+                        <input type="text" class="form-control" name="hkje<?=$a+1?>" placeholder="" style="width: 80px;float: left;margin-left:20px;">
                     </div>
                     <div class="form-group" style="float:left">
                         <p style="width: 30px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">费率</p>
@@ -228,7 +228,7 @@
                     </div>
                     <div class="form-group" style="float:left">
                         <p style="width: 30px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">备注</p>
-                        <input type="text" class="form-control" name="hkjhbz<?=$a+1?>" placeholder="请输入还款计划备注" style="width: 150px;float: left;margin-left:20px;">
+                        <input type="text" class="form-control" name="hkjhbz<?=$a+1?>" placeholder="" style="width: 150px;float: left;margin-left:20px;">
                     </div>
 
                 </div>
@@ -260,8 +260,9 @@
                 </div>
 
                 <div style="clear: both;margin-top:65px;">
-                    <button type="button" class="btn btn-success btn-md" id="submit">点击提交</button>
+                    <button type="button" class="btn btn-success btn-md" id="submit">提交</button>
                     <button type="submit" class="btn btn-default btn-md hidden" id="hd_submit">提交</button>
+                    <button type="reset" class="btn btn-primary">重置</button>
                 </div>
                 
             </form>
