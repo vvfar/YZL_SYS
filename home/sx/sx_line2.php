@@ -27,6 +27,16 @@
                     error_reporting(E_ALL || ~E_NOTICE);
 
                     $username=$_SESSION["username"];
+
+                    $sqlstr1="select department,newLevel from user_form where username='$username'";
+
+                    $result=mysqli_query($conn,$sqlstr1);
+
+                    while($myrow=mysqli_fetch_row($result)){
+                        $my_department=$myrow[0];
+                        $newLevel=$myrow[1];
+                    }
+
                     $sxid=$_GET['id'];
 
                     $sqlstr1="select a.sqid,a.companyName,a.department,a.ywy,a.date1,a.sqmoney,a.sxf,". 
@@ -261,63 +271,12 @@
                 ?>
             </table>
 
-            <p style="margin-left:50px;">剩余金额回款方式：<?=$syjehkfs?></p>
-            
-            <?php
-                if($syhkje !=0){
-                    ?>
-                        <p><a href="companyManger2.php?no=<?=$sqid?>" style="margin-left:50px;margin-top:10px" class="btn btn-info btn-sm">填写回款单</a></p>
-                    <?php
-                }
-            ?>
-            
-
-            <?php
-                $sqlstr2="select department from user_form where username='$username'";
-
-                $result2=mysqli_query($conn,$sqlstr2);
-
-                while($myrow=mysqli_fetch_row($result2)){
-                    $my_department=$myrow[0];
-                }
-
-                $result=mysqli_query($conn,$sqlstr1);
-                
-                while($myrow=mysqli_fetch_row($result)){
-                    $department=$myrow[2];
-                    $status=$myrow[21];
-                }
-
-                
-                if($department==$my_department and $status=="待生效"){
-                    ?>
-                        <form method="POST" action="formHandle/companyMangerHandle3.php" enctype="multipart/form-data" style="margin-top: 10px;margin-left: 51px;">
-                            
-                            <input type="hidden" class="form-control" name="sqid" value="<?=$sxid?>" readonly = "readonly" placeholder="请输入授信编号" style="width: 250px;float: left;margin-top: 15px;">
-                            
-                            <div class="form-group" style="clear: both;position:relative;top:10px;border:1px solid #ccc;width:650px;padding:15px;">
-                                <p style="font-weight:bold">授信单据附件上传</p>
-                                <p style="color:red">(文件名为授信单编号，不能出现中文)</p>
-                                <span style="float: left">上传授信照片</span><input type="file" name="upfile" style="float: left;margin-left: 35px;"/>
-                                <div style="clear:both"></div>
-                            </div>
-
-                            <div style="clear:both;position:relative;top:25px;">
-                                <button type="submit" class="btn btn-success btn-sm" id="upload">上传附件</button>
-                                <button type="button" class="btn btn-info btn-sm" id="edit" style="margin-left:5px;">重新编辑</button>
-                            </div>
-                        </form>
-
-                    <?php
-                }
-
-            ?>
-            
+            <p style="margin-left:50px;">剩余金额回款方式：<?=$syjehkfs?></p>            
 
             <?php
                 if($my_department == "财务部" or $newLevel == "ADMIN"){
             ?>
-                <div style="float:right;margin-right:30px;">
+                <div style="float:right;margin-right:50px;">
                     <button class="btn btn-sm btn-success" style="float:left;" id="agree">同意</button>
                     <button class="btn btn-sm btn-danger" style="float:left;margin-left:10px;" id="disagree">拒绝</button>
                 </div>

@@ -22,7 +22,7 @@
         <div class="zhangmu_container">
 
             <?php
-                //error_reporting(E_ALL || ~E_NOTICE);
+                error_reporting(E_ALL || ~E_NOTICE);
                 if(!isset($_GET["date1"]) && !isset($_GET["date1"])){
                     $date1="";
                     $date2="";
@@ -272,10 +272,6 @@
                 </form>
             </div>
 
-            <div style="clear:both;float:left;margin-left:60px;">
-                <p>注：该系统不支持授信单据的修改，如果填错，请联系数据中心管理部。</p>
-            </div>
-
             <?php
                 //分页代码
                 if(!isset($_GET["page"]) || !is_numeric($_GET["page"])){
@@ -300,7 +296,7 @@
                     $sqlstr3=$sqlstr3." and a.department='$s_department'";
                 }
 
-                if($newLevel !="ADMIN" and $department !="财务部" and $chooseInfo !="事业部"){
+                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部" and $chooseInfo !="事业部"){
                     $sqlstr3=$sqlstr3." and (a.department='$department' or a.gxDepartment like '%$department%')";
                 }
 
@@ -315,55 +311,64 @@
                 }
             ?>
             
-            <div style="clear:both;">
+            <div style="clear:both;width:1112px">
                 <h4 style="float:left;margin-top:20px;">
                     <span class="label label-info" style="margin-left:60px;">共<?=$total?>条</span>
                     <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
                     <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
                 </h4>
-                <div style="float:right;margin-right:33px;margin-top:20px;">
-                    <?php
-                        $sxMoney=0;
-                        $syyh=0;
-                        $syed=0;
 
-                        $sqlstr5="select distinct a.sqmoney,b.dhkje,c.newMoney from sx_form a,hk_form b,use_sx c where a.status='已生效' and a.sqid=b.sqid and a.sqid=c.sqid ";
+                <?php
+                    if($department =="财务部" or $department == "商务运营部" or $newLevel =="ADMIN"){
+                        ?>
+                            <div style="float:right;margin-right:33px;margin-top:20px;">
+                                <?php
+                                    $sxMoney=0;
+                                    $syyh=0;
+                                    $syed=0;
 
-                        if($s_department !=""){
-                            $sqlstr5=$sqlstr5." and a.department='$s_department'";
-                        }elseif($sqid !=""){
-                            $sqlstr5=$sqlstr5." and a.sqid='$sqid'";
-                        }elseif($companyName !=""){
-                            $sqlstr5=$sqlstr5." and a.companyName like '%$companyName%'";
-                        }
+                                    $sqlstr5="select distinct a.sqmoney,b.dhkje,c.newMoney from sx_form a,hk_form b,use_sx c where a.status='已生效' and a.sqid=b.sqid and a.sqid=c.sqid ";
 
-                        $result=mysqli_query($conn,$sqlstr5);
+                                    if($s_department !=""){
+                                        $sqlstr5=$sqlstr5." and a.department='$s_department'";
+                                    }elseif($sqid !=""){
+                                        $sqlstr5=$sqlstr5." and a.sqid='$sqid'";
+                                    }elseif($companyName !=""){
+                                        $sqlstr5=$sqlstr5." and a.companyName like '%$companyName%'";
+                                    }
 
-                        while($myrow=mysqli_fetch_row($result)){
-                            $sxMoney=$sxMoney+$myrow[0];
-                            $syyh=$syyh+$myrow[1];
-                            $syed=$syed+$myrow[2];
+                                    $result=mysqli_query($conn,$sqlstr5);
 
-                            $sxMoney = sprintf("%.2f",$sxMoney);
-                            $syyh = sprintf("%.2f",$syyh);
-                            $syed = sprintf("%.2f",$syed);
-                        }
+                                    while($myrow=mysqli_fetch_row($result)){
+                                        $sxMoney=$sxMoney+$myrow[0];
+                                        $syyh=$syyh+$myrow[1];
+                                        $syed=$syed+$myrow[2];
 
-                    ?>
+                                        $sxMoney = sprintf("%.2f",$sxMoney);
+                                        $syyh = sprintf("%.2f",$syyh);
+                                        $syed = sprintf("%.2f",$syed);
+                                    }
 
-                    <?php
-                        if($s_department ==""){
-                            $s_department ="所有事业部";
-                        }
-                    ?>
-                    <p style="float: left;margin-left:20px;">事业部：<span style="text-decoration: underline;"><?=$s_department?></span></p>
-                    <p style="float: left;margin-left:20px;">授信金额：￥<span style="text-decoration: underline;"><?=$sxMoney?></span></p>
-                    <p style="float: left;margin-left:20px;">剩余应还：￥<span style="text-decoration: underline;"><?=$syyh?></span></p>
-                    <p style="float: left;margin-left:20px;">剩余额度：￥<span style="text-decoration: underline;"><?=$syed?></span></p>
+                                ?>
+
+                                <?php
+                                    if($s_department ==""){
+                                        $s_department ="所有事业部";
+                                    }
+                                ?>
+                                <p style="float: left;margin-left:20px;">事业部：<span style="text-decoration: underline;"><?=$s_department?></span></p>
+                                <p style="float: left;margin-left:20px;">授信金额：￥<span style="text-decoration: underline;"><?=$sxMoney?></span></p>
+                                <p style="float: left;margin-left:20px;">剩余应还：￥<span style="text-decoration: underline;"><?=$syyh?></span></p>
+                                <p style="float: left;margin-left:20px;">剩余额度：￥<span style="text-decoration: underline;"><?=$syed?></span></p>
+                            
+                                <a href="timeSX.php" class="btn btn-xs btn-warning" style="float: left;margin-left:10px;">到期授信</a>    
+                                <a href="expireSX.php" class="btn btn-xs btn-danger" style="float: left;margin-left:10px;">逾期授信</a>   
+                            </div>
+                        <?php
+                    }
+                ?>
+
                 
-                    <a href="timeSX.php" class="btn btn-xs btn-warning" style="float: left;margin-left:10px;">到期授信</a>    
-                    <a href="expireSX.php" class="btn btn-xs btn-danger" style="float: left;margin-left:10px;">逾期授信</a>   
-                </div>
             <div>
             
             <div style="clear:both;position: relative;top: 10px;margin-left: 60px;">
@@ -398,7 +403,7 @@
                             $sqlstr2=$sqlstr2." and a.department='$s_department'";
                         }
         
-                        if($newLevel !="ADMIN" and $department !="财务部" and $chooseInfo !="事业部"){
+                        if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部" and $chooseInfo !="事业部"){
                             $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%')";
                         }
 

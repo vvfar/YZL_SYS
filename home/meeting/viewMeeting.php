@@ -27,6 +27,19 @@
                     <h4 style="float:left">会议室概况</h4>
                     
                     <?php
+
+                        $username=$_SESSION["username"];
+
+                        $sqlstr1="select department,newLevel from user_form where username='$username'";
+
+                        $result=mysqli_query($conn,$sqlstr1);
+
+                        while($myrow=mysqli_fetch_row($result)){
+                            $department=$myrow[0];
+                            $newLevel=$myrow[1];
+                        }
+
+
                         if(!isset($_GET["date"])){
                             date_default_timezone_set("Asia/Shanghai");
                             $date=date('Y-m-d', time());
@@ -50,15 +63,24 @@
 
                     <?php
 
-                        for($i=0;$i<5;$i++){
+                        for($i=0;$i<6;$i++){
                     ?>
                     
                     <div style="width:305px;height:250px;float:left;margin-right:30px;margin-top:20px" class="meetingBorder">
-                        <span class="label label-success" style="position:relative;top:10px;left:10px;padding-top:5px;">会议室<?=chr($i+65)?></span>
-             
-             
-             
-                        <p style="float:right;margin-top:10px;margin-right:10px;">当前状态：空闲</p>
+                        <span class="label label-success" style="position:relative;top:10px;left:10px;padding-top:5px;">会议室<?=$i+1?></span>
+                            
+                        <?php
+                            if($i != 3){
+                                ?>
+                                    <p style="float:right;margin-top:10px;margin-right:10px;">当前状态：空闲</p>
+                                <?php
+                            }else{
+                                ?>
+                                    <p style="float:right;margin-top:10px;margin-right:10px;">当前状态：无</p>
+                                <?php
+                            }
+                        ?>
+                        
                         
                         <div style="clear:both">
                             <p style="float:right;margin-right:10px;margin-top:5px;">更多>></p>
@@ -74,9 +96,6 @@
                                     <tr>
 
                                     <?php
-                                        
-                                        
-
                                                     
                                         $sqlstr1="select * from meeting where room='$i'+1 and date='$date' and status='已审核' limit 0,5";
                                             
@@ -97,8 +116,15 @@
                                     ?>
                                 </table>
                             </div>
+                            
 
-                            <a href="/apcMeeting.php?room=<?=$i+1?>" style="float:right;margin-right:10px;color:brown;margin-bottom:20px">新增会议</a>
+                            <?php
+                                if($department =="人事行政部" or $newLevel =="ADMIN"){
+                                    ?>
+                                        <a href="apcMeeting.php?room=<?=$i+1?>" style="float:right;margin-right:10px;color:brown;margin-bottom:20px">新增会议</a>
+                                    <?php
+                                }
+                            ?>
                         </div>
                     </div>
 
@@ -157,7 +183,7 @@
     .meetingUL p{
         padding:0;
         margin:0;
-        width: 90px;
+        width: 70px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow:ellipsis;

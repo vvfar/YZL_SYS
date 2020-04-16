@@ -37,6 +37,8 @@
                     $result=mysqli_query($conn,$sqlstr1);
 
                     while($myrow=mysqli_fetch_row($result)){
+                        $status=$myrow[21];
+
                         $sqid=$myrow[0];
 
                         $shr2_arr=explode(",",$myrow[8]);
@@ -45,6 +47,10 @@
                     ?>  
                         <button class="btn btn-warning btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">待生效</button>
                     <?php
+                        }elseif($myrow[21]=="待归档"){
+                            ?>  
+                                <button class="btn btn-info btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">待归档</button>
+                            <?php
                         }elseif($myrow[21]=="已生效"){
                         ?>  
                             <button class="btn btn-success btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">已生效</button>
@@ -53,6 +59,10 @@
                         ?>  
                             <button class="btn btn-danger btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">已作废</button>
                         <?php
+                        }elseif($myrow[21]=="已拒绝"){
+                            ?>  
+                                <button class="btn btn-danger btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">已拒绝</button>
+                            <?php
                         }elseif($myrow[21]=="已完成"){
                         ?>  
                             <button class="btn btn-info btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">已完成</button>
@@ -60,7 +70,7 @@
                         }
                     ?>
 
-
+                        
                         <p style="float: left;margin-left: 10px;font-size:16px;margin-top:5px"><strong>授信编号：<?=$myrow[0]?></strong></p>
                         <p style="float: left;margin-left:60px;font-size:16px;margin-left: 10px;margin-top:5px"><strong>有效期限：从 <?=$myrow[9]?> 到 <?=$myrow[10]?></strong></p>  
 
@@ -89,7 +99,7 @@
                             ?>
                         </div>
                         
-
+                        
                         <div style="clear:both"></div>
                         <!-- Excel导入模态框,确认是否作废单据 -->
                         <form method="POST" action="formHandle/sxLiucheng.php?id=<?=$sxid?>&option=3">
@@ -174,9 +184,6 @@
                         $sjhkje=explode(",",$myrow[17]);
                         $sjhkfs=explode(",",$myrow[18]);
                         $hkfs2=explode(",",$myrow[19]);
-
-                        $status=explode(",",$myrow[22]);
-                        $allTime=explode(",",$myrow[23]);
                         $note=$myrow[24];
                         $syjehkfs=$myrow[26];
                     }
@@ -261,7 +268,7 @@
             <p style="margin-left:50px;">剩余金额回款方式：<?=$syjehkfs?></p>
             
             <?php
-                if($syhkje !=0){
+                if($syhkje !=0 and $department !="财务部" and $department !="商务运营部" and $status == "已生效"){
                     ?>
                         <p><a href="companyManger2.php?no=<?=$sqid?>" style="margin-left:50px;margin-top:10px" class="btn btn-info btn-sm">填写回款单</a></p>
                     <?php
@@ -286,9 +293,9 @@
                 }
 
                 
-                if($department==$my_department and $status=="待生效"){
+                if($department==$my_department and ($status=="待生效" or $status=="已拒绝")){
                     ?>
-                        <form method="POST" action="../../controller/sx/companyMangerHandle3.php" enctype="multipart/form-data" style="margin-top: 10px;margin-left: 51px;">
+                        <form method="POST" action="../../controller/sx/companyMangerHandle3.php?progress=1" enctype="multipart/form-data" style="margin-top: 10px;margin-left: 51px;">
                             
                             <input type="hidden" class="form-control" name="sqid" value="<?=$sxid?>" readonly = "readonly" placeholder="请输入授信编号" style="width: 250px;float: left;margin-top: 15px;">
                             
@@ -308,8 +315,15 @@
                     <?php
                 }
 
-            ?>
-            
+                if($my_department == "商务运营部" and $status == "待归档"){
+                    ?>
+                        <div style="float:left;margin-left:945px">
+                            <button class="btn btn-sm btn-success" style="float:left;" id="agree">同意</button>
+                            <button class="btn btn-sm btn-danger" style="float:left;margin-left:10px;" id="disagree">拒绝</button>
+                        </div>
+                    <?php
+                }
+                ?>
             <p style="margin-left:50px;clear:both;position:relative;top:50px;">扣款明细：</p>
             
             <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;width: 1000px;margin-left: 50px;top:50px;">
@@ -406,5 +420,13 @@
 
     $("#tomb").click(function(){
         window.location.href="sxmb.php?id=<?=$sxid?>"
+    })
+
+    $("#agree").click(function(){
+        window.location.href="../../controller/sx/companyMangerHandle3.php?id=<?=$sxid?>&progress=2&option=1"
+    })
+
+    $("#disagree").click(function(){
+        window.location.href="../../controller/sx/companyMangerHandle3.php?id=<?=$sxid?>&progress=2&option=0"
     })
 </script>

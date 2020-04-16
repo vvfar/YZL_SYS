@@ -231,13 +231,24 @@
     if($result){
         echo "<script>alert('提交成功！')</script>";
 
-        if($id ==""){
-            //提交后跳转maxID+1
-            echo "<script>window.location.href='../../home/fl/flLine.php?id=".($maxID+1)."'</script>";
+        if($option ==1){
+            if($id ==""){
+                //提交后跳转maxID+1
+                echo "<script>window.location.href='../../home/fl/flLine.php?id=".($maxID+1)."'</script>";
+            }else{
+                //提交后跳转当前ID
+                echo "<script>window.location.href='../../home/fl/flLine.php?id=$id'</script>";
+            }
         }else{
-            //提交后跳转当前ID
-            echo "<script>window.location.href='../../home/fl/flLine.php?id=$id'</script>";
+            if($id ==""){
+                //提交后跳转maxID+1
+                echo "<script>window.location.href='../../home/fl/saveFL.php?id=".($maxID+1)."'</script>";
+            }else{
+                //提交后跳转当前ID
+                echo "<script>window.location.href='../../home/fl/saveFL.php?id=$id'</script>";
+            }
         }
+        
     }else{
         echo "<script>alert('提交失败！')</script>";
         echo "<script>window.location.href='../../home/fl/flsq.php'</script>";

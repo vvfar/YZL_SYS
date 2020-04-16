@@ -267,6 +267,12 @@
         }else{
             echo "<script>window.location.href='../../home/fl/flsq.php?id=$id'</script>";
         }
+    }elseif($option==7){
+        $sqlstr7="delete from flsqd where id='$id'";
+    
+        $result=mysqli_query($conn,$sqlstr7);
+    
+        echo "<script>alert('删除成功');window.location.href='../../home/fl/saveFL.php</script>";
     }else{
         //拒绝，待业务员审核
         $sqlstr4="select status,shr,allTime from flsqd where id='$id'";

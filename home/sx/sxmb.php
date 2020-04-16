@@ -203,7 +203,7 @@
 
         window.location.href='createSX_mb.php?id=<?=$id?>&ds=' + ds
 
-        window.location.href="javascript:history.go(-1)";
+        //window.location.href="javascript:history.go(-1)";
     }
 
         

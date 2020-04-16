@@ -137,11 +137,17 @@
                 }
             
             ?>
-                    
+
+            <div class="nav nav-pills" style="float:left;margin-top:10px;margin-left:30px;">
+                <li role="presentation" class="active"><a href="#">新增辅料</a></li>
+                <li role="presentation"><a href="saveFL.php">已保存</a></li>
+            </div>
+
             <form action="../../../controller/fl/addFLSQD.php?no=1" method="POST" onkeydown="if(event.keyCode==13)return false;" enctype="multipart/form-data" onSubmit="return submitOnce(this)">
         
                 <div class="sqdbh" style="float:left">
-                    <p>申请单编号</p>
+                    <p style="margin:0">申请单编号</p>
+                    <input type="hidden" value="<?=$id?>" name="my_id" id="my_id">
                     <?php
                         if($no==""){
 
@@ -205,8 +211,19 @@
                         }
                     ?>
                 </div>
-
-                <button type="reset" class="btn btn-danger btn-sm mt30" style="float:right;margin-right:90px;">重置表单</button>
+                
+                <?php
+                    if(!isset($_GET['id'])){
+                        ?>
+                            <button type="reset" class="btn btn-danger btn-sm" style="float:right;margin-right:90px;margin-top:-10px">重置表单</button>
+                        <?php
+                    }else{
+                        ?>
+                            <button type="reset" id="delete" class="btn btn-danger btn-sm" style="float:right;margin-right:90px;margin-top:-10px">删除表单</button>
+                        <?php
+                    }
+                ?>
+                
 
                 <table class="tb1" border="1" cellspacing="0" cellpadding="0">
                     <tr>
@@ -749,5 +766,12 @@
             return false;  
         }  
     }  
+
+    $("#delete").click(function(){
+
+        id=$("#my_id").val()
+
+        window.location.href="../../controller/fl/flLiucheng.php?option=7&id=" + id;
+    })
 
 </script>

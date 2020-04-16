@@ -6,26 +6,25 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_订会议室</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php");?>
+        <?php include '../base/header.php' ?>
+        <?php include '../base/leftBar.php' ?>
             
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
+        <div style="margin-left: 180px;">
             
-            <div style="margin-top:50px;margin-left:60px;">
+            <div style="margin-top:20px;margin-left:30px;">
                 <?php
                     $id=$_GET["id"];
-
-                    include_once("conn/conn.php");
 
                     $sqlstr1="select * from meeting where id='$id'";
                                             
@@ -47,12 +46,12 @@
 
                 <div id="app">
                     <h4 style="float:left">会议详情</h4>
-                    <button class="btn btn-sm btn-danger" style="float:left;margin-left:200px;margin-top:5px;" id="delete">删除会议</button>
+                    <button class="btn btn-sm btn-danger" style="float:left;margin-left:200px;position:relative;top:-5px;" id="delete">删除会议</button>
 
                     <div style="clear:both">
                         <hr>
 
-                        <div style="margin-top: 30px;">
+                        <div style="margin-top: 10px;">
                             <div class="form-group">
                                 <p style="float:left">会议标题：<?=$title?></p>
                             </div>
@@ -67,8 +66,7 @@
                                 <p style="float: left;">会议室资源：<?=$roomResource?></p>
                             </div>
                             <div class="form-group" style="clear: both;position:relative;">
-                                <p style="float: left;">特殊需求：</p>
-                                <p><?=$apply?></p>
+                                <p style="float: left;">特殊需求：<?=$apply?></p>
                             </div>
                             <div class="form-group" style="clear: both;position:relative;">
                                 <p style="float: left;">申请人：<?=$people?></p>
@@ -111,6 +109,6 @@
     });
 
     $("#delete").click(function(){
-        window.location.href="formHandle/delMeeting.php?id=<?=$id?>"
+        window.location.href="../../controller/meeting/delMeeting.php?id=<?=$id?>"
     })
 </script>

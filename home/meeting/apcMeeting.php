@@ -6,22 +6,23 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_订会议室</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php");?>
+        <?php include '../base/header.php' ?>
+        <?php include '../base/leftBar.php' ?>
             
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
+        <div style="margin-left: 180px;">
             
-            <div style="margin-top:50px;margin-left:60px;">
+            <div style="margin-top:20px;margin-left:30px;">
                 <?php
                     if(isset($_GET["room"])){
                         $room=$_GET["room"];
@@ -30,14 +31,12 @@
                     }
                 ?>
 
-
-
-                <form method="POST" action="/formHandle/meetingHandle.php">
+                <form method="POST" action="../../controller/meeting/meetingHandle.php">
                     <div id="app">
                         <h4>填写会议申请</h4>
                         <hr>
 
-                        <div style="margin-top: 30px;">
+                        <div style="margin-top: 15px;">
                             <div class="form-group">
                                 <p style="float:left">会议标题</p><input class="form-control" name="title" style="width:600px;padding-left:5px;float:left;margin-left:35px;"/>
                             </div>
@@ -84,7 +83,7 @@
                                 <?php
                                     if($room !=""){
                                         ?>
-                                            <p style="float:left;">会议室编号</p><input class="form-control" name="chooseRoom" style="float:left;width:50px;margin-left:20px;padding-left:5px;text-align:center" value="<?=chr($room+64)?>" readonly/>
+                                            <p style="float:left;">会议室编号</p><input class="form-control" name="chooseRoom" style="float:left;width:50px;margin-left:20px;padding-left:5px;text-align:center" value='<?=$room?>' readonly/>
                                         <?php
                                     }else{
                                         ?>
@@ -92,11 +91,12 @@
                                             
                                             <select class="form-control"  name="chooseRoom" style="float:left;width:50px;margin-left:20px;padding-left:5px;text-align:center" >
                                                 <option></option>
-                                                <option>A</option>
-                                                <option>B</option>
-                                                <option>C</option>
-                                                <option>D</option>
-                                                <option>E</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                <option>6</option>
                                             </select>
                                         <?php
                                     }
@@ -128,13 +128,9 @@
                             <div  class="form-group" style="clear: both;position:relative;top:140px;">
                                 <button class="btn btn-success">提交申请</button>
                             </div>
-
                         </div>
                     </div>
-
-
                 </form>
-
             </div>       
         </div>
     </body>

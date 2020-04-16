@@ -1,6 +1,6 @@
 <?php
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     $id=$_POST['id'];
     $leibie=$_POST['leibie'];
@@ -50,7 +50,7 @@
         ?>
         <script>
             alert("提交成功！")
-            window.location.href="../itList.php"
+            window.location.href="../../home/it/itList.php"
         </script>
 
         <?php
@@ -58,7 +58,7 @@
         ?>
         <script>
             alert("提交失败！")
-            window.location.href="../it.php"
+            window.location.href="../../home/it/it.php"
         </script>
         <?php
     }

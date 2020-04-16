@@ -229,35 +229,6 @@ $(document).ready(function(){
         
     })
 
-    /*
-    $("#no_input").blur(function(){
-        var xmlhttp;
-        if(window.ActiveXObject){
-            xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');
-        }else{
-            xmlhttp=new XMLHttpRequest();
-        }
-
-        name=$("#no_input").val();
-
-        xmlhttp.open("GET","formHandle/searchFLNo.php?name=" + name,true);
-
-        xmlhttp.onreadystatechange=function(){
-
-            if(xmlhttp.readyState==4 && xmlhttp.status ==200){
-
-                var msg=xmlhttp.responseText;
-                if(msg==0){
-                    $(".sqdbh span").html("辅料订单编号重复，请修改！")
-                }else{
-                    $(".sqdbh span").html("")
-                }
-            }
-        }
-
-        xmlhttp.send(null);
-    })
-    */
 
     $("#sxid").blur(function(){
         var xmlhttp;
@@ -284,6 +255,8 @@ $(document).ready(function(){
 
         xmlhttp.send(null);
     })
+
+    
 
     $("#submit").click(function(){
 

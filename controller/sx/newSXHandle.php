@@ -101,7 +101,8 @@
 
     if($sx_id_id!=""){
         $sqlstr3="update sx_form set companyName='$companyName',ywy='$username',department='$department',date1='$date1',sqid='$sqid',sqmoney='$sqmoney',sxf='$sxf',dateTime='$dateTime',".
-        "hkje='$hkje',wyfl='$wyfl',hkfs='$hkfs',hkfsbz='$hkjhbz',note='$note',date2='$date2',date3='$date3',isgx='$isgx',gxCount_val='$gxCount_val',gxDepartment='$gxDepartment' where sqid='$sqid'";
+        "hkje='$hkje',wyfl='$wyfl',hkfs='$hkfs',hkfsbz='$hkjhbz',note='$note',date2='$date2',date3='$date3',isgx='$isgx',gxCount_val='$gxCount_val',gxDepartment='$gxDepartment',status ='待生效' where sqid='$sqid'";
+    
     }else{
         $sqlstr3="insert into sx_form values('$maxID'+1,'$companyName','$username','$department','$date1','$sqid','$sqmoney','$sxf','$dateTime',".
         "'$hkje','$wyfl','$hkfs','$hkjhbz','$note','','','$date2','$date3','待生效','待上传纸质附件','','','$isgx','$gxCount_val','$gxDepartment') ";

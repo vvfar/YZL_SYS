@@ -24,6 +24,14 @@
         <div class="zhangmu_container">
 
             <?php
+                error_reporting(E_ALL || ~E_NOTICE);
+                
+                if(!isset($_GET["chooseInfo"])){
+                    $chooseInfo="";
+                }else{
+                    $chooseInfo=$_GET["chooseInfo"];
+                }
+
                 if(!isset($_GET["date1"]) && !isset($_GET["date1"]) && !isset($_GET["companyName"])  ){
                     $date1="";
                     $date2="";
@@ -36,18 +44,18 @@
                 
                 $username=$_SESSION["username"];
 
-                $sqlstr1="select department,level from user_form where username='$username'";
+                $sqlstr1="select department,newLevel from user_form where username='$username'";
 
                 $result=mysqli_query($conn,$sqlstr1);
 
                 while($myrow=mysqli_fetch_row($result)){
                     $department=$myrow[0];
-                    $level=$myrow[1];
+                    $newLevel=$myrow[1];
                 }
 
             ?>
             <div class="form-group date_form">
-                <p class="djrq">最晚回款期限</p>
+                <p class="djrq">回款期限</p>
                 <p style="width: 20px;font-size: 14px;float: left;margin-top:5px;margin-left:20px;">从</p>
                 <div style="width: 180px;font-size: 14px;float: left;" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                     <input class="form-control" id="date1" size="16" type="text" value="<?=$date1?>" readonly>
@@ -61,14 +69,156 @@
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
                 <div style="font-size: 14px;float: left;margin-left:20px;">
-                    <input class="form-control" id="companyName" placeholder="请输入公司名称" style="width:250px;" value="<?=$companyName?>"/>
+                    <select class="form-control" style="width: 105px;" id="chooseInfo">
+                        <?php
+                            if($newLevel !="ADMIN" and $department !="财务部"){
+                                if($chooseInfo=="授信编号"){
+                                    ?>
+                                        <option selected>授信编号</option>
+                                        <option>公司名称</option>
+                                    <?php
+                                }elseif($chooseInfo=="公司名称"){
+                                    ?>
+                                        <option>授信编号</option>
+                                        <option selected>公司名称</option>
+                                    <?php
+                                }else{
+                                    ?>
+                                        <option>授信编号</option>
+                                        <option>公司名称</option>
+                                    <?php
+                                }
+                            }else{
+                                if($chooseInfo=="授信编号"){
+                                    ?>
+                                        <option selected>授信编号</option>
+                                        <option>公司名称</option>
+                                        <option>事业部</option>
+                                    <?php
+                                }elseif($chooseInfo=="公司名称"){
+                                    ?>
+                                        <option>授信编号</option>
+                                        <option selected>公司名称</option>
+                                        <option>事业部</option>
+                                    <?php
+                                }elseif($chooseInfo=="事业部"){
+                                    ?>
+                                        <option>授信编号</option>
+                                        <option>公司名称</option>
+                                        <option selected>事业部</option>
+                                    <?php
+                                }else{
+                                    ?>
+                                        <option>授信编号</option>
+                                        <option>公司名称</option>
+                                        <option>事业部</option>
+                                    <?php
+                                }
+                            }
+                        ?>
+
+                    </select>
+                </div>
+                <div style="font-size: 14px;float: left;margin-left:20px;">
+                    <?php
+                        if($chooseInfo=="授信编号"){
+                    ?>
+                        <input class="form-control" id="sqid" placeholder="请输入授信编号" style="width:160px;" value="<?=$sqid?>"/>
+                        <input class="form-control" id="companyName" placeholder="请输入公司名称" style="width:160px;display: none;" value="<?=$companyName?>"/>
+                    
+                        <select class="form-control" id="department" style="width:160px;display: none;">
+                            <option></option>
+                            <?php
+                                $sqlstr4="select distinct department from sx_form";
+
+                                $result=mysqli_query($conn,$sqlstr4);
+
+                                while($myrow=mysqli_fetch_row($result)){
+                                    ?>
+                                        <option><?=$myrow[0]?></option>
+                                    <?php
+                                }
+                            ?>
+                        </select>
+                    <?php
+                        }elseif($chooseInfo=="公司名称"){
+                            ?>
+                            <input class="form-control" id="sqid" placeholder="请输入授信编号" style="width:160px;display: none;" value="<?=$sqid?>"/>
+                            <input class="form-control" id="companyName" placeholder="请输入公司名称" style="width:160px;" value="<?=$companyName?>"/>
+                        
+                            <select class="form-control" id="department" style="width:160px;display: none;">
+                                <option></option>
+                                <?php
+                                    $sqlstr4="select distinct department from sx_form";
+    
+                                    $result=mysqli_query($conn,$sqlstr4);
+    
+                                    while($myrow=mysqli_fetch_row($result)){
+                                        ?>
+                                            <option><?=$myrow[0]?></option>
+                                        <?php
+                                    }
+                                ?>
+                            </select>
+                        <?php
+                        }elseif($chooseInfo=="事业部"){
+                            ?>
+                            <input class="form-control" id="sqid" placeholder="请输入授信编号" style="width:160px;display: none;" value="<?=$sqid?>"/>
+                            <input class="form-control" id="companyName" placeholder="请输入公司名称" style="width:160px;display: none;" value="<?=$companyName?>"/>
+                        
+                            <select class="form-control" id="department" style="width:160px;">
+                                <option></option>
+                                <?php
+                                    $sqlstr4="select distinct department from sx_form";
+    
+                                    $result=mysqli_query($conn,$sqlstr4);
+    
+                                    while($myrow=mysqli_fetch_row($result)){
+                                        if($s_department == $myrow[0]){
+                                            ?>
+                                                <option selected><?=$myrow[0]?></option>
+                                            <?php
+                                        }else{
+                                            ?>
+                                                <option><?=$myrow[0]?></option>
+                                            <?php
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        <?php
+                        }else{
+                            ?>
+                            <input class="form-control" id="sqid" placeholder="请输入授信编号" style="width:160px;" value="<?=$sqid?>"/>
+                            <input class="form-control" id="companyName" placeholder="请输入公司名称" style="width:160px;display: none;" value="<?=$companyName?>"/>
+                        
+                            <select class="form-control" id="department" style="width:160px;display: none;">
+                                <option></option>
+                                <?php
+                                    $sqlstr4="select distinct department from sx_form";
+    
+                                    $result=mysqli_query($conn,$sqlstr4);
+    
+                                    while($myrow=mysqli_fetch_row($result)){
+                                        ?>
+                                            <option><?=$myrow[0]?></option>
+                                        <?php
+                                    }
+                                ?>
+                            </select>
+                        <?php
+                        }
+                    ?>
+                    
+                    
+
                 </div>
                 <div style="float:left;margin-left:20px;margin-top:2px;">
                     <button class="btn btn-success btn-sm" onclick="search()">搜索</button>
                     <button class="btn btn-warning btn-sm" onclick="excel()">导出Excel</button>
 
                     <?php
-                        if($department=="数据中心"){
+                        if($newLevel=="ADMIN"){
                             ?>
                                 <button class="btn btn-info btn-sm" onclick="upload()" data-toggle="modal" data-target="#myModal2">批量导入</button>
                             <?php
@@ -107,7 +257,7 @@
                 </form>
             </div>
 
-            <div style="clear:both;float:left;margin-left:60px;">
+            <div style="clear:both;float:left;margin-left:30px;">
                 <p>注：待审核授信无法作为辅料单授信，必须完成单据上传后方可使用。</p>
             </div>
 
@@ -121,7 +271,7 @@
 
                 $pagesize=15;
 
-                $sqlstr3="select count(*) as total from sx_form a,hk_form b where a.sqid=b.sqid and a.status='待生效'";
+                $sqlstr3="select count(*) as total from sx_form a,hk_form b where a.sqid=b.sqid and (a.status='待生效' or a.status='待归档' or a.status='已拒绝')";
 
                 if($date1 !="" && $date2 !=""){
                     $sqlstr3= $sqlstr3." and a.date3>='$date1' and a.date3<= '$date2'";
@@ -131,7 +281,7 @@
                     $sqlstr3= $sqlstr3." and a.companyName like '%$companyName%'";
                 }
 
-                if($department !="数据中心" and $department !="财务" and $level !="总经理"){
+                if($department !="商务运营部" and $newLevel != "ADMIN"){
                     $sqlstr3=$sqlstr3." and (a.department='$department' or a.gxDepartment like '%$department%')";
                 }
                 
@@ -146,19 +296,19 @@
                 }
             ?>
             
-            <div style="clear:both">
+            <div style="clear:both;width:1050px">
                 <h4 style="float:left;margin-top:20px;">
-                    <span class="label label-info" style="margin-left:60px;">共<?=$total?>条</span>
+                    <span class="label label-info" style="margin-left:30px;">共<?=$total?>条</span>
                     <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
                     <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
                 </h4>
 
-                <div style="float:left;margin-left:800px;margin-top:12px;">
-                    <a href="sx_cw.php">审批回款单</a>
+                <div style="float:right;margin-top:15px;">
+                    <a href="sx_cw.php" target="_blank">审批回款单</a>
                 </div>
             <div>
             
-            <div style="clear:both;position: relative;top: 15px;margin-left: 60px;">
+            <div style="clear:both;position: relative;top: 17px;margin-left: 30px;">
                 <table class="table table-responsive table-bordered table-hover" style="width: 1020px;margin-bottom:10px;">
                     <tr>
                         <th style="width: 150px;">授信编号</th>
@@ -176,7 +326,7 @@
                         
                         $sqlstr2="select distinct a.id,a.date1,a.sqid,a.companyName,a.department,a.ywy,a.sqmoney,". 
                         "b.dhkje,a.status2,a.status,c.newMoney ".
-                        "from sx_form a,hk_form b,use_sx c where a.sqid=b.sqid and a.sqid=c.sqid and a.status='待生效'";
+                        "from sx_form a,hk_form b,use_sx c where a.sqid=b.sqid and a.sqid=c.sqid and (a.status='待生效'  or a.status='待归档' or a.status='已拒绝')";
 
                         if($date1 !="" and $date2 !=""){
                             $sqlstr2=$sqlstr2." and a.date3 >= '$date1' and a.date3 <= '$date2'";
@@ -186,7 +336,7 @@
                             $sqlstr2=$sqlstr2." and a.companyName like '%$companyName%'";
                         }
                         
-                        if($department !="数据中心" and $department !="财务" and $level !="总经理"){
+                        if($department !="商务运营部" and $newLevel != "ADMIN"){
                             $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%')";
                         }
 
@@ -229,7 +379,7 @@
                 </table>
             </div>
             
-            <div style="margin-left: 60px;">
+            <div style="margin-left: 30px;">
                 <ul class="pager" style="float:left;width:150px;">
                     <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                         if($page>1)
@@ -245,7 +395,7 @@
                     ?>&date1=<?=$date1?>&date2=<?=$date2?>&companyName=<?=$companyName?>">下一页</a></li>
                 </ul>
 
-                <div style="float:left;margin-left:830px;width:321px;">
+                <div style="float:left;margin-left:546px;width:321px;">
                     <ul class="pagination" style="float:right">
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1">&laquo;</a></li>
                         <?php
@@ -292,27 +442,16 @@
 </html>
 
 <style>
-    @media screen and (min-width:1300px){
-        th{background-color:lavender}
-        th,td{text-align: center;margin: 0;overflow: hidden}
-        .to-scroll{overflow-x: scroll;overflow-x: scroll;height: 550px;clear:both}
-        .zhangmu_container{width: 1660px;height:880px;margin-left: 240px;}
-        .nav_div{float:left;margin-top: 20px;margin-left:40px;}
-        .date_form{clear: both;float:left;margin-top:30px;margin-left:60px}
-        .djrq{float:left;margin-top:5px}
-        .template{float:left;margin-left:400px;margin-top:2px;}
-    }
 
-    @media screen and (min-width:1024px) and (max-width:1299px){
-        th{background-color:lavender}
-        th,td{text-align: center;margin: 0;overflow: hidden}
-        .to-scroll{overflow-x: scroll;overflow-x: scroll;height: 550px;clear:both}
-        .zhangmu_container{width: 1320px;height:880px;margin-left: 150px;}
-        .nav_div{clear:both;float:left;margin-top: 20px;margin-left:60px;}
-        .date_form{clear: both;float:left;margin-top:30px;margin-left:60px}
-        .djrq{float:left;margin-top:5px}
-        .template{float:left;margin-left:350px;margin-top:2px;}
-    }
+    th{background-color:lavender}
+    th,td{text-align: center;margin: 0;overflow: hidden}
+    .to-scroll{overflow-x: scroll;overflow-x: scroll;height: 550px;clear:both}
+    .zhangmu_container{margin-left: 180px;}
+    .nav_div{clear:both;float:left;margin-top: 20px;margin-left:30px;}
+    .date_form{clear: both;float:left;margin-top:30px;margin-left:30px}
+    .djrq{float:left;margin-top:5px}
+    .template{float:left;margin-left:350px;margin-top:2px;}
+
 
     .pager li a:hover{
         background-color:#337ab7;

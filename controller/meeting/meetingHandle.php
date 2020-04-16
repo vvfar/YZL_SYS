@@ -1,6 +1,6 @@
 <?php
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     session_start();
     $username=$_SESSION["username"];
@@ -14,8 +14,6 @@
     $apply=$_POST["apply"];
     $department=$_POST["department"];
     $people=$_POST["people"];
-
-    $chooseRoom=ord($chooseRoom)-64;
 
     $roomResource=implode(',',$roomResource);
 
@@ -35,14 +33,14 @@
         ?>
             <script>
                 alert("会议申请提交成功！")
-                window.location.href="/viewMeeting.php"
+                window.location.href="../../home/meeting/viewMeeting.php"
             </script>
         <?php
     }else{
         ?>
             <script>
                 alert("会议申请提交失败！")
-                window.location.href="/apcMeeting.php"
+                window.location.href="../../home/meeting/apcMeeting.php"
             </script>
         <?php
     }

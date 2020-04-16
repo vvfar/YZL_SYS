@@ -89,7 +89,7 @@
 
 
             <div style="clear: both;margin-left:30px;position:relative;top:10px;">
-                <form method="POST" action="formHandle/itHandle.php">
+                <form method="POST" action="../../controller/it/itHandle.php">
                     <div class="form-group hidden" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">id</p>
                         <input type="text" class="form-control" name="id" value="<?=$id?>" style="width: 250px;float: left;margin-top: 15px;">

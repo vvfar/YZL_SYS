@@ -357,17 +357,14 @@
                         if($shr_arr1 == $username){
                             
 
-                            if($department == "义乌部" or ($department == "商务运营部" and $status_pop=="商务运营审批授信") and $status_pop !="待KA审核单据"){
-                        
-                        
-                        ?>
-                        <button type="button" class="btn btn-success btn-sm" id="yes">同意</button>
-                        <button type="button" class="btn btn-danger btn-sm" id="no" style="margin-left:10px;">拒绝</button>
-                
-                    <?php
-                            }elseif($department == "商务运营部" and $status_pop=="商务运营归档单据" ){
+                            if($department == "商务运营部" and $status_pop=="商务运营归档单据" ){
                                 ?>
                                     <button type="button" class="btn btn-info btn-sm" id="yes" style="margin-left:50px;">已记录</button>
+                                <?php
+                            }elseif($status_pop !="待KA审核单据"){
+                                ?>
+                                    <button type="button" class="btn btn-success btn-sm" id="yes">同意</button>
+                                    <button type="button" class="btn btn-danger btn-sm" id="no" style="margin-left:10px;">拒绝</button>
                                 <?php
                             }
                         

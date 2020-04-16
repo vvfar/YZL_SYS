@@ -1,7 +1,7 @@
 <?php
     //解决中文乱码
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
     error_reporting(E_ALL || ~E_NOTICE);
 
     $id=$_GET["id"];
@@ -15,14 +15,14 @@
     ?>
         <script>
             alert("提交成功！")
-            window.location.href="../viewMeeting.php"
+            window.location.href="../../home/meeting/viewMeeting.php"
         </script> 
     <?php
     }else{
     ?>
     <script>
         alert("提交失败！");
-        window.location.href="../viewMeeting.php";
+        window.location.href="../../home/meeting/viewMeeting.php";
     </script> 
     <?php
     }

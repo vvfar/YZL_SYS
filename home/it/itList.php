@@ -198,7 +198,7 @@
 
 <script>
     $("#download").click(function(){
-        window.location.href="formHandle/download_it.php"
+        window.location.href="../../controller/it/download_it.php"
     })
 
 </script>

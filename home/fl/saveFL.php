@@ -76,7 +76,7 @@
 
             $pagesize=15;
 
-            $sqlstr3="select count(*) as total from flsqd where not status like '%已归档单据%' and not status like '%作废%' and (not status='KA级提交单据' and not shr='$username')";
+            $sqlstr3="select count(*) as total from flsqd where shr='$username'";
 
             if($newLevel !="ADMIN"){
                 $sqlstr3=$sqlstr3." and shr like '%$username%'";
@@ -115,41 +115,14 @@
         ?>
 
         <div class="flList_div">
-            <div class="search_bar">
-                <p class="search_bar_p1">辅料单查询</p>
-
-                <select class="form-control search_bar_s1" id="status">
-                    <option>未完成</option>
-                </select>
-
-                <select class="form-control search_bar_s2" id="time1">
-                    <option>流程开始时间</option>
-                </select>
-
-                <div class="input-group date form_datetime search_bar_t" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" id="input_time" size="16" type="text" value="<?=$input_time?>" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-                
-                <p class="search_bar_p2"> 到 </p>
-
-                <div class="search_bar_t input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" id="input_time2" size="16" type="text" value="<?=$input_time2?>" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-
-                <input type="text" class="form-control company_name" id="clientName" placeholder="请输入公司名称" value="<?=$clientName?>">
-                
-                <button class="btn btn-warning btn-sm search_bar_btn" id="query_fl">查询</button>
-                <button class="btn btn-success btn-sm search_bar_btn" id="download_fl">下载</button>
+            <div class="nav nav-pills" style="float:left;margin-top:10px;margin-left:30px;">
+                <li role="presentation"><a href="flsq.php">新增辅料</a></li>
+                <li role="presentation" class="active"><a href="#">已保存</a></li>
             </div>
-            
-            
+
             <div class="clearfix">
                 <div class="fy_span clearfix">
-                    <h4>
+                    <h4 style="margin-top:20px;">
                         <span class="label label-info">共<?=$total?>条</span>
                         <span class="label label-warning">共<?=$pagecount?>页</span>
                         <span class="label label-success">第<?=$page?>页</span>
@@ -169,11 +142,7 @@
                 
                     <?php
 
-                        $sqlstr2="select id,no,company,people,date,date2,status,shr from flsqd where not status like '%已归档单据%' and not status like '%作废%'  and (not status='KA级提交单据' and not shr='$username')";
-
-                        if($newLevel !="ADMIN"){
-                            $sqlstr2=$sqlstr2." and shr like '%$username%'";
-                        }
+                        $sqlstr2="select id,no,company,people,date,date2,status,shr from flsqd where shr='$username'";
 
                         if($input_time !=""){
                             $input_time_full=$input_time." 00:00:00";

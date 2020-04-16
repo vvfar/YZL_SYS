@@ -23,17 +23,16 @@
         ?>
 
         <div class="leftBar">
-            <!--
-            <div style="height: 20px;float:right;margin-right:20px;margin-top:10px;">
-                <img src="/public/img/lock.png" height="90%" style="cursor: pointer" id="center"/>
-                <img src="/public/img/logout.jpg" height="100%" style="cursor: pointer;position: relative;left:2px;" id="logout" />
-
-                
-            </div>
-            -->
 
             <ul class="leftbarAll">
                 <li class="leftbar0"><i class="layui-icon layui-icon-home"></i><a href="/index.php">我的门户</a></li>
+
+                <li class="leftbar7"><i class="layui-icon layui-icon-template-1"></i><a href="#">合同授权</a></li>
+                <div class="leftbar7Z zcd">
+                    <li class="leftbar7Z2"><a href="/home/contract/contract.php">新增单据</a></li>
+                    <li class="leftbar7Z3"><a href="/home/contract/w_contract.php">待审批单据</a></li>
+                    <li class="leftbar7Z1"><a href="/home/contract/contractList.php">已审批单据</a></li>
+                </div>
 
                 <li class="leftbar1"><i class="layui-icon layui-icon-rmb"></i><a href="#">公司授信</a></li>
                 <div class="leftbar1Z zcd">
@@ -56,14 +55,6 @@
                     <li class="leftbar11Z2"><a href="/home/store/manStore.php">店铺管理</a></li>
                     <li class="leftbar11Z4"><a href="/home/store/dataStore.php">店铺数据</a></li>
                 </div>
-
-                <li class="leftbar7"><i class="layui-icon layui-icon-template-1"></i><a href="#">合同授权</a></li>
-                <div class="leftbar7Z zcd">
-                    <li class="leftbar7Z2"><a href="/home/contract/contract.php">新增单据</a></li>
-                    <li class="leftbar7Z3"><a href="/home/contract/w_contract.php">待审批单据</a></li>
-                    <li class="leftbar7Z1"><a href="/home/contract/contractList.php">已审批单据</a></li>
-                </div>
-                
                 <?php
                     if($newLevel=="ADMIN" or $department == "人事行政部"){
                 ?>
@@ -86,16 +77,10 @@
                     </div>
                 -->
 
-                <?php
-                    if($newLevel=="ADMIN" or $department == "人事行政部"){
-                ?>
-                    <li class="leftbar10"><i class="layui-icon layui-icon-chart-screen"></i><a href="#">订会议室</a></li>
-                    <div class="leftbar10Z zcd">
-                        <li class="leftbar10Z1"><a href="/home/meeting/viewMeeting.php">查看会议</a></li> 
-                    </div>
-                <?php
-                    }
-                ?>    
+                <li class="leftbar10"><i class="layui-icon layui-icon-chart-screen"></i><a href="#">订会议室</a></li>
+                <div class="leftbar10Z zcd">
+                    <li class="leftbar10Z1"><a href="/home/meeting/viewMeeting.php">查看会议</a></li> 
+                </div>
                 
                 <li class="leftbar5"><i class="layui-icon layui-icon-user"></i><a href="#">个人中心</a></li>
                 
