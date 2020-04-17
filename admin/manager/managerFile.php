@@ -20,7 +20,7 @@
 
         <div style="margin-left: 180px;">
             <?php
-                include("..\..\home\base\manager_header.php")
+                include("..\..\home\base\manager_header.php");
             ?>
 
             <div style="width:1040px">
@@ -73,7 +73,7 @@
                             <a href="../../controller/adminHandle/delFile.php?id=<?=$myrow[0]?>&fileName=<?=$myrow[2]?>">删除</a>
                         </td>
                     </tr>
-                        <?
+                    <?php
                     }
                     
                     mysqli_free_result($result);

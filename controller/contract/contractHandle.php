@@ -47,109 +47,69 @@
             $maxID=0;
         }
 
-        $sqlstr0="select username from user_form where department like '%$department%' and newLevel='M'";
-        
-        $result=mysqli_query($conn,$sqlstr0);
-
-        while($myrow=mysqli_fetch_row($result)){
-            $usernameNext=$myrow[0];
-        }
-
-        $username=$username.",".$usernameNext;
-
-
         if($id==""){
-            $sqlstr1="insert into contract values('$maxID'+1,'$re_date','$no','$department','$pingtai','$category','$company','$store','$input_time','$input_time2','$money','$ismoney','$sales','$issales','$service','$isservice','$note','KA级提交单据,M级审批单据','$oldNo','$username','$time')";
+            $sqlstr1="insert into contract values('$maxID'+1,'$re_date','$no','$department','$pingtai','$category','$company','$store','$input_time','$input_time2','$money','$ismoney','$sales','$issales','$service','$isservice','$note','待归档','$oldNo','$username','$time')";
         }else{
-            $sqlstr1="update contract set no='$no',company='$company',store='$store',pingtai='$pingtai',category='$category',money='$money',ismoney='$ismoney',sales='$sales',issales='$issales',service='$isservice',note='$note',oldNo='$oldNo',status='KA级提交单据,M级审批单据',shr='$username',shTime='$time' where id='$id'";
+            $sqlstr1="update contract set no='$no',company='$company',store='$store',pingtai='$pingtai',category='$category',money='$money',ismoney='$ismoney',sales='$sales',issales='$issales',service='$isservice',note='$note',oldNo='$oldNo',status='待归档',shr='$username',shTime='$time' where id='$id'";
         }
         
     
         $result=mysqli_query($conn,$sqlstr1);
-    }elseif($progress >=2 && $progress <=6){
-        $id=$_GET['id'];
+    }elseif($progress == 4){
+        $id=$_GET["id"];
 
-        $sqlstr2="select status,shr,shTime from contract where id='$id'";
-    
-        $result=mysqli_query($conn,$sqlstr2);
+        $sqlstr3="select no,company,store from contract where id='$id'";
+
+        $result=mysqli_query($conn,$sqlstr3);
 
         while($myrow=mysqli_fetch_row($result)){
-            $status=$myrow[0];
-            $shr=$myrow[1];
-            $shTime=$myrow[2];
+            $no=$myrow[0];
+            $companyName=$myrow[1];
+            $storeName=$myrow[2];
         }
 
-        if($progress == 2){
-            $status=$status.",崔总审批单据";
-            $shr=$shr.",崔立德";
-            $shTime=$shTime.",".$time;
+        $sqlstr4="select count(*) from sq where contractNo='$no' and companyName='$companyName' and storeName='$storeName'";
+        
+        $result=mysqli_query($conn,$sqlstr4);
 
-            $sqlstr1="update contract set status = '$status',shr='$shr',shTime='$shTime' where id='$id'"; 
-            $result=mysqli_query($conn,$sqlstr1);
-        }elseif($progress ==3){
-            $status=$status.",商务运营归档单据";
-            $shr=$shr.",楚柳辉";
-            $shTime=$shTime.",".$time;
+        while($myrow=mysqli_fetch_row($result)){
+            $sq_count=$myrow[0];
+        }
+        
+        if($sq_count == 0){
+            echo "<script>alert('请先提交授权！');window.location.href='../../home/contract/contract_line.php?id=".$id."&option=合同'</script>";
 
-            $sqlstr1="update contract set status = '$status',shr='$shr',shTime='$shTime' where id='$id'"; 
-            $result=mysqli_query($conn,$sqlstr1);
-        }elseif($progress == 4){
-            $sqlstr3="select no,company,store from contract where id='$id'";
-
-            $result=mysqli_query($conn,$sqlstr3);
+        }else{
+            $sqlstr5="select count(*) from store where client='$companyName' and storeName='$storeName'";
+            $result=mysqli_query($conn,$sqlstr5);
 
             while($myrow=mysqli_fetch_row($result)){
-                $no=$myrow[0];
-                $companyName=$myrow[1];
-                $storeName=$myrow[2];
+                $store_count=$myrow[0];
             }
 
-            $sqlstr4="select count(*) from sq where contractNo='$no' and companyName='$companyName' and storeName='$storeName'";
-            
-            $result=mysqli_query($conn,$sqlstr4);
-
-            while($myrow=mysqli_fetch_row($result)){
-                $sq_count=$myrow[0];
-            }
-            
-            if($sq_count == 0){
-                echo "<script>alert('请先提交授权！');window.location.href='../../home/contract/contract_line.php?id=".$id."&option=合同'</script>";
-
+            if($store_count == 0){
+                echo "<script>alert('请先审核授权！');window.location.href='../../home/contract/contract_line.php?id=".$id."&option=合同'</script>";
             }else{
-                $sqlstr5="select count(*) from store where client='$companyName' and storeName='$storeName'";
-                $result=mysqli_query($conn,$sqlstr5);
+                $sqlstr6="update store set htsq='合同授权已提交' where id=(select id from store where client='$companyName' and storeName='$storeName')";
 
-                while($myrow=mysqli_fetch_row($result)){
-                    $store_count=$myrow[0];
-                }
-
-                if($store_count == 0){
-                    echo "<script>alert('请先审核授权！');window.location.href='../../home/contract/contract_line.php?id=".$id."&option=合同'</script>";
-                }else{
-                    $sqlstr6="update store set htsq='合同授权已提交' where id=(select id from store where client='$companyName' and storeName='$storeName')";
-                
-                    $status=$status.",商务运营已归档";
-                    $shr=$shr.",商务运营部";
-                    $shTime=$shTime.",".$time;
-
-                    $sqlstr1="update contract set status = '$status',shr='$shr',shTime='$shTime' where id='$id'"; 
-                    $result=mysqli_query($conn,$sqlstr1);
-                }
+                $sqlstr1="update contract set status = '已归档' where id='$id'"; 
+                $result=mysqli_query($conn,$sqlstr1);
             }
-        }elseif($progress == 5){
-            //审核拒绝
-            $status=$status.",审核拒绝";
-            $shr=$shr.",KA级";
-            $shTime=$shTime.",".$time;
+        }
+    }elseif($progress == 5){
+        //审核拒绝
+        $status=$status.",审核拒绝";
+        $shr=$shr.",KA级";
+        $shTime=$shTime.",".$time;
 
-            $sqlstr1="update contract set status = '$status',shr='$shr',shTime='$shTime' where id='$id'"; 
-            $result=mysqli_query($conn,$sqlstr1);
-        }elseif($progress == 6){
-            $sqlstr1="delete from contract where id='$id'";
-            
-            $result=mysqli_query($conn,$sqlstr1);
-        }        
-    }
+        $sqlstr1="update contract set status = '$status',shr='$shr',shTime='$shTime' where id='$id'"; 
+        $result=mysqli_query($conn,$sqlstr1);
+    }elseif($progress == 6){
+        $sqlstr1="delete from contract where id='$id'";
+        
+        $result=mysqli_query($conn,$sqlstr1);
+    }        
+
 
     if($result){
         if(isset($_GET['option']) && $_GET['option']==0){

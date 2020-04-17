@@ -60,7 +60,7 @@
                             <td><?=$myrow[2]?></td>
                             <td><?=$myrow[3]?></td>
                         </tr>
-                            <?
+                            <?php
                         }
                         
                         mysqli_free_result($result);

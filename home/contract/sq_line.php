@@ -68,15 +68,8 @@
 
             <div> 
                 <?php
-                    if(strpos($status,',') !== false){
-                        $arr_status=explode(",",$status);
-                        
-                        $status_pop=array_pop($arr_status);
-                    }else{
-                        $status_pop=$status;
-                    }
 
-                    if($status_pop !="数据中心已归档"){
+                    if($status !="已归档"){
                     ?>
                         <button class="btn btn-sm btn-warning" style="float:left">待归档</button>
                     <?php
@@ -155,14 +148,8 @@
                 </table>
 
                 <?php
-                    if(strpos($status,',') !== false){
-                        $arr_shr2=explode(",",$shr);
-                        
-                        $shr2=array_pop($arr_shr2);
 
-                    }
-
-                    if($shr2== $username){
+                    if($my_department == "商务运营部"){
                         ?>
 
                         <div style="width:1000px;">
@@ -173,16 +160,14 @@
                         <?php
                     }
 
-                    if($arr_shr2[0]==$username and (array_pop($arr_shr2)==$username or $status_pop=="审核拒绝")){
+                    if($status=="审核拒绝" and $username == $shr){
                         ?>
                             <div style="width:1000px;">
                                 <button class="btn btn-sm btn-info" style="float:right" id="edit">重新编辑</button>
                             </div>
                         <?php
                     }
-                ?>
 
-                <?php
                     $file_arr=explode(",",$fileName);
                     if($file_arr[0] !=""){
                         ?>
@@ -197,46 +182,6 @@
                     }
 
                 ?>
-
-                <div class="notice" style="margin-top:30px;">
-                    <p>单据审核过程：</p>
-                    
-                    <?php
-                        if(strpos($status,',') !== false){ 
-                            $status_arr=explode(",",$status);                      
-                        }
-
-                        if(strpos($shr,',') !== false){ 
-                            $shr_arr=explode(",",$shr);                    
-                        }
-
-                        if(strpos($shTime,',') !== false){ 
-                            $shTime_arr=explode(",",$shTime);                       
-                        }
-
-
-                        if(strpos($shTime,',') !== false){
-                            for($i=0;$i<sizeof($shTime_arr);$i++){
-                                ?>
-                                    <ul style="clear:both">
-                                        <li>状态：<?=$status_arr[$i]?></li>
-                                        <li>审核人：<?=$shr_arr[$i]?></li>
-                                        <li>审核时间：<?=$shTime_arr[$i]?></li>
-                                    </ul>
-                                <?php
-                            }
-
-                        }else{
-                            ?>
-                                <ul>
-                                    <li>状态：<?=$status_arr[0]?></li>
-                                    <li>审核人：<?=$shr_arr[0]?></li>
-                                    <li>审核时间：<?=$shTime?></li>
-                                </ul>
-                            <?php
-                        }
-                    ?>
-                </div>
             </div>
         </div>
     </body>
