@@ -1,7 +1,7 @@
 <?php
     //解决中文乱码
     header("content-type:text/html;charset=utf-8");
-    include_once("../../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     $id=$_GET['id'];
 
@@ -12,14 +12,14 @@
         ?>
         <script>
             alert("删除成功！")
-            window.location.href="../../manager_index.php"
+            window.location.href="../../admin/manager/manager_index.php"
         </script> 
         <?php
     }else{
         ?>
         <script>
             alert("删除失败！")
-            window.location.href="../../manager_index.php"
+            window.location.href="../../admin/manager/manager_index.php"
         </script> 
         <?php
     }

@@ -24,7 +24,7 @@
             ?>
 
             <div style="width:1040px">
-                <button class="btn btn-sm btn-success" style="float:right" id="createUser">新增公告</button>
+                <button class="btn btn-sm btn-success" style="float:right" id="createUser">新增文件</button>
             </div>
             
             <table class="table table-responsive table-bordered table-hover" style="margin-top: 70px;width: 1000px;margin-left: 40px;">
@@ -68,9 +68,9 @@
                         <td><?=$myrow[1]?></td>
                         <td><?=$myrow[3]?></td>
                         <td><?=$myrow[4]?></td>
-                        <td><a href="file/<?=$myrow[2]?>">点击下载</a></td>
+                        <td><a href="../../common/file/myfile/<?=$myrow[2]?>">点击下载</a></td>
                         <td>
-                            <a href="formHandle/adminHandle/delFile.php?id=<?=$myrow[0]?>&fileName=<?=$myrow[2]?>">删除</a>
+                            <a href="../../controller/adminHandle/delFile.php?id=<?=$myrow[0]?>&fileName=<?=$myrow[2]?>">删除</a>
                         </td>
                     </tr>
                         <?

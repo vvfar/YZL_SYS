@@ -39,7 +39,13 @@
 
                         $pagesize=10;
 
-                        $sqlstr1="select count(*) as total from files";
+                        if(isset($_GET['learning'])){
+                            $sqlstr1="select count(*) as total from files where note='培训文档'";
+                        }else{
+                            $sqlstr1="select count(*) as total from files";
+                        }
+
+                        
                         
                         $result=mysqli_query($conn,$sqlstr1);
                         $info=mysqli_fetch_array($result);
@@ -51,7 +57,12 @@
                             $pagecount=ceil($total/$pagesize);
                         }
 
-                        $sqlstr2="select * from files";
+                        if(isset($_GET['learning'])){
+                            $sqlstr2="select * from files where note='培训文档'";
+                        }else{
+                            $sqlstr2="select * from files";
+                        }
+
                         $result=mysqli_query($conn,$sqlstr2);
 
                         while($myrow=mysqli_fetch_row($result)){
@@ -61,7 +72,7 @@
                         <td><?=$myrow[1]?></td>
                         <td><?=$myrow[3]?></td>
                         <td><?=$myrow[4]?></td>
-                        <td><a href="file/<?=$myrow[2]?>">点击下载</a></td>
+                        <td><a href="../../common/file/myfile/<?=$myrow[2]?>">点击下载</a></td>
                     </tr>
                         <?php
                     }

@@ -88,8 +88,13 @@
                     <li class="leftbar5Z1"><a href="/home/center/center.php">我的资料</a></li> 
                 </div>
 
-                <li class="leftbar9"><i class="layui-icon layui-icon-download-circle"></i><a href="/home/document/document.php">文件下载</a></li>    
+                <li class="leftbar9"><i class="layui-icon layui-icon-download-circle"></i><a href="#">文件公告</a></li>    
             
+                <div class="leftbar9Z zcd">
+                    <li class="leftbar9Z1"><a href="/home/news/allNews.php">公司公告</a></li>
+                    <li class="leftbar9Z3"><a href="/home/document/document.php">文件下载</a></li> 
+                </div>
+
                 <?php
                     if($newLevel=="ADMIN"){
                 ?>

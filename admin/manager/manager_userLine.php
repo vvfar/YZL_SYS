@@ -57,7 +57,7 @@
             ?>
 
 
-            <form action="formHandle/adminHandle/addUser.php" method="POST" style="padding-top: 10px;margin-left:45px;">                
+            <form action="../../controller/adminHandle/addUser.php" method="POST" style="padding-top: 10px;margin-left:45px;">                
                 <div>
                     <h4 style="float: left">用户信息</h4>
                 </div>
@@ -82,44 +82,44 @@
                     <p style="width: 80px;font-size: 14px;float: left;margin-top: 20px;">*层级</p>
                     <select class="form-control" name="newLevel" style="width: 200px;float: left;margin-top: 15px;">
                         <?php
-                            if($newLevel =="M级别"){
+                            if($newLevel =="M"){
                                 ?>
                                     <option>请选择层级</option>
-                                    <option selected>M级别</option>
-                                    <option>KA级别</option>
-                                    <option>P级别</option>
+                                    <option selected>M</option>
+                                    <option>KA</option>
+                                    <option>P</option>
                                     <option>数据专员</option>
                                 <?php
-                            }elseif($newLevel =="KA级别"){
+                            }elseif($newLevel =="KA"){
                                 ?>
                                     <option>请选择层级</option>
-                                    <option>M级别</option>
-                                    <option selected>KA级别</option>
-                                    <option>P级别</option>
+                                    <option>M</option>
+                                    <option selected>KA</option>
+                                    <option>P</option>
                                     <option>数据专员</option>
                                 <?php
-                            }elseif($newLevel =="P级别"){
+                            }elseif($newLevel =="P"){
                                 ?>
                                     <option>请选择层级</option>
-                                    <option>M级别</option>
-                                    <option>KA级别</option>
-                                    <option selected>P级别</option>
+                                    <option>M</option>
+                                    <option>KA</option>
+                                    <option selected>P</option>
                                     <option>数据专员</option>
                                 <?php
                             }elseif($newLevel =="数据专员"){
                                 ?>
                                     <option>请选择层级</option>
-                                    <option>M级别</option>
-                                    <option>KA级别</option>
-                                    <option>P级别</option>
+                                    <option>M</option>
+                                    <option>KA</option>
+                                    <option>P</option>
                                     <option selected>数据专员</option>
                                 <?php
                             }else{
                                 ?>
                                     <option>请选择层级</option>
-                                    <option>M级别</option>
-                                    <option>KA级别</option>
-                                    <option>P级别</option>
+                                    <option>M</option>
+                                    <option>KA</option>
+                                    <option>P</option>
                                     <option>数据专员</option>
                                 <?php
                             }

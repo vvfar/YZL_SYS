@@ -67,9 +67,9 @@
                         <td><?=$myrow[3]?></td>
                         <td><?=$myrow[2]?></td>
                         <td>
-                            <a href="news.php?id=<?=$myrow[0]?>">查看</a> |
+                            <a href="../../home/news/news.php?id=<?=$myrow[0]?>">查看</a> |
                             <a href="managerAddContent.php?id=<?=$myrow[0]?>">修改</a> |
-                            <a href="formHandle/adminHandle/delContent.php?id=<?=$myrow[0]?>">删除</a>
+                            <a href="../../controller/adminHandle/delContent.php?id=<?=$myrow[0]?>">删除</a>
                         </td>
                     </tr>
                 <?

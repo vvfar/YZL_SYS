@@ -10,7 +10,7 @@
     session_start();
     $person=$_SESSION["username"];
     
-    include_once("../../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     $sqlstr="select max(id) from news";
     $result=mysqli_query($conn,$sqlstr);
@@ -35,14 +35,14 @@
         ?>
         <script>
             alert("提交成功！")
-            window.location.href="../../managerNews.php"
+            window.location.href="../../admin/manager/managerNews.php"
     </script> 
     <?php
     }else{
     ?>
     <script>
         alert("提交失败！")
-        window.location.href="../../managerNews.php"
+        window.location.href="../../admin/manager/managerNews.php"
     </script> 
     <?php
     }

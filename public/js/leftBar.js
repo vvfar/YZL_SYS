@@ -16,6 +16,7 @@ $(document).ready(function(){
         $(".leftbar6Z").toggle();
         $(".leftbar7Z").toggle();
         $(".leftbar8Z").toggle();
+        $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
@@ -29,6 +30,7 @@ $(document).ready(function(){
         $(".leftbar6Z").toggle();
         $(".leftbar7Z").toggle();
         $(".leftbar8Z").toggle();
+        $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
@@ -58,6 +60,7 @@ $(document).ready(function(){
         $(".leftbar6Z").toggle();
         $(".leftbar7Z").toggle();
         $(".leftbar8Z").toggle();
+        $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
@@ -88,6 +91,7 @@ $(document).ready(function(){
         $(".leftbar6Z").toggle();
         $(".leftbar7Z").toggle();
         $(".leftbar8Z").toggle();
+        $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
@@ -103,6 +107,7 @@ $(document).ready(function(){
         $(".leftbar5Z").toggle();
         $(".leftbar7Z").toggle();
         $(".leftbar8Z").toggle();
+        $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
@@ -125,6 +130,7 @@ $(document).ready(function(){
         $(".leftbar5Z").toggle();
         $(".leftbar6Z").toggle();
         $(".leftbar8Z").toggle();
+        $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
@@ -145,6 +151,7 @@ $(document).ready(function(){
         $(".leftbar5Z").toggle();
         $(".leftbar6Z").toggle();
         $(".leftbar7Z").toggle();
+        $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
@@ -153,7 +160,8 @@ $(document).ready(function(){
         }else if(leftBar_path == "it.php"){
             $(".leftbar8Z2 a").css("color","#fff")
         }
-    }else if(leftBar_path == "document.php"){
+    }else if(leftBar_path == "document.php" || leftBar_path == "allNews.php" || leftBar_path == "news.php"){
+        
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar9").css("background-color","darkslateblue");
         $(".leftbar9 a").css("color","#ffffff");
@@ -166,6 +174,12 @@ $(document).ready(function(){
         $(".leftbar8Z").toggle();
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
+
+        if(leftBar_path ==  "document.php"){
+            $(".leftbar9Z3 a").css("color","#fff")
+        }else if(leftBar_path == "allNews.php" || leftBar_path == "news.php"){
+            $(".leftbar9Z1 a").css("color","#fff")
+        }
     
     }else if(leftBar_path ==  "apcMeeting.php" || leftBar_path ==  "viewMeeting.php"  || leftBar_path ==  "willMeeting.php"   || leftBar_path ==  "viewMeetingDetail.php"){
         $(".leftbar1Z").toggle();
@@ -174,6 +188,7 @@ $(document).ready(function(){
         $(".leftbar6Z").toggle();
         $(".leftbar7Z").toggle();
         $(".leftbar8Z").toggle();
+        $(".leftbar9Z").toggle();
         $(".leftbar11Z").toggle();
 
         if(leftBar_path ==  "viewMeeting.php"){
@@ -194,6 +209,7 @@ $(document).ready(function(){
         $(".leftbar6Z").toggle();
         $(".leftbar7Z").toggle();
         $(".leftbar8Z").toggle();
+        $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
 
         if(leftBar_path == "manStore.php" || leftBar_path ==  "manStore2.php" || leftBar_path ==  "newStore.php" || leftBar_path == "uploadStore.php"){
@@ -211,15 +227,22 @@ $(document).ready(function(){
         $(".leftbar6Z").toggle();
         $(".leftbar7Z").toggle();
         $(".leftbar8Z").toggle();
+        $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
     }else{
+
+        $(".leftbarAll li").css("background-color","#160509");
+        $(".leftbar12").css("background-color","darkslateblue");
+        $(".leftbar12 a").css("color","#ffffff");
+
         $(".leftbar1Z").toggle();
         $(".leftbar2Z").toggle();
         $(".leftbar5Z").toggle();
         $(".leftbar6Z").toggle();
         $(".leftbar7Z").toggle();
         $(".leftbar8Z").toggle();
+        $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
     }
@@ -257,6 +280,11 @@ $(document).ready(function(){
     $(".leftbar8").click(function(){
         $(".leftbar8Z").toggle();
     })
+
+    $(".leftbar9").click(function(){
+        $(".leftbar9Z").toggle();
+    })
+
 
     $(".leftbar10").click(function(){
         $(".leftbar10Z").toggle();

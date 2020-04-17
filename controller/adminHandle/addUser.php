@@ -1,6 +1,7 @@
 <?php
     //解决中文乱码
     header("content-type:text/html;charset=utf-8");
+    include_once("../../common/conn/conn.php");
 
     $id=$_POST["id"];
     $username=$_POST["username"];
@@ -10,8 +11,6 @@
     $phone=$_POST["phone"];
     $email=$_POST["email"];
     $nickname=$_POST["nickname"];
-
-    include_once("../../conn/conn.php");
 
     $sqlstr="select max(id) from user_form";
     $result=mysqli_query($conn,$sqlstr);
@@ -36,7 +35,7 @@
         ?>
         <script>
             alert("提交成功！")
-            window.location.href="../../manager_index.php"
+            window.location.href="../../admin/manager/manager_index.php"
         </script> 
     <?php
     }else{
@@ -45,7 +44,7 @@
 
     <script>
         alert("提交失败！")
-        window.location.href="../../manager_index.php"
+        window.location.href="../../admin/manager/manager_index.php"
     </script> 
     <?php
     

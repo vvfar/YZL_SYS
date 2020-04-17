@@ -7,7 +7,7 @@ $(document).ready(function(){
     if(managerHeader_path == "manager_index.php"){
         $(".header_manager1").siblings().removeClass("active");
         $(".header_manager1").addClass("active");
-    }else if(managerHeader_path == "managerFL.php"){
+    }else if(managerHeader_path == "managerFL.php" || managerHeader_path == "flProcess.php"){
         $(".header_manager2").siblings().removeClass("active");
         $(".header_manager2").addClass("active");
     }else if(managerHeader_path == "managerNews.php"){

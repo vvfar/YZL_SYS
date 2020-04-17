@@ -76,8 +76,8 @@
                         <td><?=$myrow[4]?></td>
                         <td>
                             <a href="manager_userLine.php?id=<?=$myrow[0]?>">修改</a> |
-                            <a href="formHandle/adminHandle/delUser.php?id=<?=$myrow[0]?>">删除</a> |
-                            <a href="formHandle/adminHandle/resetPwd.php?id=<?=$myrow[0]?>">重置密码</a>
+                            <a href="../../controller/adminHandle/delUser.php?id=<?=$myrow[0]?>">删除</a> |
+                            <a href="../../controller/adminHandle/resetPwd.php?id=<?=$myrow[0]?>">重置密码</a>
                         </td>
                     </tr>
                     <?php

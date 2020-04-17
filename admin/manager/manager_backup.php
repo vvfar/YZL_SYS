@@ -80,19 +80,19 @@
 
 <script>
     $("#del_backup").click(function(){
-        window.location.href="formHandle/backsql.php?name=&option=2";
+        window.location.href="../../controller/backData/backsql.php?name=&option=2";
     })
 
     $("#backup").click(function(){
         backup_input=$("#backup_input").val();
 
-        window.location.href="formHandle/backsql.php?name=" + backup_input + "&option=0";
+        window.location.href="../../controller/backData/backsql.php?name=" + backup_input + "&option=0";
     })
 
     $("#reback").click(function(){
         reback_input=$("#reback_input").val();
 
-        window.location.href="formHandle/backsql.php?name=" + reback_input + "&option=1";
+        window.location.href="../../controller/backData/backsql.php?name=" + reback_input + "&option=1";
     })
     
 

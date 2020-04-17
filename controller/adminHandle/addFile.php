@@ -1,7 +1,7 @@
 <?php
     //解决中文乱码
     header("content-type:text/html;charset=utf-8");
-    include_once("../../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     $title=$_POST['title'];
     $note=$_POST['note'];
@@ -11,13 +11,13 @@
         if($fileinfo['size']<10240000 && $fileinfo['size']>0){
 
             //iconv防止出现上传中文名乱码
-            $path=iconv('utf-8','gb2312',"../../file/".$_FILES["upfile"]["name"]);
+            $path=iconv('utf-8','gb2312',"../../common/file/myfile/".$_FILES["upfile"]["name"]);
 
             if(file_exists($path)){
                 ?>
                 <script>
                     alert("文件已存在！")
-                    window.location.href="../../managerFile.php"
+                    window.location.href="../../admin/manager/managerFile.php"
                 </script>
                 
                 <?php
@@ -44,6 +44,8 @@
                     $sqlstr1="insert into files values('$maxID'+1,'$title','$fileName','$username','$time','授信欠据模板')";
                 }elseif($note=="产品抵标费模板"){
                     $sqlstr1="insert into files values('$maxID'+1,'$title','$fileName','$username','$time','产品抵标费模板')";
+                }elseif($note=="培训文档"){
+                    $sqlstr1="insert into files values('$maxID'+1,'$title','$fileName','$username','$time','培训文档')";
                 }else{
                     $sqlstr1="insert into files values('$maxID'+1,'$title','$fileName','$username','$time','')";
                 }
@@ -54,14 +56,14 @@
                     ?>
                     <script>
                         alert("上传成功！")
-                        window.location.href="../../managerFile.php"
+                        window.location.href="../../admin/manager/managerFile.php"
                     </script>
                     <?php
                 }else{
                     ?>
                     <script>
                         alert("上传失败！")
-                        window.location.href="../../managerFile.php"
+                        window.location.href="../../admin/manager/managerFile.php"
                     </script>
                     <?php
                 }

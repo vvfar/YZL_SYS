@@ -22,9 +22,9 @@
                 include("..\..\home\base\manager_header.php")
             ?>
             
-            <form action="formHandle/addFL.php" method="POST" style="margin-left: 50px;">
+            <form action="../../controller/adminHandle/addFL.php" method="POST" style="margin-left: 50px;">
                 <h4 style="margin-top:20px;">添加辅料</h4>
-                <input type="text" placeholder="请输入辅料名称" class="form-control" name="fl_name" style="width: 300px;">
+                <input type="text" placeholder="请输入辅料名称" class="form-control" name="fl_name" style="width: 300px;margin-top:20px;">
                 <button type="submit" class="btn btn-success btn-md" style="margin-top: 10px;">确认</button>
             </form>
         </div>

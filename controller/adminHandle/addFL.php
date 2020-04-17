@@ -1,6 +1,6 @@
 <?php
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     $fl_name=$_POST['fl_name'];
     $sqlstr1="insert into fl values('$fl_name')";
@@ -11,14 +11,14 @@
         ?>
         <script>
             alert("添加成功！")
-            window.location.href="../managerFL.php";
+            window.location.href="../../admin/manager/managerFL.php";
         </script>
         <?php
     }else{
         ?>
         <script>
             alert("添加失败！")
-            window.location.href="../managerFL.php";
+            window.location.href="../../admin/manager/managerFL.php";
         </script>
         <?php
     }
