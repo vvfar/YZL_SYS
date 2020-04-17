@@ -230,7 +230,7 @@ $(document).ready(function(){
     })
 
 
-    $("#sxid").blur(function(){
+    $("#sxid").change(function(){
         var xmlhttp;
         if(window.ActiveXObject){
             xmlhttp=new ActiveXObject('Microsoft.XMLHTTP');

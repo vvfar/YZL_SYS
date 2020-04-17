@@ -260,9 +260,9 @@
                 </div>
 
                 <div style="clear: both;margin-top:65px;">
-                    <button type="button" class="btn btn-success btn-md" id="submit">提交</button>
-                    <button type="submit" class="btn btn-default btn-md hidden" id="hd_submit">提交</button>
-                    <button type="reset" class="btn btn-primary">重置</button>
+                    <button type="button" class="btn btn-success btn-sm" id="submit">提交表单</button>
+                    <button type="submit" class="btn btn-default btn-sm hidden" id="hd_submit">提交</button>
+                    <button type="reset" class="btn btn-primary btn-sm">重置表单</button>
                 </div>
                 
             </form>

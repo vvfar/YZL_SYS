@@ -11,6 +11,7 @@
     $input_time=$_GET['input_time'];
     $input_time2=$_GET['input_time2'];
     $clientName=$_GET['clientName'];
+    $option=$_GET['option'];
 
     $sqlstr1="select department,newLevel from user_form where username='$username'";
 
@@ -21,39 +22,72 @@
         $newLevel=$myrow[1];
     }
 
-    $sqlstr2="select * from flsqd where 1=1 ";
-    
-    if($newLevel != "ADMIN"){
-        $sqlstr2=$sqlstr2." and department like '%$department%'";
-    }
+    if($option == 1){
+        //新系统辅料单下载
 
-    if($clientName !=""){
-        $sqlstr2=$sqlstr2." and company like '%$clientName%'";
-    }
+        $sqlstr2="select * from flsqd where 1=1 ";
 
-    if($status=="已完成"){
-        $sqlstr2=$sqlstr2." and status like '%已归档单据%' ";
-    }elseif($status=="未完成"){
-        $sqlstr2=$sqlstr2." and not status like '%已归档单据%' ";
-    }
-
-    if($input_time != ""){
-        $input_time_full=$input_time." 00:00:00";
-
-        if($time=="流程开始时间"){
-            $sqlstr2=$sqlstr2." and date >='$input_time_full' ";
-        }elseif($time=="流程结束时间"){
-            $sqlstr2=$sqlstr2." and date2 >='$input_time_full' ";
+        if($newLevel != "ADMIN" and $department !="财务部" and $department !="商务运营部"){
+            $sqlstr2=$sqlstr2." and shr like '%$username%'";
         }
-    }
+    
+        if($clientName !=""){
+            $sqlstr2=$sqlstr2." and company like '%$clientName%'";
+        }
+    
+        if($status=="已完成"){
+            $sqlstr2=$sqlstr2." and status like '%已归档单据%' ";
+        }elseif($status=="未完成"){
+            $sqlstr2=$sqlstr2." and not status like '%已归档单据%' ";
+        }
+    
+        if($input_time != ""){
+            $input_time_full=$input_time." 00:00:00";
+    
+            if($time=="流程开始时间"){
+                $sqlstr2=$sqlstr2." and date >='$input_time_full' ";
+            }elseif($time=="流程结束时间"){
+                $sqlstr2=$sqlstr2." and date2 >='$input_time_full' ";
+            }
+        }
 
-    if($input_time2 != ""){
-        $input_time2_full=$input_time2." 23:59:59";
+    
+        if($input_time2 != ""){
+            $input_time2_full=$input_time2." 23:59:59";
+    
+            if($time=="流程开始时间"){
+                $sqlstr2=$sqlstr2." and date <='$input_time2_full' ";
+            }elseif($time=="流程结束时间"){
+                $sqlstr2=$sqlstr2." and date2 <='$input_time2_full' ";
+            }
+        }
+    }else{
+        //旧系统辅料单下载
 
-        if($time=="流程开始时间"){
-            $sqlstr2=$sqlstr2." and date <='$input_time2_full' ";
-        }elseif($time=="流程结束时间"){
-            $sqlstr2=$sqlstr2." and date2 <='$input_time2_full' ";
+        $sqlstr2="select * from oldflsqd where 1=1 ";
+    
+        if($clientName !=""){
+            $sqlstr2=$sqlstr2." and company like '%$clientName%'";
+        }
+    
+        if($status=="已完成"){
+            $sqlstr2=$sqlstr2." and status like '%品牌部归档%' ";
+        }
+    
+        if($input_time != ""){
+            $input_time_full=$input_time." 00:00:00";
+    
+            if($time=="流程开始时间"){
+                $sqlstr2=$sqlstr2." and date >='$input_time_full' ";
+            }
+        }
+    
+        if($input_time2 != ""){
+            $input_time2_full=$input_time2." 23:59:59";
+    
+            if($time=="流程开始时间"){
+                $sqlstr2=$sqlstr2." and date <='$input_time2_full' ";
+            }
         }
     }
 

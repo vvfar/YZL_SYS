@@ -260,7 +260,7 @@
 
 
                         if($department=="义乌部"){
-                            if($status_pop=="义乌打包发货"){
+                            if($status_pop=="义乌打包发货" or $status_pop=="商务运营归档单据"){
                             ?>
                                 <tr>
                                     <td colspan="6">物流方式</td>
@@ -370,6 +370,11 @@
                         
                         }
                         
+                        if($department=="义乌部" and $status_pop=="商务运营归档单据"){
+                            ?>
+                                <button type="button" class="btn btn-info btn-sm" id="edit_YW" style="margin-left:37px;">修改单据</button>
+                            <?php
+                        }
 
                         if(sizeof($arr_shr)==0){
                             if($shr_arr3 == $username){
@@ -476,6 +481,15 @@
    
    $("#yes4").click(function(){
         window.location.href="../../controller/fl/flLiucheng.php?id=<?=$id?>&option=6"
+    })
+
+    $("#edit_YW").click(function(){
+        wlfs=$("#wlfs").val()
+        wlno=$("#wlno").val()
+        wlprice=$("#wlprice").val()
+        note=$("#note").val()
+
+        window.location.href="../../controller/fl/flLiucheng.php?id=<?=$id?>&option=8&wlfs=" + wlfs + "&wlno=" + wlno + "&wlprice=" + wlprice + "&note=" + note
     })
 
     //打印页面

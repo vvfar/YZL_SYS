@@ -11,8 +11,7 @@
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
-        <link href="../../public/css\flList.css" rel="stylesheet"/>
-        <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
+        <link href="..\..\public/css\flList.css" rel="stylesheet"/>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
@@ -23,16 +22,47 @@
         <?php include '..\base\leftBar.php' ?>
 
         <?php
-            
+            //获取url参数
+            if(isset($_GET['status'])){
+                $status2=$_GET['status'];
+            }else{
+                $status2="";
+            }
+
+            if(isset($_GET['time'])){
+                $time=$_GET['time'];
+            }else{
+                $time="";
+            }
+
+            if(isset($_GET['input_time'])){
+                $input_time=$_GET['input_time'];
+            }else{
+                $input_time="";
+            }
+
+            if(isset($_GET['input_time2'])){
+                $input_time2=$_GET['input_time2'];
+            }else{
+                $input_time2="";
+            }
+
+            if(isset($_GET['clientName'])){
+                $clientName=$_GET['clientName'];
+            }else{
+                $clientName="";
+            }
+
+
             $username=$_SESSION["username"];
 
-            $sqlstr1="select department,level from user_form where username='$username'";
+            $sqlstr1="select department,newLevel from user_form where username='$username'";
 
             $result=mysqli_query($conn,$sqlstr1);
     
             while($myrow=mysqli_fetch_row($result)){
                 $department=$myrow[0];
-                $level=$myrow[1];
+                $newLevel=$myrow[1];
             }
 
             //分页代码
@@ -44,7 +74,23 @@
 
             $pagesize=15;
 
-            $sqlstr3="select count(*) as total from oldflsqd order by id desc";
+            $sqlstr3="select count(*) as total from oldflsqd where 1=1";
+
+            if($input_time !=""){
+                $input_time_full=$input_time." 00:00:00";
+
+                $sqlstr3=$sqlstr3." and date >='$input_time_full' ";
+            }
+
+            if($input_time2 != ""){
+                $input_time2_full=$input_time2." 23:59:59";
+
+                $sqlstr3=$sqlstr3." and date <='$input_time2_full' ";
+            }
+
+            if($clientName != ""){
+                $sqlstr3=$sqlstr3." and company like '%$clientName%' ";
+            }
 
             $result=mysqli_query($conn,$sqlstr3);
             $info=mysqli_fetch_array($result);
@@ -55,6 +101,8 @@
             }else{
                 $pagecount=ceil($total/$pagesize);
             }
+
+            $count=0;
         ?>
 
         <div class="flList_div">
@@ -70,7 +118,7 @@
                 </select>
 
                 <div class="input-group date form_datetime  search_bar_t" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" id="input_time" size="16" type="text" value="" readonly>
+                    <input class="form-control" id="input_time" size="16" type="text" value="<?=$input_time?>" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
@@ -78,17 +126,17 @@
                 <p class="search_bar_p2"> 到 </p>
 
                 <div class="search_bar_t input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" id="input_time2" size="16" type="text" value="" readonly>
+                    <input class="form-control" id="input_time2" size="16" type="text" value="<?=$input_time2?>" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
 
-                <input type="text" class="form-control company_name" id="clientName" placeholder="请输入公司名称">
+                <input type="text" class="form-control company_name" id="clientName" placeholder="请输入公司名称" value="<?=$clientName?>">
                 <button class="btn btn-warning btn-sm" id="query_fl" style="float: left;margin-left:10px;">查询</button>
                 <button class="btn btn-success btn-sm" id="download_fl" style="float: left;margin-left:10px;">下载</button>
                     
                 <?php
-                    if($department=="数据中心"){
+                    if($newLevel=="ADMIN"){
                         ?>
                             <button class="btn btn-info btn-sm" id="upload_fl" style="float: left;margin-left:10px;" data-toggle="modal" data-target="#myModal2">上传旧单据</button>
                         <?php
@@ -137,6 +185,7 @@
 
                 <table class="table table-responsive table-bordered table-hover td1">
                     <tr>
+                        <th>序号</th>
                         <th>编号</th>
                         <th>公司</th>
                         <th>申请人</th>
@@ -147,11 +196,34 @@
 
                     <?php    
                         
-                        $sqlstr2="select id,no,company,people,date,date2,status,allTime from oldflsqd order by date desc limit ".($page-1)*$pagesize.",$pagesize";
+                        $sqlstr2="select id,no,company,people,date,date2,status,allTime from oldflsqd where 1=1 ";
+
+                        if($input_time !=""){
+                            $input_time_full=$input_time." 00:00:00";
+            
+                            $sqlstr2=$sqlstr2." and date >='$input_time_full' ";
+                        }
+            
+                        if($input_time2 != ""){
+                            $input_time2_full=$input_time2." 23:59:59";
+            
+                            $sqlstr2=$sqlstr2." and date <='$input_time2_full' ";
+                        }
+            
+                        if($clientName != ""){
+                            $sqlstr2=$sqlstr2." and company like '%$clientName%' ";
+                        }
+
+                        $sqlstr2=$sqlstr2." order by id desc limit ".($page-1)*$pagesize.",$pagesize";
+
 
                         $result=mysqli_query($conn,$sqlstr2);
 
                         while($myrow=mysqli_fetch_row($result)){
+
+                            $countF=($page-1)*$pagesize;
+                            $count=$count+1;
+
                             ?>
 
                             <tr>
@@ -163,7 +235,8 @@
                                     $allTime=array_pop($arr_allTime);
 
                                 ?>
-                                
+
+                                <td><?=$count+$countF?></td>
                                 <td><a href="oldflLine.php?id=<?=$myrow[0]?>"><?=$myrow[1]?></a></td>
                                 <td><?=$myrow[2]?></td>
                                 <td><?=$myrow[3]?></td>
@@ -195,19 +268,19 @@
                         ?>">下一页</a></li>
                     </ul>
 
-                    <div style="float:left;margin-left:580px;width:321px;">
-                        <ul class="pagination" style="float:right;margin-top:0px">
-                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1">&laquo;</a></li>
+                    <div style="float:left;margin-left:550px;width:321px;">
+                        <ul class="pagination" style="float:right;margin-top:0">
+                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>">&laquo;</a></li>
                             <?php
                                 if($pagecount<=5){
                                     for($i=1;$i<=$pagecount;$i++){
                                         if($i==$page){
                                             ?>
-                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>"><?=$i?></a></li>
                                             <?php
                                         }else{
                                             ?>
-                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>"><?=$i?></a></li>
                                             <?php
                                         }
                                     }
@@ -215,16 +288,16 @@
                                     for($i=1;$i<=$pagecount;$i++){
                                         if($i==$page){
                                             ?>
-                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>"><?=$i?></a></li>
                                             <?php
-                                        }elseif($i>=$page-2 and $i<=$page+2 and $page>3){
+                                        }elseif(($i>=$page-2 and $i<=$page+2 and $page>3) and $page !=$pagecount){
                                             ?>
-                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>"><?=$i?></a></li>
                                             <?php
                                         }elseif($i<=5){
                                             if($page<=3){
                                             ?>
-                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>"><?=$i?></a></li>
                                             <?php
                                             }
                                         }
@@ -233,7 +306,7 @@
                                 
                             ?>
                             
-                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $pagecount; ?>">&raquo;</a></li>
+                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>">&raquo;</a></li>
                         </ul>
                     </div>
                 </div>
@@ -252,7 +325,14 @@
 
 <script>
     $("#download_fl").click(function(){
-        window.location.href="fl_file/旧OA历史数据汇总.xlsx"
+        status=$("#status").val()
+        time1=$("#time1").val()
+        input_time=$("#input_time").val()
+        input_time2=$("#input_time2").val()
+        clientName=$("#clientName").val()
+
+        window.location.href="../../controller/fl/download_fl.php?option=2&status=" + status + "&time=" + time1 + "&input_time=" + input_time + "&input_time2=" + input_time2 + "&clientName=" +clientName
+        
     })
 
     $("#query_fl").click(function(){
@@ -265,7 +345,7 @@
         if(input_time==""){
             alert("请选择日期！")
         }else{
-            window.location.href="oldflListQuery.php?status=" + status + "&time=" + time1 + "&input_time=" + input_time + "&input_time2=" + input_time2 + "&clientName=" +clientName
+            window.location.href="oldflDone.php?status=" + status + "&time=" + time1 + "&input_time=" + input_time + "&input_time2=" + input_time2 + "&clientName=" +clientName
         }
     })
 

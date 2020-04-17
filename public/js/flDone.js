@@ -8,11 +8,8 @@ $(document).ready(function(){
         input_time2=$("#input_time2").val()
         clientName=$("#clientName").val()
 
-        if(input_time==""){
-            alert("请选择日期！")
-        }else{
-            window.location.href="../../controller/fl/download_fl.php?status=" + status + "&time=" + time1 + "&input_time=" + input_time + "&input_time2=" + input_time2 + "&clientName=" +clientName
-        }
+        window.location.href="../../controller/fl/download_fl.php?option=1&status=" + status + "&time=" + time1 + "&input_time=" + input_time + "&input_time2=" + input_time2 + "&clientName=" +clientName
+        
     })
 
     $("#query_fl").click(function(){

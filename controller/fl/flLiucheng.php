@@ -268,11 +268,26 @@
             echo "<script>window.location.href='../../home/fl/flsq.php?id=$id'</script>";
         }
     }elseif($option==7){
+        //KA删除单据
+
         $sqlstr7="delete from flsqd where id='$id'";
     
         $result=mysqli_query($conn,$sqlstr7);
     
         echo "<script>alert('删除成功');window.location.href='../../home/fl/saveFL.php</script>";
+    }elseif($option==8){
+
+        //义乌修改单据
+        $wlfs=$_GET["wlfs"];
+        $wlno=$_GET["wlno"];
+        $wlprice=$_GET["wlprice"];
+        $note=$_GET["note"];
+
+        $sqlstr7="update flsqd set wlfs='$wlfs',wlno='$wlno',wlprice='$wlprice',note='$note' where id='$id'";
+    
+        $result=mysqli_query($conn,$sqlstr7);
+    
+        echo "<script>alert('修改成功');window.location.href='../../home/fl/saveFL.php</script>";
     }else{
         //拒绝，待业务员审核
         $sqlstr4="select status,shr,allTime from flsqd where id='$id'";

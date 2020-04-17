@@ -230,8 +230,8 @@
                     ?>
                 </div>
                 <div style="float:left;margin-left:20px;margin-top:2px;">
-                    <button class="btn btn-success btn-sm" onclick="search()">搜索</button>
-                    <button class="btn btn-warning btn-sm" onclick="excel()">导出Excel</button>
+                    <button class="btn btn-warning btn-sm" onclick="search()">查询</button>
+                    <button class="btn btn-success btn-sm" onclick="excel()">下载</button>
                     <?php
                         if($newLevel=="ADMIN"){
                             ?>
