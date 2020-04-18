@@ -169,7 +169,7 @@
                         <?php
                     }
 
-                    if($status=="审核拒绝" and $username == $shr){
+                    if(($status=="审核拒绝" or $status == "待归档") and $username == $shr){
                         ?>
                             <div style="width:1000px;">
                                 <button class="btn btn-sm btn-info" style="float:right" id="edit">重新编辑</button>

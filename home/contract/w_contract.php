@@ -90,18 +90,18 @@
                 <?php
                     if($contractID !=""){
                         ?>
-                            <input type="text" class="form-control" id="contractID" placeholder="请输入合同编号" style="width:300px;float: left;margin-left: 10px;" value="<?=$contractID?>">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:300px;float: left;margin-left: 10px;display:none" value="">
+                            <input type="text" class="form-control" id="contractID" placeholder="请输入合同编号" style="width:200px;float: left;margin-left: 10px;" value="<?=$contractID?>">
+                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;display:none" value="">
                         <?php
                     }elseif($clientName !=""){
                         ?>
-                            <input type="text" class="form-control" id="contractID" placeholder="请输入合同编号" style="width:300px;float: left;margin-left: 10px;display:none" value="">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:300px;float: left;margin-left: 10px;" value="<?=$clientName?>">
+                            <input type="text" class="form-control" id="contractID" placeholder="请输入合同编号" style="width:200px;float: left;margin-left: 10px;display:none" value="">
+                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;" value="<?=$clientName?>">
                         <?php
                     }else{
                         ?>
-                            <input type="text" class="form-control" id="contractID" placeholder="请输入合同编号" style="width:300px;float: left;margin-left: 10px;" value="">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:300px;float: left;margin-left: 10px;display:none" value="">
+                            <input type="text" class="form-control" id="contractID" placeholder="请输入合同编号" style="width:200px;float: left;margin-left: 10px;" value="">
+                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;display:none" value="">
                         <?php
                     }
                 ?>

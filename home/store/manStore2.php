@@ -88,15 +88,11 @@
                 <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:45px;margin-left:30px;">
                     <tr>
                         <th>序号</th>
-                        <th>店铺编号</th>
                         <th>公司名称</th>
                         <th>店铺名称</th>
-                        <th>平台</th>
-                        <th>品类</th>
                         <th>事业部</th>
                         <th>负责人</th>
                         <th>业绩目标</th>
-                        <th>店铺状态</th>
                         <th>创建日期</th>
                         <th>操作</th>
                     </tr>
@@ -122,26 +118,23 @@
                             ?>
                             <tr>
                                 <td><?=$count?></td>
-                                <td><?=$myrow[1]?></td>
-                                <td><?=$myrow[2]?></td>
+                                <td><p><?=$myrow[2]?></p></td>
 
                                 <?php
                                     if($myrow[12] ==""){
                                         ?>
-                                            <td><?=$myrow[3]?></td>
+                                            <td><p><?=$myrow[3]?></p></td>
                                         <?php
                                     }else{
                                         ?>
-                                            <td><a href="<?=$myrow[12]?>" target="_blank"><?=$myrow[3]?></a></td>
+                                            <td><p><a href="<?=$myrow[12]?>" target="_blank"><?=$myrow[3]?></a></p></td>
                                         <?php
                                     }
                                 ?>
-                                <td><?=$myrow[4]?></td>
-                                <td><?=$myrow[5]?></td>
-                                <td><?=$myrow[6]?></td>
+                                <td><p><?=$myrow[6]?></p></td>
                                 <td><?=$myrow[7]?></td>
                                 <td><?=$myrow[8]?></td>
-                                <td><?=$myrow[9]?></td>
+
                                 <td><?=$myrow[10]?></td>
                                 <td>
                                     <a href="/newStore.php?id=<?=$myrow[0]?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
@@ -227,6 +220,13 @@
 
     td{
         text-align: center;
+    }
+
+    table p{
+        width: 170px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
     }
 </style>
 

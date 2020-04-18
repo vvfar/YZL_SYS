@@ -6,30 +6,27 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_用户管理</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\flotr2\flotr2.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
-        <!-- [if lt IE 9]>
-            <script src="flotr2/excanvas.js"></script>
-        <![endif]-->
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("../../common/conn/conn.php") ?>
+        <?php include '../base/header.php' ?>
+        <?php include '../base/leftBar.php' ?>
 
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
+        <div style="margin-left: 180px;">
 
-            <ul class="breadcrumb" style="padding-left:50px;">
-                <li><a href="/dataStore.php">店铺信息</a></li>
+            <ul class="breadcrumb" style="padding-left:30px;">
+                <li><a href="dataStore.php">店铺信息</a></li>
                 <li>每日数据</li>
             </ul>
 
             <?php
-                include_once("conn/conn.php");
+                
                 $username=$_SESSION["username"];
 
                 $sqlstr1="select department from user_form where username='$username'";
@@ -62,7 +59,7 @@
             ?>
 
             <div style="clear: both;border-radius: 6px;">
-                <div class="nav nav-pills" style="float:left;margin-top:0px;margin-left:50px;">
+                <div class="nav nav-pills" style="float:left;margin-top:0px;margin-left:30px;">
                     <li role="presentation" class="active"><a href="/uploadStore.php">每日数据</a></li>
                     <li role="presentation"><a href="/newStore.php?id=<?=$id?>">店铺管理</a></li>
                 </div>

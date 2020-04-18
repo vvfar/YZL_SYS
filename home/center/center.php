@@ -71,7 +71,7 @@
                         <div>
                             <p style="float:left;margin-top:5px;">昵称：<span id="nickname"><?=$nickname?></span></p>
                             <p style="cursor:pointer;color:#337ab7;float: left;margin-left:15px;font-size:14px;margin-top:5px;" id="nickname_link">点击修改</p>
-                            <form action="formHandle/centerHandle.php" method="POST" class="form_nickname" style="display:none">
+                            <form action="../../controller/center/centerHandle.php?option=1" method="POST" class="form_nickname" style="display:none">
                                 <input type="text" class="form-control" style="width:200px;float:left" name="nickname">
                                 <button type="submit" class="btn btn-success btn-sm" style="float:left;margin-left:15px;margin-top:2px;">提交</button>
                                 <button type="button" class="btn btn-info btn-sm" style="float:left;margin-left:15px;margin-top:2px;" id="back1">返回</button>
@@ -84,7 +84,7 @@
                         <div>
                             <p style="float:left;margin-top:5px;">手机号：<span id="phone"><?=$phone?></span></p>
                             <p style="cursor:pointer;float: left;margin-left:15px;font-size:14px;margin-top:5px;color:#337ab7" id="phone_link">点击修改</p>
-                            <form action="formHandle/centerHandle.php" method="POST" class="form_phone" style="display:none">
+                            <form action="../../controller/center/centerHandle.php?option=1" method="POST" class="form_phone" style="display:none">
                                 <input type="text" class="form-control" style="width:200px;float:left" name="phone">
                                 <button type="submit" class="btn btn-success btn-sm" style="float:left;margin-left:15px;margin-top:2px;">提交</button>
                                 <button type="button" class="btn btn-info btn-sm" style="float:left;margin-left:15px;margin-top:2px;" id="back2">返回</button>
@@ -93,7 +93,7 @@
                         <div style="clear: both">
                             <p style="float:left">邮箱：<span id="email"><?=$email?></span></p>
                             <p style="cursor:pointer;float: left;margin-left:15px;font-size:14px;color:#337ab7" id="email_link">点击修改</p>
-                            <form action="formHandle/centerHandle.php" method="POST" class="form_email" style="display:none">
+                            <form action="../../controller/center/centerHandle.php?option=1" method="POST" class="form_email" style="display:none">
                                 <input type="text" class="form-control" style="width:200px;float:left" name="email">
                                 <button type="submit" class="btn btn-success btn-sm" style="float:left;margin-left:15px;margin-top:2px;">提交</button>
                                 <button type="button" class="btn btn-info btn-sm" style="float:left;margin-left:15px;margin-top:2px;" id="back3">返回</button>
@@ -102,7 +102,7 @@
                     </div>
                     <div id="page2" style="display: none">
                         <p style="font-weight: bold">密码修改</p>
-                        <form method="POST" action="formHandle/centerHandle2.php">
+                        <form method="POST" action="../../controller/center/centerHandle.php?option=2">
                             <div class="form-group">
                                 新密码：<input type="password" name="newPwd1" class="form-control" style="width:200px;"/>
                                 <p style="font-size: 12px;color:red;margin-top:10px;">密码必须6-18位</p>
@@ -113,7 +113,7 @@
                     </div>
                     <div id="page3" style="display: none">
                         <p style="font-weight: bold">修改头像</p>
-                        <form method="POST" action="formHandle/centerHandle3.php" enctype="multipart/form-data">
+                        <form method="POST" action="../../controller/center/centerHandle.php?option=3" enctype="multipart/form-data">
                             <div class="form-group" style="font-size:14px;">
                                 <p>上传头像</p>
                                 <input type="file" name="upfile"/>

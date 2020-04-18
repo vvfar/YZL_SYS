@@ -91,18 +91,18 @@
                 <?php
                     if($sqID !=""){
                         ?>
-                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:300px;float: left;margin-left: 10px;" value="<?=$sqID?>">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:300px;float: left;margin-left: 10px;display:none" value="">
+                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:200px;float: left;margin-left: 10px;" value="<?=$sqID?>">
+                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;display:none" value="">
                         <?php
                     }elseif($clientName !=""){
                         ?>
-                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:300px;float: left;margin-left: 10px;display:none" value="">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:300px;float: left;margin-left: 10px;" value="<?=$clientName?>">
+                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:200px;float: left;margin-left: 10px;display:none" value="">
+                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;" value="<?=$clientName?>">
                         <?php
                     }else{
                         ?>
-                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:300px;float: left;margin-left: 10px;" value="">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:300px;float: left;margin-left: 10px;display:none" value="">
+                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:200px;float: left;margin-left: 10px;" value="">
+                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;display:none" value="">
                         <?php
                     }
                 ?>
