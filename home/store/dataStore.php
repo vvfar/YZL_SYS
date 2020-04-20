@@ -55,10 +55,13 @@
 
                 $sqlstr3="select count(*) as total from store a,store_data b where a.storeID=b.storeID and b.date='$date'";
 
-                if($department !="商务运营部" and $newLevel !="ADMIN"){
-                    $sqlstr3=$sqlstr3." and department='$department'";
+                if($newLevel !="ADMIN" and $department != "商务运营部"){
+                    if($newLevel == "M"){
+                        $sqlstr3=$sqlstr3." and a.department='$department'";
+                    }else{
+                        $sqlstr3=$sqlstr3." and a.staff='$username'";
+                    }
                 }
-
 
                 $result=mysqli_query($conn,$sqlstr3);
                 $info=mysqli_fetch_array($result);
@@ -115,14 +118,17 @@
                     <?php    
                         $year=substr($date,0,4);
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,b.salesMoney,b.backMoney,a.storeTarget,a.status,b.question,c.sumMoney from store_data b,store a join (select storeID,sum(salesMoney) as sumMoney from store_data where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='2020-03-20' ";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,b.salesMoney,b.backMoney,a.storeTarget,a.status,b.question,c.sumMoney from store_data b,store a join (select storeID,sum(salesMoney) as sumMoney from store_data where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date'";
 
-                        if($department !="商务运营部" and $newLevel !="ADMIN"){
-                            $sqlstr2=$sqlstr2." and department='$department'";
+                        if($newLevel !="ADMIN" and $department != "商务运营部"){
+                            if($newLevel == "M"){
+                                $sqlstr2=$sqlstr2." and a.department='$department'";
+                            }else{
+                                $sqlstr2=$sqlstr2." and a.staff='$username'";
+                            }
                         }
 
                         $sqlstr2=$sqlstr2." order by b.id desc limit ".($page-1)*$pagesize.",$pagesize";
-
 
                         $result=mysqli_query($conn,$sqlstr2);
 
@@ -228,9 +234,6 @@
 </style>
 
 <script>
-    $("#download").click(function(){
-        window.location.href="formHandle/download_it.php"
-    })
 
     $(".form_datetime").datetimepicker({
         format: 'yyyy-mm-dd',
@@ -247,6 +250,6 @@
     $(".date").change(function(){
         date=$("#dateTime").val();
 
-        window.location.href="/dataStore.php?date="+date;
+        window.location.href="dataStore.php?date="+date;
     })
 </script>

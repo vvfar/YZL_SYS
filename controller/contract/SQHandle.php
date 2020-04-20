@@ -217,11 +217,8 @@
                     $sqlstr5="select status from contract where no='$contractNo' and store='$storeName' and company='$companyName'";
                 
                     while($myrow=mysqli_fetch_row($result)){
-                        $contract_status=$myrow[0];
+                        $status2=$myrow[0];
                     }
-
-                    $contract_status_arr=explode(",",$contract_status);
-                    $status2=array_pop($contract_status_arr);
 
                     if($status2=="已归档"){
                         

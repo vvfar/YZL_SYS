@@ -49,7 +49,11 @@
                 $sqlstr3="select count(*) as total from store where status='正常'";
 
                 if($newLevel !="ADMIN" and $department != "商务运营部"){
-                    $sqlstr3=$sqlstr3." and department='$department'";
+                    if($newLevel == "M"){
+                        $sqlstr3=$sqlstr3." and department='$department'";
+                    }else{
+                        $sqlstr3=$sqlstr3." and staff='$username'";
+                    }
                 }
 
 
@@ -64,15 +68,13 @@
                 }
 
             ?>
-                <div style="clear: both;border-radius: 6px;">
-                    <div class="nav nav-pills" style="float:left;margin-top:15px;margin-left:30px;">
-                        <li role="presentation" class="active"><a href="#">合作店铺</a></li>
-                        <li role="presentation"><a href="manStore2.php">不合作店铺</a></li>
-                    </div>
+
+            <div style="clear: both;border-radius: 6px;">
+                <div class="nav nav-pills" style="float:left;margin-top:15px;margin-left:30px;">
+                    <li role="presentation" class="active"><a href="#">合作店铺</a></li>
+                    <li role="presentation"><a href="manStore2.php">不合作店铺</a></li>
                 </div>
-            <?php
-                
-            ?>
+            </div>
             
             <div style="clear:both;">
                 <div style="position:relative;top:15px;width:1000px;">
@@ -81,7 +83,6 @@
                         <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
                         <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
                     </h4>
-                    <!--<button class="btn btn-sm btn-success" style="float:right" id="newStore">新增店铺</button>-->
                 </div>
             </div>
             
@@ -96,15 +97,19 @@
                         <th>业绩目标</th>
                         <th>创建日期</th>
                         <th>操作</th>
+                        <th>资质</th>
                     </tr>
                 
                     <?php    
                         
-
                         $sqlstr2="select * from store where 1=1";
                         
-                        if($department !="商务运营部" and $newLevel != "ADMIN"){
-                            $sqlstr2=$sqlstr2." and department='$department'";
+                        if($newLevel !="ADMIN" and $department != "商务运营部"){
+                            if($newLevel == "M"){
+                                $sqlstr2=$sqlstr2." and department='$department'";
+                            }else{
+                                $sqlstr2=$sqlstr2." and staff='$username'";
+                            }
                         }
 
                         $sqlstr2=$sqlstr2."  and status='正常' order by id desc limit ".($page-1)*$pagesize.",$pagesize";
@@ -119,7 +124,9 @@
                             ?>
                             <tr>
                                 <td><?=$count?></td>
-                                <td><p><?=$myrow[2]?></p></td>
+                                <td>
+                                    <p><?=$myrow[2]?></p>
+                                </td>
 
                                 <?php
                                     if($myrow[12] ==""){
@@ -138,7 +145,39 @@
                                 <td><?=$myrow[8]?></td>
                                 <td><?=$myrow[10]?></td>
                                 <td>
-                                    <a href="uploadStore.php?id=<?=$myrow[0]?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
+                                    <?php
+                                        if($newLevel == "M"){
+                                            ?>
+                                                <a href="newStore.php?id=<?=$myrow[0]?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
+                                            <?php
+                                        }else{
+                                            ?>
+                                                <a href="uploadStore.php?id=<?=$myrow[0]?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
+                                            <?php
+                                        }
+
+                                    ?>
+                                    
+                                </td>
+                                <td>
+                                    <?php
+                                        if($myrow[14]=="合同授权已提交"){
+                                            ?>
+                                                <span class="label label-success">合</span>
+                                                <span class="label label-info">授</span>
+                                            <?php
+                                        }elseif($myrow[14]=="合同进行中授权已提交"){
+                                            ?>
+                                                <span class="label label-warning">合</span>
+                                                <span class="label label-info">授</span>
+                                            <?php
+                                        }elseif($myrow[14]=="合同未提交授权已提交"){
+                                            ?>
+                                                <span class="label label-danger">合</span>
+                                                <span class="label label-info">授</span>
+                                            <?php
+                                        }
+                                    ?>
                                 </td>
                             </tr>
                             <?php
@@ -232,9 +271,6 @@
 </style>
 
 <script>
-    $("#download").click(function(){
-        window.location.href="formHandle/download_it.php"
-    })
 
     $(".form_datetime").datetimepicker({
         format: 'yyyy-mm-dd',
@@ -248,11 +284,7 @@
         pickerPosition: "bottom-left"
     });
 
-    $(".date").change(function(){
-        date=$("#dateTime").val();
 
-        window.location.href="/viewMeeting.php?date="+date;
-    })
 
     $("#newStore").click(function(){
         window.location.href="newStore.php"

@@ -1,5 +1,5 @@
 <?php
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     //解决中文乱码
     header("content-type:text/html;charset=utf-8");
@@ -20,7 +20,7 @@
     $client=$_POST["client"];
     $storeName=$_POST["storeName"];
 
-    if($my_department =="COC"){
+    if($my_department =="商务运营部"){
         $salesMoney=$_POST["salesMoney"];
         $salesNum=$_POST["salesNum"];
         $backMoney="";
@@ -62,19 +62,19 @@
         ?>
         <script>
             alert("提交成功！")
-            window.location.href="/dataStore.php"
+            window.location.href="../../home/store/dataStore.php"
     </script> 
     <?php
     }else{
     ?>
     <script>
         alert("提交失败！")
-        window.location.href="/newStore.php"
+        window.location.href="../../home/store/newStore.php"
     </script> 
     <?php
     }
     
-    //mysqli_free_result($result);
+    mysqli_free_result($result);
     mysqli_close($conn);
 
     

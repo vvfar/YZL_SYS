@@ -80,17 +80,27 @@
             echo "<script>alert('请先提交授权！');window.location.href='../../home/contract/contract_line.php?id=".$id."&option=合同'</script>";
 
         }else{
-            $sqlstr5="select count(*) from store where client='$companyName' and storeName='$storeName'";
+            $sqlstr5="select status from sq where contractNo='$no' and companyName='$companyName' and storeName='$storeName'";
             $result=mysqli_query($conn,$sqlstr5);
 
             while($myrow=mysqli_fetch_row($result)){
-                $store_count=$myrow[0];
+                $status=$myrow[0];
             }
 
-            if($store_count == 0){
+            if($status != "已归档"){
                 echo "<script>alert('请先审核授权！');window.location.href='../../home/contract/contract_line.php?id=".$id."&option=合同'</script>";
             }else{
-                $sqlstr6="update store set htsq='合同授权已提交' where id=(select id from store where client='$companyName' and storeName='$storeName')";
+                $sqlstr7="select id from store where client='$companyName' and storeName='$storeName'";
+
+                $result=mysqli_query($conn,$sqlstr7);
+
+                while($myrow=mysqli_fetch_row($result)){
+                    $storeID=$myrow[0];
+                }
+
+                $sqlstr6="update store set htsq='合同授权已提交' where id=$storeID";
+                
+                $result=mysqli_query($conn,$sqlstr6);
 
                 $sqlstr1="update contract set status = '已归档' where id='$id'"; 
                 $result=mysqli_query($conn,$sqlstr1);
@@ -98,11 +108,8 @@
         }
     }elseif($progress == 5){
         //审核拒绝
-        $status=$status.",审核拒绝";
-        $shr=$shr.",KA级";
-        $shTime=$shTime.",".$time;
 
-        $sqlstr1="update contract set status = '$status',shr='$shr',shTime='$shTime' where id='$id'"; 
+        $sqlstr1="update contract set status = '审核拒绝' where id='$id'"; 
         $result=mysqli_query($conn,$sqlstr1);
     }elseif($progress == 6){
         $sqlstr1="delete from contract where id='$id'";

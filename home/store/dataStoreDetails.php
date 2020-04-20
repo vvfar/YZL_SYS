@@ -6,37 +6,34 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_店铺信息</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
-        <link href="css/leftbar.css" rel="stylesheet"/>
-        <link href="css/header.css" rel="stylesheet"/>
-        <script src="lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-        <script src="lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
+        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include 'base/header.php' ?>
-        <?php include 'base/leftBar.php' ?>
+        <?php include_once("..\..\common\conn\conn.php") ?>
+        <?php include '..\base\header.php' ?>
+        <?php include '..\base\leftBar.php' ?>
 
-        <div style="width: 1660px;height:890px;margin-left: 240px;">
-
-            
+        <div style="margin-left: 180px;">
 
             <?php
                 $storeID=$_GET["storeID"];
 
-                include_once("conn/conn.php");
-
                 $username=$_SESSION["username"];
 
-                $sqlstr1="select department,level from user_form where username='$username'";
+                $sqlstr1="select department,newLevel from user_form where username='$username'";
 
                 $result=mysqli_query($conn,$sqlstr1);
         
                 while($myrow=mysqli_fetch_row($result)){
-                    $department=$myrow[0];
-                    $level=$myrow[1];
+                    $my_department=$myrow[0];
+                    $newLevel=$myrow[1];
                 }
 
 
@@ -52,8 +49,12 @@
 
                 $sqlstr3="select count(*) as total from store a,store_data b where a.storeID=b.storeID and a.storeID='$storeID'";
 
-                if($department !="数据中心"){
-                    $sqlstr3=$sqlstr3." and department='$department'";
+                if($newLevel !="ADMIN" and $my_department != "商务运营部"){
+                    if($newLevel == "M"){
+                        $sqlstr2=$sqlstr2." and a.department='$my_department'";
+                    }else{
+                        $sqlstr2=$sqlstr2." and a.staff='$username'";
+                    }
                 }
 
                 $result=mysqli_query($conn,$sqlstr3);
@@ -68,14 +69,14 @@
 
             ?>
 
-            <ul class="breadcrumb" style="padding-left:50px;">
-                <li><a href="/dataStore.php">店铺信息</a></li>
+            <ul class="breadcrumb" style="padding-left:30px;">
+                <li><a href="dataStore.php">店铺信息</a></li>
                 <li>店铺详情</li>
                 <li class="active"><?=$storeID?></li>
             </ul>
 
             <div style="clear: both;border-radius: 6px;">
-                <div class="nav nav-pills" style="float:left;margin-left:50px;">
+                <div class="nav nav-pills" style="float:left;margin-left:30px;">
                     <li role="presentation" class="active"><a href="#">数据报表</a></li>
                     <li role="presentation"><a href="#">图表展示</a></li>
                     <li role="presentation"><a href="#">资源活动</a></li>
@@ -100,7 +101,7 @@
             ?>
 
 
-            <div style="clear:both;margin-left:10px">
+            <div style="clear:both;margin-left:30px">
                 <ul class="basicStore">
                     <li>店铺名称：<?=$storeName?></li>
                     <li>客户名称:<?=$companyName?></li>
@@ -113,11 +114,11 @@
             </div>
             
             <div style="clear:both;">
-                <div style="width:1349px;">
+                <div style="width:1030px;">
                     <h4 style="float:left">
-                        <span class="label label-info" style="margin-left:50px;">共<?=$total?>条</span>
-                        <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
-                        <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
+                        <span class="label label-info" style="margin-left:30px;position:relative;top:20px;">共<?=$total?>条</span>
+                        <span class="label label-warning" style="margin-left:5px;position:relative;top:20px;">共<?=$pagecount?>页</span>
+                        <span class="label label-success" style="margin-left:5px;position:relative;top:20px;">第<?=$page?>页</span>
                     </h4>
                     
                     <?php
@@ -130,7 +131,7 @@
                     ?>
 
                     <div style="float:right">
-                        <select style="padding-left:2px;padding-bottom:3px;margin-top:10px;">
+                        <select style="padding-left:2px;padding-bottom:3px;margin-top:15px;">
                             <option>日</option>
                             <option>月</option>
                             <option>年</option>
@@ -141,7 +142,7 @@
             </div>
             
             <div style="clear:both">
-                <table class="table table-responsive table-bordered table-hover" style="width:1300px;margin-top:50px;margin-left:50px;">
+                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:50px;margin-left:30px;">
                     <tr>
                         <th>序号</th>
                         <th>店铺编号</th>
@@ -160,13 +161,16 @@
 
                         $sqlstr2="select a.storeID,a.client,a.storeName,b.salesMoney,b.backMoney,a.storeTarget,a.status,b.date from store a,store_data b where a.storeID=b.storeID and a.storeID='$storeID'";
                         
-                        if($department !="数据中心"){
-                            $sqlstr2=$sqlstr2." and a.department='$department'";
+                        if($newLevel !="ADMIN" and $my_department != "商务运营部"){
+                            if($newLevel == "M"){
+                                $sqlstr2=$sqlstr2." and a.department='$my_department'";
+                            }else{
+                                $sqlstr2=$sqlstr2." and a.staff='$username'";
+                            }
                         }
 
-                        $sqlstr2=$sqlstr2." order by b.id desc limit ".($page-1)*$pagesize.",$pagesize";
 
-                        echo $sqlstr2;
+                        $sqlstr2=$sqlstr2." order by b.date desc limit ".($page-1)*$pagesize.",$pagesize";
 
                         $result=mysqli_query($conn,$sqlstr2);
 
@@ -198,7 +202,7 @@
                 </table>
             </div>
 
-            <div style="margin-left: 50px;">
+            <div style="margin-left: 30px;">
                 <ul class="pager" style="float:left;width:150px;margin-top:0px;">
                     <li><a href="<?php echo $_SERVER['PHP_SELF']?>?storeID=<?=$storeID?>&page=<?php
                         if($page>1)
@@ -214,7 +218,7 @@
                     ?>">下一页</a></li>
                 </ul>
 
-                <div style="float:left;margin-left:830px;width:321px;">
+                <div style="float:left;margin-left:550px;width:321px;">
                     <ul class="pagination" style="float:right;margin-top:0px;">
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?storeID=<?=$storeID?>&page=1">&laquo;</a></li>
                         <?php
