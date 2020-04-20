@@ -16,14 +16,13 @@
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include_once("..\..\common\conn\conn.php") ?>
+        <?php include_once("..\..\common\conn\conn.php");?>
         <?php include '..\base\header.php' ?>
         <?php include '..\base\leftBar.php' ?>
 
         <div style="margin-left: 180px;">
 
             <?php
-                $storeID=$_GET["storeID"];
 
                 $username=$_SESSION["username"];
 
@@ -32,8 +31,15 @@
                 $result=mysqli_query($conn,$sqlstr1);
         
                 while($myrow=mysqli_fetch_row($result)){
-                    $my_department=$myrow[0];
+                    $department=$myrow[0];
                     $newLevel=$myrow[1];
+                }
+
+                if(!isset($_GET["date"])){
+                    date_default_timezone_set("Asia/Shanghai");
+                    $date=date('Y-m-d', time());
+                }else{
+                    $date=$_GET["date"];
                 }
 
 
@@ -47,7 +53,7 @@
                 $pagesize=15;
 
 
-                $sqlstr3="select count(*) as total from store a,store_data b where a.storeID=b.storeID and a.storeID='$storeID'";
+                $sqlstr3="select count(*) as total from store a,store_data b where a.storeID=b.storeID and b.date='$date'";
 
                 if($newLevel !="ADMIN" and $department != "商务运营部"){
                     if($newLevel == "KA"){
@@ -69,98 +75,51 @@
 
             ?>
 
-            <ul class="breadcrumb" style="padding-left:30px;">
-                <li><a href="dataStore.php">店铺信息</a></li>
-                <li>店铺详情</li>
-                <li class="active"><?=$storeID?></li>
-            </ul>
-
             <div style="clear: both;border-radius: 6px;">
-                <div class="nav nav-pills" style="float:left;margin-left:30px;">
-                    <li role="presentation" class="active"><a href="#">数据报表</a></li>
-                    <li role="presentation"><a href="#">图表展示</a></li>
-                    <li role="presentation"><a href="#">资源活动</a></li>
-                    <li role="presentation"><a href="#">店铺问题</a></li>
+                <div class="nav nav-pills" style="float:left;margin-top:15px;margin-left:30px;">
+                    <li role="presentation"><a href="dataStore.php">销售额</a></li>
+                    <li role="presentation" class="active"><a href="#">回款</a></li>
                 </div>
             </div>
             
-            <?php
-                $sqlstr4="select storeID,client,storeName,pingtai,category,department,staff,status from store where storeID='$storeID'";
-            
-                $result2=mysqli_query($conn,$sqlstr4);
-        
-                while($myrow=mysqli_fetch_row($result2)){
-                    $companyName=$myrow[1];
-                    $storeName=$myrow[2];
-                    $pingtai=$myrow[3];
-                    $category=$myrow[4];
-                    $department=$myrow[5];
-                    $staff=$myrow[6];
-                    $status=$myrow[7];
-                }
-            ?>
-
-
-            <div style="clear:both;margin-left:30px">
-                <ul class="basicStore">
-                    <li>店铺名称：<?=$storeName?></li>
-                    <li>客户名称:<?=$companyName?></li>
-                    <li>平台:<?=$pingtai?></li>
-                    <li>授权类目:<?=$category?></li>
-                    <li>事业部:<?=$department?></li>
-                    <li>业务员:<?=$staff?></li>
-                    <li>店铺状态:<?=$status?></li>
-                </ul>
-            </div>
-            
             <div style="clear:both;">
-                <div style="width:1030px;">
+                <div style="position:relative;top:15px;">
                     <h4 style="float:left">
-                        <span class="label label-info" style="margin-left:30px;position:relative;top:20px;">共<?=$total?>条</span>
-                        <span class="label label-warning" style="margin-left:5px;position:relative;top:20px;">共<?=$pagecount?>页</span>
-                        <span class="label label-success" style="margin-left:5px;position:relative;top:20px;">第<?=$page?>页</span>
+                        <span class="label label-info" style="margin-left:30px;">共<?=$total?>条</span>
+                        <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
+                        <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
                     </h4>
-                    
-                    <?php
-                        if(!isset($_GET["date"])){
-                            date_default_timezone_set("Asia/Shanghai");
-                            $date=date('Y-m-d', time());
-                        }else{
-                            $date=$_GET["date"];
-                        }
-                    ?>
 
-                    <div style="float:right">
-                        <select style="padding-left:2px;padding-bottom:3px;margin-top:15px;">
-                            <option>日</option>
-                            <option>月</option>
-                            <option>年</option>
-                            <option>总计</option>
-                        </select>
+                    <div style="float:right;margin-right:70px;position:relative;top:-20px;">
+                        <p style="float: left;position:relative;top:7px;">选择日期</p>
+                        <div style="width: 180px;font-size: 14px;float: left;margin-left:20px" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                            <input class="form-control" id="dateTime" name="dateTime" size="16" type="text" value="<?=$date?>" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <div style="clear:both">
-                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:50px;margin-left:30px;">
+                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:45px;margin-left:30px;">
                     <tr>
                         <th>序号</th>
+                        <th>店铺编号</th>
                         <th>店铺名</th>
-                        <th>销售额</th>
-                        <th>销售单量</th>
                         <th>回款</th>
-                        <th>店铺目标</th>
+                        <th>回款目标</th>
                         <th>现完成额</th>
                         <th>完成比</th>
                         <th>店铺状态</th>
-                        <th>日期</th>
+                        <th>问题反馈</th>
                     </tr>
                 
                     <?php    
-                        
+                        $year=substr($date,0,4);
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,b.salesMoney,b.salesNum,b.backMoney,a.storeTarget,a.status,b.date from store a,store_data b where a.storeID=b.storeID and a.storeID='$storeID'";
-                        
+                        $sqlstr2="select a.storeID,a.client,a.storeName,b.backMoney,a.storeTarget,a.status,b.question,c.sumMoney from store_data b,store a join (select storeID,sum(salesMoney) as sumMoney from store_data where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date'";
+
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){
                                 $sqlstr2=$sqlstr2." and a.staff like '%$username%'"; 
@@ -169,29 +128,26 @@
                             }
                         }
 
-
-                        $sqlstr2=$sqlstr2." order by b.date desc limit ".($page-1)*$pagesize.",$pagesize";
+                        $sqlstr2=$sqlstr2." order by b.id desc limit ".($page-1)*$pagesize.",$pagesize";
 
                         $result=mysqli_query($conn,$sqlstr2);
 
-                        $count=1;
+                        $count=0;
 
                         while($myrow=mysqli_fetch_row($result)){
-                            $number=($page-1) * 15 + $count;
                             $count=$count+1;
 
                             ?>
                             <tr>
-                                <td><?=$number?></td>
+                                <td><?=$count?></td>
+                                <td><a href="dataStoreDetails.php?storeID=<?=$myrow[0]?>"><?=$myrow[0]?></a></td>
                                 <td><?=$myrow[2]?></td>
                                 <td>￥<?=$myrow[3]?></td>
                                 <td>￥<?=$myrow[4]?></td>
-                                <td>￥<?=$myrow[5]?></td>
+                                <td>￥<?=$myrow[7]?></td>
+                                <td><?php echo $myrow[7]/$myrow[4] *100?>%</td>
+                                <td><?=$myrow[5]?></td>
                                 <td><?=$myrow[6]?></td>
-                                <td></td>
-                                <td></td>
-                                <td><?=$myrow[7]?></td>
-                                <td><?=$myrow[8]?></td>
                             </tr>
                             <?php
                         }
@@ -204,33 +160,33 @@
 
             <div style="margin-left: 30px;">
                 <ul class="pager" style="float:left;width:150px;margin-top:0px;">
-                    <li><a href="<?php echo $_SERVER['PHP_SELF']?>?storeID=<?=$storeID?>&page=<?php
+                    <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                         if($page>1)
                             echo $page-1;
                         else
                             echo 1;  
-                    ?>">上一页</a></li>
-                    <li><a href="<?php echo $_SERVER['PHP_SELF']?>?storeID=<?=$storeID?>&page=<?php
+                    ?>&date=<?=$date?>">上一页</a></li>
+                    <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                         if($page<$pagecount)
                             echo $page+1;
                         else
                             echo $pagecount;  
-                    ?>">下一页</a></li>
+                    ?>&date=<?=$date?>">下一页</a></li>
                 </ul>
 
                 <div style="float:left;margin-left:530px;width:321px;">
                     <ul class="pagination" style="float:right;margin-top:0px;">
-                        <li><a href="<?php echo $_SERVER['PHP_SELF']?>?storeID=<?=$storeID?>&page=1">&laquo;</a></li>
+                        <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1&date=<?=$date?>">&laquo;</a></li>
                         <?php
                             if($pagecount<=5){
                                 for($i=1;$i<=$pagecount;$i++){
                                     if($i==$page){
                                         ?>
-                                            <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?storeID=<?=$storeID?>&page=<?=$i?>"><?=$i?></a></li>
+                                            <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&date=<?=$date?>"><?=$i?></a></li>
                                         <?php
                                     }else{
                                         ?>
-                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?storeID=<?=$storeID?>&page=<?=$i?>"><?=$i?></a></li>
+                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&date=<?=$date?>"><?=$i?></a></li>
                                         <?php
                                     }
                                 }
@@ -238,16 +194,16 @@
                                 for($i=1;$i<=$pagecount;$i++){
                                     if($i==$page){
                                         ?>
-                                            <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?storeID=<?=$storeID?>&page=<?=$i?>"><?=$i?></a></li>
+                                            <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&date=<?=$date?>"><?=$i?></a></li>
                                         <?php
                                     }elseif(($i>=$page-2 and $i<=$page+2 and $page>3) and $page !=$pagecount){
                                         ?>
-                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?storeID=<?=$storeID?>&page=<?=$i?>"><?=$i?></a></li>
+                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&date=<?=$date?>"><?=$i?></a></li>
                                         <?php
                                     }elseif($i<=5){
                                         if($page<=3){
                                         ?>
-                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?storeID=<?=$storeID?>&page=<?=$i?>"><?=$i?></a></li>
+                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&date=<?=$date?>"><?=$i?></a></li>
                                         <?php
                                         }
                                     }
@@ -256,7 +212,7 @@
                             
                         ?>
                         
-                        <li><a href="<?php echo $_SERVER['PHP_SELF']?>?storeID=<?=$storeID?>&page=<?php echo $pagecount; ?>">&raquo;</a></li>
+                        <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $pagecount; ?>&date=<?=$date?>">&raquo;</a></li>
                     </ul>
                 </div>
             
@@ -266,13 +222,6 @@
 </html>
 
 <style>
-    .basicStore li{
-        float:left;
-        list-style:none;
-        margin-right:30px;
-        margin-top:20px;
-    }
-
     th{
         background-color:cornflowerblue;
         text-align: center;
@@ -281,21 +230,9 @@
     td{
         text-align: center;
     }
-
-    .breadcrumb a{
-        color:#333;
-    }
-
-    .breadcrumb a:hover{
-        color:#333;
-        text-decoration: underline;
-    }
 </style>
 
 <script>
-    $("#download").click(function(){
-        window.location.href="formHandle/download_it.php"
-    })
 
     $(".form_datetime").datetimepicker({
         format: 'yyyy-mm-dd',
@@ -312,6 +249,6 @@
     $(".date").change(function(){
         date=$("#dateTime").val();
 
-        window.location.href="/viewMeeting.php?date="+date;
+        window.location.href="dataStore2.php?date="+date;
     })
 </script>

@@ -55,6 +55,7 @@
                         $createDate=$myrow[10];
                         $link=$myrow[12];
                         $staff_time=$myrow[13];
+                        $status=$myrow[9];
                     }
                 }else{
                     $id="";
@@ -86,7 +87,7 @@
                     <?php
                         if($newLevel == "M"){
                             ?>
-                                <li role="presentation"><a href="newStore.php?id=<?=$id?>">店铺管理</a></li>
+                                <li role="presentation" class="active"><a href="newStore.php?id=<?=$id?>">店铺管理</a></li>
                             <?php
                         }else{
                             ?>
@@ -173,7 +174,19 @@
                 
                 <div style="clear: both">
                     <button type="submit" class="btn btn-success btn-sm" style="margin-top: 20px;margin-bottom:10px;">提交</button>
-                    <a type="button" href="/closeStore.php?id=<?=$id?>" class="btn btn-danger btn-sm" style="margin-top: 20px;margin-bottom:10px;margin-left:10px">关店</a>
+                    <?php
+                        if($status == "正常"){
+                            ?>
+                                <a type="button" href="closeStore.php?id=<?=$id?>" class="btn btn-danger btn-sm" style="margin-top: 20px;margin-bottom:10px;margin-left:10px">关店</a>
+                            <?php
+                        }else{
+                            ?>
+                                <a type="button" href="../../controller/store/openStore.php?id=<?=$id?>" class="btn btn-info btn-sm" style="margin-top: 20px;margin-bottom:10px;margin-left:10px">开店</a>
+                            <?php
+                        }
+
+                    ?>
+                    
                 </div>
             </form>
         </div>

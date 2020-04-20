@@ -119,7 +119,7 @@
                     </div>
                     <div class="form-group" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">保证金</p>
-                        <input type="text" class="form-control" name="money" value="<?=$money?>" placeholder="请输入保证金" style="width: 250px;float: left;margin-top: 15px;">
+                        <input type="text" class="form-control" name="money" value="<?=$money?>" placeholder="请输入保证金" style="width: 250px;float: left;margin-top: 15px;" oninput="value=value.replace(/[^\d]/g,'')">
                     </div>
                     <div class="form-group" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">是否共享保证金</p>
@@ -140,8 +140,8 @@
                         </select>
                     </div>
                     <div class="form-group" style="clear: both;">
-                        <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">销售额（万）</p>
-                        <input type="text" class="form-control" name="sales" value="<?=$sales?>" placeholder="请输入销售额" style="width: 250px;float: left;margin-top: 15px;">
+                        <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">销售额指标（万）</p>
+                        <input type="text" class="form-control" name="sales" value="<?=$sales?>" placeholder="请输入销售额" style="width: 250px;float: left;margin-top: 15px;" oninput="value=value.replace(/[^\d]/g,'')">
                     </div>
                     <div class="form-group" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">是否共享销售额</p>
@@ -162,8 +162,8 @@
                         </select>
                     </div>
                     <div class="form-group" style="clear: both;">
-                        <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">服务费（万）</p>
-                        <input type="text" class="form-control" name="service" value="<?=$service?>" placeholder="请输入服务费" style="width: 250px;float: left;margin-top: 15px;">
+                        <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">服务费指标（万）</p>
+                        <input type="text" class="form-control" name="service" value="<?=$service?>" placeholder="请输入服务费" style="width: 250px;float: left;margin-top: 15px;" oninput="value=value.replace(/[^\d]/g,'')">
                     </div>
                     <div class="form-group" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">是否共享服务费</p>

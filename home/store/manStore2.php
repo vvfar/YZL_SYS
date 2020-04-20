@@ -48,8 +48,12 @@
 
                 $sqlstr3="select count(*) as total from store where status='关闭'";
 
-                if($department !="商务运营部" and $newLevel !="ADMIN"){
-                    $sqlstr3=$sqlstr3." and department='$department'";
+                if($newLevel !="ADMIN" and $department != "商务运营部"){
+                    if($newLevel == "KA"){
+                        $sqlstr3=$sqlstr3." and staff like '%$username%'"; 
+                    }else{
+                        $sqlstr3=$sqlstr3." and '$department' like concat('%',department,'%') ";
+                    }
                 }
 
                 $result=mysqli_query($conn,$sqlstr3);
@@ -99,11 +103,14 @@
                 
                     <?php    
                         
-
                         $sqlstr2="select * from store where 1=1";
                         
-                        if($department !="商务运营部" and $newLevel !="ADMIN"){
-                            $sqlstr2=$sqlstr2." and department='$department'";
+                        if($newLevel !="ADMIN" and $department != "商务运营部"){
+                            if($newLevel == "KA"){
+                                $sqlstr2=$sqlstr2." and staff like '%$username%'"; 
+                            }else{
+                                $sqlstr2=$sqlstr2." and '$department' like concat('%',department,'%') ";
+                            }
                         }
 
                         $sqlstr2=$sqlstr2."  and status='关闭' order by id desc limit ".($page-1)*$pagesize.",$pagesize";
@@ -137,7 +144,7 @@
 
                                 <td><?=$myrow[10]?></td>
                                 <td>
-                                    <a href="/newStore.php?id=<?=$myrow[0]?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
+                                    <a href="newStore.php?id=<?=$myrow[0]?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
                                 </td>
                             </tr>
                             <?php

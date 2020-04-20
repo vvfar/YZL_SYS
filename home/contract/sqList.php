@@ -17,7 +17,7 @@
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?  include_once("..\..\common\conn\conn.php");?>
+        <?php include_once("..\..\common\conn\conn.php");?>
         <?php include '..\base/header.php' ?>
         <?php include '..\base/leftBar.php' ?>
 
@@ -25,8 +25,8 @@
             <div class="nav nav-pills" style="float: left;margin-left:30px;">
                 <div style="clear: both;border-radius: 6px;">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
-                        <li role="presentation"><a href="contractList.php">合同审批</a></li>
-                        <li role="presentation" class="active"><a href="#">授权审批</a></li>
+                        <li role="presentation"><a href="contractList.php">已归档合同</a></li>
+                        <li role="presentation" class="active"><a href="#">已归档授权</a></li>
                     </div>
                 </div>
 
@@ -127,7 +127,11 @@
                 $sqlstr3="select count(*) as total from sq where status like '%已归档%'";
 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
-                    $sqlstr3=$sqlstr3." and department = '$department'";  
+                    if($newLevel == "KA"){
+                        $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
+                    }else{
+                        $sqlstr3=$sqlstr3." and '$department' like concat('%',department,'%') ";
+                    }
                 }
 
                 if($clientName !=""){
@@ -149,8 +153,10 @@
 
                 $sqlstr2="select id,no,companyName,pingtai,category,department,bzj,'/','/',re_date,'授权',status,shr,shTime from sq where status like '%已归档%'";
                 
-                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
-                    $sqlstr2=$sqlstr2." and department = '$department' ";  
+                if($newLevel == "KA"){
+                    $sqlstr2=$sqlstr2." and shr like '%$username%'"; 
+                }else{
+                    $sqlstr2=$sqlstr2." and '$department' like concat('%',department,'%') ";
                 }
 
                 if($clientName !=""){

@@ -127,7 +127,12 @@
                 $sqlstr3="select count(*) as total from contract where not status like '%已归档%'";
 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
-                    $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
+                    if($newLevel == "KA"){
+                        $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
+                    }else{
+                        $sqlstr3=$sqlstr3." and '$department' like concat('%',department,'%') ";
+                    }
+                    
                 }
 
                 if($clientName !=""){

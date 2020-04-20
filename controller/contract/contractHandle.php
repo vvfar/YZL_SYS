@@ -1,6 +1,7 @@
 <?php
     header("content-type:text/html;charset=utf-8");
     include_once("../../common/conn/conn.php");
+    error_reporting(E_ALL || ~E_NOTICE);
 
     date_default_timezone_set("Asia/Shanghai");
     $time=date('Y-m-d  H:i:s', time());

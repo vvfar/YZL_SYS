@@ -49,10 +49,10 @@
                 $sqlstr3="select count(*) as total from store where status='正常'";
 
                 if($newLevel !="ADMIN" and $department != "商务运营部"){
-                    if($newLevel == "M"){
-                        $sqlstr3=$sqlstr3." and department='$department'";
+                    if($newLevel == "KA"){
+                        $sqlstr3=$sqlstr3." and staff like '%$username%'"; 
                     }else{
-                        $sqlstr3=$sqlstr3." and staff='$username'";
+                        $sqlstr3=$sqlstr3." and '$department' like concat('%',department,'%') ";
                     }
                 }
 
@@ -94,7 +94,7 @@
                         <th>店铺名称</th>
                         <th>事业部</th>
                         <th>负责人</th>
-                        <th>业绩目标</th>
+                        <th>店铺目标</th>
                         <th>创建日期</th>
                         <th>操作</th>
                         <th>资质</th>
@@ -105,10 +105,10 @@
                         $sqlstr2="select * from store where 1=1";
                         
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
-                            if($newLevel == "M"){
-                                $sqlstr2=$sqlstr2." and department='$department'";
+                            if($newLevel == "KA"){
+                                $sqlstr3=$sqlstr2." and staff like '%$username%'"; 
                             }else{
-                                $sqlstr2=$sqlstr2." and staff='$username'";
+                                $sqlstr3=$sqlstr2." and '$department' like concat('%',department,'%') ";
                             }
                         }
 
@@ -120,12 +120,14 @@
 
                         while($myrow=mysqli_fetch_row($result)){
                             $count=$count+1;
+                            $companyName=$myrow[2];
+                            $storeName=$myrow[3];
 
                             ?>
                             <tr>
                                 <td><?=$count?></td>
                                 <td>
-                                    <p><?=$myrow[2]?></p>
+                                    <p><?=$companyName?></p>
                                 </td>
 
                                 <?php

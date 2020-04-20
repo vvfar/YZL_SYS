@@ -25,8 +25,8 @@
             <div class="nav nav-pills" style="float: left;margin-left:30px;">
                 <div style="clear: both;border-radius: 6px;">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
-                        <li role="presentation" class="active"><a href="#">合同审批</a></li>
-                        <li role="presentation"><a href="sqList.php">授权审批</a></li>
+                        <li role="presentation" class="active"><a href="#">已归档合同</a></li>
+                        <li role="presentation"><a href="sqList.php">已归档授权</a></li>
                     </div>
                 </div>
 
@@ -127,7 +127,11 @@
                 $sqlstr3="select count(*) as total from contract where status like '%已归档%'";
 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
-                    $sqlstr3=$sqlstr3." and department = '$department'";  
+                    if($newLevel == "KA"){
+                        $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
+                    }else{
+                        $sqlstr3=$sqlstr3." and '$department' like concat('%',department,'%') ";
+                    }
                 }
 
                 if($clientName !=""){
@@ -150,7 +154,7 @@
                 $sqlstr2="select id,no,company,pingtai,category,department,money,sales,service,re_date,'合同',status,shr,shTime from contract where status like '%已归档%'";
                 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
-                    $sqlstr2=$sqlstr2." and department = '$department' ";
+                    $sqlstr2=$sqlstr2." and '$department' like concat('%',department,'%') ";
                 }
 
                 if($clientName !=""){

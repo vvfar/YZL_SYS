@@ -56,10 +56,10 @@
                 $sqlstr3="select count(*) as total from store a,store_data b where a.storeID=b.storeID and b.date='$date'";
 
                 if($newLevel !="ADMIN" and $department != "商务运营部"){
-                    if($newLevel == "M"){
-                        $sqlstr3=$sqlstr3." and a.department='$department'";
+                    if($newLevel == "KA"){
+                        $sqlstr3=$sqlstr3." and a.staff like '%$username%'"; 
                     }else{
-                        $sqlstr3=$sqlstr3." and a.staff='$username'";
+                        $sqlstr3=$sqlstr3." and '$department' like concat('%',a.department,'%') ";
                     }
                 }
 
@@ -77,7 +77,8 @@
 
             <div style="clear: both;border-radius: 6px;">
                 <div class="nav nav-pills" style="float:left;margin-top:15px;margin-left:30px;">
-                    <li role="presentation" class="active"><a href="#">合作店铺</a></li>
+                    <li role="presentation" class="active"><a href="#">销售额</a></li>
+                    <li role="presentation"><a href="dataStore2.php">回款</a></li>
                 </div>
             </div>
             
@@ -107,8 +108,7 @@
                         <th>店铺编号</th>
                         <th>店铺名</th>
                         <th>销售额</th>
-                        <th>回款</th>
-                        <th>店铺目标</th>
+                        <th>销售目标</th>
                         <th>现完成额</th>
                         <th>完成比</th>
                         <th>店铺状态</th>
@@ -118,13 +118,13 @@
                     <?php    
                         $year=substr($date,0,4);
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,b.salesMoney,b.backMoney,a.storeTarget,a.status,b.question,c.sumMoney from store_data b,store a join (select storeID,sum(salesMoney) as sumMoney from store_data where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date'";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,b.salesMoney,a.storeTarget,a.status,b.question,c.sumMoney from store_data b,store a join (select storeID,sum(salesMoney) as sumMoney from store_data where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date'";
 
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
-                            if($newLevel == "M"){
-                                $sqlstr2=$sqlstr2." and a.department='$department'";
+                            if($newLevel == "KA"){
+                                $sqlstr2=$sqlstr2." and a.staff like '%$username%'"; 
                             }else{
-                                $sqlstr2=$sqlstr2." and a.staff='$username'";
+                                $sqlstr2=$sqlstr2." and '$department' like concat('%',a.department,'%') ";
                             }
                         }
 
@@ -144,11 +144,10 @@
                                 <td><?=$myrow[2]?></td>
                                 <td>￥<?=$myrow[3]?></td>
                                 <td>￥<?=$myrow[4]?></td>
-                                <td>￥<?=$myrow[5]?></td>
-                                <td>￥<?=$myrow[8]?></td>
-                                <td><?php echo $myrow[8]/$myrow[5] *100?>%</td>
+                                <td>￥<?=$myrow[7]?></td>
+                                <td><?php echo $myrow[7]/$myrow[4] *100?>%</td>
+                                <td><?=$myrow[5]?></td>
                                 <td><?=$myrow[6]?></td>
-                                <td><?=$myrow[7]?></td>
                             </tr>
                             <?php
                         }

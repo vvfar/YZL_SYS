@@ -1,6 +1,7 @@
 <?php
     header("content-type:text/html;charset=utf-8");
     include_once("../../common/conn/conn.php");
+    error_reporting(E_ALL || ~E_NOTICE);
 
     date_default_timezone_set("Asia/Shanghai");
     $time=date('Y-m-d  H:i:s', time());
@@ -47,7 +48,7 @@
     
                 $fileinfo=$_FILES['upfile'];
                 if($fileinfo['size']<2097152 && $fileinfo['size']>0){
-                    echo $fileName;
+                    //echo $fileName;
         
                     $path="../../common/file/sq_file/bzj/".$_FILES["upfile"]["name"];
                     move_uploaded_file($fileinfo['tmp_name'],$path);

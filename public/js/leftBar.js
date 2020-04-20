@@ -198,7 +198,7 @@ $(document).ready(function(){
         }else if(leftBar_path == "willMeeting.php"){
             $(".leftbar10Z3 a").css("color","#fff")
         }
-    }else if(leftBar_path ==  "newStore.php" || leftBar_path ==  "manStore.php"  || leftBar_path ==  "manStore2.php" || leftBar_path ==  "uploadStore.php"   || leftBar_path ==  "dataStore.php" || leftBar_path ==  "dataStoreDetails.php"){
+    }else if(leftBar_path ==  "newStore.php" || leftBar_path ==  "manStore.php"  || leftBar_path ==  "manStore2.php" || leftBar_path ==  "uploadStore.php"   || leftBar_path ==  "dataStore.php" || leftBar_path ==  "dataStoreDetails.php"   || leftBar_path ==  "closeStore.php" || leftBar_path == "dataStore2.php"){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar11").css("background-color","darkslateblue");
         $(".leftbar11 a").css("color","#ffffff");
@@ -212,9 +212,9 @@ $(document).ready(function(){
         $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
 
-        if(leftBar_path == "manStore.php" || leftBar_path ==  "manStore2.php" || leftBar_path ==  "newStore.php" || leftBar_path == "uploadStore.php"){
+        if(leftBar_path == "manStore.php" || leftBar_path ==  "manStore2.php" || leftBar_path ==  "newStore.php" || leftBar_path == "uploadStore.php"  || leftBar_path ==  "closeStore.php"){
             $(".leftbar11Z2 a").css("color","#fff")
-        }else if(leftBar_path == "dataStore.php"){
+        }else if(leftBar_path == "dataStore.php" || leftBar_path == "dataStoreDetails.php" || leftBar_path == "dataStore2.php"){
             $(".leftbar11Z4 a").css("color","#fff")
         }
     }else if(leftBar_path == "manager_index.php"){

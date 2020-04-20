@@ -45,16 +45,31 @@
         $maxID=0;
     }
 
-    $sqlstr3="select staff from store where storeID='$storeID' ";
+    $sqlstr1="select staff from store where storeID='$storeID' ";
         
-    $result=mysqli_query($conn,$sqlstr3);
+    $result=mysqli_query($conn,$sqlstr1);
 
     while($myrow=mysqli_fetch_row($result)){
         $staff=$myrow[0];
     }
 
+    $sqlstr2="select count(*) from store_data where storeID='$storeID' and date='$dateTime'";
+        
+    $result=mysqli_query($conn,$sqlstr2);
 
-    $sqlstr3="insert into store_data values('$maxID'+1,'$storeID','$salesMoney','$salesNum','$backMoney','$question','$dateTime','$staff')";
+    while($myrow=mysqli_fetch_row($result)){
+        $store_data_count=$myrow[0];
+    }
+
+    if($store_data_count == 0){
+        $sqlstr3="insert into store_data values('$maxID'+1,'$storeID','$salesMoney','$salesNum','$backMoney','$question','$dateTime','$staff')";
+    }else{
+        if($my_department =="商务运营部"){
+            $sqlstr3="update store_data set salesMoney='$salesMoney',salesNum='$salesNum' where storeID='$storeID' and date='$dateTime'";
+        }else{
+            $sqlstr3="update store_data set backMoney='$backMoney',question='$question' where storeID='$storeID' and date='$dateTime'";
+        }
+    }
 
     $result=mysqli_query($conn,$sqlstr3);
 

@@ -1,8 +1,7 @@
 <?php
-    include_once("../conn/conn.php");
-
     //解决中文乱码
     header("content-type:text/html;charset=utf-8");
+    include_once("../../common/conn/conn.php");
 
     $id=$_POST["id"];
     $storeID=$_POST["storeID"];
@@ -15,6 +14,7 @@
     $staff_time=$_POST["staff_time"];
     $createDate=$_POST["createDate"];
     $oldStaff=$_POST["oldStaff"];
+    $storeTarget=$_POST["storeTarget"];
 
     session_start();
     $username=$_SESSION["username"];
@@ -46,43 +46,43 @@
     }else{
         $date=date('Y-m-d', time());
 
-
         //计算从店铺创立到今天的天数
         $days_store=floor((strtotime($date)-strtotime($createDate))/86400);
         $days_staff=floor((strtotime($date)-strtotime($staff_time))/86400);
 
-        if($days_store<=180){
-            echo "<script>alert('新店<=180天无法进行转让！".$staff_time."');window.location.href='/newStore.php?id=".$id."'</script>";
-        }else{
-            if($days_staff<=90){
-                echo "<script>alert('老店<=90天无法进行转让！');window.location.href='/newStore.php?id=".$id."'</script>";
-            }else{
-                if($oldStaff == $staff){
-                    $sqlstr2="update store set storeID='$storeID',client='$client',storeName='$storeName',pingtai='$pingtai',category='$category',link='$link' where id='$id'";
-                }else{
-                    $sqlstr2="update store set storeID='$storeID',client='$client',storeName='$storeName',pingtai='$pingtai',category='$category',link='$link',staff='$staff',staff_time='$date' where id='$id'";
-                }
+        $sqlstr2="update store set storeID='$storeID',client='$client',storeName='$storeName',pingtai='$pingtai',category='$category',link='$link',storeTarget='$storeTarget' where id='$id'";
+        $result=mysqli_query($conn,$sqlstr2);
 
-                
-                $result=mysqli_query($conn,$sqlstr2); 
-                
-                if($result){
-                    ?>
-                    <script>
-                        alert("提交成功！")
-                        window.location.href="/manStore.php"
-                </script> 
-                <?php
-                }else{
-                ?>
-                <script>
-                    alert("提交失败！")
-                    window.location.href="/newStore.php"
-                </script> 
-                <?php
+        if($oldStaff != $staff){
+
+            if($days_store<=180){
+                echo "<script>alert('新店<=180天无法进行转让！".$staff_time."');window.location.href='../../home/store/newStore.php?id=".$id."'</script>";
+            }else{
+                if($days_staff<=90){
+                    echo "<script>alert('老店<=90天无法进行转让！');window.location.href='../../home/store/newStore.php?id=".$id."'</script>";
+                }else{  
+                    $sqlstr3="update store set staff='$staff',staff_time='$date' where id='$id'";
+                    
+                    $result=mysqli_query($conn,$sqlstr3); 
                 }
             }
         }
+    }
+
+    if($result){
+        ?>
+        <script>
+            alert("提交成功！")
+            window.location.href="../../home/store/manStore.php"
+    </script> 
+    <?php
+    }else{
+    ?>
+    <script>
+        alert("提交失败！")
+        window.location.href="../../home/store/newStore.php"
+    </script> 
+    <?php
     }
         
     mysqli_free_result($result);
