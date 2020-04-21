@@ -54,6 +54,7 @@
                 <div class="leftbar11Z zcd">
                     <li class="leftbar11Z2"><a href="/home/store/manStore.php">店铺管理</a></li>
                     <li class="leftbar11Z4"><a href="/home/store/dataStore.php">店铺数据</a></li>
+                    <li class="leftbar11Z5"><a href="/home/store/storeQS.php">店铺问题</a></li>
                 </div>
                 <?php
                     if($newLevel=="ADMIN" or $department == "人事行政部"){

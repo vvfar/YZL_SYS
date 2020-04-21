@@ -112,7 +112,6 @@
                         <th>现完成额</th>
                         <th>完成比</th>
                         <th>店铺状态</th>
-                        <th>问题反馈</th>
                     </tr>
                 
                     <?php    
@@ -147,7 +146,6 @@
                                 <td>￥<?=$myrow[7]?></td>
                                 <td><?php echo $myrow[7]/$myrow[4] *100?>%</td>
                                 <td><?=$myrow[5]?></td>
-                                <td><?=$myrow[6]?></td>
                             </tr>
                             <?php
                         }

@@ -90,11 +90,11 @@
                 <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:45px;margin-left:30px;">
                     <tr>
                         <th>序号</th>
+                        <th>店铺编号</th>
                         <th>公司名称</th>
                         <th>店铺名称</th>
                         <th>事业部</th>
                         <th>负责人</th>
-                        <th>店铺目标</th>
                         <th>创建日期</th>
                         <th>操作</th>
                         <th>资质</th>
@@ -120,41 +120,48 @@
 
                         while($myrow=mysqli_fetch_row($result)){
                             $count=$count+1;
+                            $storeID=$myrow[0];
+                            $storeNO=$myrow[1];
                             $companyName=$myrow[2];
                             $storeName=$myrow[3];
+                            $link=$myrow[13];
+                            $department=$myrow[6];
+                            $staff=$myrow[7];
+                            $createDate=$myrow[11];
+                            $htsq=$myrow[15];
 
                             ?>
                             <tr>
                                 <td><?=$count?></td>
+                                <td><?=$storeNO?></td>
                                 <td>
                                     <p><?=$companyName?></p>
                                 </td>
 
                                 <?php
-                                    if($myrow[12] ==""){
+                                    if($link ==""){
                                         ?>
-                                            <td><p><?=$myrow[3]?></p></td>
+                                            <td><p><?=$storeName?></p></td>
                                         <?php
                                     }else{
                                         ?>
-                                            <td><p><a href="<?=$myrow[12]?>" target="_blank"><?=$myrow[3]?></a></p></td>
+                                            <td><p><a href="<?=$link?>" target="_blank"><?=$storeName?></a></p></td>
                                         <?php
                                     }
                                 ?>
 
-                                <td><p><?=$myrow[6]?></p></td>
-                                <td><?=$myrow[7]?></td>
-                                <td><?=$myrow[8]?></td>
-                                <td><?=$myrow[10]?></td>
+                                <td><p><?=$department?></p></td>
+                                <td><?=$staff?></td>
+                                <td><?=$createDate?></td>
                                 <td>
                                     <?php
                                         if($newLevel == "M"){
                                             ?>
-                                                <a href="newStore.php?id=<?=$myrow[0]?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
+                                                <a href="newStore.php?id=<?=$storeID?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
                                             <?php
                                         }else{
                                             ?>
-                                                <a href="uploadStore.php?id=<?=$myrow[0]?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
+                                                <a href="uploadStore.php?id=<?=$storeID?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
                                             <?php
                                         }
 
@@ -163,17 +170,17 @@
                                 </td>
                                 <td>
                                     <?php
-                                        if($myrow[14]=="合同授权已提交"){
+                                        if($htsq=="合同授权已提交"){
                                             ?>
                                                 <span class="label label-success">合</span>
                                                 <span class="label label-info">授</span>
                                             <?php
-                                        }elseif($myrow[14]=="合同进行中授权已提交"){
+                                        }elseif($htsq=="合同进行中授权已提交"){
                                             ?>
                                                 <span class="label label-warning">合</span>
                                                 <span class="label label-info">授</span>
                                             <?php
-                                        }elseif($myrow[14]=="合同未提交授权已提交"){
+                                        }elseif($htsq=="合同未提交授权已提交"){
                                             ?>
                                                 <span class="label label-danger">合</span>
                                                 <span class="label label-info">授</span>

@@ -112,13 +112,12 @@
                         <th>现完成额</th>
                         <th>完成比</th>
                         <th>店铺状态</th>
-                        <th>问题反馈</th>
                     </tr>
                 
                     <?php    
                         $year=substr($date,0,4);
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,b.backMoney,a.storeTarget,a.status,b.question,c.sumMoney from store_data b,store a join (select storeID,sum(salesMoney) as sumMoney from store_data where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date'";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,b.backMoney,a.hkTarget,a.status,b.question,c.backMoney from store_data b,store a join (select storeID,sum(backMoney) as backMoney from store_data where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date'";
 
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){
@@ -145,9 +144,19 @@
                                 <td>￥<?=$myrow[3]?></td>
                                 <td>￥<?=$myrow[4]?></td>
                                 <td>￥<?=$myrow[7]?></td>
-                                <td><?php echo $myrow[7]/$myrow[4] *100?>%</td>
+                                <?php
+                                    if($myrow[4] != ""){
+                                        ?>
+                                            <td><?php echo $myrow[7]/$myrow[4] *100?>%</td>
+                                        <?php
+                                    }else{
+                                        ?>
+                                            <td></td>
+                                        <?php
+                                    }
+                                ?>
+                                
                                 <td><?=$myrow[5]?></td>
-                                <td><?=$myrow[6]?></td>
                             </tr>
                             <?php
                         }

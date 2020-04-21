@@ -78,9 +78,10 @@
             <div style="clear: both;border-radius: 6px;">
                 <div class="nav nav-pills" style="float:left;margin-left:30px;">
                     <li role="presentation" class="active"><a href="#">数据报表</a></li>
-                    <li role="presentation"><a href="#">图表展示</a></li>
-                    <li role="presentation"><a href="#">资源活动</a></li>
-                    <li role="presentation"><a href="#">店铺问题</a></li>
+                    <!--
+                        <li role="presentation"><a href="#">图表展示</a></li>
+                        <li role="presentation"><a href="#">资源活动</a></li>
+                    -->
                 </div>
             </div>
             
@@ -145,21 +146,20 @@
                 <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:50px;margin-left:30px;">
                     <tr>
                         <th>序号</th>
+                        <th>店铺编号</th>
+                        <th>公司名称</th>
                         <th>店铺名</th>
+                        <th>平台</th>
+                        <th>类目</th>
                         <th>销售额</th>
                         <th>销售单量</th>
                         <th>回款</th>
-                        <th>店铺目标</th>
-                        <th>现完成额</th>
-                        <th>完成比</th>
-                        <th>店铺状态</th>
                         <th>日期</th>
                     </tr>
                 
                     <?php    
-                        
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,b.salesMoney,b.salesNum,b.backMoney,a.storeTarget,a.status,b.date from store a,store_data b where a.storeID=b.storeID and a.storeID='$storeID'";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,a.pingTai,a.category,b.salesMoney,b.salesNum,b.backMoney,b.date from store a,store_data b where a.storeID=b.storeID and a.storeID='$storeID'";
                         
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){
@@ -183,13 +183,13 @@
                             ?>
                             <tr>
                                 <td><?=$number?></td>
+                                <td><?=$myrow[0]?></td>
+                                <td><?=$myrow[1]?></td>
                                 <td><?=$myrow[2]?></td>
-                                <td>￥<?=$myrow[3]?></td>
-                                <td>￥<?=$myrow[4]?></td>
-                                <td>￥<?=$myrow[5]?></td>
+                                <td><?=$myrow[3]?></td>
+                                <td><?=$myrow[4]?></td>
+                                <td><?=$myrow[5]?></td>
                                 <td><?=$myrow[6]?></td>
-                                <td></td>
-                                <td></td>
                                 <td><?=$myrow[7]?></td>
                                 <td><?=$myrow[8]?></td>
                             </tr>

@@ -223,7 +223,7 @@
 
                     if($status2=="已归档"){
                         
-                        $sqlstr7="insert into store values('$maxID'+1,'$storeID','$companyName','$storeName','$pingTai','$category','$department','$staff','','正常','$date','','','$date','合同授权已提交')";
+                        $sqlstr7="insert into store values('$maxID'+1,'$storeID','$companyName','$storeName','$pingTai','$category','$department','$staff','','','正常','$date','','','$date','合同授权已提交')";
                     
                         $result=mysqli_query($conn,$sqlstr7);
 
@@ -231,7 +231,7 @@
                         
                         $result=mysqli_query($conn,$sqlstr8);
                     }else{
-                        $sqlstr7="insert into store values('$maxID'+1,'$storeID','$companyName','$storeName','$pingTai','$category','$department','$staff','','正常','$date','','','$date','合同进行中授权已提交')";
+                        $sqlstr7="insert into store values('$maxID'+1,'$storeID','$companyName','$storeName','$pingTai','$category','$department','$staff','','','正常','$date','','','$date','合同进行中授权已提交')";
                     
                         $result=mysqli_query($conn,$sqlstr7);
 
@@ -241,7 +241,7 @@
                     }
 
                 }else{
-                    $sqlstr7="insert into store values('$maxID'+1,'$storeID','$companyName','$storeName','$pingTai','$category','$department','$staff','','正常','$date','','','$date','合同未提交授权已提交')";
+                    $sqlstr7="insert into store values('$maxID'+1,'$storeID','$companyName','$storeName','$pingTai','$category','$department','$staff','','','正常','$date','','','$date','合同未提交授权已提交')";
                     
                     $result=mysqli_query($conn,$sqlstr7);
 

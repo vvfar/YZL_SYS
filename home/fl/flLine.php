@@ -130,7 +130,7 @@
 
             
             
-            <form action="formHandle/addFLSQD.php" method="POST" style="clear:both;">
+            <form action="/addFLSQD.php" method="POST" style="clear:both;">
                 <table class="tb1" border="1" cellspacing="0" style="clear:both;position: relative;top:20px;margin-left:40px;width:1000px;margin-bottom:30px;">
                     <tr>
                         <td colspan="4" style="width:147px;">申请单位</td>
@@ -419,7 +419,7 @@
         </div>
 
         <!-- Excel导入模态框 -->
-        <form method="POST" action="formHandle/zffl.php" enctype="multipart/form-data">
+        <form method="POST" action="../../controller/fl/zffl.php" enctype="multipart/form-data">
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

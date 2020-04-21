@@ -16,14 +16,14 @@
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
     <body>
-        <?php include_once("..\..\common\conn/conn.php");?>
+        <?php include_once("..\..\common\conn\conn.php");?>
         <?php include '..\base\header.php' ?>
         <?php include '..\base\leftBar.php' ?>
 
         <div style="margin-left: 180px;">
 
             <?php
-            
+
                 $username=$_SESSION["username"];
 
                 $sqlstr1="select department,newLevel from user_form where username='$username'";
@@ -33,6 +33,13 @@
                 while($myrow=mysqli_fetch_row($result)){
                     $department=$myrow[0];
                     $newLevel=$myrow[1];
+                }
+
+                if(!isset($_GET["date"])){
+                    date_default_timezone_set("Asia/Shanghai");
+                    $date=date('Y-m-d', time());
+                }else{
+                    $date=$_GET["date"];
                 }
 
 
@@ -46,13 +53,13 @@
                 $pagesize=15;
 
 
-                $sqlstr3="select count(*) as total from store where status='关闭'";
+                $sqlstr3="select count(*) as total from store a,store_qs b where a.storeID=b.storeID and b.status='已处理' ";
 
                 if($newLevel !="ADMIN" and $department != "商务运营部"){
                     if($newLevel == "KA"){
-                        $sqlstr3=$sqlstr3." and staff like '%$username%'"; 
+                        $sqlstr3=$sqlstr3." and a.staff like '%$username%'"; 
                     }else{
-                        $sqlstr3=$sqlstr3." and '$department' like concat('%',department,'%') ";
+                        $sqlstr3=$sqlstr3." and '$department' like concat('%',a.department,'%') ";
                     }
                 }
 
@@ -67,24 +74,21 @@
                 }
 
             ?>
-                <div style="clear: both;border-radius: 6px;">
-                    <div class="nav nav-pills" style="float:left;margin-top:15px;margin-left:30px;">
-                        <li role="presentation"><a href="manStore.php">合作店铺</a></li>
-                        <li role="presentation" class="active"><a href="#">不合作店铺</a></li>
-                    </div>
+
+            <div style="clear: both;border-radius: 6px;">
+                <div class="nav nav-pills" style="float:left;margin-top:15px;margin-left:30px;">
+                    <li role="presentation"><a href="storeQS.php">待处理</a></li>
+                    <li role="presentation" class="active"><a href="storeQS2.php">已处理</a></li>
                 </div>
-            <?php
-                
-            ?>
+            </div>
             
             <div style="clear:both;">
-                <div style="position:relative;top:15px;width:1000px;">
+                <div style="position:relative;top:15px;">
                     <h4 style="float:left">
                         <span class="label label-info" style="margin-left:30px;">共<?=$total?>条</span>
                         <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
                         <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
                     </h4>
-                    <!--<button class="btn btn-sm btn-success" style="float:right" id="newStore">新增店铺</button>-->
                 </div>
             </div>
             
@@ -93,28 +97,27 @@
                     <tr>
                         <th>序号</th>
                         <th>店铺编号</th>
-                        <th>公司名称</th>
-                        <th>店铺名称</th>
-                        <th>事业部</th>
-                        <th>负责人</th>
-                        <th>创建日期</th>
-                        <th>操作</th>
-                        <th>资质</th>
+                        <th>公司名</th>
+                        <th>店铺名</th>
+                        <th>问题</th>
+                        <th>解决方案</th>
+                        <th>问题状态</th>
+                        <th>日期</th>
                     </tr>
                 
                     <?php    
-                        
-                        $sqlstr2="select * from store where 1=1";
-                        
+
+                        $sqlstr2="select a.storeID,a.client,a.storeName,b.question,b.answer,b.status,b.date,b.id from  store a,store_qs b where a.storeID=b.storeID and b.status='已处理' ";
+
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){
-                                $sqlstr2=$sqlstr2." and staff like '%$username%'"; 
+                                $sqlstr2=$sqlstr2." and a.staff like '%$username%'"; 
                             }else{
-                                $sqlstr2=$sqlstr2." and '$department' like concat('%',department,'%') ";
+                                $sqlstr2=$sqlstr2." and '$department' like concat('%',a.department,'%') ";
                             }
                         }
 
-                        $sqlstr2=$sqlstr2."  and status='关闭' order by id desc limit ".($page-1)*$pagesize.",$pagesize";
+                        $sqlstr2=$sqlstr2." order by b.date desc limit ".($page-1)*$pagesize.",$pagesize";
 
                         $result=mysqli_query($conn,$sqlstr2);
 
@@ -122,73 +125,17 @@
 
                         while($myrow=mysqli_fetch_row($result)){
                             $count=$count+1;
-                            $storeID=$myrow[0];
-                            $storeNO=$myrow[1];
-                            $companyName=$myrow[2];
-                            $storeName=$myrow[3];
-                            $link=$myrow[13];
-                            $department=$myrow[6];
-                            $staff=$myrow[7];
-                            $createDate=$myrow[11];
-                            $htsq=$myrow[15];
 
                             ?>
                             <tr>
                                 <td><?=$count?></td>
-                                <td><?=$storeNO?></td>
-                                <td>
-                                    <p><?=$companyName?></p>
-                                </td>
-                                <?php
-                                    if($link ==""){
-                                        ?>
-                                            <td><p><?=$storeName?></p></td>
-                                        <?php
-                                    }else{
-                                        ?>
-                                            <td><p><a href="<?=$link?>" target="_blank"><?=$storeName?></a></p></td>
-                                        <?php
-                                    }
-                                ?>
-                                <td><p><?=$department?></p></td>
-                                <td><?=$staff?></td>
-                                <td><?=$createDate?></td>
-
-                                <td>
-                                    <?php
-                                        if($newLevel == "M"){
-                                            ?>
-                                                <a href="newStore.php?id=<?=$storeID?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
-                                            <?php
-                                        }else{
-                                            ?>
-                                                <a href="uploadStore.php?id=<?=$storeID?>" class="btn btn-info btn-xs" style="margin-right:3px;">管理</a>
-                                            <?php
-                                        }
-
-                                    ?>
-                                    
-                                </td>
-                                <td>
-                                    <?php
-                                        if($htsq=="合同授权已提交"){
-                                            ?>
-                                                <span class="label label-success">合</span>
-                                                <span class="label label-info">授</span>
-                                            <?php
-                                        }elseif($htsq=="合同进行中授权已提交"){
-                                            ?>
-                                                <span class="label label-warning">合</span>
-                                                <span class="label label-info">授</span>
-                                            <?php
-                                        }elseif($htsq=="合同未提交授权已提交"){
-                                            ?>
-                                                <span class="label label-danger">合</span>
-                                                <span class="label label-info">授</span>
-                                            <?php
-                                        }
-                                    ?>
-                                </td>
+                                <td><a href="storeQSLine.php?id=<?=$myrow[7]?>"><?=$myrow[0]?></a></td>
+                                <td><?=$myrow[1]?></td>
+                                <td><?=$myrow[2]?></td>
+                                <td><?=$myrow[3]?></td>
+                                <td><?=$myrow[4]?></td>
+                                <td><?=$myrow[5]?></td>
+                                <td><?=$myrow[6]?></td>
                             </tr>
                             <?php
                         }
@@ -199,35 +146,35 @@
                 </table>
             </div>
 
-            <div style="margin-left: 50px;">
+            <div style="margin-left: 30px;">
                 <ul class="pager" style="float:left;width:150px;margin-top:0px;">
                     <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                         if($page>1)
                             echo $page-1;
                         else
                             echo 1;  
-                    ?>">上一页</a></li>
+                    ?>&date=<?=$date?>">上一页</a></li>
                     <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                         if($page<$pagecount)
                             echo $page+1;
                         else
                             echo $pagecount;  
-                    ?>">下一页</a></li>
+                    ?>&date=<?=$date?>">下一页</a></li>
                 </ul>
 
-                <div style="float:left;margin-left:830px;width:321px;">
+                <div style="float:left;margin-left:530px;width:321px;">
                     <ul class="pagination" style="float:right;margin-top:0px;">
-                        <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1">&laquo;</a></li>
+                        <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1&date=<?=$date?>">&laquo;</a></li>
                         <?php
                             if($pagecount<=5){
                                 for($i=1;$i<=$pagecount;$i++){
                                     if($i==$page){
                                         ?>
-                                            <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                            <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&date=<?=$date?>"><?=$i?></a></li>
                                         <?php
                                     }else{
                                         ?>
-                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&date=<?=$date?>"><?=$i?></a></li>
                                         <?php
                                     }
                                 }
@@ -235,16 +182,16 @@
                                 for($i=1;$i<=$pagecount;$i++){
                                     if($i==$page){
                                         ?>
-                                            <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                            <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&date=<?=$date?>"><?=$i?></a></li>
                                         <?php
                                     }elseif(($i>=$page-2 and $i<=$page+2 and $page>3) and $page !=$pagecount){
                                         ?>
-                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&date=<?=$date?>"><?=$i?></a></li>
                                         <?php
                                     }elseif($i<=5){
                                         if($page<=3){
                                         ?>
-                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&date=<?=$date?>"><?=$i?></a></li>
                                         <?php
                                         }
                                     }
@@ -253,7 +200,7 @@
                             
                         ?>
                         
-                        <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $pagecount; ?>">&raquo;</a></li>
+                        <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $pagecount; ?>&date=<?=$date?>">&raquo;</a></li>
                     </ul>
                 </div>
             
@@ -271,19 +218,9 @@
     td{
         text-align: center;
     }
-
-    table p{
-        width: 170px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow:ellipsis;
-    }
 </style>
 
 <script>
-    $("#download").click(function(){
-        window.location.href="formHandle/download_it.php"
-    })
 
     $(".form_datetime").datetimepicker({
         format: 'yyyy-mm-dd',
@@ -300,10 +237,6 @@
     $(".date").change(function(){
         date=$("#dateTime").val();
 
-        window.location.href="/viewMeeting.php?date="+date;
-    })
-
-    $("#newStore").click(function(){
-        window.location.href="newStore.php"
+        window.location.href="dataStore.php?date="+date;
     })
 </script>

@@ -15,6 +15,7 @@
     $createDate=$_POST["createDate"];
     $oldStaff=$_POST["oldStaff"];
     $storeTarget=$_POST["storeTarget"];
+    $hkTarget=$_POST["hkTarget"];
 
     session_start();
     $username=$_SESSION["username"];
@@ -50,7 +51,7 @@
         $days_store=floor((strtotime($date)-strtotime($createDate))/86400);
         $days_staff=floor((strtotime($date)-strtotime($staff_time))/86400);
 
-        $sqlstr2="update store set storeID='$storeID',client='$client',storeName='$storeName',pingtai='$pingtai',category='$category',link='$link',storeTarget='$storeTarget' where id='$id'";
+        $sqlstr2="update store set storeID='$storeID',client='$client',storeName='$storeName',pingtai='$pingtai',category='$category',link='$link',storeTarget='$storeTarget',hkTarget='$hkTarget' where id='$id'";
         $result=mysqli_query($conn,$sqlstr2);
 
         if($oldStaff != $staff){

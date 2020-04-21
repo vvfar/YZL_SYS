@@ -52,10 +52,11 @@
                         $department=$myrow[6];
                         $staff=$myrow[7];
                         $storeTarget=$myrow[8];
-                        $createDate=$myrow[10];
-                        $link=$myrow[12];
-                        $staff_time=$myrow[13];
-                        $status=$myrow[9];
+                        $hkTarget=$myrow[9];
+                        $createDate=$myrow[11];
+                        $link=$myrow[13];
+                        $staff_time=$myrow[14];
+                        $status=$myrow[10];
                     }
                 }else{
                     $id="";
@@ -67,6 +68,7 @@
                     $department="";
                     $staff="";
                     $storeTarget="";
+                    $hkTarget="";
                     $createDate="";
                     $link="";
                     $staff_time="";
@@ -126,8 +128,12 @@
                     <input type="text" class="form-control" name="category" value="<?=$category?>" placeholder="请输入类目" style="width: 250px;float: left;margin-top: 15px;">
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">业绩目标</p>
-                    <input type="text" class="form-control" name="storeTarget" value="<?=$storeTarget?>" placeholder="请输入业绩目标" style="width: 250px;float: left;margin-top: 15px;">
+                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">销售额目标</p>
+                    <input type="text" class="form-control" name="storeTarget" value="<?=$storeTarget?>" placeholder="请输入销售额目标" style="width: 250px;float: left;margin-top: 15px;">
+                </div>
+                <div class="form-group" style="clear: both;margin-bottom:0px;">
+                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">回款目标</p>
+                    <input type="text" class="form-control" name="hkTarget" value="<?=$hkTarget?>" placeholder="请输入回款目标" style="width: 250px;float: left;margin-top: 15px;">
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">
                     <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">店铺链接</p>

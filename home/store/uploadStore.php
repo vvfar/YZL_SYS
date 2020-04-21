@@ -53,10 +53,10 @@
                     $department=$myrow[6];
                     $staff=$myrow[7];
                     $storeTarget=$myrow[8];
-                    $createDate=$myrow[10];
-                    $link=$myrow[12];
-                    $staff_time=$myrow[13];
-                    $htsq=$myrow[14];
+                    $createDate=$myrow[11];
+                    $link=$myrow[13];
+                    $staff_time=$myrow[14];
+                    $htsq=$myrow[15];
                 }
             ?>
 
@@ -70,6 +70,7 @@
                         }else{
                             ?>
                                 <li role="presentation" class="active"><a href="uploadStore.php">每日数据</a></li>
+                                <li role="presentation"><a href="storeAddQS.php?id=<?=$id?>">店铺问题</a></li>
                             <?php
                         }
                     ?> 
