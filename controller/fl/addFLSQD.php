@@ -145,7 +145,7 @@
         //option=1提交单据
         if($option==1){
             //未被保存过的单据
-            if($id ==""){
+            if($id =="" and $no != ""){
                 $sqlstr3="update fl_no set no='$no' where department='$department'";
                 
                 $result=mysqli_query($conn,$sqlstr3);
@@ -169,7 +169,7 @@
             }    
         }else{
             //点击一键保存的执行流程
-            if($id ==""){
+            if($id =="" and $no != ""){
                 $sqlstr3="update fl_no set no='$no' where department='$department'";
                 
                 $result=mysqli_query($conn,$sqlstr3);

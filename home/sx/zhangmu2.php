@@ -242,7 +242,7 @@
                 </div>
 
                 <!-- Excel导入模态框 -->
-                <form method="POST" action="formHandle/uploadSXHandle.php" enctype="multipart/form-data">
+                <form method="POST" action="../../controller/sx/uploadSXHandle.php" enctype="multipart/form-data">
                     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -371,7 +371,7 @@
                 
             <div>
             
-            <div style="clear:both;position: relative;top: 10px;margin-left: 60px;">
+            <div style="clear:both;position: relative;top: 20px;margin-left: 60px;">
                 <table class="table table-responsive table-bordered table-hover" style="width: 1020px;margin-bottom:10px;">
                     <tr>
                         <th style="width: 150px;">授信编号</th>

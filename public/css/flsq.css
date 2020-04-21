@@ -20,7 +20,6 @@
     .w8{width:150px;}
     .w9{width:140px;}
     .tdNote{color:brown;font-size:14px;font-weight:bold}
-    .w100{width: 100%;}
     .mt30{margin-top: 30px;}
     .ml30{margin-left:30px;}
     
@@ -48,7 +47,6 @@
     .w8{width:90px;}
     .w9{width:90px;}
     .tdNote{color:brown;font-size:14px;font-weight:bold}
-    .w100{width: 80%;}
     .mt30{margin-top: 30px;}
     .ml30{margin-left:30px;}
 }
@@ -63,19 +61,10 @@
     .sqdbh p{float: left;margin-top:4px;}
     .sqdbh input{float: left;margin-left:20px;text-align: center}
     .sqdbh span{color:red;margin-left: 10px;font-size: 14px;}
-    .tb1{clear:both;position: relative;top:10px;left:30px;width:980px;}
-    .tb2{position: relative;top:9px;width:980px;left:30px;}
-    .w1{width: 81px;}
-    .w2{width: 88px;}
-    .w3{width: 80px;}
-    .w4{width:102px;}
-    .w5{width: 80px;}
-    .w6{width:250px;}
-    .w7{width:310px;}
-    .w8{width:150px;}
-    .w9{width:140px;}
+    .tb1{clear:both;position: relative;top:10px;left:20px;width:1030px;}
+    .tb2{clear:both;position: relative;top:9px;width:1030px;left:20px;}
+    .tb2 input{width:80%;}
     .tdNote{color:brown;font-size:14px;font-weight:bold}
-    .w100{width: 100%;}
-    .mt30{margin-top: 30px;}
-    .ml30{margin-left:30px;}
+    .mt20{margin-top: 20px;}
+    .ml20{margin-left:20px;}
 }

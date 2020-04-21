@@ -215,11 +215,11 @@
                 <?php
                     if(!isset($_GET['id'])){
                         ?>
-                            <button type="reset" class="btn btn-danger btn-sm" style="float:right;margin-right:90px;margin-top:-10px">重置表单</button>
+                            <button type="reset" class="btn btn-danger btn-sm" style="float:right;margin-right:50px;margin-top:-10px">重置表单</button>
                         <?php
                     }else{
                         ?>
-                            <button type="reset" id="delete" class="btn btn-danger btn-sm" style="float:right;margin-right:90px;margin-top:-10px">删除表单</button>
+                            <button type="reset" id="delete" class="btn btn-danger btn-sm" style="float:right;margin-right:50px;margin-top:-10px">删除表单</button>
                         <?php
                     }
                 ?>
@@ -268,7 +268,7 @@
                         <td><input type="text" value="<?=$phone?>" placeholder="请填写联系电话" class="w8" name="phone" maxlength="13"/></td>
                         <td>运输方式</td>
                         <td>
-                            <select style="height: 25px;" class="w9" name="driving">
+                            <select style="height: 20px;width:150px;text-align:center" name="driving">
                                 <?php
                                     if($driving=="物流寄付"){
                                 ?>
@@ -396,21 +396,21 @@
                             </select>
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="3">基本信息</td>
-                        <td colspan="2">服务费用</td>
-                        <td colspan="3">辅料费用</td>
-                    </tr>
                 </table>
                 <table  class="tb2" border="1" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td class="w1">序号</td>
-                        <td class="w1">品类</td>
-                        <td class="w1">货号</td>
-                        <td class="w1">品名</td>
-                        <td class="w2">申请数量</td>
-                        <td class="w2">
-                            <select style="height: 25px;" name="ishs">
+                        <td colspan="4">基本信息</td>
+                        <td colspan="4">服务费用</td>
+                        <td colspan="4">辅料费用</td>
+                    </tr>
+                    <tr>
+                        <td>序号</td>
+                        <td>品类</td>
+                        <td>货号</td>
+                        <td>品名</td>
+                        <td>申请数量</td>
+                        <td>
+                            <select style="height: 20px;width:80%" name="ishs">
                                 <option></option>
                                 <?php
                                     if($ishs=="含税包装价格"){
@@ -433,13 +433,14 @@
                                 
                             </select>
                         </td>
-                        <td class="w2">费率 /<br>单价</td>
-                        <td class="w2">服务费<br>小计</td>
-                        <td class="w3">辅料名称</td>
-                        <td class="w3">单价</td>
-                        <td class="w3">辅料数量</td>
-                        <td class="w3">辅料小计</td>
+                        <td>费率 / 单价</td>
+                        <td style="width:80px;">服务费小计</td>
+                        <td style="width:80px;">辅料名称</td>
+                        <td>单价</td>
+                        <td>辅料数量</td>
+                        <td style="width:80px;">辅料小计</td>
                     </tr>
+                    
                     <?php
                         $category_arr=explode(',',$category);
                         $productNo_arr=explode(',',$productNo);
@@ -459,7 +460,7 @@
                         <?php 
                             if($id==""){
                                 ?>
-                                <td><button type="button" class="btn btn-success btn-xs" id="addLine" style="width:32px;padding:2px;">添加<?php
+                                <td style="width:80px"><button type="button" class="btn btn-success btn-xs" id="addLine" style="width:32px;padding:2px;">添加<?php
                                     if($hd_count<2){
                                         ?><p id="count" style="display:none">1</p></button><?php
                                     }else{
@@ -561,15 +562,16 @@
                     ?>
                     
                         <td><?=$i+1?></td>
-                        <td><input type="text" value="<?=$category_arr[$i]?>" class="w100" name="category<?=$i?>"/></td>
-                        <td><input type="text" value="<?=$productNo_arr[$i]?>" class="w100" name="productNo<?=$i?>"/></td>
-                        <td><input type="text" value="<?=$productName_arr[$i]?>" class="w100" name="productName<?=$i?>"/></td>
-                        <td class="sqsl"><input type="text" value="<?=$amount_arr[$i]?>" class="w100" name="amount<?=$i?>"/></td>
-                        <td class="bzjg"><input type="text" value="<?=$price_arr[$i]?>" class="w100" name="price<?=$i?>"/></td>
-                        <td class="fldj"><input type="text" value="<?=$fls_arr[$i]?>" class="w100" name="fls<?=$i?>"/></td>
+                        
+                        <td><input type="text" value="<?=$category_arr[$i]?>" name="category<?=$i?>"/></td>
+                        <td><input type="text" value="<?=$productNo_arr[$i]?>" name="productNo<?=$i?>"/></td>
+                        <td><input type="text" value="<?=$productName_arr[$i]?>" name="productName<?=$i?>"/></td>
+                        <td class="sqsl"><input type="text" value="<?=$amount_arr[$i]?>" name="amount<?=$i?>"/></td>
+                        <td class="bzjg"><input type="text" value="<?=$price_arr[$i]?>" name="price<?=$i?>"/></td>
+                        <td class="fldj"><input type="text" value="<?=$fls_arr[$i]?>" name="fls<?=$i?>"/></td>
                         <td class="fwfxj"><?=$fwfxj_arr[$i]?></td>
                         <td>
-                            <select style="width: 100%;height: 25px;" name="flsName<?=$i?>">
+                            <select style="width: 80%;height: 20px;" name="flsName<?=$i?>">
                                 <option></option>
                                 <?php
 
@@ -595,8 +597,8 @@
                             ?> 
                             </select>
                         </td>
-                        <td class="dj"><input type="text" value="<?=$dj_arr[$i]?>" style="width: 100%;" name="dj<?=$i?>"/></td>
-                        <td class="sl"><input type="text" value="<?=$sl_arr[$i]?>" style="width: 100%;" name="sl<?=$i?>"/></td>
+                        <td class="dj"><input type="text" value="<?=$dj_arr[$i]?>" name="dj<?=$i?>"/></td>
+                        <td class="sl"><input type="text" value="<?=$sl_arr[$i]?>" name="sl<?=$i?>"/></td>
                         <td class="flfxj"><?=$flfxj_arr[$i]?></td>
                     </tr>
 
@@ -611,17 +613,17 @@
                         <td colspan="2">服务费合计</td>
                         <td id="fwfhj"><?=$hd_fwfhj?></td>
                         <td>税点</td>
-                        <td class="sd"><input type="text" value="<?=$sd?>" style="width: 100%;" name="sd"/></td>
+                        <td class="sd"><input type="text" value="<?=$sd?>" name="sd"/></td>
                         <td id="flslhj"><?=$hd_flsl?></td>
                         <td id="flfhj" style="display:none"></td>
-                        <td colspan="1" id="fwfhjhs"><?=$hd_flfhjsh?></td>
+                        <td id="fwfhjhs"><?=$hd_flfhjsh?></td>
                     </tr>
                     <tr>
                         <td colspan="4">服务费辅料费总计</td>
                         <td colspan="4" id="fwfflfhj"><?=$hd_fwfflfzj?></td>
                         <td colspan="2">结款方式</td>
                         <td colspan="2">
-                            <select style="height: 25px;width: 100%;" name="jkfs">
+                            <select style="height: 20px;width:80%" name="jkfs">
                                 <?php
                                     if($jkfs=="全现金"){
                                 ?>
@@ -679,20 +681,20 @@
                     </tr>
                     <tr>
                         <td colspan="2">物流方式</td>
-                        <td colspan="2"><input type="text" value="<?=$wlfs?>" class="w100" name="wlfs"/></td>
+                        <td colspan="2"><input type="text" value="<?=$wlfs?>" name="wlfs"/></td>
                         <td colspan="2">物流单号</td>
-                        <td colspan="2"><input type="text" value="<?=$wlno?>" class="w100" name="wlno"/></td>
+                        <td colspan="2"><input type="text" value="<?=$wlno?>" name="wlno"/></td>
                         <td colspan="2">物流费用</td>
-                        <td colspan="2"><input type="text" value="<?=$wlprice?>" class="w100" name="wlprice"/></td>
+                        <td colspan="2"><input type="text" value="<?=$wlprice?>" name="wlprice"/></td>
                     </tr>
                     <tr>
                         <td colspan="2">备注</td>
-                        <td colspan="10"><input type="text" value="<?=$note?>" class="w100" name="note"/></td>
+                        <td colspan="10"><input type="text" value="<?=$note?>" name="note" style="width:96%"/></td>
                     </tr>
                     <tr>
                         <td colspan="2">授信编号</td>
                         <td colspan="2">
-                            <select name="sxid" class="w100" style="height:23px;" id="sxid">
+                            <select name="sxid" style="height:20px;width:80%" id="sxid">
                                 <option></option>
                                 <?php
                                     $sqlstr4="select distinct a.sqid from sx_form a,use_sx b where a.sqid=b.sqid and (a.department='$department' or a.gxDepartment='$department') and a.status='已生效' and b.newMoney > 0";
@@ -718,9 +720,9 @@
                             </select>
                         </td>
                         <td colspan="2">使用授信金额</td>
-                        <td colspan="2"><input type="text" value="<?=$nowUseMoney?>" class="w100" name="sxmoney"/></td>
+                        <td colspan="2"><input colspan="2" type="text" value="<?=$nowUseMoney?>" name="sxmoney"/></td>
                         <td colspan="2">可使用额度</td>
-                        <td colspan="2">￥<span id="newMoney"></span></td>
+                        <td colspan="2">￥<span colspan="2" id="newMoney"></span></td>
                     </tr>
                     <!-- 隐藏表单用于数据提交 -->
                     <tr class="hidden">
@@ -732,6 +734,7 @@
                         <td><input type="text"  name="hd_count" id="hd_count"/></td>
                         <td><input type="id"  name="id" value="<?=$id?>" id="hd_count"/></td>
                     </tr>
+                    
                 </table>
                 
                 <!--
@@ -746,8 +749,8 @@
                 <input type="hidden"  name="option" value="1" id="option"/>
 
                 <div style="clear:both">
-                    <button type="button" class="btn btn-success btn-sm mt30 ml30" id="submit">点击提交</button>
-                    <button type="button" class="btn btn-info btn-sm mt30" id="save" style="margin-left:10px;">一键保存</button>
+                    <button type="button" class="btn btn-success btn-sm mt20 ml20" id="submit">点击提交</button>
+                    <button type="button" class="btn btn-info btn-sm mt20 ml20" id="save" style="margin-left:10px;">一键保存</button>
                     <button type="submit" class="btn btn-success btn-sm hidden" id="hd_submit">隐藏提交</button>
                 </div>
             </form>
