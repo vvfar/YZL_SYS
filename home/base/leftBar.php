@@ -34,7 +34,7 @@
                     <li class="leftbar7Z1"><a href="/home/contract/contractList.php">已审核合同授权</a></li>
                 </div>
 
-                <li class="leftbar1"><i class="layui-icon layui-icon-rmb"></i><a href="#">公司授信</a></li>
+                <li class="leftbar1"><i class="layui-icon layui-icon-rmb"></i><a href="#">授信申请</a></li>
                 <div class="leftbar1Z zcd">
                     <li class="leftbar1Z2"><a href="/home/sx/writeSX.php">新增授信单</a></li>
                     <li class="leftbar1Z1"><a href="/home/sx/zhangmu.php">待审核授信</a></li>

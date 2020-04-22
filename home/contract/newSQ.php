@@ -118,10 +118,10 @@
                         <input type="text" class="form-control" name="bzj" value="<?=$bzj?>" placeholder="请输入保证金" style="width: 250px;float: left;margin-top: 15px;">
                     </div>
                     <div class="form-group" style="clear: both;">
-                        <span style="float: left;margin-top:20px;">上传保证金收据</span><input type="file" name="upfile" style="float: left;margin-left: 25px;margin-top:20px;"/><span style="position:relative;top:20px;font-size:12px;color:red">*文件名不能出现中文</span>
+                        <span style="float: left;margin-top:20px;">上传保证金收据</span><input type="file" name="upfile" style="float: left;margin-left: 25px;margin-top:20px;"/><span style="position:relative;top:23px;font-size:12px;color:red">*文件名(编号_bzj.jpg)</span>
                     </div>
                     <div class="form-group" style="clear: both;">
-                        <span style="float: left;margin-top:20px;">上传授权扫描件</span><input type="file" name="upfile2" style="float: left;margin-left: 25px;margin-top:20px;"/><span style="position:relative;top:20px;font-size:12px;color:red">*文件名不能出现中文</span>
+                        <span style="float: left;margin-top:20px;">上传授权扫描件</span><input type="file" name="upfile2" style="float: left;margin-left: 25px;margin-top:20px;"/><span style="position:relative;top:23px;font-size:12px;color:red">*文件名(编号_smj.jpg)</span>
                     </div>
                     <div class="form-group" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">授权日期</p>

@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
@@ -351,10 +350,10 @@
     $("#download_contract").click(function(){
         if($("#optionID").val()=="1"){
             contractID=$("#contractID").val();
-            window.location.href="formHandle/contract_download.php?contractID=" +contractID + "&clientName=" + "&status=已审核";
+            window.location.href="../../controller/contract/contract_download.php?contractID=" +contractID + "&clientName=" + "&status=已审核";
         }else if($("#optionID").val()=="2"){
             clientName=$("#clientName").val();
-            window.location.href="formHandle/contract_download.php?contractID=" + "&clientName=" + clientName + "&status=已审核";
+            window.location.href="../../controller/contract/contract_download.php?contractID=" + "&clientName=" + clientName + "&status=已审核";
         }
     })
 </script>

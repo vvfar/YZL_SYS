@@ -144,7 +144,18 @@
                                 <td>￥<?=$myrow[3]?></td>
                                 <td>￥<?=$myrow[4]?></td>
                                 <td>￥<?=$myrow[7]?></td>
-                                <td><?php echo $myrow[7]/$myrow[4] *100?>%</td>
+                                <?php
+                                    if($myrow[4] != ""){
+                                        ?>
+                                            <td><?php echo $myrow[7]/$myrow[4] *100?>%</td>
+                                        <?php
+                                    }else{
+                                        ?>
+                                            <td></td>
+                                        <?php
+                                    }
+                                ?>
+                                
                                 <td><?=$myrow[5]?></td>
                             </tr>
                             <?php

@@ -1,7 +1,7 @@
 <?php
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
-    //error_reporting(E_ALL || ~E_NOTICE);
+    include_once("../../common/conn/conn.php");
+    error_reporting(E_ALL || ~E_NOTICE);
     session_start();
 
     $username=$_SESSION['username'];
@@ -20,38 +20,29 @@
 
     if($status !=""){
         if($status=="待审核"){
-            $sqlstrIn=$sqlstrIn." and not status like '%数据中心已归档%'";
+            $sqlstrIn=$sqlstrIn." and status='待归档'";
         }else{
-            $sqlstrIn=$sqlstrIn." and status like '%数据中心已归档%'";
+            $sqlstrIn=$sqlstrIn." and status='已归档'";
         }
     }
 
-    $sqlstr1="select department from user_form where username='$username'";
+    $sqlstr1="select department,newLevel from user_form where username='$username'";
 
     $result=mysqli_query($conn,$sqlstr1);
 
     while($myrow=mysqli_fetch_row($result)){
         $department=$myrow[0];
+        $newLevel=$myrow[1];
     }
 
-    if($department !="财务部" and $department !="品牌部" and $department !="数据中心" and $department !="义乌" and strstr($department, '/')==false){
-        $sqlstr2="select * from sq where department='$department' ".$sqlstrIn;
-    }elseif(strstr($department, '/')){
-        $sqlstr2="select * from sq where (";
-        
-        $department_arr=explode('/',$department);
-
-        for($i=0;$i<sizeof($department_arr);$i++){
-            if($i != sizeof($department_arr)-1){
-                $sqlstr2=$sqlstr2."department='$department_arr[$i]' or ";
-            }else{
-                $sqlstr2=$sqlstr2."department='$department_arr[$i]') ".$sqlstrIn;
-            }
-            
+    $sqlstr2="select * from sq where 1=1 ".$sqlstrIn;
+                
+    if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
+        if($newLevel == "KA"){
+            $sqlstr2=$sqlstr2." and shr like '%$username%'"; 
+        }else{
+            $sqlstr2=$sqlstr2." and '$department' like concat('%',department,'%') ";
         }
-        
-    }else{
-        $sqlstr2="select * from sq where 1=1 ".$sqlstrIn;
     }
 
     $result=mysqli_query($conn,$sqlstr2);

@@ -94,8 +94,10 @@
 
                 ?>
 
-                <p style="font-size:16px;margin-top:20px">授信单据</p>
-                <hr>
+                <div class="nav nav-pills" style="float:left;margin-top:10px;">
+                    <li role="presentation" class="active"><a href="#">新增授信</a></li>
+                    <li role="presentation"><a href="djLoad.php">单据上传</a></li>
+                </div>
 
                 <div class="form-group" style="clear: both;">
                     <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">授信编号</p>

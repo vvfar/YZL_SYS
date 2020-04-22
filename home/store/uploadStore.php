@@ -128,8 +128,8 @@
                                     <input type="text" class="form-control" name="backMoney" placeholder="请输入回款登记" style="width: 200px;float: left;margin-top: 15px;">
                                 </div>
                                 <div class="form-group" style="clear: both;margin-bottom:0px;">
-                                    <p style="width: 100px;font-size: 14px;float: left;margin-top: 20px;">问题反馈</p>
-                                    <input type="text" class="form-control" name="question" placeholder="请输入问题反馈" style="width: 200px;float: left;margin-top: 15px;">
+                                    <p style="width: 100px;font-size: 14px;float: left;margin-top: 20px;">店铺链接</p>
+                                    <input type="text" class="form-control" name="link" value="<?=$link?>" placeholder="请输入店铺链接" style="width: 200px;float: left;margin-top: 15px;">
                                 </div>
                                 <div class="form-group" style="clear: both;margin-bottom:0px;">
                                     <p style="width: 100px;font-size: 14px;float: left;margin-top: 20px;">登记日期</p>

@@ -55,206 +55,10 @@
 
             ?>
             <div class="form-group date_form">
-                <p class="djrq">回款期限</p>
-                <p style="width: 20px;font-size: 14px;float: left;margin-top:5px;margin-left:20px;">从</p>
-                <div style="width: 180px;font-size: 14px;float: left;" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" id="date1" size="16" type="text" value="<?=$date1?>" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                <div class="nav nav-pills" style="float:left">
+                    <li role="presentation"><a href="writeSX.php">新增授信</a></li>
+                    <li role="presentation" class="active"><a href="djLoad.php">单据上传</a></li>
                 </div>
-                <p style="width: 20px;font-size: 14px;float: left;margin-top:5px;margin-left:20px;">到</p>
-                <div style="width: 180px;font-size: 14px;float: left;" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" id="date2" size="16" type="text" value="<?=$date2?>" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-                <div style="font-size: 14px;float: left;margin-left:20px;">
-                    <select class="form-control" style="width: 105px;" id="chooseInfo">
-                        <?php
-                            if($newLevel !="ADMIN" and $department !="财务部"){
-                                if($chooseInfo=="授信编号"){
-                                    ?>
-                                        <option selected>授信编号</option>
-                                        <option>公司名称</option>
-                                    <?php
-                                }elseif($chooseInfo=="公司名称"){
-                                    ?>
-                                        <option>授信编号</option>
-                                        <option selected>公司名称</option>
-                                    <?php
-                                }else{
-                                    ?>
-                                        <option>授信编号</option>
-                                        <option>公司名称</option>
-                                    <?php
-                                }
-                            }else{
-                                if($chooseInfo=="授信编号"){
-                                    ?>
-                                        <option selected>授信编号</option>
-                                        <option>公司名称</option>
-                                        <option>事业部</option>
-                                    <?php
-                                }elseif($chooseInfo=="公司名称"){
-                                    ?>
-                                        <option>授信编号</option>
-                                        <option selected>公司名称</option>
-                                        <option>事业部</option>
-                                    <?php
-                                }elseif($chooseInfo=="事业部"){
-                                    ?>
-                                        <option>授信编号</option>
-                                        <option>公司名称</option>
-                                        <option selected>事业部</option>
-                                    <?php
-                                }else{
-                                    ?>
-                                        <option>授信编号</option>
-                                        <option>公司名称</option>
-                                        <option>事业部</option>
-                                    <?php
-                                }
-                            }
-                        ?>
-
-                    </select>
-                </div>
-                <div style="font-size: 14px;float: left;margin-left:20px;">
-                    <?php
-                        if($chooseInfo=="授信编号"){
-                    ?>
-                        <input class="form-control" id="sqid" placeholder="请输入授信编号" style="width:160px;" value="<?=$sqid?>"/>
-                        <input class="form-control" id="companyName" placeholder="请输入公司名称" style="width:160px;display: none;" value="<?=$companyName?>"/>
-                    
-                        <select class="form-control" id="department" style="width:160px;display: none;">
-                            <option></option>
-                            <?php
-                                $sqlstr4="select distinct department from sx_form";
-
-                                $result=mysqli_query($conn,$sqlstr4);
-
-                                while($myrow=mysqli_fetch_row($result)){
-                                    ?>
-                                        <option><?=$myrow[0]?></option>
-                                    <?php
-                                }
-                            ?>
-                        </select>
-                    <?php
-                        }elseif($chooseInfo=="公司名称"){
-                            ?>
-                            <input class="form-control" id="sqid" placeholder="请输入授信编号" style="width:160px;display: none;" value="<?=$sqid?>"/>
-                            <input class="form-control" id="companyName" placeholder="请输入公司名称" style="width:160px;" value="<?=$companyName?>"/>
-                        
-                            <select class="form-control" id="department" style="width:160px;display: none;">
-                                <option></option>
-                                <?php
-                                    $sqlstr4="select distinct department from sx_form";
-    
-                                    $result=mysqli_query($conn,$sqlstr4);
-    
-                                    while($myrow=mysqli_fetch_row($result)){
-                                        ?>
-                                            <option><?=$myrow[0]?></option>
-                                        <?php
-                                    }
-                                ?>
-                            </select>
-                        <?php
-                        }elseif($chooseInfo=="事业部"){
-                            ?>
-                            <input class="form-control" id="sqid" placeholder="请输入授信编号" style="width:160px;display: none;" value="<?=$sqid?>"/>
-                            <input class="form-control" id="companyName" placeholder="请输入公司名称" style="width:160px;display: none;" value="<?=$companyName?>"/>
-                        
-                            <select class="form-control" id="department" style="width:160px;">
-                                <option></option>
-                                <?php
-                                    $sqlstr4="select distinct department from sx_form";
-    
-                                    $result=mysqli_query($conn,$sqlstr4);
-    
-                                    while($myrow=mysqli_fetch_row($result)){
-                                        if($s_department == $myrow[0]){
-                                            ?>
-                                                <option selected><?=$myrow[0]?></option>
-                                            <?php
-                                        }else{
-                                            ?>
-                                                <option><?=$myrow[0]?></option>
-                                            <?php
-                                        }
-                                    }
-                                ?>
-                            </select>
-                        <?php
-                        }else{
-                            ?>
-                            <input class="form-control" id="sqid" placeholder="请输入授信编号" style="width:160px;" value="<?=$sqid?>"/>
-                            <input class="form-control" id="companyName" placeholder="请输入公司名称" style="width:160px;display: none;" value="<?=$companyName?>"/>
-                        
-                            <select class="form-control" id="department" style="width:160px;display: none;">
-                                <option></option>
-                                <?php
-                                    $sqlstr4="select distinct department from sx_form";
-    
-                                    $result=mysqli_query($conn,$sqlstr4);
-    
-                                    while($myrow=mysqli_fetch_row($result)){
-                                        ?>
-                                            <option><?=$myrow[0]?></option>
-                                        <?php
-                                    }
-                                ?>
-                            </select>
-                        <?php
-                        }
-                    ?>
-                    
-                    
-
-                </div>
-                <div style="float:left;margin-left:10px;margin-top:2px;">
-                    <button class="btn btn-warning btn-sm" onclick="search()">查询</button>
-                    <button class="btn btn-success btn-sm" onclick="excel()" style="margin-left:5px;">下载</button>
-
-                    <?php
-                        if($newLevel=="ADMIN"){
-                            ?>
-                                <button class="btn btn-info btn-sm" onclick="upload()" data-toggle="modal" data-target="#myModal2">批量导入</button>
-                            <?php
-                        }
-                    ?>
-                </div>
-
-                <!-- Excel导入模态框 -->
-                <form method="POST" action="formHandle/uploadSXHandle.php" enctype="multipart/form-data">
-                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                        &times;
-                                    </button>
-                                    <h4 class="modal-title" id="myModalLabel">
-                                        批量上传授信
-                                    </h4>
-                                </div>
-                                
-                                <div class="modal-body" style="height: 150px;">
-                                    <input type="file" name="excel"/>
-                                    <div style="clear: both;position: relative;top:20px;width:300px;">
-                                        <p>温馨提示：文件必须为EXCEL格式，请按模板文件格式进行上传，文件大小需小于2M</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="submit" class="btn btn-primary">导入表格</button>
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                </form>
             </div>
 
             <div style="clear:both;float:left;margin-left:30px;">
@@ -271,7 +75,7 @@
 
                 $pagesize=15;
 
-                $sqlstr3="select count(*) as total from sx_form a,hk_form b where a.sqid=b.sqid and (a.status='待归档' or a.status='已拒绝')";
+                $sqlstr3="select count(*) as total from sx_form a,hk_form b where a.sqid=b.sqid and a.status='待生效'";
 
                 if($date1 !="" && $date2 !=""){
                     $sqlstr3= $sqlstr3." and a.date3>='$date1' and a.date3<= '$date2'";
@@ -326,7 +130,7 @@
                         
                         $sqlstr2="select distinct a.id,a.date1,a.sqid,a.companyName,a.department,a.ywy,a.sqmoney,". 
                         "b.dhkje,a.status2,a.status,c.newMoney ".
-                        "from sx_form a,hk_form b,use_sx c where a.sqid=b.sqid and a.sqid=c.sqid and (a.status='待归档' or a.status='已拒绝')";
+                        "from sx_form a,hk_form b,use_sx c where a.sqid=b.sqid and a.sqid=c.sqid and a.status='待生效'";
 
                         if($date1 !="" and $date2 !=""){
                             $sqlstr2=$sqlstr2." and a.date3 >= '$date1' and a.date3 <= '$date2'";
@@ -448,7 +252,7 @@
     .to-scroll{overflow-x: scroll;overflow-x: scroll;height: 550px;clear:both}
     .zhangmu_container{margin-left: 180px;}
     .nav_div{clear:both;float:left;margin-top: 20px;margin-left:30px;}
-    .date_form{clear: both;float:left;margin-top:30px;margin-left:30px}
+    .date_form{clear: both;float:left;margin-top:20px;margin-left:30px}
     .djrq{float:left;margin-top:5px}
     .template{float:left;margin-left:350px;margin-top:2px;}
 

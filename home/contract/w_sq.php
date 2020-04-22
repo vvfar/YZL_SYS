@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
@@ -25,8 +24,8 @@
             <div class="nav nav-pills" style="float: left;margin-left:30px;">
                 <div style="clear: both;border-radius: 6px;">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
-                        <li role="presentation"><a href="w_contract.php">合同审批</a></li>
-                        <li role="presentation" class="active"><a href="#">授权审批</a></li>
+                        <li role="presentation"><a href="w_contract.php">待审核合同</a></li>
+                        <li role="presentation" class="active"><a href="#">待审核授权</a></li>
                     </div>
                 </div>
 
@@ -91,18 +90,18 @@
                 <?php
                     if($sqID !=""){
                         ?>
-                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:250px;float: left;margin-left: 10px;" value="<?=$sqID?>">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:250px;float: left;margin-left: 10px;display:none" value="">
+                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:200px;float: left;margin-left: 10px;" value="<?=$sqID?>">
+                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;display:none" value="">
                         <?php
                     }elseif($clientName !=""){
                         ?>
-                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:250px;float: left;margin-left: 10px;display:none" value="">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:250px;float: left;margin-left: 10px;" value="<?=$clientName?>">
+                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:200px;float: left;margin-left: 10px;display:none" value="">
+                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;" value="<?=$clientName?>">
                         <?php
                     }else{
                         ?>
-                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:250px;float: left;margin-left: 10px;" value="">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:250px;float: left;margin-left: 10px;display:none" value="">
+                            <input type="text" class="form-control" id="sqID" placeholder="请输入授权编号" style="width:200px;float: left;margin-left: 10px;" value="">
+                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;display:none" value="">
                         <?php
                     }
                 ?>
@@ -355,10 +354,10 @@
     $("#download_contract").click(function(){
         if($("#optionID").val()=="1"){
             sqID=$("#sqID").val();
-            window.location.href="formHandle/sq_download.php?sqID=" +sqID + "&clientName=" + "&status=待审核";
+            window.location.href="../../controller/contract/sq_download.php?sqID=" +sqID + "&clientName=" + "&status=待审核";
         }else if($("#optionID").val()=="2"){
             sqID=$("#sqID").val();
-            window.location.href="formHandle/sq_download.php?sqID=" + "&clientName=" + clientName + "&status=待审核";
+            window.location.href="../../controller/contract/sq_download.php?sqID=" + "&clientName=" + clientName + "&status=待审核";
         }
     })
 </script>

@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
@@ -153,10 +152,12 @@
 
                 $sqlstr2="select id,no,companyName,pingtai,category,department,bzj,'/','/',re_date,'授权',status,shr,shTime from sq where status like '%已归档%'";
                 
-                if($newLevel == "KA"){
-                    $sqlstr2=$sqlstr2." and shr like '%$username%'"; 
-                }else{
-                    $sqlstr2=$sqlstr2." and '$department' like concat('%',department,'%') ";
+                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
+                    if($newLevel == "KA"){
+                        $sqlstr2=$sqlstr2." and shr like '%$username%'"; 
+                    }else{
+                        $sqlstr2=$sqlstr2." and '$department' like concat('%',department,'%') ";
+                    }
                 }
 
                 if($clientName !=""){
@@ -353,10 +354,10 @@
     $("#download_contract").click(function(){
         if($("#optionID").val()=="1"){
             sqID=$("#sqID").val();
-            window.location.href="formHandle/sq_download.php?sqID=" +sqID + "&clientName=" + "&status=已审核";
+            window.location.href="../../controller/contract/sq_download.php?sqID=" +sqID + "&clientName=" + "&status=已审核";
         }else if($("#optionID").val()=="2"){
             sqID=$("#sqID").val();
-            window.location.href="formHandle/sq_download.php?sqID=" + "&clientName=" + clientName + "&status=已审核";
+            window.location.href="../../controller/contract/sq_download.php?sqID=" + "&clientName=" + clientName + "&status=已审核";
         }
     })
 </script>

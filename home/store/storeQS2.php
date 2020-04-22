@@ -93,7 +93,7 @@
             </div>
             
             <div style="clear:both">
-                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:45px;margin-left:30px;">
+                <table class="table table-responsive table-bordered table-hover storetb" style="width:1000px;margin-top:45px;margin-left:30px;">
                     <tr>
                         <th>序号</th>
                         <th>店铺编号</th>
@@ -132,8 +132,8 @@
                                 <td><a href="storeQSLine.php?id=<?=$myrow[7]?>"><?=$myrow[0]?></a></td>
                                 <td><?=$myrow[1]?></td>
                                 <td><?=$myrow[2]?></td>
-                                <td><?=$myrow[3]?></td>
-                                <td><?=$myrow[4]?></td>
+                                <td><p><?=$myrow[3]?><p></td>
+                                <td><p><?=$myrow[4]?><p></td>
                                 <td><?=$myrow[5]?></td>
                                 <td><?=$myrow[6]?></td>
                             </tr>
@@ -217,6 +217,13 @@
 
     td{
         text-align: center;
+    }
+
+    .storetb p{
+        width: 60px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
     }
 </style>
 

@@ -51,9 +51,8 @@
 
         <div class="content">
             <div style="margin-left: 180px;">
-                <div style="margin-left:788px;position:relative;top:30px;">
+                <div style="margin-left:830px;position:relative;top:30px;">
                     <button class="btn btn-sm btn-warning btn-download" style="float:left;margin-left:10px;">下载</button>
-                    <button class="btn btn-sm btn-success" style="float:left;margin-left:10px;" onclick="print()">打印</button>
                     <button class="btn btn-sm btn-info btn-blue" style="float:left;margin-left:10px;">返回</button>
                 </div>
                 
@@ -74,7 +73,7 @@
                     </div>
                     <div style="margin-top:30px;">
                         <p>俞兆林品牌管理有限公司签署：</p>    
-                        <p>申请人：<span style="text-decoration: underline;" class="middleLine"></span>部门领导：<span style="text-decoration: underline;" class="middleLine"></span>数据中心：<span style="text-decoration: underline;" class="middleLine"></span>总经理：<span style="text-decoration: underline;" class="middleLine"></span></p>
+                        <p>申请人：<span style="text-decoration: underline;" class="middleLine"></span>部门领导：<span style="text-decoration: underline;" class="middleLine"></span>总经理：<span style="text-decoration: underline;" class="middleLine"></span>商务运营(COC)：<span style="text-decoration: underline;" class="middleLine"></span></p>
                     </div>
                 </div>
                 <hr>
@@ -198,6 +197,12 @@
         window.location.href='sx_line.php?id=<?=$id?>'
     })
 
+    $(".btn-download").click(function(){
+        ds=$("#ds").html();
+
+        window.location.href='createSX_mb.php?id=<?=$id?>&ds=' + ds
+    })
+    
     window.onload=function(){
         ds=$("#ds").html();
 

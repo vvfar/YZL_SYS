@@ -229,9 +229,9 @@
                     
 
                 </div>
-                <div style="float:left;margin-left:20px;margin-top:2px;">
-                    <button class="btn btn-warning btn-sm" onclick="search()">查询</button>
-                    <button class="btn btn-success btn-sm" onclick="excel()">下载</button>
+                <div style="float:left;margin-left:10px;margin-top:2px;">
+                <button class="btn btn-warning btn-sm" onclick="search()">查询</button>
+                    <button class="btn btn-success btn-sm" onclick="excel()" style="margin-left:5px;">下载</button>
                     <?php
                         if($newLevel=="ADMIN"){
                             ?>
@@ -371,7 +371,7 @@
                 
             <div>
             
-            <div style="clear:both;position: relative;top: 20px;margin-left: 60px;">
+            <div style="clear:both;position: relative;top: 15px;margin-left: 60px;">
                 <table class="table table-responsive table-bordered table-hover" style="width: 1020px;margin-bottom:10px;">
                     <tr>
                         <th style="width: 150px;">授信编号</th>

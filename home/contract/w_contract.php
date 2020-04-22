@@ -24,8 +24,8 @@
             <div class="nav nav-pills" style="float: left;margin-left:30px;">
                 <div style="clear: both;border-radius: 6px;">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
-                        <li role="presentation" class="active"><a href="#">合同审批</a></li>
-                        <li role="presentation"><a href="w_sq.php">授权审批</a></li>
+                        <li role="presentation" class="active"><a href="#">待审核合同</a></li>
+                        <li role="presentation"><a href="w_sq.php">待审核授权</a></li>
                     </div>
                 </div>
 
@@ -352,10 +352,10 @@
     $("#download_contract").click(function(){
         if($("#optionID").val()=="1"){
             contractID=$("#contractID").val();
-            window.location.href="formHandle/contract_download.php?contractID=" +contractID + "&clientName=" + "&status=待审核";
+            window.location.href="../../controller/contract/contract_download.php?contractID=" +contractID + "&clientName=" + "&status=待审核";
         }else if($("#optionID").val()=="2"){
             clientName=$("#clientName").val();
-            window.location.href="formHandle/contract_download.php?contractID=" + "&clientName=" + clientName + "&status=待审核";
+            window.location.href="../../controller/contract/contract_download.php?contractID=" + "&clientName=" + clientName + "&status=待审核";
         }
     })
 </script>

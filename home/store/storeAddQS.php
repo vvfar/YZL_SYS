@@ -69,7 +69,7 @@
                             <?php
                         }else{
                             ?>
-                                <li role="presentation"><a href="uploadStore.php">每日数据</a></li>
+                                <li role="presentation"><a href="uploadStore.php?id=<?=$id?>">每日数据</a></li>
                                 <li role="presentation" class="active"><a href="#">店铺问题</a></li>
                             <?php
                         }

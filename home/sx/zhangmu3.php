@@ -229,9 +229,9 @@
                         }
                     ?>
                 </div>
-                <div style="float:left;margin-left:20px;margin-top:2px;">
+                <div style="float:left;margin-left:10px;margin-top:2px;">
                     <button class="btn btn-warning btn-sm" onclick="search()">查询</button>
-                    <button class="btn btn-success btn-sm" onclick="excel()">下载</button>
+                    <button class="btn btn-success btn-sm" onclick="excel()" style="margin-left:5px;">下载</button>
                     <?php
                         if($newLevel=="ADMIN"){
                             ?>
@@ -316,7 +316,7 @@
                 <a href="ZFSX.php" style="float:right;margin-right:40px;position: relative;top: 20px;" target="_blank">查看作废单据</a>
             <div>
             
-            <div style="clear:both;position: relative;top: 17px;margin-left: 60px;">
+            <div style="clear:both;position: relative;top: 15px;margin-left: 60px;">
             <table class="table table-responsive table-bordered table-hover" style="width: 1020px;margin-bottom:10px;">
                     <tr>
                         <th style="width: 150px;">授信编号</th>
@@ -509,4 +509,23 @@
         window.location.href="<?php echo $_SERVER['PHP_SELF']?>?date1=" +date1 + "&date2=" + date2 +"&companyName=" + companyName
 
     }
+
+    $("#chooseInfo").change(function(){
+        chooseInfo=$(this).val()
+
+        if(chooseInfo=="授信编号"){
+            $("#sqid").css("display","inline")
+            $("#companyName").css("display","none")
+            $("#department").css("display","none")
+        }else if(chooseInfo=="公司名称"){
+            $("#sqid").css("display","none")
+            $("#companyName").css("display","inline")
+            $("#department").css("display","none")
+        }else if(chooseInfo=="事业部"){
+            $("#sqid").css("display","none")
+            $("#companyName").css("display","none")
+            $("#department").css("display","inline")
+        }
+
+    })
 </script>

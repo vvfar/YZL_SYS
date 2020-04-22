@@ -27,7 +27,7 @@
         $question="";
     }else{
         $backMoney=$_POST["backMoney"];
-        $question=$_POST["question"];
+        $link=$_POST["link"];
         $salesMoney="";
         $salesNum="";
     }
@@ -62,12 +62,17 @@
     }
 
     if($store_data_count == 0){
-        $sqlstr3="insert into store_data values('$maxID'+1,'$storeID','$salesMoney','$salesNum','$backMoney','$question','$dateTime','$staff')";
+        $sqlstr3="insert into store_data values('$maxID'+1,'$storeID','$salesMoney','$salesNum','$backMoney','','$dateTime','$staff')";
     }else{
         if($my_department =="商务运营部"){
             $sqlstr3="update store_data set salesMoney='$salesMoney',salesNum='$salesNum' where storeID='$storeID' and date='$dateTime'";
         }else{
-            $sqlstr3="update store_data set backMoney='$backMoney',question='$question' where storeID='$storeID' and date='$dateTime'";
+            $sqlstr3="update store_data set backMoney='$backMoney' where storeID='$storeID' and date='$dateTime'";
+        
+            if($link != ""){
+                $sqlstr4="update store set link='$link' where storeID='$storeID'";
+                $result=mysqli_query($conn,$sqlstr4);
+            }
         }
     }
 

@@ -20,7 +20,7 @@ $(document).ready(function(){
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
-    }else if(leftBar_path ==  "writeSX.php" || leftBar_path ==  "companyManger2.php" || leftBar_path ==  "zhangmu.php"  || leftBar_path ==  "zhangmu2.php" || leftBar_path ==  "zhangmu3.php" || leftBar_path ==  "sx_line.php" || leftBar_path ==  "sxmb.php"  || leftBar_path ==  "companyManger1_edit.php" || leftBar_path == "expireSX.php"    || leftBar_path == "timeSX.php"|| leftBar_path == "sx_cw.php" || leftBar_path == "ZFSX.php" || leftBar_path ==  "sx_line2.php"){
+    }else if(leftBar_path ==  "writeSX.php" || leftBar_path ==  "companyManger2.php" || leftBar_path ==  "zhangmu.php"  || leftBar_path ==  "zhangmu2.php" || leftBar_path ==  "zhangmu3.php" || leftBar_path ==  "sx_line.php" || leftBar_path ==  "sxmb.php"  || leftBar_path ==  "companyManger1_edit.php" || leftBar_path == "expireSX.php"    || leftBar_path == "timeSX.php"|| leftBar_path == "sx_cw.php" || leftBar_path == "ZFSX.php" || leftBar_path ==  "sx_line2.php" || leftBar_path ==  "djLoad.php"){
 
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar1").css("background-color","darkslateblue");
@@ -36,7 +36,7 @@ $(document).ready(function(){
 
         if(leftBar_path ==  "zhangmu.php"){
             $(".leftbar1Z1 a").css("color","#fff")
-        }else if(leftBar_path == "writeSX.php"){
+        }else if(leftBar_path == "writeSX.php" || leftBar_path ==  "djLoad.php"){
             $(".leftbar1Z2 a").css("color","#fff")
         }else if(leftBar_path == "companyManger2.php"){
             $(".leftbar1Z3 a").css("color","#fff")
@@ -198,7 +198,7 @@ $(document).ready(function(){
         }else if(leftBar_path == "willMeeting.php"){
             $(".leftbar10Z3 a").css("color","#fff")
         }
-    }else if(leftBar_path ==  "newStore.php" || leftBar_path ==  "manStore.php"  || leftBar_path ==  "manStore2.php" || leftBar_path ==  "uploadStore.php"   || leftBar_path ==  "dataStore.php" || leftBar_path ==  "dataStoreDetails.php"   || leftBar_path ==  "closeStore.php" || leftBar_path == "dataStore2.php" || leftBar_path ==  "storeQS.php"  || leftBar_path ==  "storeQS2.php" || leftBar_path ==  "storeQSLine.php"){
+    }else if(leftBar_path ==  "newStore.php" || leftBar_path ==  "manStore.php"  || leftBar_path ==  "manStore2.php" || leftBar_path ==  "uploadStore.php"   || leftBar_path ==  "dataStore.php" || leftBar_path ==  "dataStoreDetails.php"   || leftBar_path ==  "closeStore.php" || leftBar_path == "dataStore2.php" || leftBar_path ==  "storeQS.php"  || leftBar_path ==  "storeQS2.php" || leftBar_path ==  "storeQSLine.php"  || leftBar_path ==  "storeAddQS.php"){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar11").css("background-color","darkslateblue");
         $(".leftbar11 a").css("color","#ffffff");
@@ -212,7 +212,7 @@ $(document).ready(function(){
         $(".leftbar9Z").toggle();
         $(".leftbar10Z").toggle();
 
-        if(leftBar_path == "manStore.php" || leftBar_path ==  "manStore2.php" || leftBar_path ==  "newStore.php" || leftBar_path == "uploadStore.php"  || leftBar_path ==  "closeStore.php"){
+        if(leftBar_path == "manStore.php" || leftBar_path ==  "manStore2.php" || leftBar_path ==  "newStore.php" || leftBar_path == "uploadStore.php"  || leftBar_path ==  "closeStore.php" || leftBar_path ==  "storeAddQS.php"){
             $(".leftbar11Z2 a").css("color","#fff")
         }else if(leftBar_path == "dataStore.php" || leftBar_path == "dataStoreDetails.php" || leftBar_path == "dataStore2.php"){
             $(".leftbar11Z4 a").css("color","#fff")
