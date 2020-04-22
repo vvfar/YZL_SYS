@@ -24,9 +24,9 @@
             <div class="nav nav-pills" style="float: left;margin-left:30px;">
                 <div style="clear: both;border-radius: 6px;">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
-                        <li role="presentation" class="active"><a href="w_contract.php">合同</a></li>
-                        <li role="presentation"><a href="w_contractAdd.php">补充合同</a></li>
-                        <li role="presentation"><a href="w_sq.w_contractAdd.phpphp">授权</a></li>
+                        <li role="presentation"><a href="w_contract.php">合同</a></li>
+                        <li role="presentation" class="active"><a href="#">补充合同</a></li>
+                        <li role="presentation"><a href="w_sq.php">授权</a></li>
                     </div>
                 </div>
 
@@ -125,7 +125,7 @@
                 $pagesize=15;
 
 
-                $sqlstr3="select count(*) as total from contract where not status like '%已归档%'";
+                $sqlstr3="select count(*) as total from contract_add where not status like '%已归档%'";
 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
                     if($newLevel == "KA"){
@@ -153,16 +153,16 @@
                 }
 
 
-                $sqlstr2="select id,no,company,pingtai,category,department,money,sales,service,re_date,'合同',status,shr,shTime from contract where not status like '%已归档%'";
+                $sqlstr2="select a.id,a.no,b.company,a.content,b.status,a.date from contract_add a,contract b where not a.status like '%已归档%' and a.no=b.no";
                 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
-                    $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
+                    $sqlstr3=$sqlstr3." and a.shr like '%$username%'"; 
                 }
 
                 if($clientName !=""){
-                    $sqlstr2=$sqlstr2." and company like '%$clientName%'";
+                    $sqlstr2=$sqlstr2." and b.company like '%$clientName%'";
                 }elseif($contractID !=""){
-                    $sqlstr2=$sqlstr2." and contractID like '%$contractID%'";
+                    $sqlstr2=$sqlstr2." and a.no like '%$contractID%'";
                 }
 
                 $sqlstr2=$sqlstr2." limit ".($page-1)*$pagesize.",$pagesize";
@@ -184,10 +184,7 @@
                         <th>序号</th>
                         <th>合同编号</th>
                         <th>公司名称</th>
-                        <th>授权平台</th>
-                        <th>授权类目</th>
-                        <th>事业部</th>
-                        <th>流程状态</th>
+                        <th>补充信息</th>
                         <th>登记日期</th>
                     </tr>
                 
@@ -195,40 +192,17 @@
 
                         while($myrow=mysqli_fetch_row($result)){
                             $id=$myrow[0];
-                            $isContract=$myrow[10];
-                            $contractID=$myrow[1];
+                            $no=$myrow[1];
                             $companyName=$myrow[2];
-                            $pingTai=$myrow[3];
-                            $category=$myrow[4];
-                            $department=$myrow[5];
-                            $status=$myrow[11];
-                            $re_date=$myrow[9];
-
-                            $arr_status=explode(",",$status);
-                            $status=array_pop($arr_status);
-
-                            ?>
+                            $content=$myrow[3];
+                            $re_date=$myrow[4];
+                    ?>
                             <tr>
                                 <td><?=$i+($page-1)*$pagesize?></td>
-
-                                <?php
-                                    if($isContract=="合同"){
-                                ?>
-                                    <td><a href="contract_line.php?id=<?=$id?>&option=合同"><?=$contractID?></a></td>
-                                <?php
-                                    }elseif($isContract=="授权"){
-                                ?>
-                                    <td><a href="sq_line.php?id=<?=$id?>&option=授权"><?=$contractID?></a></td>
-                                <?php
-                                    }
-                                ?>
-                                
+                                <td><a href="contract_line.php?id=<?=$id?>&option=合同"><?=$no?></a></td>
                                 <td><?=$companyName?></td>
-                                <td class="category" style="width:130px"><p style="margin:0"><?=$pingTai?></p></td>
-                                <td class="category" style="width:130px"><p style="margin:0"><?=$category?></p></td>
-                                <td style="width:190px"><?=$department?></td>
-                                <td><?=$status?></td>
-                                <td><?=$re_date?></td>
+                                <td class="category" style="width:130px"><p style="margin:0"><?=$content?></p></td>
+                                <td class="category" style="width:130px"><p style="margin:0"><?=$re_date?></p></td>
                             </tr>
                             <?php
                             $i=$i+1;

@@ -78,6 +78,7 @@
                 <div style="clear: both;border-radius: 6px;">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
                         <li role="presentation" class="active"><a href="#">新增合同</a></li>
+                        <li role="presentation"><a href="contractAddition.php">新增补充合同</a></li>
                         <li role="presentation"><a href="newSQ.php">新增授权</a></li>
                     </div>
                 </div>

@@ -158,7 +158,7 @@
                 
                 <?php
 
-                    if($department == "商务运营部"){
+                    if($department == "商务运营部" and $status == "待归档"){
                         ?>
 
                         <div style="width:1000px;">
@@ -175,6 +175,43 @@
                                 <button class="btn btn-sm btn-info" style="float:right" id="edit">重新编辑</button>
                             </div>
                         <?php
+                    }
+
+                    $sqlstr4="select count(*) from contract_add where no='$no'";
+
+                    $result=mysqli_query($conn,$sqlstr4);
+
+                    while($myrow=mysqli_fetch_row($result)){
+                        $count=$myrow[0];
+                    }
+
+                    if($count > 0){
+                        $sqlstr5="select content,status from contract_add where no='$no'";
+
+                        $result=mysqli_query($conn,$sqlstr5);
+                        
+                        while($myrow=mysqli_fetch_row($result)){
+                            $content=$myrow[0];
+                            $status2=$myrow[1];
+                        }
+
+                        ?>
+                            <p>补充合同：</p>
+                            <p style="margin-top:10px"><?=$content?></p>
+
+                            <?php
+                                if($department == "商务运营部" and $status2 == "待归档"){
+                            ?>
+                                <div style="width:1000px;">
+                                    <button class="btn btn-sm btn-danger" style="float:right" id="no2">拒绝</button>
+                                    <button class="btn btn-sm btn-success" style="float:right;margin-right:10px;" id="yes2">同意</button>
+                                </div>
+                            <?php
+                                }
+                            ?>
+
+                        <?php
+
                     }
 
                 ?>
@@ -298,21 +335,15 @@
     })
 
     $("#yes").click(function(){
-        <?php
-            if($username == "崔立德"){
-                ?>
-                    window.location.href="../../controller/contract/contractHandle.php?id=<?=$id?>&progress=3"
-                <?php
-            }elseif($newLevel == "M级别"){
-                ?>
-                    window.location.href="../../controller/contract/contractHandle.php?id=<?=$id?>&progress=2"
-                <?php
-            }elseif($department == "商务运营部"){
-                ?>
-                    window.location.href="../../controller/contract/contractHandle.php?id=<?=$id?>&progress=4"
-                <?php
-            }
-        ?>  
+        window.location.href="../../controller/contract/contractHandle.php?id=<?=$id?>&progress=4"
+    })
+
+    $("#yes2").click(function(){
+        window.location.href="../../controller/contract/contractAdditionHandle.php?no=<?=$no?>&progress=2&option=1"
+    })
+
+    $("#no2").click(function(){
+        window.location.href="../../controller/contract/contractAdditionHandle.php?no=<?=$no?>&progress=2&option=0"
     })
 
     $("#no").click(function(){

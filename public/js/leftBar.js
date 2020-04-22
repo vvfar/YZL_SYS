@@ -121,7 +121,7 @@ $(document).ready(function(){
             $(".leftbar6Z4 a").css("color","#fff")
         }
 
-    }else if(leftBar_path == "contract.php" || leftBar_path == "w_contract.php" || leftBar_path == "contractList.php" || leftBar_path == "contract_line.php" || leftBar_path == "contract_query.php" || leftBar_path == "newSQ.php" || leftBar_path == "sq_line.php"  || leftBar_path == "w_sq.php"  || leftBar_path ==  "sqList.php"){
+    }else if(leftBar_path == "contract.php" || leftBar_path == "w_contract.php" || leftBar_path == "contractList.php" || leftBar_path == "contract_line.php" || leftBar_path == "contract_query.php" || leftBar_path == "newSQ.php" || leftBar_path == "sq_line.php"  || leftBar_path == "w_sq.php"  || leftBar_path ==  "sqList.php"  || leftBar_path ==  "contractAddition.php" ||  leftBar_path == "contract_AddList.php" ||  leftBar_path == "w_contractAdd.php"){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar7").css("background-color","darkslateblue");
         $(".leftbar7 a").css("color","#ffffff");
@@ -134,11 +134,11 @@ $(document).ready(function(){
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
-        if(leftBar_path ==  "contractList.php" || leftBar_path ==  "sqList.php"){
+        if(leftBar_path ==  "contractList.php" || leftBar_path ==  "sqList.php" ||  leftBar_path == "contract_AddList.php"){
             $(".leftbar7Z1 a").css("color","#fff")
-        }else if(leftBar_path == "contract.php" || leftBar_path == "newSQ.php"){
+        }else if(leftBar_path == "contract.php" || leftBar_path == "newSQ.php" || leftBar_path ==  "contractAddition.php"){
             $(".leftbar7Z2 a").css("color","#fff")
-        }else if(leftBar_path == "w_contract.php" || leftBar_path == "w_sq.php"){
+        }else if(leftBar_path == "w_contract.php" || leftBar_path == "w_sq.php" ||  leftBar_path == "w_contractAdd.php"){
             $(".leftbar7Z3 a").css("color","#fff")
         }
 
