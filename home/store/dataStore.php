@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
@@ -53,7 +52,7 @@
                 $pagesize=15;
 
 
-                $sqlstr3="select count(*) as total from store a,store_data b where a.storeID=b.storeID and b.date='$date'";
+                $sqlstr3="select count(*) as total from store a,store_data_sales b where a.storeID=b.storeID and b.date='$date' and a.status='正常'";
 
                 if($newLevel !="ADMIN" and $department != "商务运营部"){
                     if($newLevel == "KA"){
@@ -75,22 +74,28 @@
 
             ?>
 
-            <div style="clear: both;border-radius: 6px;">
+            <div style="clear: both;border-radius: 6px;width:1030px;">
                 <div class="nav nav-pills" style="float:left;margin-top:15px;margin-left:30px;">
                     <li role="presentation" class="active"><a href="#">销售额</a></li>
                     <li role="presentation"><a href="dataStore2.php">回款</a></li>
                 </div>
+
+                <div style="float:right;margin-top:20px;">
+                    <button class="btn btn-sm btn-info" style="float:right;" id="download">下载模板</button>
+                    <button class="btn btn-sm btn-warning" style="float:right;margin-right:10px"  id="upload" data-toggle="modal" data-target="#myModal">上传数据</button>
+                </div>
             </div>
             
+
             <div style="clear:both;">
-                <div style="position:relative;top:15px;">
-                    <h4 style="float:left">
+                <div style="position:relative;top:10px;">
+                    <h4 style="float:left;margin-top:15px;">
                         <span class="label label-info" style="margin-left:30px;">共<?=$total?>条</span>
                         <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
                         <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
                     </h4>
 
-                    <div style="float:right;margin-right:70px;position:relative;top:-20px;">
+                    <div style="float:right;margin-right:70px;">
                         <p style="float: left;position:relative;top:7px;">选择日期</p>
                         <div style="width: 180px;font-size: 14px;float: left;margin-left:20px" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                             <input class="form-control" id="dateTime" name="dateTime" size="16" type="text" value="<?=$date?>" readonly>
@@ -102,11 +107,12 @@
             </div>
             
             <div style="clear:both">
-                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:45px;margin-left:30px;">
+                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:55px;margin-left:30px;">
                     <tr>
                         <th>序号</th>
                         <th>店铺编号</th>
                         <th>店铺名</th>
+                        <th>负责人</th>
                         <th>销售额</th>
                         <th>销售目标</th>
                         <th>现完成额</th>
@@ -117,7 +123,7 @@
                     <?php    
                         $year=substr($date,0,4);
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,b.salesMoney,a.storeTarget,a.status,b.question,c.sumMoney from store_data b,store a join (select storeID,sum(salesMoney) as sumMoney from store_data where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date'";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,a.staff,b.salesMoney,a.storeTarget,a.status,c.sumMoney from store_data_sales b,store a join (select storeID,sum(salesMoney) as sumMoney from store_data_sales where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date' and a.status='正常' ";
 
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){
@@ -141,13 +147,14 @@
                                 <td><?=$count?></td>
                                 <td><a href="dataStoreDetails.php?storeID=<?=$myrow[0]?>"><?=$myrow[0]?></a></td>
                                 <td><?=$myrow[2]?></td>
-                                <td>￥<?=$myrow[3]?></td>
+                                <td><?=$myrow[3]?></td>
                                 <td>￥<?=$myrow[4]?></td>
+                                <td>￥<?=$myrow[5]?></td>
                                 <td>￥<?=$myrow[7]?></td>
                                 <?php
-                                    if($myrow[4] != ""){
+                                    if($myrow[5] != ""){
                                         ?>
-                                            <td><?php echo $myrow[7]/$myrow[4] *100?>%</td>
+                                            <td><?php echo $myrow[7]/$myrow[5] *100?>%</td>
                                         <?php
                                     }else{
                                         ?>
@@ -156,7 +163,7 @@
                                     }
                                 ?>
                                 
-                                <td><?=$myrow[5]?></td>
+                                <td><?=$myrow[6]?></td>
                             </tr>
                             <?php
                         }
@@ -227,6 +234,33 @@
             
             </div>
         </div>
+
+        <!-- Excel导入模态框 -->
+        <form method="POST" action="../../controller/store/uploadStoreData.php" enctype="multipart/form-data">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">
+                                上传店铺数据
+                            </h4>
+                        </div>
+                        
+                        <div class="modal-body" style="height: 200px;">
+                            <div class="form-group" style="clear: both;">
+                                <span style="margin-top:20px;">上传店铺数据文件</span>
+                                <input type="file" name="excel" style="margin-top:20px;"/>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">上传</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </form>
     </body>
 </html>
 
@@ -259,5 +293,9 @@
         date=$("#dateTime").val();
 
         window.location.href="dataStore.php?date="+date;
+    })
+
+    $("#download").click(function(){
+        window.location.href="../../controller/store/downloadStoreMB.php"
     })
 </script>

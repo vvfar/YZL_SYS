@@ -53,7 +53,7 @@
                 $pagesize=15;
 
 
-                $sqlstr3="select count(*) as total from store a,store_data b where a.storeID=b.storeID and b.date='$date'";
+                $sqlstr3="select count(*) as total from store a,store_data_hk b where a.storeID=b.storeID and b.date='$date'";
 
                 if($newLevel !="ADMIN" and $department != "商务运营部"){
                     if($newLevel == "KA"){
@@ -107,6 +107,7 @@
                         <th>序号</th>
                         <th>店铺编号</th>
                         <th>店铺名</th>
+                        <th>负责人</th>
                         <th>回款</th>
                         <th>回款目标</th>
                         <th>现完成额</th>
@@ -117,7 +118,7 @@
                     <?php    
                         $year=substr($date,0,4);
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,b.backMoney,a.hkTarget,a.status,b.question,c.backMoney from store_data b,store a join (select storeID,sum(backMoney) as backMoney from store_data where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date'";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,a.staff,b.backMoney,a.hkTarget,a.status,c.backMoney from store_data_hk b,store a join (select storeID,sum(backMoney) as backMoney from store_data_hk where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date'";
 
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){
@@ -141,13 +142,14 @@
                                 <td><?=$count?></td>
                                 <td><a href="dataStoreDetails.php?storeID=<?=$myrow[0]?>"><?=$myrow[0]?></a></td>
                                 <td><?=$myrow[2]?></td>
-                                <td>￥<?=$myrow[3]?></td>
-                                <td>￥<?=$myrow[4]?></td>
+                                <td><?=$myrow[3]?></td>
+                                <td><?=$myrow[4]?></td>
+                                <td>￥<?=$myrow[5]?></td>
                                 <td>￥<?=$myrow[7]?></td>
                                 <?php
-                                    if($myrow[4] != ""){
+                                    if($myrow[5] != ""){
                                         ?>
-                                            <td><?php echo $myrow[7]/$myrow[4] *100?>%</td>
+                                            <td><?php echo $myrow[7]/$myrow[5] *100?>%</td>
                                         <?php
                                     }else{
                                         ?>
@@ -156,7 +158,7 @@
                                     }
                                 ?>
                                 
-                                <td><?=$myrow[5]?></td>
+                                <td><?=$myrow[6]?></td>
                             </tr>
                             <?php
                         }

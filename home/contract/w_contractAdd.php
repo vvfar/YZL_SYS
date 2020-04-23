@@ -153,7 +153,7 @@
                 }
 
 
-                $sqlstr2="select a.id,a.no,b.company,a.content,b.status,a.date from contract_add a,contract b where not a.status like '%已归档%' and a.no=b.no";
+                $sqlstr2="select b.id,a.no,b.company,a.content,a.status,a.date,a.shr from contract_add a,contract b where not a.status like '%已归档%' and a.no=b.no";
                 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
                     $sqlstr3=$sqlstr3." and a.shr like '%$username%'"; 
@@ -185,6 +185,7 @@
                         <th>合同编号</th>
                         <th>公司名称</th>
                         <th>补充信息</th>
+                        <th>状态</th>
                         <th>登记日期</th>
                     </tr>
                 
@@ -195,14 +196,28 @@
                             $no=$myrow[1];
                             $companyName=$myrow[2];
                             $content=$myrow[3];
-                            $re_date=$myrow[4];
+                            $status=$myrow[4];
+                            $re_date=$myrow[5];
+                            $shr=$myrow[6];
                     ?>
                             <tr>
                                 <td><?=$i+($page-1)*$pagesize?></td>
-                                <td><a href="contract_line.php?id=<?=$id?>&option=合同"><?=$no?></a></td>
+                                
+                                <?php
+                                    if($status =="审核拒绝" and $shr==$username){
+                                        ?>
+                                            <td><a href="contract_line.php?id=<?=$id?>&option=合同" style="color:red"><?=$no?></a></td>
+                                        <?php
+                                    }else{
+                                        ?>
+                                            <td><a href="contract_line.php?id=<?=$id?>&option=合同"><?=$no?></a></td>
+                                        <?php
+                                    }
+                                ?>
                                 <td><?=$companyName?></td>
                                 <td class="category" style="width:130px"><p style="margin:0"><?=$content?></p></td>
-                                <td class="category" style="width:130px"><p style="margin:0"><?=$re_date?></p></td>
+                                <td class="category" style="width:130px"><p style="margin:0"><?=$status?></p></td>
+                                <td class="category" style="width:130px"><p style="margin:0"><?=$re_date?></p></td>   
                             </tr>
                             <?php
                             $i=$i+1;

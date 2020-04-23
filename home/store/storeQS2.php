@@ -99,6 +99,7 @@
                         <th>店铺编号</th>
                         <th>公司名</th>
                         <th>店铺名</th>
+                        <th>负责人</th>
                         <th>问题</th>
                         <th>解决方案</th>
                         <th>问题状态</th>
@@ -107,7 +108,7 @@
                 
                     <?php    
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,b.question,b.answer,b.status,b.date,b.id from  store a,store_qs b where a.storeID=b.storeID and b.status='已处理' ";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,a.staff,b.question,b.answer,b.status,b.date,b.id from  store a,store_qs b where a.storeID=b.storeID and b.status='已处理' ";
 
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){
@@ -129,13 +130,14 @@
                             ?>
                             <tr>
                                 <td><?=$count?></td>
-                                <td><a href="storeQSLine.php?id=<?=$myrow[7]?>"><?=$myrow[0]?></a></td>
+                                <td><a href="storeQSLine.php?id=<?=$myrow[8]?>"><?=$myrow[0]?></a></td>
                                 <td><?=$myrow[1]?></td>
                                 <td><?=$myrow[2]?></td>
-                                <td><p><?=$myrow[3]?><p></td>
+                                <td><?=$myrow[3]?></td>
                                 <td><p><?=$myrow[4]?><p></td>
-                                <td><?=$myrow[5]?></td>
+                                <td><p><?=$myrow[5]?><p></td>
                                 <td><?=$myrow[6]?></td>
+                                <td><?=$myrow[7]?></td>
                             </tr>
                             <?php
                         }

@@ -256,10 +256,13 @@
 
         }elseif($progress == 5){
             //审核拒绝
+            $id=$_GET['id'];
 
             $sqlstr1="update sq set status = '审核拒绝' where id='$id'";
         
         }elseif($progress == 6){
+            $id=$_GET['id'];
+
             $sqlstr1="delete from sq where id='$id'";
         }
 

@@ -77,8 +77,8 @@
 
             <div style="clear: both;border-radius: 6px;">
                 <div class="nav nav-pills" style="float:left;margin-left:30px;">
-                    <li role="presentation" class="active"><a href="#">销售数据</a></li>
-                    <li role="presentation"><a href="dataStoreDetails2.php?storeID=<?=$storeID?>">回款数据</a></li>
+                    <li role="presentation"><a href="dataStoreDetails.php?storeID=<?=$storeID?>">销售数据</a></li>
+                    <li role="presentation" class="active"><a href="#">回款数据</a></li>
                     <!--
                         <li role="presentation"><a href="#">图表展示</a></li>
                         <li role="presentation"><a href="#">资源活动</a></li>
@@ -149,14 +149,13 @@
                         <th>店铺名</th>
                         <th>平台</th>
                         <th>类目</th>
-                        <th>销售额</th>
-                        <th>销售单量</th>
+                        <th>回款</th>
                         <th>日期</th>
                     </tr>
                 
                     <?php    
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,a.pingTai,a.category,b.salesMoney,b.salesNum,b.date from store a,store_data_sales b,store_data_hk c where a.storeID=b.storeID and a.storeID=c.storeID and a.storeID='$storeID'";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,a.pingTai,a.category,b.backMoney,b.date from store a,store_data_hk b where a.storeID=b.storeID and a.storeID='$storeID'";
                         
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){
@@ -187,7 +186,6 @@
                                 <td><?=$myrow[4]?></td>
                                 <td><?=$myrow[5]?></td>
                                 <td><?=$myrow[6]?></td>
-                                <td><?=$myrow[7]?></td>
                             </tr>
                             <?php
                         }

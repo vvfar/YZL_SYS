@@ -34,45 +34,55 @@
     
     $dateTime=$_POST["dateTime"];
 
-    $sqlstr1="select max(id) from store_data";
-    $result=mysqli_query($conn,$sqlstr1);
+    
 
-    while($myrow=mysqli_fetch_row($result)){
-        $maxID=$myrow[0];
-    }
+    if($my_department =="商务运营部"){
+        $sqlstr1="select max(id) from store_data_sales";
+        $result=mysqli_query($conn,$sqlstr1);
+    
+        while($myrow=mysqli_fetch_row($result)){
+            $maxID=$myrow[0];
+        }
+    
+        if($maxID==""){
+            $maxID=0;
+        }
+    
+        $sqlstr1="select staff from store where storeID='$storeID' ";
+            
+        $result=mysqli_query($conn,$sqlstr1);
+    
+        while($myrow=mysqli_fetch_row($result)){
+            $staff=$myrow[0];
+        }
 
-    if($maxID==""){
-        $maxID=0;
-    }
-
-    $sqlstr1="select staff from store where storeID='$storeID' ";
-        
-    $result=mysqli_query($conn,$sqlstr1);
-
-    while($myrow=mysqli_fetch_row($result)){
-        $staff=$myrow[0];
-    }
-
-    $sqlstr2="select count(*) from store_data where storeID='$storeID' and date='$dateTime'";
-        
-    $result=mysqli_query($conn,$sqlstr2);
-
-    while($myrow=mysqli_fetch_row($result)){
-        $store_data_count=$myrow[0];
-    }
-
-    if($store_data_count == 0){
-        $sqlstr3="insert into store_data values('$maxID'+1,'$storeID','$salesMoney','$salesNum','$backMoney','','$dateTime','$staff')";
+        $sqlstr3="insert into store_data_sales values('$maxID'+1,'$storeID','$salesMoney','$salesNum','$dateTime','$staff','$username')";
     }else{
-        if($my_department =="商务运营部"){
-            $sqlstr3="update store_data set salesMoney='$salesMoney',salesNum='$salesNum' where storeID='$storeID' and date='$dateTime'";
-        }else{
-            $sqlstr3="update store_data set backMoney='$backMoney' where storeID='$storeID' and date='$dateTime'";
-        
-            if($link != ""){
-                $sqlstr4="update store set link='$link' where storeID='$storeID'";
-                $result=mysqli_query($conn,$sqlstr4);
-            }
+        $sqlstr1="select max(id) from store_data_hk";
+
+        $result=mysqli_query($conn,$sqlstr1);
+
+        while($myrow=mysqli_fetch_row($result)){
+            $maxID=$myrow[0];
+        }
+
+        if($maxID==""){
+            $maxID=0;
+        }
+
+        $sqlstr1="select staff from store where storeID='$storeID' ";
+            
+        $result=mysqli_query($conn,$sqlstr1);
+
+        while($myrow=mysqli_fetch_row($result)){
+            $staff=$myrow[0];
+        }
+
+        $sqlstr3="insert into store_data_hk values('$maxID'+1,'$storeID','$backMoney','$dateTime','$staff','$username')";
+    
+        if($link != ""){
+            $sqlstr4="update store set link='$link' where storeID='$storeID'";
+            $result=mysqli_query($conn,$sqlstr4);
         }
     }
 

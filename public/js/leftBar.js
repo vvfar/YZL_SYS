@@ -198,7 +198,7 @@ $(document).ready(function(){
         }else if(leftBar_path == "willMeeting.php"){
             $(".leftbar10Z3 a").css("color","#fff")
         }
-    }else if(leftBar_path ==  "newStore.php" || leftBar_path ==  "manStore.php"  || leftBar_path ==  "manStore2.php" || leftBar_path ==  "uploadStore.php"   || leftBar_path ==  "dataStore.php" || leftBar_path ==  "dataStoreDetails.php"   || leftBar_path ==  "closeStore.php" || leftBar_path == "dataStore2.php" || leftBar_path ==  "storeQS.php"  || leftBar_path ==  "storeQS2.php" || leftBar_path ==  "storeQSLine.php"  || leftBar_path ==  "storeAddQS.php"){
+    }else if(leftBar_path ==  "newStore.php" || leftBar_path ==  "manStore.php"  || leftBar_path ==  "manStore2.php" || leftBar_path ==  "uploadStore.php"   || leftBar_path ==  "dataStore.php" || leftBar_path ==  "dataStoreDetails.php"   || leftBar_path ==  "closeStore.php" || leftBar_path == "dataStore2.php" || leftBar_path ==  "storeQS.php"  || leftBar_path ==  "storeQS2.php" || leftBar_path ==  "storeQSLine.php"  || leftBar_path ==  "storeAddQS.php"   || leftBar_path ==  "dataStoreDetails2.php"){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar11").css("background-color","darkslateblue");
         $(".leftbar11 a").css("color","#ffffff");
@@ -214,7 +214,7 @@ $(document).ready(function(){
 
         if(leftBar_path == "manStore.php" || leftBar_path ==  "manStore2.php" || leftBar_path ==  "newStore.php" || leftBar_path == "uploadStore.php"  || leftBar_path ==  "closeStore.php" || leftBar_path ==  "storeAddQS.php"){
             $(".leftbar11Z2 a").css("color","#fff")
-        }else if(leftBar_path == "dataStore.php" || leftBar_path == "dataStoreDetails.php" || leftBar_path == "dataStore2.php"){
+        }else if(leftBar_path == "dataStore.php" || leftBar_path == "dataStoreDetails.php" || leftBar_path == "dataStore2.php"  || leftBar_path ==  "dataStoreDetails2.php"){
             $(".leftbar11Z4 a").css("color","#fff")
         }else if(leftBar_path ==  "storeQS.php" || leftBar_path ==  "storeQSLine.php" || leftBar_path ==  "storeQS2.php"){
             $(".leftbar11Z5 a").css("color","#fff")

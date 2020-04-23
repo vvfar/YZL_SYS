@@ -66,6 +66,8 @@
                         if($newLevel == "M"){
                             ?>
                                 <li role="presentation"><a href="newStore.php?id=<?=$id?>">店铺管理</a></li>
+                                <li role="presentation"><a href="uploadStore.php?id=<?=$id?>">每日数据</a></li>
+                                <li role="presentation" class="active"><a href="#">店铺问题</a></li>
                             <?php
                         }else{
                             ?>

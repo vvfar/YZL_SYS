@@ -109,10 +109,13 @@
         }
     }elseif($progress == 5){
         //审核拒绝
+        $id=$_GET["id"];
 
         $sqlstr1="update contract set status = '审核拒绝' where id='$id'"; 
         $result=mysqli_query($conn,$sqlstr1);
     }elseif($progress == 6){
+        $id=$_GET["id"];
+
         $sqlstr1="delete from contract where id='$id'";
         
         $result=mysqli_query($conn,$sqlstr1);

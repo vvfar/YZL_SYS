@@ -204,27 +204,26 @@
                             $pingTai=$myrow[3];
                             $category=$myrow[4];
                             $department=$myrow[5];
-                            $status=$myrow[11];
                             $re_date=$myrow[9];
-
-                            $arr_status=explode(",",$status);
-                            $status=array_pop($arr_status);
-
+                            $status=$myrow[11];
+                            $shr=$myrow[12];
+    
                             ?>
                             <tr>
                                 <td><?=$i+($page-1)*$pagesize?></td>
 
                                 <?php
-                                    if($isContract=="合同"){
-                                ?>
-                                    <td><a href="contract_line.php?id=<?=$id?>&option=合同"><?=$contractID?></a></td>
-                                <?php
-                                    }elseif($isContract=="授权"){
-                                ?>
-                                    <td><a href="sq_line.php?id=<?=$id?>&option=授权"><?=$contractID?></a></td>
-                                <?php
+                                    if($status =="审核拒绝" and $shr==$username){
+                                        ?>
+                                            <td><a href="sq_line.php?id=<?=$id?>&option=授权" style="color:red"><?=$contractID?></a></td>
+                                        <?php
+                                    }else{
+                                        ?>
+                                            <td><a href="sq_line.php?id=<?=$id?>&option=授权"><?=$contractID?></a></td>
+                                        <?php
                                     }
                                 ?>
+
                                 
                                 <td><?=$companyName?></td>
                                 <td class="category" style="width:130px"><p style="margin:0"><?=$pingTai?></p></td>

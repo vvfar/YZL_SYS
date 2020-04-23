@@ -26,7 +26,7 @@
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
                         <li role="presentation" class="active"><a href="w_contract.php">合同</a></li>
                         <li role="presentation"><a href="w_contractAdd.php">补充合同</a></li>
-                        <li role="presentation"><a href="w_sq.w_contractAdd.phpphp">授权</a></li>
+                        <li role="presentation"><a href="w_sq.php">授权</a></li>
                     </div>
                 </div>
 
@@ -201,28 +201,26 @@
                             $pingTai=$myrow[3];
                             $category=$myrow[4];
                             $department=$myrow[5];
+                            $shr=$myrow[12];
                             $status=$myrow[11];
                             $re_date=$myrow[9];
-
-                            $arr_status=explode(",",$status);
-                            $status=array_pop($arr_status);
 
                             ?>
                             <tr>
                                 <td><?=$i+($page-1)*$pagesize?></td>
-
+                                
                                 <?php
-                                    if($isContract=="合同"){
-                                ?>
-                                    <td><a href="contract_line.php?id=<?=$id?>&option=合同"><?=$contractID?></a></td>
-                                <?php
-                                    }elseif($isContract=="授权"){
-                                ?>
-                                    <td><a href="sq_line.php?id=<?=$id?>&option=授权"><?=$contractID?></a></td>
-                                <?php
+                                    if($status =="审核拒绝" and $shr==$username){
+                                        ?>
+                                            <td><a href="contract_line.php?id=<?=$id?>&option=合同" style="color:red"><?=$contractID?></a></td>
+                                        <?php
+                                    }else{
+                                        ?>
+                                            <td><a href="contract_line.php?id=<?=$id?>&option=合同"><?=$contractID?></a></td>
+                                        <?php
                                     }
                                 ?>
-                                
+   
                                 <td><?=$companyName?></td>
                                 <td class="category" style="width:130px"><p style="margin:0"><?=$pingTai?></p></td>
                                 <td class="category" style="width:130px"><p style="margin:0"><?=$category?></p></td>

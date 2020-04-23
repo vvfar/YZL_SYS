@@ -3,6 +3,8 @@
     include_once("../../common/conn/conn.php");
     error_reporting(E_ALL || ~E_NOTICE);
     session_start();
+    date_default_timezone_set("Asia/Shanghai");
+    $date=date('Y-m-d', time());
 
     $username=$_SESSION['username'];
 
@@ -23,8 +25,8 @@
             $maxID=0;
         }
     
-        $sqlstr2="insert into contract_add values('$maxID'+1,'$no','$content','待归档','$username')";
-    
+        $sqlstr2="insert into contract_add values('$maxID'+1,'$no','$content','待归档','$username','$date')";
+
         $result=mysqli_query($conn,$sqlstr2);
     
         if($result){
@@ -50,7 +52,7 @@
         if($option ==1){
             $sqlstr2="update contract_add set status ='已归档' where no='$no'";
         }else{
-            $sqlstr2="update contract_add set status ='已拒绝' where no='$no'";
+            $sqlstr2="update contract_add set status ='审核拒绝' where no='$no'";
         }
         
         $result=mysqli_query($conn,$sqlstr2);
