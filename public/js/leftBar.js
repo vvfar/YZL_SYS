@@ -34,20 +34,16 @@ $(document).ready(function(){
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
-        if(leftBar_path ==  "zhangmu.php"){
+        if(leftBar_path ==  "zhangmu.php" || leftBar_path ==  "sx_cw.php"){
             $(".leftbar1Z1 a").css("color","#fff")
         }else if(leftBar_path == "writeSX.php" || leftBar_path ==  "djLoad.php"){
             $(".leftbar1Z2 a").css("color","#fff")
         }else if(leftBar_path == "companyManger2.php"){
             $(".leftbar1Z3 a").css("color","#fff")
-        }else if(leftBar_path ==  "zhangmu2.php"){
+        }else if(leftBar_path ==  "zhangmu2.php" || leftBar_path ==  "expireSX.php" || leftBar_path ==  "timeSX.php"){
             $(".leftbar1Z4 a").css("color","#fff")
-        }else if(leftBar_path ==  "zhangmu3.php"){
+        }else if(leftBar_path ==  "zhangmu3.php" || leftBar_path ==  "ZFSX.php"){
             $(".leftbar1Z5 a").css("color","#fff")
-        }else if(leftBar_path ==  "expireSX.php" || leftBar_path ==  "timeSX.php"){
-            $(".leftbar1Z6 a").css("color","#fff")
-        }else if(leftBar_path ==  "ZFSX.php"){
-            $(".leftbar1Z7 a").css("color","#fff")
         }
         
     }else if(leftBar_path == "data.php" || leftBar_path == "form.php" || leftBar_path == "uploadInfo.php" || leftBar_path == "addDayData.php" || leftBar_path == "sumDayData.php" || leftBar_path == "powerPage.php"){

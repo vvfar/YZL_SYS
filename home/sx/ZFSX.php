@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css\header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
@@ -66,8 +65,8 @@
                     <input class="form-control" id="companyName" placeholder="请输入公司名称" style="width:250px;" value="<?=$companyName?>"/>
                 </div>
                 <div style="float:left;margin-left:20px;margin-top:2px;">
-                    <button class="btn btn-success btn-sm" onclick="search()">搜索</button>
-                    <button class="btn btn-warning btn-sm" onclick="excel()">导出Excel</button>
+                    <button class="btn btn-warning btn-sm" onclick="search()">查询</button>
+                    <button class="btn btn-success btn-sm" onclick="excel()">下载</button>
                     <?php
                         if($newLevel=="ADMIN"){
                             ?>

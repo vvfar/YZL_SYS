@@ -44,73 +44,7 @@
                 while($myrow=mysqli_fetch_row($result)){
                     $department=$myrow[0];
                 }
-            ?>
-            <div class="form-group date_form">
-                <p class="djrq">最晚回款期限</p>
-                <p style="width: 20px;font-size: 14px;float: left;margin-top:5px;margin-left:20px;">从</p>
-                <div style="width: 180px;font-size: 14px;float: left;" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" id="date1" size="16" type="text" value="<?=$date1?>" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-                <p style="width: 20px;font-size: 14px;float: left;margin-top:5px;margin-left:20px;">到</p>
-                <div style="width: 180px;font-size: 14px;float: left;" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" id="date2" size="16" type="text" value="<?=$date2?>" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-                <div style="font-size: 14px;float: left;margin-left:20px;">
-                    <input class="form-control" id="companyName" placeholder="请输入公司名称" style="width:250px;" value="<?=$companyName?>"/>
-                </div>
-                <div style="float:left;margin-left:20px;margin-top:2px;">
-                    <button class="btn btn-success btn-sm" onclick="search()">搜索</button>
-                    <button class="btn btn-warning btn-sm" onclick="excel()">导出Excel</button>
 
-                    <?php
-                        if($department=="数据中心"){
-                            ?>
-                                <button class="btn btn-info btn-sm" onclick="upload()" data-toggle="modal" data-target="#myModal2">批量导入</button>
-                            <?php
-                        }
-                    ?>
-                </div>
-
-                <!-- Excel导入模态框 -->
-                <form method="POST" action="formHandle/uploadSXHandle.php" enctype="multipart/form-data">
-                    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                        &times;
-                                    </button>
-                                    <h4 class="modal-title" id="myModalLabel">
-                                        批量上传授信
-                                    </h4>
-                                </div>
-                                
-                                <div class="modal-body" style="height: 150px;">
-                                    <input type="file" name="excel"/>
-                                    <div style="clear: both;position: relative;top:20px;width:300px;">
-                                        <p>温馨提示：文件必须为EXCEL格式，请按模板文件格式进行上传，文件大小需小于2M</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="submit" class="btn btn-primary">导入表格</button>
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div style="clear:both;float:left;margin-left:30px;">
-                <p>注：待审核授信无法作为辅料单授信，必须完成单据上传后方可使用。</p>
-            </div>
-
-            <?php
                 //分页代码
                 if(!isset($_GET["page"]) || !is_numeric($_GET["page"])){
                     $page=1;
@@ -144,6 +78,13 @@
                     $pagecount=ceil($total/$pagesize);
                 }
             ?>
+
+            <div style="clear: both;border-radius: 6px;">
+                <div class="nav nav-pills" style="float:left;margin-top:20px;margin-left:30px;">
+                    <li role="presentation"><a href="zhangmu.php">待归档授信</a></li>
+                    <li role="presentation" class="active"><a href="#">待审核回款</a></li>
+                </div>
+            </div>
             
             <div style="clear:both">
                 <h4 style="float:left;margin-top:20px">
@@ -153,8 +94,8 @@
                 </h4>
             <div>
             
-            <div style="clear:both;position: relative;top: 10px;margin-left: 30px;">
-                <table class="table table-responsive table-bordered table-hover" style="width: 1000px;margin-bottom:10px;">
+            <div style="clear:both;position: relative;top: 17px;margin-left: 30px;">
+                <table class="table table-responsive table-bordered table-hover" style="width: 1020px;margin-bottom:10px;">
                     <tr>
                         <th style="width: 150px;">授信编号</th>
                         <th>公司名称</th>
@@ -181,7 +122,7 @@
                             $sqlstr2=$sqlstr2." and a.companyName like '%$companyName%'";
                         }
                         
-                        if($department !="数据中心" and $department !="财务部"){
+                        if($department !="财务部"){
                             $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%')";
                         }
 
@@ -240,7 +181,7 @@
                     ?>&date1=<?=$date1?>&date2=<?=$date2?>&companyName=<?=$companyName?>">下一页</a></li>
                 </ul>
 
-                <div style="float:left;margin-left:530px;width:321px;">
+                <div style="float:left;margin-left:550px;width:321px;">
                     <ul class="pagination" style="float:right">
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1">&laquo;</a></li>
                         <?php

@@ -32,7 +32,7 @@
         $salesNum="";
     }
     
-    $dateTime=$_POST["dateTime"];
+    $date=$_POST["dateTime"];
 
     
 
@@ -56,7 +56,20 @@
             $staff=$myrow[0];
         }
 
-        $sqlstr3="insert into store_data_sales values('$maxID'+1,'$storeID','$salesMoney','$salesNum','$dateTime','$staff','$username')";
+        $sqlstr2="select count(*) from store_data_sales where storeID='$storeID' and date='$date'";
+
+        $result=mysqli_query($conn,$sqlstr2);
+
+        while($myrow=mysqli_fetch_row($result)){
+            $dup_data=$myrow[0];
+        }
+
+        if($dup_data >0){
+            $sqlstr3="update store_data_sales set salesMoney='$salesMoney',salesNum='$salesNum',date='$date',corp='$username' where storeID='$storeID' and date='$date'";
+        }else{
+            $sqlstr3="insert into store_data_sales values('$maxID','$storeID','$salesMoney','$salesNum','$date','$staff','$username')";
+        }
+
     }else{
         $sqlstr1="select max(id) from store_data_hk";
 

@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
@@ -48,27 +47,6 @@
                     $newLevel=$myrow[1];
                 }
 
-                $sqlstr2="select fileName from files where note='授信欠据模板'";
-
-                $result=mysqli_query($conn,$sqlstr2);
-
-                if($result){
-                    while($myrow=mysqli_fetch_row($result)){
-                        $path1=$myrow[0];
-                    }   
-                }
-                
-
-                $sqlstr3="select fileName from files where note='产品抵标费模板'";
-
-                $result=mysqli_query($conn,$sqlstr3);
-                
-                if($result){
-                    while($myrow=mysqli_fetch_row($result)){
-                        $path2=$myrow[0];
-                    }
-                }
-
             ?>
 
             <div style="margin-left:30px;margin-top:15px;">
@@ -79,7 +57,7 @@
             </div>
 
             <div>
-                <button class="btn btn-success btn-sm" style="float:right;margin-right:35px;" onclick="downloadYQ()">下载逾期单据</button>
+                <button class="btn btn-success btn-sm" style="float:right;margin-right:50px;" onclick="downloadYQ()">下载逾期单据</button>
             </div>
 
             <?php

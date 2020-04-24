@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
@@ -75,22 +74,26 @@
 
             ?>
 
-            <div style="clear: both;border-radius: 6px;">
+            <div style="clear: both;border-radius: 6px;width:1030px;">
                 <div class="nav nav-pills" style="float:left;margin-top:15px;margin-left:30px;">
                     <li role="presentation"><a href="dataStore.php">销售额</a></li>
                     <li role="presentation" class="active"><a href="#">回款</a></li>
                 </div>
+
+                <div style="float:right;margin-top:20px;">
+                    <button class="btn btn-sm btn-danger" style="float:right;margin-left:10px;"  id="downloadAll">下载数据</button>  
+                </div>
             </div>
             
             <div style="clear:both;">
-                <div style="position:relative;top:15px;">
-                    <h4 style="float:left">
+                <div style="position:relative;top:10px;">
+                    <h4 style="float:left;margin-top:15px;">
                         <span class="label label-info" style="margin-left:30px;">共<?=$total?>条</span>
                         <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
                         <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
                     </h4>
 
-                    <div style="float:right;margin-right:70px;position:relative;top:-20px;">
+                    <div style="float:right;margin-right:70px;">
                         <p style="float: left;position:relative;top:7px;">选择日期</p>
                         <div style="width: 180px;font-size: 14px;float: left;margin-left:20px" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                             <input class="form-control" id="dateTime" name="dateTime" size="16" type="text" value="<?=$date?>" readonly>
@@ -102,7 +105,7 @@
             </div>
             
             <div style="clear:both">
-                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:45px;margin-left:30px;">
+                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:55px;margin-left:30px;">
                     <tr>
                         <th>序号</th>
                         <th>店铺编号</th>
@@ -261,5 +264,9 @@
         date=$("#dateTime").val();
 
         window.location.href="dataStore2.php?date="+date;
+    })
+
+    $("#downloadAll").click(function(){
+        window.location.href="../../controller/store/downloadStoreData.php?option=2"
     })
 </script>

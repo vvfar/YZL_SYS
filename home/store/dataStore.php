@@ -8,8 +8,8 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
-        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
+        <link href="..\..\public\css\header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
@@ -81,11 +81,17 @@
                 </div>
 
                 <div style="float:right;margin-top:20px;">
-                    <button class="btn btn-sm btn-info" style="float:right;" id="download">下载模板</button>
-                    <button class="btn btn-sm btn-warning" style="float:right;margin-right:10px"  id="upload" data-toggle="modal" data-target="#myModal">上传数据</button>
+                    <?php
+                        if($department == "商务运营部"){
+                            ?>
+                                <button class="btn btn-sm btn-info" style="float:right;margin-left:10px;" id="download">下载模板</button>
+                                <button class="btn btn-sm btn-warning" style="float:right;margin-left:10px;"  id="upload" data-toggle="modal" data-target="#myModal">上传数据</button>  
+                            <?php
+                        }
+                    ?>
+                    <button class="btn btn-sm btn-danger" style="float:right;margin-left:10px;"  id="downloadAll">下载数据</button>  
                 </div>
             </div>
-            
 
             <div style="clear:both;">
                 <div style="position:relative;top:10px;">
@@ -298,4 +304,10 @@
     $("#download").click(function(){
         window.location.href="../../controller/store/downloadStoreMB.php"
     })
+
+    $("#downloadAll").click(function(){
+        window.location.href="../../controller/store/downloadStoreData.php?option=1"
+    })
+
+    
 </script>

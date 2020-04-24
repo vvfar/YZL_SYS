@@ -106,10 +106,6 @@
                     <span class="label label-warning" style="margin-left:5px;">共<?=$pagecount?>页</span>
                     <span class="label label-success" style="margin-left:5px;">第<?=$page?>页</span>
                 </h4>
-
-                <div style="float:right;margin-top:15px;">
-                    <a href="sx_cw.php" target="_blank">审批回款单</a>
-                </div>
             <div>
             
             <div style="clear:both;position: relative;top: 17px;margin-left: 30px;">

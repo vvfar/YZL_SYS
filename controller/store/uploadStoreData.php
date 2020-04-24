@@ -98,9 +98,21 @@
                         $n1 = intval(($t1 - 25569) * 3600 * 24);
                         $date=gmdate('Y-m-d',$n1);
                         
-                        $sqlstr2="insert into store_data_sales values('$maxID','$storeID','$salesMoney','$salesNum','$date','$staff','$username')";
+                        $sqlstr2="select count(*) from store_data_sales where storeID='$storeID' and date='$date'";
 
                         $result=mysqli_query($conn,$sqlstr2);
+
+                        while($myrow=mysqli_fetch_row($result)){
+                            $dup_data=$myrow[0];
+                        }
+
+                        if($dup_data >0){
+                            $sqlstr3="update store_data_sales set salesMoney='$salesMoney',salesNum='$salesNum',date='$date',corp='$username' where storeID='$storeID' and date='$date'";
+                        }else{
+                            $sqlstr3="insert into store_data_sales values('$maxID','$storeID','$salesMoney','$salesNum','$date','$staff','$username')";
+                        }
+
+                        $result=mysqli_query($conn,$sqlstr3);
 
                     }
 

@@ -163,7 +163,7 @@
         }
         
         alert("提交成功!");
-        window.location.href="../../home/sx/zhangmu.php";
+        window.location.href="../../home/sx/djLoad.php";
     </script>
         
     <?php

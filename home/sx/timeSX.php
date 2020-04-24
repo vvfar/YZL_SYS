@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
@@ -96,7 +95,7 @@
 
             
             <div style="clear:both;position: relative;top: 10px;margin-left: 30px;">
-                <table class="table table-responsive table-bordered table-hover" style="width: 1020px;margin-bottom:10px;margin-top:25px;">
+                <table class="table table-responsive table-bordered table-hover sx_form" style="width: 1020px;margin-bottom:10px;margin-top:25px;">
                     <tr>
                         <th>序号</th>
                         <th style="width: 150px;">授信编号</th>
@@ -225,7 +224,7 @@
                                             <td><?=$myTotal?></td>
                                             <td class="td1"><p style="margin:0 auto"><a href="sx_line.php?id=<?=$myrow[0]?>" style="width: 50px;"><?=$myrow[2]?></a></p></td>
                                             <td class="td2"><p style="margin:0 auto"><?=$myrow[3]?></p></td>
-                                            <td><?=$myrow[4]?></td>
+                                            <td><p style="margin:0 auto"><?=$myrow[4]?></p></td>
                                             <td><?=$myrow[5]?></td>
                                             <td><?=$myrow[6]?></td>
                                             <td><?=$qs?></td>
@@ -342,16 +341,8 @@
         color:#fff;
     }
 
-    .td1 p{
-        text-align:center;
-        width: 150px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow:ellipsis;
-    }
-
-    .td2 p{
-        width: 180px;
+    .sx_form p{
+        width: 100px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow:ellipsis;
