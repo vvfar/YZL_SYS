@@ -47,7 +47,7 @@
                 $pagesize=15;
 
 
-                $sqlstr3="select count(*) as total from store a,store_data_sales b,store_data_hk c where a.storeID=b.storeID and a.storeID=c.storeID and a.storeID='$storeID'";
+                $sqlstr3="select count(*) as total from store a,store_data_sales b where a.storeID=b.storeID and a.storeID='$storeID'";
 
                 if($newLevel !="ADMIN" and $department != "商务运营部"){
                     if($newLevel == "KA"){
@@ -156,7 +156,7 @@
                 
                     <?php    
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,a.pingTai,a.category,b.salesMoney,b.salesNum,b.date from store a,store_data_sales b,store_data_hk c where a.storeID=b.storeID and a.storeID=c.storeID and a.storeID='$storeID'";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,a.pingTai,a.category,b.salesMoney,b.salesNum,b.date,a.id from store a,store_data_sales b where a.storeID=b.storeID and a.storeID='$storeID'";
                         
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){
@@ -177,10 +177,24 @@
                             $number=($page-1) * 15 + $count;
                             $count=$count+1;
 
+                            $id=$myrow[8];
+
                             ?>
                             <tr>
                                 <td><?=$number?></td>
-                                <td><?=$myrow[0]?></td>
+
+                                <?php
+                                    if($department == "商务运营部"){
+                                        ?>
+                                            <td><a href="uploadStore.php?id=<?=$id?>&date=<?=$myrow[6]?>" target="_blank"><?=$myrow[0]?></a></td>
+                                        <?php
+                                    }else{
+                                        ?>
+                                            <td><?=$myrow[0]?></td>
+                                        <?php
+                                    }
+                                ?>
+                                
                                 <td><?=$myrow[1]?></td>
                                 <td><?=$myrow[2]?></td>
                                 <td><?=$myrow[3]?></td>

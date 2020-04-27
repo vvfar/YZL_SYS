@@ -26,6 +26,19 @@
             </ul>
 
             <?php
+
+                if(isset($_GET["date"])){
+                    $date=$_GET["date"];
+                }else{
+                    $date="";
+                }
+
+                if(isset($_GET["hk"])){
+                    $hk=$_GET["hk"];
+                }else{
+                    $hk="";
+                }
+
                 
                 $username=$_SESSION["username"];
 
@@ -127,7 +140,7 @@
                             ?>
                                 <div class="form-group" style="clear: both;margin-bottom:0px;">
                                     <p style="width: 100px;font-size: 14px;float: left;margin-top: 20px;">回款登记</p>
-                                    <input type="text" class="form-control" name="backMoney" placeholder="请输入回款登记" style="width: 200px;float: left;margin-top: 15px;">
+                                    <input type="text" class="form-control" name="backMoney" placeholder="请输入回款登记" style="width: 200px;float: left;margin-top: 15px;" value="<?=$hk?>">
                                 </div>
                                 <div class="form-group" style="clear: both;margin-bottom:0px;">
                                     <p style="width: 100px;font-size: 14px;float: left;margin-top: 20px;">店铺链接</p>
@@ -137,7 +150,7 @@
                                     <p style="width: 100px;font-size: 14px;float: left;margin-top: 20px;">登记日期</p>
                                 
                                     <div style="width: 200px;font-size: 14px;position:relative;top:15px" class="input-group date form_datetime" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        <input class="form-control" id="dateTime" name="dateTime" size="16" type="text" readonly>
+                                        <input class="form-control" value="<?=$date?>" id="dateTime" name="dateTime" size="16" type="text" readonly>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div>

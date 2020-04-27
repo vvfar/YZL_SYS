@@ -93,7 +93,7 @@
                 </div>
             </div>
 
-            <div style="clear:both;">
+            <div style="clear:both;width:1100px;">
                 <div style="position:relative;top:10px;">
                     <h4 style="float:left;margin-top:15px;">
                         <span class="label label-info" style="margin-left:30px;">共<?=$total?>条</span>

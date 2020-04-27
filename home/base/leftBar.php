@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
+        <link href="/public/css/leftbar.css" rel="stylesheet"/>
         <link rel="stylesheet" href="/public/lib/layui/css/layui.css" ></script>
         <script src="/public/js/leftBar.js"></script>
+        <script src="/public/lib/layui/layui.js"></script>
     </head>
 
     <body>
@@ -25,7 +27,12 @@
         <div class="leftBar">
 
             <ul class="leftbarAll">
-                <li class="leftbar0"><i class="layui-icon layui-icon-home"></i><a href="/index.php">我的门户</a></li>
+                <li class="leftbar0"><i class="layui-icon layui-icon-home"></i><a href="#">我的门户</a></li>
+                <div class="leftbar0Z zcd">
+                    <li class="leftbar0Z1"><a href="/index.php">公司门户</a></li>
+                    <li class="leftbar0Z2"><a href="/home/index/myWork.php">我的工作</a></li>
+                    <!--<li class="leftbar0Z3"><a href="/home/index/dataQuery.php">数据平台</a></li>-->
+                </div>
 
                 <li class="leftbar7"><i class="layui-icon layui-icon-template-1"></i><a href="#">合同授权</a></li>
                 <div class="leftbar7Z zcd">

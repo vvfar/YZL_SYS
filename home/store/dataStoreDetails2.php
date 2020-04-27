@@ -47,7 +47,7 @@
                 $pagesize=15;
 
 
-                $sqlstr3="select count(*) as total from store a,store_data_sales b,store_data_hk c where a.storeID=b.storeID and a.storeID=c.storeID and a.storeID='$storeID'";
+                $sqlstr3="select count(*) as total from store a,store_data_hk b where a.storeID=b.storeID and a.storeID='$storeID'";
 
                 if($newLevel !="ADMIN" and $department != "商务运营部"){
                     if($newLevel == "KA"){
@@ -87,7 +87,7 @@
             </div>
             
             <?php
-                $sqlstr4="select storeID,client,storeName,pingtai,category,department,staff,status from store where storeID='$storeID'";
+                $sqlstr4="select storeID,client,storeName,pingtai,category,department,staff,status,id from store where storeID='$storeID'";
             
                 $result2=mysqli_query($conn,$sqlstr4);
         
@@ -99,6 +99,7 @@
                     $department=$myrow[5];
                     $staff=$myrow[6];
                     $status=$myrow[7];
+                    $id=$myrow[8];
                 }
             ?>
 
@@ -179,7 +180,7 @@
                             ?>
                             <tr>
                                 <td><?=$number?></td>
-                                <td><?=$myrow[0]?></td>
+                                <td><a href="uploadStore.php?id=<?=$id?>&date=<?=$myrow[6]?>&hk=<?=$myrow[5]?>" target="_blank"><?=$myrow[0]?></a></td>
                                 <td><?=$myrow[1]?></td>
                                 <td><?=$myrow[2]?></td>
                                 <td><?=$myrow[3]?></td>

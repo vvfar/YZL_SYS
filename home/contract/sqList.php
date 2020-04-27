@@ -24,8 +24,9 @@
             <div class="nav nav-pills" style="float: left;margin-left:30px;">
                 <div style="clear: both;border-radius: 6px;">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
-                        <li role="presentation"><a href="contractList.php">已归档合同</a></li>
-                        <li role="presentation" class="active"><a href="#">已归档授权</a></li>
+                        <li role="presentation"><a href="contractList.php">合同</a></li>
+                        <li role="presentation"><a href="contract_AddList.php">补充合同</a></li>
+                        <li role="presentation" class="active"><a href="#">授权</a></li>
                     </div>
                 </div>
 

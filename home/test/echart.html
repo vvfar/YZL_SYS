@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="..\..\public\lib\echarts\dist\echarts.min.js"></script>
+        <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <div id="main" style="width:600px;height:400px;"></div>
+    </body>
+</html>
+
+<script>
+    window.onload=function(){
+        var myChart=echarts.init(document.getElementById('main'),"light");
+
+        myChart.showLoading();
+
+        var names=[];
+        var numbers=[];
+
+        $.ajax({
+            type:"post",
+            async:true,
+            url:"../../controller/echart.php",
+            dataType:"json",
+            success:function(result){
+                if(result){
+                    for(var i=0;i<result.length;i++){
+                        names.push(result[i].name);
+                        numbers.push(result[i].number);
+                    }
+                }
+
+                myChart.hideLoading();
+            
+                var option={
+                    title:{
+                        text:'ECharts入门实例',
+                        subtext:'纯属虚构',
+                        x:'left'  //默认left，center，right
+                    },
+                    tooltip:{
+                        trigger:'item',
+                    },
+                    legend:{
+                        orient:'vertical',  //图例方向  vertical,horizontal
+                        left:'center',  //默认center，left，right
+                        data:['销量']
+                    },
+
+                    //柱状图，折线图
+                    
+                    xAxis:{
+                        //data:["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                        data:names
+                    },
+                    yAxis:{},
+                    series:[{
+                        name:'销量',
+                        //bar,line
+                        type:'line',
+                        //data:[5,20,36,10,10,20]
+                        data:numbers
+                    }]
+                    
+                    
+                    /*
+                    series:[{
+                        name:'访问来源',
+                        //bar,line
+                        type:'pie',
+                        radius:'50%',
+                        center:['50%','50%'],
+                        data:[
+                            {value:335,name:"a"},
+                            {value:325,name:"b"},
+                            {value:235,name:"c"},
+                            {value:135,name:"d"},
+                            {value:935,name:"e"},
+                        ]
+                    }]
+                    */
+
+                }
+
+                myChart.setOption(option);
+            
+            }
+        })
+
+
+
+        
+    }
+</script>

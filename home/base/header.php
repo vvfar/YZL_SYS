@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
+        <link href="/../public/css/header.css" rel="stylesheet"/>
         <script src="/../public/js/header.js"></script>
     </head>
 
@@ -43,10 +44,11 @@
 
             <div class="headerBar">
                 <div class="headerImg"><img src="/common/file/user_icon/<?=$headerImg?>" width="100%" height="100%" style="border-radius:100%; overflow:hidden;"/></div>
-                
                 <div class="userInfo">
                     <p><span id="time"></span><?=$_SESSION['username']?></p>
                 </div>
+                
+                
             </div>
         </div>
     </body>

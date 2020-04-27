@@ -5,7 +5,7 @@ $(document).ready(function(){
     leftBar_path=leftBar_path.split("/");
     leftBar_path=leftBar_path.pop()
 
-    if(leftBar_path == "" || leftBar_path == "index.php"){
+    if(leftBar_path == "" || leftBar_path == "index.php" || leftBar_path == "dataQuery.php" || leftBar_path == "myWork.php"){
 
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar0").css("background-color","darkslateblue");
@@ -20,11 +20,20 @@ $(document).ready(function(){
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
 
+        if(leftBar_path ==  "index.php"){
+            $(".leftbar0Z1 a").css("color","#fff")
+        }else if(leftBar_path == "myWork.php"){
+            $(".leftbar0Z2 a").css("color","#fff")
+        }else if(leftBar_path == "dataQuery.php"){
+            $(".leftbar0Z3 a").css("color","#fff")
+        }
+
     }else if(leftBar_path ==  "writeSX.php" || leftBar_path ==  "companyManger2.php" || leftBar_path ==  "zhangmu.php"  || leftBar_path ==  "zhangmu2.php" || leftBar_path ==  "zhangmu3.php" || leftBar_path ==  "sx_line.php" || leftBar_path ==  "sxmb.php"  || leftBar_path ==  "companyManger1_edit.php" || leftBar_path == "expireSX.php"    || leftBar_path == "timeSX.php"|| leftBar_path == "sx_cw.php" || leftBar_path == "ZFSX.php" || leftBar_path ==  "sx_line2.php" || leftBar_path ==  "djLoad.php"){
 
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar1").css("background-color","darkslateblue");
         $(".leftbar1 a").css("color","#ffffff");
+        $(".leftbar0Z").toggle();
         $(".leftbar2Z").toggle();
         $(".leftbar5Z").toggle();
         $(".leftbar6Z").toggle();
@@ -51,6 +60,7 @@ $(document).ready(function(){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar2").css("background-color","darkslateblue");
         $(".leftbar2 a").css("color","#ffffff");
+        $(".leftbar0Z").toggle();
         $(".leftbar1Z").toggle();
         $(".leftbar5Z").toggle();
         $(".leftbar6Z").toggle();
@@ -82,6 +92,7 @@ $(document).ready(function(){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar5").css("background-color","darkslateblue");
         $(".leftbar5 a").css("color","#ffffff");
+        $(".leftbar0Z").toggle();
         $(".leftbar1Z").toggle();
         $(".leftbar2Z").toggle();
         $(".leftbar6Z").toggle();
@@ -98,6 +109,7 @@ $(document).ready(function(){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar6").css("background-color","darkslateblue");
         $(".leftbar6 a").css("color","#ffffff");
+        $(".leftbar0Z").toggle();
         $(".leftbar1Z").toggle();
         $(".leftbar2Z").toggle();
         $(".leftbar5Z").toggle();
@@ -121,6 +133,7 @@ $(document).ready(function(){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar7").css("background-color","darkslateblue");
         $(".leftbar7 a").css("color","#ffffff");
+        $(".leftbar0Z").toggle();
         $(".leftbar1Z").toggle();
         $(".leftbar2Z").toggle();
         $(".leftbar5Z").toggle();
@@ -142,6 +155,7 @@ $(document).ready(function(){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar8").css("background-color","darkslateblue");
         $(".leftbar8 a").css("color","#ffffff");
+        $(".leftbar0Z").toggle();
         $(".leftbar1Z").toggle();
         $(".leftbar2Z").toggle();
         $(".leftbar5Z").toggle();
@@ -161,7 +175,7 @@ $(document).ready(function(){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar9").css("background-color","darkslateblue");
         $(".leftbar9 a").css("color","#ffffff");
-    
+        $(".leftbar0Z").toggle();
         $(".leftbar1Z").toggle();
         $(".leftbar2Z").toggle();
         $(".leftbar5Z").toggle();
@@ -178,6 +192,7 @@ $(document).ready(function(){
         }
     
     }else if(leftBar_path ==  "apcMeeting.php" || leftBar_path ==  "viewMeeting.php"  || leftBar_path ==  "willMeeting.php"   || leftBar_path ==  "viewMeetingDetail.php"){
+        $(".leftbar0Z").toggle();
         $(".leftbar1Z").toggle();
         $(".leftbar2Z").toggle();
         $(".leftbar5Z").toggle();
@@ -198,7 +213,7 @@ $(document).ready(function(){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar11").css("background-color","darkslateblue");
         $(".leftbar11 a").css("color","#ffffff");
-        
+        $(".leftbar0Z").toggle();
         $(".leftbar1Z").toggle();
         $(".leftbar2Z").toggle();
         $(".leftbar5Z").toggle();
@@ -219,6 +234,7 @@ $(document).ready(function(){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar12").css("background-color","darkslateblue");
         $(".leftbar12 a").css("color","#ffffff");
+        $(".leftbar0Z").toggle();
         $(".leftbar1Z").toggle();
         $(".leftbar2Z").toggle();
         $(".leftbar5Z").toggle();
@@ -233,7 +249,7 @@ $(document).ready(function(){
         $(".leftbarAll li").css("background-color","#160509");
         $(".leftbar12").css("background-color","darkslateblue");
         $(".leftbar12 a").css("color","#ffffff");
-
+        $(".leftbar0Z").toggle();
         $(".leftbar1Z").toggle();
         $(".leftbar2Z").toggle();
         $(".leftbar5Z").toggle();
@@ -244,6 +260,10 @@ $(document).ready(function(){
         $(".leftbar10Z").toggle();
         $(".leftbar11Z").toggle();
     }
+
+    $(".leftbar0").click(function(){
+        $(".leftbar0Z").toggle();
+    })
 
     $(".leftbar1").click(function(){
         $(".leftbar1Z").toggle();

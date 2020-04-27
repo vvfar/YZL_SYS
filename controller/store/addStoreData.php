@@ -91,7 +91,19 @@
             $staff=$myrow[0];
         }
 
-        $sqlstr3="insert into store_data_hk values('$maxID'+1,'$storeID','$backMoney','$dateTime','$staff','$username')";
+        $sqlstr2="select count(*) from store_data_hk where storeID='$storeID' and date='$date'";
+
+        $result=mysqli_query($conn,$sqlstr2);
+
+        while($myrow=mysqli_fetch_row($result)){
+            $dup_data=$myrow[0];
+        }
+
+        if($dup_data >0){
+            $sqlstr3="update store_data_hk set backMoney='$backMoney',date='$date',corp='$username' where storeID='$storeID' and date='$date'";
+        }else{
+            $sqlstr3="insert into store_data_hk values('$maxID'+1,'$storeID','$backMoney','$date','$staff','$username')";
+        }
     
         if($link != ""){
             $sqlstr4="update store set link='$link' where storeID='$storeID'";
@@ -112,7 +124,7 @@
     ?>
     <script>
         alert("提交失败！")
-        window.location.href="../../home/store/newStore.php"
+        window.location.href="../../home/store/newStore.php?id=<?=$id?>"
     </script> 
     <?php
     }
