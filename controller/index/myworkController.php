@@ -66,13 +66,94 @@
     }
 
 
+    //计算待审核合同
+    $sqlstr3="select shr,status from contract";
+
+    $result3=mysqli_query($conn,$sqlstr3);
+
+    $count_contract=0;
+    $link_contract="../../home/contract/w_contract.php";
+
+    while($myrow=mysqli_fetch_row($result3)){
+        
+        $shr=$myrow[0];
+        $status=$myrow[1];
+
+        if($shr == $ywy and $status == "审核拒绝" and $newLevel == "KA"){
+            $count_contract=$count_contract+1;
+        }elseif($department == "商务运营部" and  $status == "待归档"){
+            $count_contract=$count_contract+1;
+        }
+    }
+
+    //计算待审核授权
+    $sqlstr4="select shr,status from sq";
+
+    $result4=mysqli_query($conn,$sqlstr4);
+
+    $count_sq=0;
+    $link_sq="../../home/contract/w_sq.php";
+
+    while($myrow=mysqli_fetch_row($result4)){
+        
+        $shr=$myrow[0];
+        $status=$myrow[1];
+
+        if($shr == $ywy and $status == "审核拒绝" and $newLevel == "KA"){
+            $count_sq=$count_sq+1;
+        }elseif($department == "商务运营部" and  $status == "待归档"){
+            $count_sq=$count_sq+1;
+
+        }
+    }
+
+    //计算待审核回款
+    $sqlstr5="select status from hk_form2 where status='待财务审批'";
+
+    $sqlstr5=mysqli_query($conn,$sqlstr5);
+
+    $count_hk=0;
+    $link_hk="../../home/sx/sx_cw.php";
+
+    while($myrow=mysqli_fetch_row($sqlstr5)){
+        
+        $shr=$myrow[0];
+        $status=$myrow[1];
+
+        if($department == "财务部" ){
+            $count_hk=$count_hk+1;
+        }
+    }
+
+    //计算待处理问题
+    $sqlstr6="select username from user_form where department  like concat('%', (select department from store where storeID = (select storeID from store_qs where status='待处理')),'%') and newLevel='M'";
+
+    $sqlstr6=mysqli_query($conn,$sqlstr6);
+
+    $count_qs=0;
+    $link_qs="../../home/store/storeQS.php";
+
+    while($myrow=mysqli_fetch_row($sqlstr6)){
+
+        $shr2=$myrow[0];
+
+        
+        
+        if($username == $shr2 ){
+
+            
+            $count_qs=$count_qs+1;
+            
+        }
+    }
+
     $data='[
             {"name_dbsx":"待审辅料","number_dbsx":"'.$count_fl.'","link_dbsx":"'.$link_fl.'"},
             {"name_dbsx":"待审授信","number_dbsx":"'.$count_sx.'","link_dbsx":"'.$link_sx.'"},
-            {"name_dbsx":"待审合同","number_dbsx":"0","link_dbsx":"../../home/contract/w_contract.php"},
-            {"name_dbsx":"待审授权","number_dbsx":"0","link_dbsx":"../../home/contract/w_sq.php"},
-            {"name_dbsx":"待审回款","number_dbsx":"0","link_dbsx":"../../home/sx/sx_cw.php"},
-            {"name_dbsx":"店铺问题","number_dbsx":"0","link_dbsx":"../../home/fl/flList.php"}
+            {"name_dbsx":"待审合同","number_dbsx":"'.$count_contract.'","link_dbsx":"'.$link_contract.'"},
+            {"name_dbsx":"待审授权","number_dbsx":"'.$count_sq.'","link_dbsx":"'.$link_sq.'"},
+            {"name_dbsx":"待审回款","number_dbsx":"'.$count_hk.'","link_dbsx":"'.$link_hk.'"},
+            {"name_dbsx":"店铺问题","number_dbsx":"'.$count_qs.'","link_dbsx":"'.$link_qs.'"}
         ]';
     
     echo $data;

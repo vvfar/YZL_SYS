@@ -82,39 +82,52 @@
 
             <div class="data_line">
                 <p class="title">数据图表（销售）</p>
-                <div id="data_body" style="width:100%;height:350px;margin-top:-20px;">
+                <div id="data_body" style="width:100%;height:350px;margin-top:-5px;margin-left:-5px;">
                     
                 </div>
             </div>
 
             <div class="sales">
                 <p class="title">销售数据</p>
-                <p class="title" style="margin-top:20px;font-size:18px;">30%</p>
-                <div id="data_sales" style="width:100%;height:20px;">
-                    <div class="layui-progress" style="margin-top:5px;">
-                        <div class="layui-progress-bar" lay-percent="30%"></div>
+                <div>
+                    <p class="title" style="margin-top:20px;font-size:18px;float:left" id="sales_one">0%</p>
+                    <p class="title" style="margin-top:20px;font-size:12px;float:right">个人销售目标</p>
+                </div>
+                
+                <div id="data_sales" style="width:100%;height:20px;clear:both">
+                    <div class="layui-progress" style="margin-top:45px;">
+                        <div id="sales_one_bar" class="layui-progress-bar" lay-percent="0%"></div>
                     </div>
                 </div>
-                <p class="title" style="font-size:18px;">80%</p>
-                <div id="data_sales" style="width:100%;height:20px;">
-                    <div class="layui-progress" style="margin-top:5px;">
-                        <div class="layui-progress-bar" lay-percent="80%"></div>
+                <div>
+                    <p class="title" style="font-size:18px;float:left" id="sales_two">0%</p>
+                    <p class="title" style="font-size:12px;float:right">部门销售目标</p>
+                </div>
+                <div id="data_sales" style="width:100%;height:20px;clear:both">
+                    <div class="layui-progress" style="margin-top:25px;">
+                        <div id="sales_two_bar" class="layui-progress-bar" lay-percent="0%"></div>
                     </div>
                 </div>
             </div>
 
             <div class="backMoney">
                 <p class="title">回款数据</p>
-                <p class="title" style="margin-top:20px;font-size:18px;">30%</p>
-                <div id="data_sales" style="width:100%;height:20px;">
-                    <div class="layui-progress" style="margin-top:5px;">
-                        <div class="layui-progress-bar" lay-percent="30%"></div>
+                <div>
+                    <p class="title" style="margin-top:20px;font-size:18px;float:left" id="sales_three">0%</p>
+                    <p class="title" style="margin-top:20px;font-size:12px;float:right">个人回款目标</p>
+                </div>
+                <div id="data_sales" style="width:100%;height:20px;clear:both">
+                    <div class="layui-progress" style="margin-top:45px;">
+                        <div id="sales_three_bar" class="layui-progress-bar" lay-percent="0%"></div>
                     </div>
                 </div>
-                <p class="title" style="font-size:18px;">80%</p>
-                <div id="data_sales" style="width:100%;height:20px;">
-                    <div class="layui-progress" style="margin-top:5px;">
-                        <div class="layui-progress-bar" lay-percent="80%"></div>
+                <div>
+                    <p class="title" style="font-size:18px;float:left" id="sales_four">0%</p>
+                    <p class="title" style="font-size:12px;float:right">部门回款目标</p>
+                </div>
+                <div id="data_sales" style="width:100%;height:20px;clear:both">
+                    <div class="layui-progress" style="margin-top:25px;">
+                        <div id="sales_four_bar" class="layui-progress-bar" lay-percent="0%"></div>
                     </div>
                 </div>
             </div>

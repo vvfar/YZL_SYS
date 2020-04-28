@@ -41,6 +41,7 @@ window.onload=function(){
                 for(var i=0;i<result.length;i++){
                     names.push(result[i].dateTime_xssj);
                     numbers.push(result[i].number_xssj);
+                    object=result[i].object_xssj;
                 }
             }
 
@@ -49,7 +50,7 @@ window.onload=function(){
             var option={
                 title:{
                     text:'',
-                    subtext:'',
+                    subtext:object,
                     x:'left' 
                 },
                 tooltip:{
@@ -57,19 +58,17 @@ window.onload=function(){
                 },
                 legend:{
                     orient:'vertical', 
-                    left:'center',  
+                    left:'right',  
                     data:['销量']
                 },
                 
                 xAxis:{
-                    //data:["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
                     data:names
                 },
                 yAxis:{},
                 series:[{
                     name:'销量',
                     type:'line',
-                    //data:[5,20,36,10,10,20]
                     data:numbers
                 }]
             }
@@ -84,5 +83,116 @@ window.onload=function(){
     layui.use('element', function(){
         var element = layui.element;
     });
+
+
+    //销售数据
+
+    $.ajax({
+        
+        type:"post",
+        async:true,
+        url:"../../controller/index/myworkController3.php",
+        dataType:"json",
+        success:function(result){
+
+            if(result){
+
+                for(var i=0;i<result.length;i++){
+
+                    if(result[i].name == "个人销售数据"){
+                        sales_one=result[i].number;
+                        
+                    }else if(result[i].name == "个人销售数据目标"){
+                        if(result[i].number == 0){
+                            sales_one_bar=1;
+                        }else{
+                            sales_one_bar=sales_one/result[i].number;
+                        }
+
+                        if(sales_one_bar < 0.3){
+                            $("#sales_one_bar").addClass("layui-bg-red")
+                        }else if(sales_one_bar < 0.6){
+                            $("#sales_one_bar").addClass("layui-bg-orange")
+                        }else if(sales_one_bar < 0.8){
+                            $("#sales_one_bar").addClass("layui-bg-blue")
+                        }else{
+                            $("#sales_one_bar").addClass("layui-bg-green")
+                        }
+
+                        $("#sales_one").html((sales_one_bar*100).toFixed(2)+"%");
+                        $("#sales_one_bar").attr("lay-percent",sales_one_bar*100+"%")
+                        
+                    }else if(result[i].name == "部门销售数据"){
+                        sales_two=result[i].number;   
+                    }else if(result[i].name == "部门销售数据目标"){
+                        if(result[i].number == 0){
+                            sales_two_bar=1;
+                        }else{
+                            sales_two_bar=sales_two/result[i].number;
+                        }
+
+                        if(sales_two_bar < 0.3){
+                            $("#sales_two_bar").addClass("layui-bg-red")
+                        }else if(sales_two_bar < 0.6){
+                            $("#sales_two_bar").addClass("layui-bg-orange")
+                        }else if(sales_two_bar < 0.8){
+                            $("#sales_two_bar").addClass("layui-bg-blue")
+                        }else{
+                            $("#sales_two_bar").addClass("layui-bg-green")
+                        }
+
+                        $("#sales_two").html((sales_two_bar*100).toFixed(2)+"%");
+                        $("#sales_two_bar").attr("lay-percent",sales_two_bar*100+"%")
+                        
+                    }else if(result[i].name == "个人回款数据"){
+                        sales_three=result[i].number;   
+                    }else if(result[i].name == "个人回款数据目标"){
+                        if(result[i].number == 0){
+                            sales_three_bar=1;
+                        }else{
+                            sales_three_bar=sales_three/result[i].number;
+                        }
+
+                        if(sales_three_bar < 0.3){
+                            $("#sales_three_bar").addClass("layui-bg-red")
+                        }else if(sales_three_bar < 0.6){
+                            $("#sales_three_bar").addClass("layui-bg-orange")
+                        }else if(sales_three_bar < 0.8){
+                            $("#sales_three_bar").addClass("layui-bg-blue")
+                        }else{
+                            $("#sales_three_bar").addClass("layui-bg-green")
+                        }
+
+                        $("#sales_three").html((sales_three_bar*100).toFixed(2)+"%");
+                        $("#sales_three_bar").attr("lay-percent",sales_three_bar*100+"%")
+                        
+                    }else if(result[i].name == "部门回款数据"){
+                        sales_four=result[i].number;   
+                    }else if(result[i].name == "部门回款数据目标"){
+                        if(result[i].number == 0){
+                            sales_four_bar=1;
+                        }else{
+                            sales_four_bar=sales_four/result[i].number;
+                        }      
+
+                        if(sales_four_bar < 0.3){
+                            $("#sales_four_bar").addClass("layui-bg-red")
+                        }else if(sales_four_bar < 0.6){
+                            $("#sales_four_bar").addClass("layui-bg-orange")
+                        }else if(sales_four_bar < 0.8){
+                            $("#sales_four_bar").addClass("layui-bg-blue")
+                        }else{
+                            $("#sales_four_bar").addClass("layui-bg-green")
+                        }
+
+                        $("#sales_four").html((sales_four_bar*100).toFixed(2)+"%");
+                        $("#sales_four_bar").attr("lay-percent",sales_four_bar*100+"%")
+                        
+                    }
+                }
+
+            }
+        }
+    })
 
 }
