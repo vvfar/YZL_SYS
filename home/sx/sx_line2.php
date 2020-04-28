@@ -71,6 +71,7 @@
                         }
                     ?>
 
+                    <div style="width:1045px">
                         <div style="float:left">
                             <p style="float: left;margin-left: 10px;font-size:16px;margin-top:5px"><strong>授信编号：<?=$myrow[0]?></strong></p>
                             <p style="float: left;margin-left:60px;font-size:16px;margin-left: 10px;margin-top:5px"><strong>有效期限：从 <?=$myrow[9]?> 到 <?=$myrow[10]?></strong></p>  
@@ -105,7 +106,7 @@
 
                         <div style="clear:both"></div>
                         <!-- Excel导入模态框,确认是否作废单据 -->
-                        <form method="POST" action="formHandle/sxLiucheng.php?id=<?=$sxid?>&option=3">
+                        <form method="POST" action="../../controller/sx/sxLiucheng.php?id=<?=$sxid?>&option=3">
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top:30%">
                                 <div class="modal-dialog">
                                     <div class="modal-content" style="width:350px;">
@@ -136,7 +137,7 @@
                             </div>
                         </form>
                         <hr>
-                        
+                    </div>   
                         <p style="margin-left:10px;">授信基本信息：</p>
                         <table class="base_list table table-responsive table-bordered table-hover" style="clear:both;position:relative;width: 1000px;">
                             <tr>
@@ -276,7 +277,7 @@
             <?php
                 if($my_department == "财务部" or $newLevel == "ADMIN"){
             ?>
-                <div style="float:right;margin-right:50px;">
+                <div style="margin-left:950px;">
                     <button class="btn btn-sm btn-success" style="float:left;" id="agree">同意</button>
                     <button class="btn btn-sm btn-danger" style="float:left;margin-left:10px;" id="disagree">拒绝</button>
                 </div>

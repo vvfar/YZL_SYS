@@ -22,6 +22,7 @@
         <div style="margin-left: 180px;">
             
             <div style="clear: both;position:relative;top:20px;margin-left:40px;">
+                <div style="width:1045px">
                 <?php
                     
                     error_reporting(E_ALL || ~E_NOTICE);
@@ -133,6 +134,7 @@
                             </div>
                         </form>
                         <hr>
+                    </div>
                         
                         <p style="margin-left:10px;">授信基本信息：</p>
                         <table class="base_list table table-responsive table-bordered table-hover" style="clear:both;position:relative;width: 1000px;margin-top:10px;">

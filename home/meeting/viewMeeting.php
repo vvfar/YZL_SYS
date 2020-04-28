@@ -59,7 +59,7 @@
                 </div>
 
 
-                <div style="clear:both">
+                <div style="clear:both;width:1030px;">
 
                     <?php
 

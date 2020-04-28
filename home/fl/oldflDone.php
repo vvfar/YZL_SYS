@@ -134,7 +134,8 @@
                 <input type="text" class="form-control company_name" id="clientName" placeholder="请输入公司名称" value="<?=$clientName?>">
                 <button class="btn btn-warning btn-sm" id="query_fl" style="float: left;margin-left:10px;">查询</button>
                 <button class="btn btn-success btn-sm" id="download_fl" style="float: left;margin-left:10px;">下载</button>
-                    
+                
+                <!--
                 <?php
                     if($newLevel=="ADMIN"){
                         ?>
@@ -142,6 +143,7 @@
                         <?php
                     }
                 ?>
+                -->
             </div>
 
             <!-- Excel导入模态框 -->
@@ -342,11 +344,7 @@
         input_time2=$("#input_time2").val()
         clientName=$("#clientName").val()
 
-        if(input_time==""){
-            alert("请选择日期！")
-        }else{
-            window.location.href="oldflDone.php?status=" + status + "&time=" + time1 + "&input_time=" + input_time + "&input_time2=" + input_time2 + "&clientName=" +clientName
-        }
+        window.location.href="oldflDone.php?status=" + status + "&time=" + time1 + "&input_time=" + input_time + "&input_time2=" + input_time2 + "&clientName=" +clientName
     })
 
     $(".form_datetime").datetimepicker({

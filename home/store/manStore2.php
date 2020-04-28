@@ -199,7 +199,7 @@
                 </table>
             </div>
 
-            <div style="margin-left: 50px;">
+            <div style="margin-left: 30px;">
                 <ul class="pager" style="float:left;width:150px;margin-top:0px;">
                     <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                         if($page>1)
@@ -215,7 +215,7 @@
                     ?>">下一页</a></li>
                 </ul>
 
-                <div style="float:left;margin-left:830px;width:321px;">
+                <div style="float:left;margin-left:530px;width:321px;">
                     <ul class="pagination" style="float:right;margin-top:0px;">
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1">&laquo;</a></li>
                         <?php

@@ -142,6 +142,8 @@
                     $sqlstr3=$sqlstr3." and contractID like '%$contractID%'";
                 }
 
+                echo $sqlstr3;
+
                 $result=mysqli_query($conn,$sqlstr3);
                 $info=mysqli_fetch_array($result);
                 $total=$info['total'];

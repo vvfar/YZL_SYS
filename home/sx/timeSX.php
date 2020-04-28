@@ -59,7 +59,7 @@
             </div>
 
             <div>
-                <button class="btn btn-success btn-sm" style="float:right;margin-right:50px" onclick="downloadDQ()">下载到期单据</button>
+                <button class="btn btn-success btn-sm" style="float:left;margin-left:955px;" onclick="downloadDQ()">下载到期单据</button>
             </div>
 
             <?php

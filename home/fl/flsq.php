@@ -215,7 +215,7 @@
                 <?php
                     if(!isset($_GET['id'])){
                         ?>
-                            <button type="reset" class="btn btn-danger btn-sm" style="float:right;margin-right:50px;margin-top:-10px">重置表单</button>
+                            <button type="reset" class="btn btn-danger btn-sm" style="float:left;margin-left:685px;margin-top:-10px">重置表单</button>
                         <?php
                     }else{
                         ?>

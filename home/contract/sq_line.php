@@ -171,13 +171,13 @@
                     $file_arr=explode(",",$fileName);
                     if($file_arr[0] !=""){
                         ?>
-                            <a class="btn btn-info btn-sm" href="../../common/file/sq_file/bzj/<?=$file_arr[0]?>">保证金收据</a>
+                            <a class="btn btn-info btn-sm" href="../../common/file/sq_file/bzj/<?=$file_arr[0]?>" target="_blank">保证金收据</a>
                         <?php
                     }
 
                     if($file_arr[1] !=""){
                         ?>
-                            <a class="btn btn-success btn-sm" href="../../common/file/sq_file/sq_file/<?=$file_arr[1]?>">授权扫描件</a>
+                            <a class="btn btn-success btn-sm" href="../../common/file/sq_file/sq_file/<?=$file_arr[1]?>"  target="_blank">授权扫描件</a>
                         <?php
                     }
 

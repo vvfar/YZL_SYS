@@ -172,11 +172,11 @@
                 ?>
                 <div class="form-group" style="clear: both;">
                     <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">授信额度</p>
-                    <input type="text" class="form-control" name="sqmoney" placeholder="请输入金额" style="width: 250px;float: left;margin-top: 15px;">
+                    <input type="text" class="form-control" name="sqmoney" placeholder="请输入金额" style="width: 250px;float: left;margin-top: 15px;"  oninput="value=value.replace(/[^\d]/g,'')">
                 </div>
                 <div class="form-group" style="clear: both;">
                     <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">手续费</p>
-                    <input type="text" class="form-control" name="sxf" placeholder="请输入手续费" style="width: 250px;float: left;margin-top: 15px;">
+                    <input type="text" class="form-control" name="sxf" placeholder="请输入手续费" style="width: 250px;float: left;margin-top: 15px;" oninput="value=value.replace(/[^\d]/g,'')">
                 </div>
                 <div class="form-group" style="clear: both;">
                     <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">计划回款期数</p>
@@ -210,7 +210,7 @@
                     </div>
                     <div class="form-group" style="float:left">
                         <p style="width: 30px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">金额</p>
-                        <input type="text" class="form-control" name="hkje<?=$a+1?>" placeholder="" style="width: 80px;float: left;margin-left:20px;">
+                        <input type="text" class="form-control" name="hkje<?=$a+1?>" placeholder="" style="width: 80px;float: left;margin-left:20px;" oninput="value=value.replace(/[^\d]/g,'')">
                     </div>
                     <div class="form-group" style="float:left">
                         <p style="width: 30px;font-size: 14px;float: left;margin-left:20px;margin-top:5px;">费率</p>

@@ -30,14 +30,16 @@
                     $chooseInfo=$_GET["chooseInfo"];
                 }
 
-                if(!isset($_GET["date1"]) && !isset($_GET["date1"]) && !isset($_GET["companyName"])  ){
+                if(!isset($_GET["date1"]) && !isset($_GET["date1"]) && !isset($_GET["companyName"]) && !isset($_GET["sqid"]) ){
                     $date1="";
                     $date2="";
                     $companyName="";
+                    $sqid="";
                 }else{
                     $date1=$_GET["date1"];
                     $date2=$_GET["date2"];
                     $companyName=$_GET["companyName"];
+                    $sqid=$_GET["sqid"];
                 }
 
                 $username=$_SESSION["username"];
@@ -49,27 +51,6 @@
                 while($myrow=mysqli_fetch_row($result)){
                     $department=$myrow[0];
                     $newLevel=$myrow[1];
-                }
-
-                $sqlstr2="select fileName from files where note='授信欠据模板'";
-
-                $result=mysqli_query($conn,$sqlstr2);
-
-                if($result){
-                    while($myrow=mysqli_fetch_row($result)){
-                        $path1=$myrow[0];
-                    }
-                }
-                
-
-                $sqlstr3="select fileName from files where note='产品抵标费模板'";
-
-                $result=mysqli_query($conn,$sqlstr3);
-                
-                if($result){
-                    while($myrow=mysqli_fetch_row($result)){
-                        $path2=$myrow[0];
-                    }
                 }
 
             ?>
@@ -505,8 +486,10 @@
         date1=$("#date1").val()
         date2=$("#date2").val()
         companyName=$("#companyName").val()
+        chooseInfo=$("#chooseInfo").val()
+        sqid=$("#sqid").val()
 
-        window.location.href="<?php echo $_SERVER['PHP_SELF']?>?date1=" +date1 + "&date2=" + date2 +"&companyName=" + companyName
+        window.location.href="<?php echo $_SERVER['PHP_SELF']?>?date1=" +date1 + "&date2=" + date2 +"&companyName=" + companyName + "&chooseInfo=" + chooseInfo + "&sqid=" +sqid
 
     }
 
