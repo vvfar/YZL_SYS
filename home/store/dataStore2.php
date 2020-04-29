@@ -52,7 +52,7 @@
                 $pagesize=15;
 
 
-                $sqlstr3="select count(*) as total from store a,store_data_hk b where a.storeID=b.storeID and b.date='$date'";
+                $sqlstr3="select count(*) as total from store a,store_data_hk b where a.storeID=b.storeID and b.date='$date' and a.status='正常' ";
 
                 if($newLevel !="ADMIN" and $department != "商务运营部"){
                     if($newLevel == "KA"){
@@ -121,7 +121,7 @@
                     <?php    
                         $year=substr($date,0,4);
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,a.staff,b.backMoney,a.hkTarget,a.status,c.backMoney from store_data_hk b,store a join (select storeID,sum(backMoney) as backMoney from store_data_hk where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date'";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,a.staff,b.backMoney,a.hkTarget,a.status,c.backMoney from store_data_hk b,store a join (select storeID,sum(backMoney) as backMoney from store_data_hk where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID and b.date='$date' and a.status='正常' ";
 
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){

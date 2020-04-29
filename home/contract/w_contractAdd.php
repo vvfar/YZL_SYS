@@ -131,7 +131,7 @@
                     if($newLevel == "KA"){
                         $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
                     }else{
-                        $sqlstr3=$sqlstr3." and '$department' like concat('%',department,'%') ";
+                        $sqlstr3=$sqlstr3." and shr = any( select username from user_form where '".$department."' like concat('%',department,'%'))";
                     }
                     
                 }
@@ -141,8 +141,6 @@
                 }elseif($contractID !=""){
                     $sqlstr3=$sqlstr3." and contractID like '%$contractID%'";
                 }
-
-                echo $sqlstr3;
 
                 $result=mysqli_query($conn,$sqlstr3);
                 $info=mysqli_fetch_array($result);
@@ -158,7 +156,12 @@
                 $sqlstr2="select b.id,a.no,b.company,a.content,a.status,a.date,a.shr from contract_add a,contract b where not a.status like '%已归档%' and a.no=b.no";
                 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
-                    $sqlstr3=$sqlstr3." and a.shr like '%$username%'"; 
+                    if($newLevel == "KA"){
+                        $sqlstr2=$sqlstr2." and a.shr like '%$username%'"; 
+                    }else{
+                        $sqlstr2=$sqlstr2." and a.shr = any( select username from user_form where '".$department."' like concat('%',department,'%'))";
+                    }
+                    
                 }
 
                 if($clientName !=""){

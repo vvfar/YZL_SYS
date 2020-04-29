@@ -123,10 +123,8 @@ $(document).ready(function(){
             $(".leftbar6Z1 a").css("color","#fff")
         }else if(leftBar_path == "flList.php"){
             $(".leftbar6Z2 a").css("color","#fff")
-        }else if(leftBar_path == "flDone.php"){
+        }else if(leftBar_path == "flDone.php" || leftBar_path == "oldflDone.php"){
             $(".leftbar6Z3 a").css("color","#fff")
-        }else if(leftBar_path == "oldflDone.php"){
-            $(".leftbar6Z4 a").css("color","#fff")
         }
 
     }else if(leftBar_path == "contract.php" || leftBar_path == "w_contract.php" || leftBar_path == "contractList.php" || leftBar_path == "contract_line.php" || leftBar_path == "contract_query.php" || leftBar_path == "newSQ.php" || leftBar_path == "sq_line.php"  || leftBar_path == "w_sq.php"  || leftBar_path ==  "sqList.php"  || leftBar_path ==  "contractAddition.php" ||  leftBar_path == "contract_AddList.php" ||  leftBar_path == "w_contractAdd.php"){

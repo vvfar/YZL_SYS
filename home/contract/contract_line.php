@@ -186,13 +186,15 @@
                     }
 
                     if($count > 0){
-                        $sqlstr5="select content,status from contract_add where no='$no'";
+                        $sqlstr5="select id,content,status,shr from contract_add where no='$no'";
 
                         $result=mysqli_query($conn,$sqlstr5);
                         
                         while($myrow=mysqli_fetch_row($result)){
-                            $content=$myrow[0];
-                            $status2=$myrow[1];
+                            $id=$myrow[0];
+                            $content=$myrow[1];
+                            $status2=$myrow[2];
+                            $shr2=$myrow[3];
                         }
 
                         ?>
@@ -207,6 +209,12 @@
                                     <button class="btn btn-sm btn-success" style="float:right;margin-right:10px;" id="yes2">同意</button>
                                 </div>
                             <?php
+                                }elseif($shr2==$username and $status2 == "审核拒绝"){
+                                    ?>
+                                        <div style="width:1000px;">
+                                            <button class="btn btn-sm btn-info" style="float:right" id="edit_contractAdd">重新编辑</button>
+                                        </div>
+                                    <?php
                                 }
                             ?>
 
@@ -348,6 +356,10 @@
 
     $("#no").click(function(){
         window.location.href="../../controller/contract/contractHandle.php?id=<?=$id?>&progress=5"
+    })
+
+    $("#edit_contractAdd").click(function(){
+        window.location.href="../../home/contract/contractAddition.php?id=<?=$id?>";
     })
 
     var changeContract=function(){

@@ -12,6 +12,8 @@
 
     if($progress ==1){
         $no=$_POST["no"];
+        $id=$_GET["id"];
+
         $content=$_POST["content"];
 
         $sqlstr="select max(id) from contract_add";
@@ -24,8 +26,13 @@
         if($maxID==""){
             $maxID=0;
         }
-    
-        $sqlstr2="insert into contract_add values('$maxID'+1,'$no','$content','待归档','$username','$date')";
+        
+        if($id == ""){
+            $sqlstr2="insert into contract_add values('$maxID'+1,'$no','$content','待归档','$username','$date')";
+        }else{
+            $sqlstr2="update contract_add set content='$content',status='待归档' where id='$id'";
+        }
+        
 
         $result=mysqli_query($conn,$sqlstr2);
     
@@ -33,7 +40,7 @@
             ?>
             <script>
                 alert("提交成功！")
-                window.location.href="../../home/contract/w_sq.php"
+                window.location.href="../../home/contract/w_contractAdd.php"
             </script>
     
         <?php
@@ -41,7 +48,7 @@
             ?>
             <script>
                 alert("提交失败！")
-                window.location.href="../../home/contract/newSQ.php"
+                window.location.href="../../home/contract/contractAddition.php?id=<?=$id?>"
             </script>
             <?php
         }
@@ -69,7 +76,7 @@
             ?>
             <script>
                 alert("提交失败！")
-                window.location.href="../../home/contract/newSQ.php"
+                window.location.href="../../home/contract/contractAddition.php?id=<?=$id?>"
             </script>
             <?php
         }

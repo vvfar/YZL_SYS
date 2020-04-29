@@ -24,7 +24,6 @@
         $salesMoney=$_POST["salesMoney"];
         $salesNum=$_POST["salesNum"];
         $backMoney="";
-        $question="";
     }else{
         $backMoney=$_POST["backMoney"];
         $link=$_POST["link"];
@@ -35,7 +34,6 @@
     $date=$_POST["dateTime"];
 
     
-
     if($my_department =="商务运营部"){
         $sqlstr1="select max(id) from store_data_sales";
         $result=mysqli_query($conn,$sqlstr1);
@@ -67,7 +65,7 @@
         if($dup_data >0){
             $sqlstr3="update store_data_sales set salesMoney='$salesMoney',salesNum='$salesNum',date='$date',corp='$username' where storeID='$storeID' and date='$date'";
         }else{
-            $sqlstr3="insert into store_data_sales values('$maxID','$storeID','$salesMoney','$salesNum','$date','$staff','$username')";
+            $sqlstr3="insert into store_data_sales values('$maxID'+1,'$storeID','$salesMoney','$salesNum','$date','$staff','$username')";
         }
 
     }else{

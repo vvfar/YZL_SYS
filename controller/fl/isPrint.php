@@ -1,14 +1,14 @@
 <?php
     //解决中文乱码
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
 
     $id=trim(isset($_GET['id'])?$_GET['id']:"");
     $department=trim(isset($_GET['department'])?$_GET['department']:"");
 
     if($id != ""){
 
-        if($department=="义乌"){
+        if($department=="义乌部"){
             $sqlstr="update flsqd set isprint='1' where id=$id";
         }
         

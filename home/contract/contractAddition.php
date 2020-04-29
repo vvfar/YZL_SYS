@@ -19,6 +19,16 @@
         <?php include '..\base\header.php' ?>
         <?php include '..\base\leftBar.php' ?>
 
+        <?php
+            if(isset($_GET["id"])){
+                $id=$_GET["id"];
+            }else{
+                $id="";
+            }
+        ?>
+
+
+
         <div style="margin-left: 180px;">
 
             <div style="clear:both;margin-left:40px;">
@@ -30,32 +40,58 @@
                     </div>
                 </div>
 
-                <form method="POST" action="../../controller/contract/contractAdditionHandle.php?progress=1"  enctype="multipart/form-data">
+                <form method="POST" action="../../controller/contract/contractAdditionHandle.php?progress=1&id=<?=$id?>"  enctype="multipart/form-data">
                     <div class="form-group" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">主合同编号</p>
                         <select class="form-control" name="no" style="width: 250px;float: left;margin-top: 15px;">
                         <?php
+                            
                             $username=$_SESSION['username'];
                         
+                            if($id !=""){
+                                $sqlstr2="select id,no,content from contract_add where id='$id'";
+
+                                $result2=mysqli_query($conn,$sqlstr2);
+                                
+                                while($myrow=mysqli_fetch_row($result2)){
+                                    $id=$myrow[0];
+                                    $no=$myrow[1];
+                                    $content=$myrow[2];
+                                }
+                            }else{
+                                $no="";
+                                $content="";
+                            }
+
                             $sqlstr="select no from contract where shr='$username'";
 
                             $result=mysqli_query($conn,$sqlstr);
 
+
                             while($myrow=mysqli_fetch_row($result)){
-                                ?>
-                                    <option><?=$myrow[0]?></option>
-                                <?php
+                                if($no==$myrow[0]){
+                                    ?>
+                                        <option selected><?=$myrow[0]?></option>
+                                    <?php
+                                }else{
+                                    ?>
+                                        <option><?=$myrow[0]?></option>
+                                    <?php
+                                }   
                             }
-                        
                         ?>
                         </select>
                     </div>
 
                     <div class="form-group" style="clear: both;">
                         <p style="font-size: 14px;margin-top: 60px;">补充信息（200字以内）</p>
-                        <textarea class="form-control" name="content" style="width:370px;height:150px;margin-top: 12px;"></textarea>
+                        <textarea class="form-control" name="content" style="width:370px;height:150px;margin-top: 12px;"><?=$content?></textarea>
                     </div>
                     <div style="clear: both;position:relative;top:10px;">
                         <button type="submit" class="btn btn-success btn-md">提交信息</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </body>
+</html>

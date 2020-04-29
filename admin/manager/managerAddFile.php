@@ -30,8 +30,7 @@
                     <p style="margin-top: 7px;">备注信息<p>
                     <select class="form-control" name="note" style="width: 300px;margin-top:10px;">
                         <option>选择备注信息</option>
-                        <option>授信欠据模板</option>
-                        <option>产品抵标费模板</option>
+                        <option>合同模板</option>
                         <option>培训文档</option>
                         <option>/</option>
                     </select>

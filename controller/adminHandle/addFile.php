@@ -40,12 +40,8 @@
                     $maxID=0;
                 }
 
-                if($note=="授信欠据模板"){
-                    $sqlstr1="insert into files values('$maxID'+1,'$title','$fileName','$username','$time','授信欠据模板')";
-                }elseif($note=="产品抵标费模板"){
-                    $sqlstr1="insert into files values('$maxID'+1,'$title','$fileName','$username','$time','产品抵标费模板')";
-                }elseif($note=="培训文档"){
-                    $sqlstr1="insert into files values('$maxID'+1,'$title','$fileName','$username','$time','培训文档')";
+                if($note !=""){
+                    $sqlstr1="insert into files values('$maxID'+1,'$title','$fileName','$username','$time','$note')";
                 }else{
                     $sqlstr1="insert into files values('$maxID'+1,'$title','$fileName','$username','$time','')";
                 }
