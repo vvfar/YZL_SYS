@@ -25,8 +25,7 @@
 
             <div class="nav nav-pills" style="float:left;margin-left:40px;">
                 <li role="presentation" class="active"><a href="#">辅料流程</a></li>
-                <li role="presentation"><a href="manager_process_sx.php">授信流程</a></li>
-                <button class="btn btn-success" style="float:left;margin-left:750px;margin-top:0px;"  data-toggle="modal" data-target="#myModal">添加流程</button>
+                <button class="btn btn-success btn-sm" style="float:left;margin-left:845px;margin-top:10px;"  data-toggle="modal" data-target="#myModal">添加流程</button>
             </div>
 
             <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;top: 20px;width: 1000px;margin-left: 40px;">

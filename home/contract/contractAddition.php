@@ -84,7 +84,7 @@
                     </div>
 
                     <div class="form-group" style="clear: both;">
-                        <p style="font-size: 14px;margin-top: 60px;">补充信息（200字以内）</p>
+                        <p style="font-size: 14px;margin-top: 60px;">补充信息（1000字以内）</p>
                         <textarea class="form-control" name="content" style="width:370px;height:150px;margin-top: 12px;"><?=$content?></textarea>
                     </div>
                     <div style="clear: both;position:relative;top:10px;">

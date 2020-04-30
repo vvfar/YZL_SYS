@@ -26,7 +26,7 @@
             <div class="nav nav-pills" style="float:left;margin-left:40px;">
                 <li role="presentation" class="active"><a href="#">系统日志</a></li>
                 <li role="presentation"><a href="manager_backup.php">数据备份</a></li>
-                <button id="del_log" class="btn btn-success" style="float:left;margin-left:745px;margin-top:0px;"  data-toggle="modal" data-target="#myModal">清除日志</button>
+                <button id="del_log" class="btn btn-success btn-sm" style="float:left;margin-left:755px;margin-top:10px;"  data-toggle="modal" data-target="#myModal">清除日志</button>
             </div>
 
             <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;top: 20px;width: 1000px;margin-left: 40px;">

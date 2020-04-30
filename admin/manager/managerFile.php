@@ -98,8 +98,6 @@
                         echo $pagecount;  
                 ?>">下一页</a>
                 <a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $pagecount; ?>">尾页</a>
-
-
             </div>
 
         </div>

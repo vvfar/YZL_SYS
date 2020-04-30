@@ -570,7 +570,7 @@
                         <td class="bzjg"><input type="text" value="<?=$price_arr[$i]?>" name="price<?=$i?>"/></td>
                         <td class="fldj"><input type="text" value="<?=$fls_arr[$i]?>" name="fls<?=$i?>"/></td>
                         <td class="fwfxj"><?=$fwfxj_arr[$i]?></td>
-                        <td>
+                        <td class="flno">
                             <select style="width: 80%;height: 20px;" name="flsName<?=$i?>">
                                 <option></option>
                                 <?php
@@ -597,7 +597,7 @@
                             ?> 
                             </select>
                         </td>
-                        <td class="dj"><input type="text" value="<?=$dj_arr[$i]?>" name="dj<?=$i?>"/></td>
+                        <td class="dj"><input type="text" value="<?=$dj_arr[$i]?>" name="dj<?=$i?>" readOnly/></td>
                         <td class="sl"><input type="text" value="<?=$sl_arr[$i]?>" name="sl<?=$i?>"/></td>
                         <td class="flfxj"><?=$flfxj_arr[$i]?></td>
                     </tr>

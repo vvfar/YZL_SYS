@@ -7,13 +7,13 @@ $(document).ready(function(){
     if(managerHeader_path == "manager_index.php"){
         $(".header_manager1").siblings().removeClass("active");
         $(".header_manager1").addClass("active");
-    }else if(managerHeader_path == "managerFL.php" || managerHeader_path == "flProcess.php"){
+    }else if(managerHeader_path == "managerFL.php" || managerHeader_path == "managerFL_edit.php"){
         $(".header_manager2").siblings().removeClass("active");
         $(".header_manager2").addClass("active");
-    }else if(managerHeader_path == "managerNews.php"){
+    }else if(managerHeader_path == "managerNews.php" || managerHeader_path == "managerAddContent.php"){
         $(".header_manager3").siblings().removeClass("active");
         $(".header_manager3").addClass("active");
-    }else if(managerHeader_path == "managerFile.php"){
+    }else if(managerHeader_path == "managerFile.php" || managerHeader_path == "managerAddFile.php"){
         $(".header_manager4").siblings().removeClass("active");
         $(".header_manager4").addClass("active");
     }else if(managerHeader_path == "managerStaff.php" || managerHeader_path == "manager_staffLine.php" ){
