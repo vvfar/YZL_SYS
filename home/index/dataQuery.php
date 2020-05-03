@@ -13,6 +13,8 @@
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
+        <script src="..\..\public\lib\echarts\dist\echarts.min.js"></script>
+        <script src="..\..\public\js\myWork.js"></script>
     </head>
     <body>
         <?php include_once("../../common/conn/conn.php") ?>
@@ -64,27 +66,107 @@
             </div>
             <div style="margin-left:20px;">
                 <div class="data_div">
+                    
                     <p class="title">销售额</p>
+                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    
+                    <div style="clear:both">
+                        <hr style="margin-top:30px">
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <h1>100000.00</h1>
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <p class="title">同比:10%</p>
+                        <p class="title" style="margin-left:10px;">环比:10%</p>
+                    </div>
                 </div>
 
                 <div class="data_div">
                     <p class="title">完成比</p>
+                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    
+                    <div style="clear:both">
+                        <hr style="margin-top:30px">
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <h1>82%</h1>
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <p class="title">同比:10%</p>
+                        <p class="title" style="margin-left:10px;">环比:10%</p>
+                    </div>
                 </div>
 
                 <div class="data_div">
                     <p class="title">业绩排名</p>
+                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    
+                    <div style="clear:both">
+                        <hr style="margin-top:30px">
+                    </div>
+
+                    <ul>
+                        <li><span style="background-color:red;color:#fff;padding-left:5px;padding-right:5px;border-radius:3px;">1</span><span style="margin-left:10px">欧阳雅香</span></li>
+                        <li><span style="background-color:brown;color:#fff;padding-left:5px;padding-right:5px;border-radius:3px;">2</span><span style="margin-left:10px">欧阳雅香</span></li>
+                        <li><span style="background-color:orange;color:#fff;padding-left:5px;padding-right:5px;border-radius:3px;">3</span><span style="margin-left:10px">欧阳雅香</span></li>
+                        <li><span style="background-color:grey;color:#fff;padding-left:5px;padding-right:5px;border-radius:3px;">4</span><span style="margin-left:10px">欧阳雅香</span></li>
+                        <li><span style="background-color:grey;color:#fff;padding-left:5px;padding-right:5px;border-radius:3px;">5</span><span style="margin-left:10px">欧阳雅香</span></li>
+                    </ul>
                 </div>
             </div>
             
             <div style="clear:both;margin-left:20px;">
                 <div class="data_div_large">
                     <p class="title">图表</p>
+                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    
+                    <div style="clear:both">
+                        <hr style="margin-top:30px">
+                    </div>
+
+                    <div id="data_body" style="clear:both;width:100%;height:320px;top:-10px;margin-left:-5px;">
+                    
+                    </div>
+
                 </div>
                 <div class="data_div">
                     <p class="title">新开拓店铺</p>
+                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    
+                    <div style="clear:both">
+                        <hr style="margin-top:30px">
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <h1>10</h1>
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <p class="title">同比:10%</p>
+                        <p class="title" style="margin-left:10px;">环比:10%</p>
+                    </div>
                 </div>
                 <div class="data_div">
                     <p class="title">终止合作店铺</p>
+                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    
+                    <div style="clear:both">
+                        <hr style="margin-top:30px">
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <h1>5</h1>
+                    </div>
+
+                    <div style="margin-top:20px">
+                        <p class="title">同比:10%</p>
+                        <p class="title" style="margin-left:10px;">环比:10%</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,5 +187,11 @@
         height:24px;
     }
 
-    .data_div{width: 323px;height:160px;border:1px solid #d9d9d9;float:left;margin-left:20px;border-radius: 5px;margin-top:20px;padding-left:10px;padding-top:10px;}
-    .data_div_large{width: 666px;height:340px;border:1px solid #d9d9d9;float:left;margin-left:20px;border-radius: 5px;margin-top:20px;padding-left:10px;padding-top:10px;}
+    .data_div{width: 323px;height:160px;border:1px solid #d9d9d9;float:left;margin-left:20px;border-radius: 5px;margin-top:20px;padding-left:10px;padding:10px;}
+    .data_div_large{width: 666px;height:340px;border:1px solid #d9d9d9;float:left;margin-left:20px;border-radius: 5px;margin-top:20px;padding:10px;}
+    .title{color: #9b9b9b;float:left}
+
+    ul li{
+        margin-top:2px
+    }
+</style>
