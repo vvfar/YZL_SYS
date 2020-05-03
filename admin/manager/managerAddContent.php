@@ -52,14 +52,24 @@
                 <h4>新增公告</h4>
 
                 <div style="margin-top:20px;">
-                    <input type="text" name="title" value="<?=$title?>" class="form-control" style="width:300px;"/>
-                    <input type="text" name="id" value="<?=$id?>" class="form-control hidden" style="width:300px;"/>
+                    <p>标题：</p>
+                    <input type="text" name="title" value="<?=$title?>" class="form-control" style="width:900px;margin-top:10px;"/>
+                    <input type="text" name="id" value="<?=$id?>" class="form-control hidden" style="width:800px;"/>
                 </div>
 
                 <div style="position: relative;top:15px;width: 900px;">
+                    <p style="margin-bottom:10px;">正文：</p>
                     <textarea name="description" id="description" cols="10"/><?=$content?></textarea>
                 </div>
-                <button style="position: relative;top:60px;" class="btn btn-default">提交</button>
+
+                <div style="margin-top:40px;">
+                    公告类型：
+                    <select class="form-control" style="width:200px;margin-top:10px" name="newsType">
+                        <option>公司公告</option>
+                        <option>公司动态</option>
+                    </select>
+                </div>
+                <button style="position: relative;top:10px;" class="btn btn-default">提交</button>
             </form>
         </div>
     </body>

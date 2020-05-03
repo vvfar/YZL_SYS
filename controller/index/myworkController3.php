@@ -9,8 +9,14 @@
     $username=$_SESSION["username"];
     
     date_default_timezone_set("Asia/Shanghai");
-    $year=date('Y', time());
+    
+    $date=date('Y-m-d', time());
 
+    $date_arr=explode("-",$date);
+
+    $year=$date_arr[0];
+    $month=$date_arr[1];
+    $day=$date_arr[2];
 
     $sqlstr0="select department,newLevel from user_form where username='$username'";
 
@@ -21,20 +27,24 @@
         $newLevel=$myrow[1];
     }
 
-    $dateStart=$year."-04-01";
-    $dateEnd=($year+1)."-03-31";
+    if($month != 12){
+        $dateStart=$year."-".$month."-01";
+        $dateEnd=$year."-".($month+1)."-01";
+    }else{
+        $dateStart=$year."-12-01";
+        $dateEnd=($year+1)."-".$month."-01";
+    }
 
 
-
-
-
-    $sqlstr1="select sum(salesMoney) from store_data_sales where staff='$username' and date >= '$dateStart' and date <= '$dateEnd'";
+    $sqlstr1="select sum(salesMoney) from store_data_sales where staff='$username' and date >= '$dateStart' and date < '$dateEnd'";
 
     $result=mysqli_query($conn,$sqlstr1);
 
     while($myrow=mysqli_fetch_row($result)){
         $num1=$myrow[0];
     }
+
+
 
     $sqlstr2="select sum(storeTarget)  from store where staff='$username'";
 
@@ -44,7 +54,7 @@
         $num2=$myrow[0];
     }
 
-    $sqlstr3="select sum(a.salesMoney) from store_data_sales a,store b where '$department' like concat('%',b.department,'%') and a.date >= '$dateStart' and a.date <= '$dateEnd'";
+    $sqlstr3="select sum(a.salesMoney) from store_data_sales a,store b where '$department' like concat('%',b.department,'%') and a.date >= '$dateStart' and a.date < '$dateEnd' and  a.storeID=b.storeID";
 
     $result=mysqli_query($conn,$sqlstr3);
 
@@ -60,7 +70,7 @@
         $num4=$myrow[0];
     }
 
-    $sqlstr5="select sum(backMoney) from store_data_hk where staff='$username' and date >= '$dateStart' and date <= '$dateEnd'";
+    $sqlstr5="select sum(backMoney) from store_data_hk where staff='$username' and date >= '$dateStart' and date < '$dateEnd'";
 
     $result=mysqli_query($conn,$sqlstr5);
 
@@ -76,7 +86,7 @@
         $num6=$myrow[0];
     }
 
-    $sqlstr7="select sum(a.backMoney) from store_data_hk a,store b where '$department' like concat('%',b.department,'%') and a.date >= '$dateStart' and a.date <= '$dateEnd'";
+    $sqlstr7="select sum(a.backMoney) from store_data_hk a,store b where '$department' like concat('%',b.department,'%') and a.date >= '$dateStart' and a.date < '$dateEnd' and  a.storeID=b.storeID";
 
     $result=mysqli_query($conn,$sqlstr7);
 

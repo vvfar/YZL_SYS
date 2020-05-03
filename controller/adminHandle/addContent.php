@@ -5,6 +5,7 @@
     $id=$_POST["id"];
     $title=$_POST["title"];
     $content=$_POST["description"];
+    $newsType=$_POST["newsType"];
     $time=date('Y-m-d');
 
     session_start();
@@ -24,9 +25,9 @@
     }
 
     if($id==""){
-        $sqlstr2="insert into news values('$maxID'+1,'$title','$time','$person','$content')";
+        $sqlstr2="insert into news values('$maxID'+1,'$title','$time','$person','$content','$newsType')";
     }else{
-        $sqlstr2="update news set title='$title',content='$content' where id='$id'";
+        $sqlstr2="update news set title='$title',content='$content',newsType='$newsType' where id='$id'";
     }
         
     $result=mysqli_query($conn,$sqlstr2);

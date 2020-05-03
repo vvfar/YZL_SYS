@@ -35,6 +35,7 @@
                     <th>操作</th>
                 </tr>
                 <?php
+                    $count=0;
 
                     //分页代码
                     if(!isset($_GET["page"]) || !is_numeric($_GET["page"])){

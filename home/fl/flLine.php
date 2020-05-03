@@ -130,7 +130,7 @@
 
             
             
-            <form action="/addFLSQD.php" method="POST" style="clear:both;">
+
                 <table class="tb1" border="1" cellspacing="0" style="clear:both;position: relative;top:20px;margin-left:40px;width:1000px;margin-bottom:30px;">
                     <tr>
                         <td colspan="4" style="width:147px;">申请单位</td>
@@ -379,7 +379,7 @@
                         if(sizeof($arr_shr)==0){
                             if($shr_arr3 == $username){
                             ?>
-                                <button type="button" class="btn btn-info btn-sm" id="yes4" style="margin-left:37px;">修改单据</button>
+                                <button type="button" class="btn btn-info btn-sm" id="yes4" style="margin-left:37px;margin-top:10px;">修改单据</button>
                             <?php
                             }
                         }
@@ -394,7 +394,7 @@
                         }
                             
                         if($status_pop=="待KA审核单据" and $department==$department2){
-                            if($newLevel == "KA"){
+                            if($people == $username){
                             ?>
                                 <button type="button" class="btn btn-info btn-sm" id="yes4" style="margin-left:37px;">修改单据</button>
                             <?php
@@ -402,7 +402,7 @@
                         }
                     ?>
                 </div>
-            </form>
+
             
             <div style="clear:both;margin-left:40px;" class="sh_time">
                 <p>单据审核过程：</p>

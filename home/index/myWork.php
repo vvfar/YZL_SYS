@@ -89,8 +89,17 @@
             </div>
 
             <div class="data_line" style="float:left">
-                <p class="title">数据图表（销售）</p>
-                <div id="data_body" style="width:100%;height:350px;margin-top:-5px;margin-left:-5px;">
+                <p class="title" style="float:left">数据图表（销售）</p>
+                <div class="layui-carousel-ind" style="float:right;width:42px;margin-top:35px">
+                    <ul style="background:0 0">
+                        <li class="layui-this"  style="background-color:#999"></li>
+                        <li style="background-color:#c2c2c2"></li>
+                    </ul>
+                </div>
+                
+                <hr style="position:relative;top:-25px;">
+
+                <div id="data_body" style="clear:both;width:100%;height:320px;top:-29px;margin-left:-5px;">
                     
                 </div>
             </div>
@@ -98,6 +107,7 @@
             <div style="float:left;width:280px;">
                 <div class="sales" style="width:280px;">
                     <p class="title">销售数据</p>
+
                     <div>
                         <p class="title" style="margin-top:20px;font-size:18px;float:left" id="sales_one">0%</p>
                         <p class="title" style="margin-top:20px;font-size:12px;float:right">个人销售目标</p>

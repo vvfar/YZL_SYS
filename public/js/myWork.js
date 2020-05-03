@@ -109,6 +109,7 @@ window.onload=function(){
                             sales_one_bar=sales_one/result[i].number;
                         }
 
+                    
                         if(sales_one_bar < 0.3){
                             $("#sales_one_bar").addClass("layui-bg-red")
                         }else if(sales_one_bar < 0.6){
@@ -121,6 +122,7 @@ window.onload=function(){
 
                         $("#sales_one").html((sales_one_bar*100).toFixed(2)+"%");
                         $("#sales_one_bar").attr("lay-percent",sales_one_bar*100+"%")
+                        $("#sales_one_bar").css("width",sales_one_bar*100+"%")
                         
                     }else if(result[i].name == "部门销售数据"){
                         sales_two=result[i].number;   
@@ -143,6 +145,7 @@ window.onload=function(){
 
                         $("#sales_two").html((sales_two_bar*100).toFixed(2)+"%");
                         $("#sales_two_bar").attr("lay-percent",sales_two_bar*100+"%")
+                        $("#sales_two_bar").css("width",sales_two_bar*100+"%")
                         
                     }else if(result[i].name == "个人回款数据"){
                         sales_three=result[i].number;   
@@ -165,6 +168,7 @@ window.onload=function(){
 
                         $("#sales_three").html((sales_three_bar*100).toFixed(2)+"%");
                         $("#sales_three_bar").attr("lay-percent",sales_three_bar*100+"%")
+                        $("#sales_three_bar").css("width",sales_three_bar*100+"%")
                         
                     }else if(result[i].name == "部门回款数据"){
                         sales_four=result[i].number;   
@@ -187,7 +191,7 @@ window.onload=function(){
 
                         $("#sales_four").html((sales_four_bar*100).toFixed(2)+"%");
                         $("#sales_four_bar").attr("lay-percent",sales_four_bar*100+"%")
-                        
+                        $("#sales_four_bar").css("width",sales_four_bar*100+"%")
                     }
                 }
 

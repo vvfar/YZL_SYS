@@ -8,6 +8,15 @@
 
     $username=$_SESSION["username"];  //获取用户名
     
+    $sqlstr0="select department,newLevel from user_form where username='$username'";
+
+    $result=mysqli_query($conn,$sqlstr0);
+
+    while($myrow=mysqli_fetch_row($result)){
+        $department=$myrow[0];
+        $newLevel=$myrow[1];
+    }
+
     //获取表中的字段
     $id=$_POST['id'];
     $no=$_POST['no'];
@@ -99,6 +108,8 @@
 
     //M级审批单据
     if($name == "M级审批单据"){
+        
+
 
         
         $sqlstr3="select username from user_form where department like '%$department%' and newLevel='M'";
@@ -110,6 +121,7 @@
         }
     
         $sp=$username.",".$sp;
+        
         $name="KA级提交单据,".$name;
     
         $fileName="";

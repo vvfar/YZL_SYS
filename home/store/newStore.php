@@ -131,11 +131,11 @@
                     <input type="text" class="form-control" name="category" value="<?=$category?>" placeholder="请输入类目" style="width: 250px;float: left;margin-top: 15px;">
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">销售额目标</p>
+                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">月度销售目标</p>
                     <input type="text" class="form-control" name="storeTarget" value="<?=$storeTarget?>" placeholder="请输入销售额目标" style="width: 250px;float: left;margin-top: 15px;">
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">回款目标</p>
+                    <p style="width: 120px;font-size: 14px;float: left;margin-top: 20px;">月度回款目标</p>
                     <input type="text" class="form-control" name="hkTarget" value="<?=$hkTarget?>" placeholder="请输入回款目标" style="width: 250px;float: left;margin-top: 15px;">
                 </div>
                 <div class="form-group" style="clear: both;margin-bottom:0px;">

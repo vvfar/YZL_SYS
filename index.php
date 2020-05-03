@@ -20,6 +20,26 @@
         <div class="container1">
             <div class="dongtai">
                 <p class="title">公司动态</p> 
+                <table class="table table-hover ggl_tb" style="width:250px;margin:0;margin-top:10px">
+                    <?php
+
+                        $sqlstr="select * from news where newsType='公司动态' order by id desc limit 4";
+                        $result=mysqli_query($conn,$sqlstr);
+                    
+                        while($myrow=mysqli_fetch_row($result)){
+                            $id=$myrow[0];
+                            $title=$myrow[1];
+                            $time=$myrow[2];
+                            ?>
+
+                            <tr>
+                                <td><a href="/home/news/news.php?id=<?=$id?>"><?=$title?></a></td>
+                                <td style="color:#cccccc;font-size:12px;text-align:right"><?=$time?></td>
+                            </tr>
+                        <?php
+                        }
+                    ?>
+                </table>
             </div>
 
             <div class="weather">
@@ -76,7 +96,7 @@
                     <p class="title">公共文档</p>
                 </div>
             
-                <table class="table table-striped table-hover ggl_tb" style="width:670px">
+                <table class="table table-hover ggl_tb" style="width:670px">
                     <tr>
                         <th>文档标题</th>
                         <th>下载链接</th>
@@ -113,9 +133,9 @@
                     <p class="title">公告栏</p>
                 </div>
 
-                <table class="table table-striped table-hover">
+                <table class="table table-hover">
                     <?php
-                        $sqlstr="select * from news order by id desc limit 10";
+                        $sqlstr="select * from news where newsType='公司公告' order by id desc limit 10";
                         $result=mysqli_query($conn,$sqlstr);
                     
                         while($myrow=mysqli_fetch_row($result)){
@@ -127,6 +147,7 @@
                             ?>
                             <tr>
                                 <td><a href="home/news/news.php?id=<?=$id?>" style="color:#000000"><?=$title?></a></td>
+                                <td style="color:#cccccc;font-size:12px;text-align:right"><?=$time?></td>
                             </tr>
                             <?php
                         }

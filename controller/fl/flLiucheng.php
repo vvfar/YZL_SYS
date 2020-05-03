@@ -29,8 +29,6 @@
             $newLevel=$myrow[0]; 
         }
 
-        
-
         if($newLevel=="M"){
             $sqlstr1="select number from flprogress where name='M级审批单据' and no=1";
 
@@ -152,6 +150,11 @@
                 $jkfs=$myrow[0];
             }
 
+            ?>
+                <script>
+                    alert("<?=$name?>")
+                </script>
+            <?php
 
             if($jkfs=="全现金"){
 
@@ -262,7 +265,10 @@
             $sqlstr6="update use_sx set newMoney= $nowUseMoney + newMoney where sqid='$sqid'";
             $result=mysqli_query($conn,$sqlstr6);
 
-            echo "<script>window.location.href='../../home/fl/flsq.php?id=$id'</script>";
+            $sqlstr8="delete from use_sx where fl_no = (select no from flsqd where id=$id)";
+            $result=mysqli_query($conn,$sqlstr8);
+
+            echo "<script>alert(1);window.location.href='../../home/fl/flsq.php?id=$id'</script>";
             
         }else{
             echo "<script>window.location.href='../../home/fl/flsq.php?id=$id'</script>";

@@ -56,7 +56,6 @@
                     }
                 }
 
-
                 $result=mysqli_query($conn,$sqlstr3);
                 $info=mysqli_fetch_array($result);
                 $total=$info['total'];
@@ -106,9 +105,9 @@
                         
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){
-                                $sqlstr3=$sqlstr2." and staff like '%$username%'"; 
+                                $sqlstr2=$sqlstr2." and staff like '%$username%'"; 
                             }else{
-                                $sqlstr3=$sqlstr2." and '$department' like concat('%',department,'%') ";
+                                $sqlstr2=$sqlstr2." and '$department' like concat('%',department,'%') ";
                             }
                         }
 
