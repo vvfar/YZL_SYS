@@ -14,7 +14,7 @@
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
         <script src="..\..\public\lib\echarts\dist\echarts.min.js"></script>
-        <script src="..\..\public\js\myWork.js"></script>
+        <script src="..\..\public\js\dataQuery.js"></script>
     </head>
     <body>
         <?php include_once("../../common/conn/conn.php") ?>
@@ -24,32 +24,32 @@
         <div style="margin-left: 180px;">
             <div class="chooseInfo" style="margin-left:30px;margin-top:30px;">
                 <p>筛选条件</p>
-                <select>
+                <select id ="chooseOne">
                     <option>销售额</option>
                     <option>回款</option>
                 </select>
                 <p>部门</p>
-                <select>
+                <select id ="chooseTwo">
                     <option>全部</option>
                     <option>内衣（京东）事业管理部</option>
                 </select>
                 <p>类目</p>
-                <select>
+                <select id ="chooseThree">
                     <option>全部</option>
                     <option>内衣</option>
                 </select>
                 <p>业务员</p>
-                <select>
+                <select id ="chooseFour">
                     <option>全部</option>
                     <option>欧阳雅香</option>
                 </select>
                 <p>店铺</p>
-                <select>
+                <select id ="chooseFive">
                     <option>全部</option>
                     <option>test01</option>
                 </select>
                 <p>时间段</p>
-                <select>
+                <select id ="chooseSix">
                     <option>全部</option>
                     <option>日</option>
                     <option>周</option>
@@ -57,7 +57,7 @@
                     <option>年</option>
                 </select>
                 <p>同环比</p>
-                <select>
+                <select id ="chooseSeven">
                     <option>默认</option>
                     <option>同比</option>
                     <option>环比</option>
@@ -67,55 +67,51 @@
             <div style="margin-left:20px;">
                 <div class="data_div">
                     
-                    <p class="title">销售额</p>
-                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    <p class="title" id="title"></p>
+                    <button id="mytime" class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled></button>
                     
                     <div style="clear:both">
                         <hr style="margin-top:30px">
                     </div>
 
                     <div style="margin-top:20px">
-                        <h1>100000.00</h1>
+                        <h1 id="num"></h1>
                     </div>
 
                     <div style="margin-top:20px">
-                        <p class="title">同比:10%</p>
-                        <p class="title" style="margin-left:10px;">环比:10%</p>
+                        <p class="title">同比:<span id="tb"></span>%</p>
+                        <p class="title" style="margin-left:10px;">环比:<span id="hb"></span>%</p>
                     </div>
                 </div>
 
                 <div class="data_div">
-                    <p class="title">完成比</p>
-                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    <p class="title" id="title2">完成比</p>
+                    <button id="mytime2" class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled></button>
                     
                     <div style="clear:both">
                         <hr style="margin-top:30px">
                     </div>
 
                     <div style="margin-top:20px">
-                        <h1>82%</h1>
+                        <h1 id="num2"></h1>
                     </div>
 
                     <div style="margin-top:20px">
-                        <p class="title">同比:10%</p>
-                        <p class="title" style="margin-left:10px;">环比:10%</p>
+                        <p class="title">同比:<span id="tb2"></span>%</p>
+                        <p class="title" style="margin-left:10px;">环比:<span id="hb2"></span>%</p>
                     </div>
                 </div>
 
                 <div class="data_div">
-                    <p class="title">业绩排名</p>
-                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    <p class="title" id="title3"></p>
+                    <button id="mytime3" class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled></button>
                     
                     <div style="clear:both">
                         <hr style="margin-top:30px">
                     </div>
 
-                    <ul>
-                        <li><span style="background-color:red;color:#fff;padding-left:5px;padding-right:5px;border-radius:3px;">1</span><span style="margin-left:10px">欧阳雅香</span></li>
-                        <li><span style="background-color:brown;color:#fff;padding-left:5px;padding-right:5px;border-radius:3px;">2</span><span style="margin-left:10px">欧阳雅香</span></li>
-                        <li><span style="background-color:orange;color:#fff;padding-left:5px;padding-right:5px;border-radius:3px;">3</span><span style="margin-left:10px">欧阳雅香</span></li>
-                        <li><span style="background-color:grey;color:#fff;padding-left:5px;padding-right:5px;border-radius:3px;">4</span><span style="margin-left:10px">欧阳雅香</span></li>
-                        <li><span style="background-color:grey;color:#fff;padding-left:5px;padding-right:5px;border-radius:3px;">5</span><span style="margin-left:10px">欧阳雅香</span></li>
+                    <ul id="rank">
+                        
                     </ul>
                 </div>
             </div>
@@ -135,37 +131,37 @@
 
                 </div>
                 <div class="data_div">
-                    <p class="title">新开拓店铺</p>
-                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    <p class="title" id="title5">新开拓店铺</p>
+                    <button id="mytime5" class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled></button>
                     
                     <div style="clear:both">
                         <hr style="margin-top:30px">
                     </div>
 
                     <div style="margin-top:20px">
-                        <h1>10</h1>
+                        <h1 id="num5"></h1>
                     </div>
 
                     <div style="margin-top:20px">
-                        <p class="title">同比:10%</p>
-                        <p class="title" style="margin-left:10px;">环比:10%</p>
+                        <p class="title">同比:<span id="tb5"></span>%</p>
+                        <p class="title" style="margin-left:10px;">环比:<span id="hb5"></span>%</p>
                     </div>
                 </div>
                 <div class="data_div">
-                    <p class="title">终止合作店铺</p>
-                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    <p class="title" id="title6">终止合作店铺</p>
+                    <button id="mytime6" class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled></button>
                     
                     <div style="clear:both">
                         <hr style="margin-top:30px">
                     </div>
 
                     <div style="margin-top:20px">
-                        <h1>5</h1>
+                        <h1 id="num6"></h1>
                     </div>
 
                     <div style="margin-top:20px">
-                        <p class="title">同比:10%</p>
-                        <p class="title" style="margin-left:10px;">环比:10%</p>
+                        <p class="title">同比:<span id="tb6"></span>%</p>
+                        <p class="title" style="margin-left:10px;">环比:<span id="hb6"></span>%</p>
                     </div>
                 </div>
             </div>
@@ -195,3 +191,4 @@
         margin-top:2px
     }
 </style>
+
