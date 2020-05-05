@@ -7,11 +7,22 @@ window.onload=function(){
     chooseSix=$("#chooseSix").val()
     chooseSeven=$("#chooseSeven").val()
 
+    data={
+            chooseOne:chooseOne,
+            chooseTwo:chooseTwo,
+            chooseThree:chooseThree,
+            chooseFour:chooseFour,
+            chooseFive:chooseFive,
+            chooseSix:chooseSix,
+            chooseSeven:chooseSeven,
+        }
+
     //第一个框
     $.ajax({
-        type:"get",
+        type:"post",
         async:true,
         url:"../../controller/index/dataQueryController1.php",
+        data:data,
         dataType:"json",
         success:function(result){
             if(result){

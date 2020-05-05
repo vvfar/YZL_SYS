@@ -33,34 +33,32 @@
                     <option>全部</option>
                     <option>内衣（京东）事业管理部</option>
                 </select>
-                <p>类目</p>
+                <p>平台</p>
                 <select id ="chooseThree">
                     <option>全部</option>
-                    <option>内衣</option>
+                    <option>京东</option>
                 </select>
-                <p>业务员</p>
+                <p>类目</p>
                 <select id ="chooseFour">
                     <option>全部</option>
-                    <option>欧阳雅香</option>
+                    <option>内衣</option>
                 </select>
                 <p>店铺</p>
                 <select id ="chooseFive">
                     <option>全部</option>
                     <option>test01</option>
                 </select>
-                <p>时间段</p>
+                <p>业务员</p>
                 <select id ="chooseSix">
                     <option>全部</option>
+                    <option>欧阳雅香</option>
+                </select>
+                <p>时间段</p>
+                <select id ="chooseSeven">
                     <option>日</option>
                     <option>周</option>
                     <option>月</option>
                     <option>年</option>
-                </select>
-                <p>同环比</p>
-                <select id ="chooseSeven">
-                    <option>默认</option>
-                    <option>同比</option>
-                    <option>环比</option>
                 </select>
                 <button style="margin-left:10px;font-size:12px;padding:2px;">导出数据</button>
             </div>
@@ -181,6 +179,7 @@
         float:left;
         margin-left:10px;
         height:24px;
+        width:80px;
     }
 
     .data_div{width: 323px;height:160px;border:1px solid #d9d9d9;float:left;margin-left:20px;border-radius: 5px;margin-top:20px;padding-left:10px;padding:10px;}
