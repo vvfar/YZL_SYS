@@ -139,11 +139,31 @@
                         $result=mysqli_query($conn,$sqlstr2);
 
                         while($myrow=mysqli_fetch_row($result)){
-                            $arr_shr=explode(",",$myrow[9]);
-                            $shr=array_pop($arr_shr);
+                            $shr=$myrow[5];
+                            $status_a=$myrow[9];
+
                         ?>
                             <tr>
-                                <td class="td1"><p style="margin:0 auto"><a href="sx_line2.php?id=<?=$myrow[0]?>" style="width: 50px;"><?=$myrow[2]?></a></p></td>
+                                <?php
+                                if($status_a=="已拒绝"){
+                                    if($username == $shr){
+                                        ?>
+                                            <td class="td1"><p style="margin:0 auto"><a href="sx_line.php?id=<?=$myrow[0]?>" style="width: 50px;color:red"><?=$myrow[2]?></a></p></td>
+                                        <?php
+                                    }else{
+                                        ?>
+                                            <td class="td1"><p style="margin:0 auto"><a href="sx_line.php?id=<?=$myrow[0]?>" style="width: 50px;"><?=$myrow[2]?></a></p></td>
+                                        <?php
+                                    }
+                                }else{
+                                    ?>
+                                        <td class="td1"><p style="margin:0 auto"><a href="sx_line2.php?id=<?=$myrow[0]?>" style="width: 50px;"><?=$myrow[2]?></a></p></td>
+                                    <?php
+                                }
+                                    
+                                ?>
+
+                                
                                 <td class="td2"><p style="margin:0 auto"><?=$myrow[3]?></p></td>
                                 <td><?=$myrow[4]?></td>
                                 <td><?=$myrow[5]?></td>

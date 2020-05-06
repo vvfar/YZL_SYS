@@ -78,7 +78,7 @@
         createtable($data,'销售数据汇总',$header,$list2);
     }else{
         $list2=range(0,8);
-        createtable($data,'回款数据汇总',$header,$list2);
+        createtable($data,'现金回款数据汇总',$header,$list2);
     }
     
     mysqli_free_result($result);

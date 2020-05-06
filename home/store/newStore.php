@@ -21,6 +21,9 @@
 
                 $username=$_SESSION["username"];
 
+                date_default_timezone_set("Asia/Shanghai");
+                $dateMonth=date('Y-m', time());
+
                 $sqlstr1="select department,newLevel from user_form where username='$username'";
 
                 $result=mysqli_query($conn,$sqlstr1);
@@ -39,9 +42,9 @@
                 }
 
                 if($id != ""){
-                    $sqlstr="select * from store where id='$id'";
+                    $sqlstr="select a.*,b.storeTarget,b.hkTarget  from store a left join store_target b on a.storeID=b.storeID and b.dateMonth='$dateMonth' where a.id='$id'";
                     $result=mysqli_query($conn,$sqlstr);
-                
+
                     while($myrow=mysqli_fetch_row($result)){
                         $id=$myrow[0];
                         $storeID=$myrow[1];
@@ -51,12 +54,12 @@
                         $category=$myrow[5];
                         $department=$myrow[6];
                         $staff=$myrow[7];
-                        $storeTarget=$myrow[8];
-                        $hkTarget=$myrow[9];
-                        $createDate=$myrow[11];
-                        $link=$myrow[13];
-                        $staff_time=$myrow[14];
-                        $status=$myrow[10];
+                        $createDate=$myrow[9];
+                        $link=$myrow[11];
+                        $staff_time=$myrow[12];
+                        $status=$myrow[8];
+                        $storeTarget=$myrow[14];
+                        $hkTarget=$myrow[15];
                     }
                 }else{
                     $id="";

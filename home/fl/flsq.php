@@ -597,7 +597,7 @@
                             ?> 
                             </select>
                         </td>
-                        <td class="dj"><input type="text" value="<?=$dj_arr[$i]?>" name="dj<?=$i?>" readOnly/></td>
+                        <td class="dj"><input type="text" value="<?=$dj_arr[$i]?>" name="dj<?=$i?>"/></td>
                         <td class="sl"><input type="text" value="<?=$sl_arr[$i]?>" name="sl<?=$i?>"/></td>
                         <td class="flfxj"><?=$flfxj_arr[$i]?></td>
                     </tr>

@@ -101,7 +101,7 @@
                 
                     <?php    
                         
-                        $sqlstr2="select * from store where 1=1";
+                        $sqlstr2="select id,storeID,client,storeName,department,staff,createDate,htsq,link from store where 1=1";
                         
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){
@@ -123,11 +123,11 @@
                             $storeNO=$myrow[1];
                             $companyName=$myrow[2];
                             $storeName=$myrow[3];
-                            $link=$myrow[13];
-                            $department=$myrow[6];
-                            $staff=$myrow[7];
-                            $createDate=$myrow[11];
-                            $htsq=$myrow[15];
+                            $department=$myrow[4];
+                            $staff=$myrow[5];
+                            $createDate=$myrow[6];
+                            $htsq=$myrow[7];
+                            $link=$myrow[8];
 
                             ?>
                             <tr>

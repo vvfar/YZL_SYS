@@ -124,11 +124,11 @@
         }
 
         if($sx_id_id!=""){
-            $sqlstr4="update hk_form set companyName='$companyName',department='$department',ywy='$ywy',sqid='$sqid',dhkje='$sqmoney' where sqid='$sqid'";
-            $sqlstr10="update hk_form2 set companyName='$companyName',department='$department',ywy='$ywy',sqid='$sqid',dhkje='$sqmoney' where sqid='$sqid'";
+            $sqlstr4="update hk_form set companyName='$companyName',department='$department',ywy='$username',sqid='$sqid',dhkje='$sqmoney' where sqid='$sqid'";
+            $sqlstr10="update hk_form2 set companyName='$companyName',department='$department',ywy='$username',sqid='$sqid',dhkje='$sqmoney' where sqid='$sqid'";
         }else{
-            $sqlstr4="insert into  hk_form values('$maxID'+1,'$companyName','$department','$ywy','$sqid',null,',,,,,,,,,,,',',,,,,,,,,,,',',,,,,,,,,,,',null,null,'$sqmoney')";
-            $sqlstr10="insert into  hk_form2 values('$maxID'+1,'$companyName','$department','$ywy','$sqid',null,',,,,,,,,,,,',',,,,,,,,,,,',',,,,,,,,,,,',null,null,'$sqmoney',null)";
+            $sqlstr4="insert into  hk_form values('$maxID'+1,'$companyName','$department','$username','$sqid','$date1',',,,,,,,,,,,',',,,,,,,,,,,',',,,,,,,,,,,',',,,,,,,,,,,',null,'$sqmoney')";
+            $sqlstr10="insert into  hk_form2 values('$maxID'+1,'$companyName','$department','$username','$sqid','$date1',',,,,,,,,,,,',',,,,,,,,,,,',',,,,,,,,,,,',',,,,,,,,,,,',null,'$sqmoney',null)";
         }
 
         $result4=mysqli_query($conn,$sqlstr4);

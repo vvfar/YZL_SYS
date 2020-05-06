@@ -191,7 +191,6 @@
                         $result=mysqli_query($conn,$sqlstr5);
                         
                         while($myrow=mysqli_fetch_row($result)){
-                            $id=$myrow[0];
                             $content=$myrow[1];
                             $status2=$myrow[2];
                             $shr2=$myrow[3];

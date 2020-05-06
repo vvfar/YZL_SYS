@@ -46,13 +46,41 @@
         //$sqlstr2="insert into store values('$maxID'+1,'$storeID','$client','$storeName','$pingtai','$category','$department','','0','正常','$createDate','无','$link')";
     }else{
         $date=date('Y-m-d', time());
+        $dateMonth=date('Y-m', time());
 
         //计算从店铺创立到今天的天数
         $days_store=floor((strtotime($date)-strtotime($createDate))/86400);
         $days_staff=floor((strtotime($date)-strtotime($staff_time))/86400);
 
-        $sqlstr2="update store set storeID='$storeID',client='$client',storeName='$storeName',pingtai='$pingtai',category='$category',link='$link',storeTarget='$storeTarget',hkTarget='$hkTarget' where id='$id'";
+        $sqlstr2="update store set storeID='$storeID',client='$client',storeName='$storeName',pingtai='$pingtai',category='$category',link='$link' where id='$id'";
         $result=mysqli_query($conn,$sqlstr2);
+
+        $sqlstr4="select count(*) from store_target where storeID='$storeID' and dateMonth='$dateMonth'";
+        $result4=mysqli_query($conn,$sqlstr4);
+
+        while($myrow=mysqli_fetch_row($result4)){
+            $storeTarget_count=$myrow[0];
+        }
+    
+        if($storeTarget_count > 0){
+            $sqlstr5="update store_target set storeTarget='$storeTarget',hkTarget='$hkTarget' where storeID='$storeID' and dateMonth='$dateMonth'";
+        }else{
+            $sqlstr6="select max(id) from store_target";
+            $result6=mysqli_query($conn,$sqlstr6);
+        
+            while($myrow=mysqli_fetch_row($result6)){
+                $maxID=$myrow[0];
+            }
+        
+            if($maxID==""){
+                $maxID=0;
+            }
+
+
+            $sqlstr5="insert into store_target values('$maxID'+1,'$storeID','$storeTarget','$hkTarget','$dateMonth') ";
+        }
+
+        $result5=mysqli_query($conn,$sqlstr5);
 
         if($oldStaff != $staff){
 
@@ -81,7 +109,7 @@
     ?>
     <script>
         alert("提交失败！")
-        window.location.href="../../home/store/newStore.php"
+        //window.location.href="../../home/store/newStore.php"
     </script> 
     <?php
     }
