@@ -44,27 +44,27 @@
 
                         $shr2_arr=explode(",",$myrow[8]);
 
-                        if($myrow[21]=="待生效"){
+                        if($status=="待生效"){
                     ?>  
                         <button class="btn btn-warning btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">待生效</button>
                     <?php
-                        }elseif($myrow[21]=="待归档"){
+                        }elseif($status=="待归档"){
                             ?>  
                                 <button class="btn btn-info btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">待归档</button>
                             <?php
-                        }elseif($myrow[21]=="已生效"){
+                        }elseif($status=="已生效"){
                         ?>  
                             <button class="btn btn-success btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">已生效</button>
                         <?php
-                        }elseif($myrow[21]=="已作废"){
+                        }elseif($status=="已作废"){
                         ?>  
                             <button class="btn btn-danger btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">已作废</button>
                         <?php
-                        }elseif($myrow[21]=="已拒绝"){
+                        }elseif($status=="已拒绝"){
                             ?>  
                                 <button class="btn btn-danger btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">已拒绝</button>
                             <?php
-                        }elseif($myrow[21]=="已完成"){
+                        }elseif($status=="已完成"){
                         ?>  
                             <button class="btn btn-info btn-sm" style="float: left;margin-left: 640px;margin-left: 10px;">已完成</button>
                         <?php
@@ -235,7 +235,7 @@
                                 <td><a href="#" title="<?=$hkfsbz[$i]?>" style="color:#333"><?=$hkfs[$i]?></a></td>
                                 <td><?=$date1[$i]?></td>
                                 <td><?=$sjhkje[$i]?></td>
-                                <td><a href="#" title="<?=$hkfsbz[$i]?>" style="color:#333"><?=$sjhkfs[$i]?></a></td>
+                                <td><a href="#" title="<?=$hkfs2[$i]?>" style="color:#333"><?=$sjhkfs[$i]?></a></td>
                                 <?php
                                     $D1 = strtotime($now);
 

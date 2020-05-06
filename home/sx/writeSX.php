@@ -222,7 +222,6 @@
                             <option></option>
                             <option>现金还款</option>
                             <option>货物冲抵</option>
-                            <option>其他方式</option>
                             <option>汇款</option>
                             <option>汇款+冲抵</option>
                             <option>其他方式</option>

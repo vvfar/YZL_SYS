@@ -216,7 +216,7 @@
                                     ?>
                                         <tr>
                                             <td><?=$myTotal?></td>
-                                            <td class="td1"><p style="margin:0 auto"><a href="sx_line.php?id=<?=$myrow[0]?>" style="width: 50px;"><?=$myrow[2]?></a></p></td>
+                                            <td class="td1"><p style="margin:0 auto"><a href="sx_line.php?id=<?=$myrow[0]?>" style="width: 30px;"><?=$myrow[2]?></a></p></td>
                                             <td class="td2"><p style="margin:0 auto"><?=$myrow[3]?></p></td>
                                             <td><p style="margin:0"><?=$myrow[4]?></p></td>
                                             <td><?=$myrow[5]?></td>

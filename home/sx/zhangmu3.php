@@ -306,8 +306,7 @@
                         <th>业务员</th>
                         <th>授信金额</th>
                         <th>剩余应还</th>
-                        <th>剩余额度</th>
-                        <th>状态</th>
+                        <th>已使用额度</th>
                         <th style="width:100px;">登记日期</th>
                     </tr>
 
@@ -351,12 +350,10 @@
                                 <?php
                                     }else{
                                 ?>
-                                    <td><?=$myrow[10]?></td>
+                                    <td><?=($myrow[6]-$myrow[10]) ?></td>
                                 <?php
                                     }
                                 ?>
-                                
-                                <td><?=$myrow[9]?></td>
                                 <td><?=$myrow[1]?></td>
                             </tr>
                         <?php
