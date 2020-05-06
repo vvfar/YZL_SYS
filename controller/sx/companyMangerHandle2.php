@@ -4,18 +4,32 @@
     include_once("../../common/conn/conn.php");
     error_reporting(E_ALL || ~E_NOTICE);
 
+    session_start();   
+    $username=$_SESSION["username"];
+
+    $sqlstr1="select department from user_form where username='$username'";
+
+    $result=mysqli_query($conn,$sqlstr1);
+
+    while($myrow=mysqli_fetch_row($result)){
+        $department=$myrow[0];
+    }
 
     $sxbh=$_POST['sxbh'];
 
     date_default_timezone_set("Asia/Shanghai");
     $date1=date('Y-m-d', time());  //签署日期
 
+    $cn=$_POST['cn'];
+    $ywy=$_POST['ywy'];
     $hkqs=$_POST['hkqs'];
     $date2=$_POST['date2'];
     $sjhkje=$_POST['sjhkje'];
     $hkfs=$_POST['hkfs'];
     $hkfs2=$_POST['hkfs2'];
     $syjehkfs=$_POST['syjehkfs'];
+
+
 
     $sqlstr1="select date2,sjhkje,hkfs,hkfs2,dhkje from hk_form where sqid='$sxbh'";   
 
@@ -53,34 +67,27 @@
     $sql_sjhkje=implode(",",$sql_sjhkje_arr);
     $sql_hkfs=implode(",",$sql_hkfs_arr);
     $sql_hkfs2=implode(",",$sql_hkfs2_arr);
-
-
-    if((int)$sql_dhkje==0){
         
-        $sqlstr3="update hk_form2 set date1='$date1',date2='$sql_date2',sjhkje='$sql_sjhkje',".
-        "hkfs='$sql_hkfs',hkfs2='$hkfs2',syjehkfs='$syjehkfs',dhkje='$sql_dhkje',status='待财务审批' ".
-        "where sqid='$sxbh'";
+    $sqlstr3="update hk_form2 set date1='$date1',date2='$sql_date2',sjhkje='$sql_sjhkje',".
+    "hkfs='$sql_hkfs',hkfs2='$hkfs2',syjehkfs='$syjehkfs',dhkje='$sql_dhkje',status='待财务审批' ".
+    "where sqid='$sxbh'";
         
-    }else{
-
-        $sqlstr3="update hk_form2 set date1='$date1',date2='$sql_date2',sjhkje='$sql_sjhkje',".
-        "hkfs='$sql_hkfs',hkfs2='$hkfs2',syjehkfs='$syjehkfs',dhkje='$sql_dhkje',status='待财务审批' ".
-        "where sqid='$sxbh'";
-        
-    }
-
     $result3=mysqli_query($conn,$sqlstr3);
 
-    $sqlstr4="select id from sx_form where sqid='$sxbh'";   
+    $sqlstr4="select max(id) from sxhk_form";
 
     $result4=mysqli_query($conn,$sqlstr4);
-    
+
     while($myrow=mysqli_fetch_row($result4)){
-        $id=$myrow[0];
+        $maxID=$myrow[0];
     }
 
+    $sqlstr5="insert into sxhk_form values('$maxID'+1,'$sxbh','$cn','$department','$ywy','$sjhkje','$date1','待财务审批')";
 
-    if($result3){
+    $result5=mysqli_query($conn,$sqlstr5);
+
+
+    if($result5){
     ?>
         <script>
             alert("提交成功!");

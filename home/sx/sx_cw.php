@@ -54,7 +54,7 @@
 
                 $pagesize=15;
 
-                $sqlstr3="select count(*) as total from sx_form a,hk_form2 b where a.sqid=b.sqid and b.status='待财务审批'";
+                $sqlstr3="select count(*) as total from sx_form a,hk_form2 b where a.sqid=b.sqid  and b.status <> '已审核' ";
 
                 if($date1 !="" && $date2 !=""){
                     $sqlstr3= $sqlstr3." and a.date3>='$date1' and a.date3<= '$date2'";
@@ -64,8 +64,12 @@
                     $sqlstr3= $sqlstr3." and a.companyName like '%$companyName%'";
                 }
 
-                if($newLevel !="ADMIN" and $department !="财务部"){
-                    $sqlstr3=$sqlstr3." and (a.department='$department' or a.gxDepartment like '%$department%')";
+                if($newLevel !="ADMIN" and $department != "商务运营部" and $department !="财务部"){
+                    if($newLevel == "KA"){
+                        $sqlstr3=$sqlstr3." and a.ywy='$username' ";
+                    }else{
+                        $sqlstr3=$sqlstr3." and '$department' like concat('%',a.department,'%') ";
+                    }
                 }
                 
                 $result=mysqli_query($conn,$sqlstr3);
@@ -111,8 +115,8 @@
                     <?php
                         
                         $sqlstr2="select distinct a.id,a.date1,a.sqid,a.companyName,a.department,a.ywy,a.sqmoney,". 
-                        "b.dhkje,a.status2,a.status,c.newMoney ".
-                        "from sx_form a,hk_form2 b,use_sx c where a.sqid=b.sqid and a.sqid=c.sqid and b.status='待财务审批'";
+                        "b.dhkje,a.status2,b.status,c.newMoney ".
+                        "from sx_form a,hk_form2 b,use_sx c where a.sqid=b.sqid and a.sqid=c.sqid and b.status <> '已审核' ";
 
                         if($date1 !="" and $date2 !=""){
                             $sqlstr2=$sqlstr2." and a.date3 >= '$date1' and a.date3 <= '$date2'";
@@ -122,8 +126,12 @@
                             $sqlstr2=$sqlstr2." and a.companyName like '%$companyName%'";
                         }
                         
-                        if($department !="财务部"){
-                            $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%')";
+                        if($newLevel !="ADMIN" and $department != "商务运营部" and $department !="财务部"){
+                            if($newLevel == "KA"){
+                                $sqlstr2=$sqlstr2." and a.ywy='$username' ";
+                            }else{
+                                $sqlstr2=$sqlstr2." and '$department' like concat('%',a.department,'%') ";
+                            }
                         }
 
                         $sqlstr2=$sqlstr2." order by a.date1 desc limit ".($page-1)*$pagesize.",$pagesize";

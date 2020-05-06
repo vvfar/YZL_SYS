@@ -51,6 +51,11 @@
     
         $sqlstr5="update hk_form2 set status='已审核' where id=$id";
         $result=mysqli_query($conn,$sqlstr5);
+
+        $sqlstr6="update sxhk_form set status='已审核' where sqid='$sqid' and status='待财务审批' ";
+
+        $result6=mysqli_query($conn,$sqlstr6);
+
     }else{
         $sqlstr2="select * from hk_form where id=$id";
 
@@ -91,12 +96,15 @@
     
         $result=mysqli_query($conn,$sqlstr4);
     
-        $sqlstr5="update hk_form2 set status='' where id=$id";
+        $sqlstr5="update hk_form2 set status='已拒绝' where id=$id";
         $result=mysqli_query($conn,$sqlstr5);
+
+        $sqlstr6="update sxhk_form set status='已拒绝' where sqid='$sqid' and status='待财务审批' ";
+        $result6=mysqli_query($conn,$sqlstr6);
     }
     
 
-    if($result2){
+    if($result6){
     ?>
         <script>
             alert("提交成功！")

@@ -81,7 +81,9 @@
                 </div>
 
                 <div style="float:right;margin-top:20px;">
-                    <button class="btn btn-sm btn-danger" style="float:right;margin-left:10px;"  id="downloadAll">下载数据</button>  
+                    <p style="float:left;margin-left:10px;position:relative;top:5px;">下载</p>
+                    <button class="btn btn-sm btn-info" style="float:left;margin-left:10px;"  id="downloadAll_xj">现金回款</button>  
+                    <button class="btn btn-sm btn-warning" style="float:left;margin-left:10px;"  id="downloadAll_sx">授信回款</button>  
                 </div>
             </div>
             
@@ -266,7 +268,11 @@
         window.location.href="dataStore2.php?date="+date;
     })
 
-    $("#downloadAll").click(function(){
+    $("#downloadAll_xj").click(function(){
         window.location.href="../../controller/store/downloadStoreData.php?option=2"
+    })
+
+    $("#downloadAll_sx").click(function(){
+        window.location.href="../../controller/sx/downloadSXHK_list.php"
     })
 </script>

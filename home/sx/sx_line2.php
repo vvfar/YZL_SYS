@@ -41,13 +41,14 @@
 
                     $sqlstr1="select a.sqid,a.companyName,a.department,a.ywy,a.date1,a.sqmoney,a.sxf,". 
                     "b.dhkje,a.shr,a.date2,a.date3,a.dateTime,a.hkje,a.wyfl,a.hkfs,a.hkfsbz,b.date2,".
-                    "b.sjhkje,b.hkfs,b.hkfs2,a.file_name,a.status,a.status2,a.allTime,a.note,a.gxDepartment,b.syjehkfs,b.id ".
+                    "b.sjhkje,b.hkfs,b.hkfs2,a.file_name,a.status,a.status2,a.allTime,a.note,a.gxDepartment,b.syjehkfs,b.id,b.status ".
                     "from sx_form a,hk_form2 b where a.sqid=b.sqid and a.id=$sxid";
 
                     $result=mysqli_query($conn,$sqlstr1);
 
                     while($myrow=mysqli_fetch_row($result)){
                         $id=$myrow[27];
+                        $hksp_status=$myrow[28];
                         $sqid=$myrow[0];
 
                         $shr2_arr=explode(",",$myrow[8]);
@@ -275,7 +276,7 @@
             <p style="margin-left:50px;">剩余金额回款方式：<?=$syjehkfs?></p>            
 
             <?php
-                if($my_department == "财务部" or $newLevel == "ADMIN"){
+                if(($my_department == "财务部" or $newLevel == "ADMIN") and $hksp_status =="待财务审批" ){
             ?>
                 <div style="margin-left:950px;">
                     <button class="btn btn-sm btn-success" style="float:left;" id="agree">同意</button>
