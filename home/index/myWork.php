@@ -89,7 +89,7 @@
             </div>
 
             <div class="data_line" style="float:left">
-                <p class="title" style="float:left">数据图表（销售）</p>
+                <p class="title" style="float:left">数据图表</p>
                 <div class="layui-carousel-ind" style="float:right;width:42px;margin-top:35px">
                     <ul style="background:0 0">
                         <li class="layui-this"  style="background-color:#999"></li>
@@ -99,7 +99,10 @@
                 
                 <hr style="position:relative;top:-25px;">
 
-                <div id="data_body" style="clear:both;width:100%;height:320px;top:-29px;margin-left:-5px;">
+                <!--<div id="data_body" style="clear:both;width:100%;height:320px;top:-29px;margin-left:-5px;">
+                    
+                </div>-->
+                <div id="data_body_two" style="clear:both;width:100%;height:320px;top:-29px;margin-left:-5px;">
                     
                 </div>
             </div>

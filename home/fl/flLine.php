@@ -218,12 +218,10 @@
                         <td colspan="3" id="fwfhjhs"><?=$hd_flfhjsh?></td>
                     </tr>
                     <tr>
-                        <td colspan="9">服务费辅料费总计</td>
-                        <td colspan="9" id="fwfflfhj"><?=$hd_fwfflfzj?></td>
+                        <td colspan="12">服务费辅料费总计</td>
+                        <td colspan="12" id="fwfflfhj"><?=$hd_fwfflfzj?></td>
                         <td colspan="6">结款方式</td>
                         <td colspan="6"><?=$jkfs?></td>
-                        <td colspan="3">业务员</td>
-                        <td colspan="3"><?=$ywy?></td>
                     </tr>
                     
                     <?php 
@@ -264,15 +262,15 @@
                             ?>
                                 <tr>
                                     <td colspan="6">物流方式</td>
-                                    <td colspan="6"><input type="text" value="<?=$wlfs?>" style="width: 100%;" name="wlfs" id="wlfs"/></td>
+                                    <td colspan="6"><input type="text" value="<?=$wlfs?>" style="width: 90%;" name="wlfs" id="wlfs"/></td>
                                     <td colspan="6">物流单号</td>
-                                    <td colspan="6"><input type="text" value="<?=$wlno?>" style="width: 100%;" name="wlno" id="wlno"/></td>
+                                    <td colspan="6"><input type="text" value="<?=$wlno?>" style="width: 90%;" name="wlno" id="wlno"/></td>
                                     <td colspan="6">物流费用</td>
-                                    <td colspan="6"><input type="text" value="<?=$wlprice?>" style="width: 100%;" name="wlprice" id="wlprice"/></td>
+                                    <td colspan="6"><input type="text" value="<?=$wlprice?>" style="width: 90%;" name="wlprice" id="wlprice"/></td>
                                 </tr>
                                 <tr>
                                     <td colspan="6">备注</td>
-                                    <td colspan="30"><input type="text" value="<?=$note?>" style="width: 100%;" name="note" id="note"/></td>
+                                    <td colspan="30"><input type="text" value="<?=$note?>" style="width: 98%;" name="note" id="note"/></td>
                                 </tr>
                             <?php
                             }else{
@@ -408,11 +406,13 @@
                 <p>单据审核过程：</p>
                 <?php
                     for($i=0;$i<sizeof($allTime_arr);$i++){
-                        ?>
-                        <p>状态：<?=$status_arr2[$i]?>&nbsp;&nbsp;&nbsp;&nbsp;
-                            审核人：<?=$shr_arr2[$i]?>&nbsp;&nbsp;&nbsp;&nbsp;
-                            审核时间：<?=$allTime_arr[$i]?></p>
-                        <?php
+                    ?>
+                        <ul style="clear:both">
+                            <li style="width:200px;float:left;margin-top:2px;">状态：<?=$status_arr2[$i]?></li>
+                            <li style="width:200px;float:left;margin-top:2px;">审核人：<?=$shr_arr2[$i]?></li>
+                            <li style="width:200px;float:left;margin-top:2px;">审核时间：<?=$allTime_arr[$i]?></li>
+                        </ul>
+                    <?php
                     }
                 ?>
             </div>

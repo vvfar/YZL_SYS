@@ -23,6 +23,7 @@ window.onload=function(){
         }
     })
 
+    /*
     //数据图表（销售）
     var myChart=echarts.init(document.getElementById('data_body'),"light");
 
@@ -78,7 +79,7 @@ window.onload=function(){
         }
     })
 
-
+*/
     //注意进度条依赖 element 模块，否则无法进行正常渲染和功能性操作
     layui.use('element', function(){
         var element = layui.element;
@@ -199,4 +200,62 @@ window.onload=function(){
         }
     })
 
+
+     //数据图表（销售）
+     var myChart2=echarts.init(document.getElementById('data_body_two'),"light");
+
+     myChart2.showLoading();
+ 
+     var names=[];
+     var numbers=[];
+ 
+     $.ajax({
+         type:"post",
+         async:true,
+         url:"../../controller/index/myworkController4.php",
+         dataType:"json",
+         success:function(result){
+             if(result){
+                 for(var i=0;i<result.length;i++){
+                     names.push(result[i].dateTime_xssj);
+                     numbers.push(result[i].number_xssj);
+                     object=result[i].object_xssj;
+                 }
+             }
+ 
+             myChart2.hideLoading();
+         
+             var option={
+                 title:{
+                     text:'',
+                     subtext:object,
+                     x:'left' 
+                 },
+                 tooltip:{
+                     trigger:'item',
+                 },
+                 legend:{
+                     orient:'vertical', 
+                     left:'right',  
+                     data:['销量']
+                 },
+                 
+                 xAxis:{
+                     data:names
+                 },
+                 yAxis:{},
+                 series:[{
+                     name:'回款',
+                     type:'bar',
+                     data:numbers
+                 }]
+             }
+ 
+             myChart2.setOption(option);
+ 
+         }
+     })
+ 
+ 
+    
 }

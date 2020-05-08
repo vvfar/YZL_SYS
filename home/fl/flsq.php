@@ -13,7 +13,6 @@
         <link href="../../public/css/flsq.css" rel="stylesheet"/>
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="../../public/js/flsq.js"></script>
-        
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
@@ -215,7 +214,7 @@
                 <?php
                     if(!isset($_GET['id'])){
                         ?>
-                            <button type="reset" class="btn btn-danger btn-sm" style="float:left;margin-left:685px;margin-top:-10px">重置表单</button>
+                            <button type="reset" class="btn btn-danger btn-sm" style="float:left;margin-left:695px;margin-top:-10px">重置表单</button>
                         <?php
                     }else{
                         ?>
@@ -256,8 +255,7 @@
                             }
                         
                         ?>"
-                        class="w9" name="date" readonly="readonly"/></td>
-                        <!--<td><input type="text" value="<?=$date?>" placeholder="请填写申请日期" style="width: 140px;" name="date"/></td>-->
+                        style="width:150px;" name="date" readonly="readonly"/></td>
                     </tr>
                     <tr>
                         <td>收货地址</td>
@@ -268,131 +266,30 @@
                         <td><input type="text" value="<?=$phone?>" placeholder="请填写联系电话" class="w8" name="phone" maxlength="13"/></td>
                         <td>运输方式</td>
                         <td>
-                            <select style="height: 20px;width:150px;text-align:center" name="driving">
+                            <select style="height: 20px;width:150px;text-align:center; text-align-last:center;" name="driving">
+                                <option></option>
                                 <?php
-                                    if($driving=="物流寄付"){
-                                ?>
-                                    <option selected="selected">物流寄付</option>
-                                    <option>物流到付</option>
-                                    <option>快递寄付</option>
-                                    <option>快递到付</option>
-                                    <option>顺丰到付</option>
-                                    <option>德邦快递到付</option>
-                                    <option>德邦物流到付</option>
-                                    <option>送货上门</option>
-                                    <option>自提</option>
-                                <?php
-                                    }elseif($driving=="物流到付"){
-                                ?>
-                                    <option>物流寄付</option>
-                                    <option selected="selected">物流到付</option>
-                                    <option>快递寄付</option>
-                                    <option>快递到付</option>
-                                    <option>顺丰到付</option>
-                                    <option>德邦快递到付</option>
-                                    <option>德邦物流到付</option>
-                                    <option>送货上门</option>
-                                    <option>自提</option> 
-                                <?php
-                                    }elseif($driving=="快递寄付"){
-                                ?>
-                                    <option>物流寄付</option>
-                                    <option>物流到付</option>
-                                    <option selected="selected">快递寄付</option>
-                                    <option>快递到付</option>
-                                    <option>顺丰到付</option>
-                                    <option>德邦快递到付</option>
-                                    <option>德邦物流到付</option>
-                                    <option>送货上门</option>
-                                    <option>自提</option> 
-                                <?php
-                                    }elseif($driving=="快递到付"){
-                                ?>
-                                    <option>物流寄付</option>
-                                    <option>物流到付</option>
-                                    <option>快递寄付</option>
-                                    <option selected="selected">快递到付</option>
-                                    <option>顺丰到付</option>
-                                    <option>德邦快递到付</option>
-                                    <option>德邦物流到付</option>
-                                    <option>送货上门</option>
-                                    <option>自提</option> 
-                                <?php
-                                    }elseif($driving=="顺丰到付"){
-                                ?>
-                                    <option>物流寄付</option>
-                                    <option>物流到付</option>
-                                    <option>快递寄付</option>
-                                    <option>快递到付</option>
-                                    <option selected="selected">顺丰到付</option>
-                                    <option>德邦快递到付</option>
-                                    <option>德邦物流到付</option>
-                                    <option>送货上门</option>
-                                    <option>自提</option> 
-                                <?php
-                                    }elseif($driving=="德邦快递到付"){
-                                ?>
-                                    <option>物流寄付</option>
-                                    <option>物流到付</option>
-                                    <option>快递寄付</option>
-                                    <option>快递到付</option>
-                                    <option>顺丰到付</option>
-                                    <option selected="selected">德邦快递到付</option>
-                                    <option>德邦物流到付</option>
-                                    <option>送货上门</option>
-                                    <option>自提</option> 
-                                <?php
-                                    }elseif($driving=="德邦物流到付"){
-                                ?>
-                                    <option>物流寄付</option>
-                                    <option>物流到付</option>
-                                    <option>快递寄付</option>
-                                    <option>快递到付</option>
-                                    <option>顺丰到付</option>
-                                    <option>德邦快递到付</option>
-                                    <option selected="selected">德邦物流到付</option>
-                                    <option>送货上门</option>
-                                    <option>自提</option> 
-                                <?php
-                                    }elseif($driving=="送货上门"){
-                                ?>
-                                    <option>物流寄付</option>
-                                    <option>物流到付</option>
-                                    <option>快递寄付</option>
-                                    <option>快递到付</option>
-                                    <option>顺丰到付</option>
-                                    <option>德邦快递到付</option>
-                                    <option>德邦物流到付</option>
-                                    <option selected="selected">送货上门</option>
-                                    <option>自提</option> 
-                                <?php
-                                    }elseif($driving=="自提"){
-                                ?>
-                                    <option>物流寄付</option>
-                                    <option>物流到付</option>
-                                    <option>快递寄付</option>
-                                    <option>快递到付</option>
-                                    <option>顺丰到付</option>
-                                    <option>德邦快递到付</option>
-                                    <option>德邦物流到付</option>
-                                    <option>送货上门</option>
-                                    <option selected="selected">自提</option> 
-                                <?php
-                                    }else{
-                                ?>
-                                    <option>物流寄付</option>
-                                    <option>物流到付</option>
-                                    <option>快递寄付</option>
-                                    <option>快递到付</option>
-                                    <option>顺丰到付</option>
-                                    <option>德邦快递到付</option>
-                                    <option>德邦物流到付</option>
-                                    <option>送货上门</option>
-                                    <option>自提</option> 
-                                <?php  
+
+                                    $sqlstr1="select name from fl_wlfs";
+
+                                    $result=mysqli_query($conn,$sqlstr1);
+
+                                    while($myrow=mysqli_fetch_row($result)){
+                                        if($myrow[0]==$wlfs){
+                                            ?>
+                                                <option selected="selected"><?=$myrow[0]?></option>
+                                            <?php
+                                        }else{
+                                            ?>
+                                                <option><?=$myrow[0]?></option>
+                                            <?php
+                                        }
+                                        ?>
+    
+                                    <?php
                                     }
-                                ?>
                                 
+                                ?> 
                             </select>
                         </td>
                     </tr>
@@ -571,7 +468,7 @@
                         <td class="fldj"><input type="text" value="<?=$fls_arr[$i]?>" name="fls<?=$i?>"/></td>
                         <td class="fwfxj"><?=$fwfxj_arr[$i]?></td>
                         <td class="flno">
-                            <select style="width: 80%;height: 20px;" name="flsName<?=$i?>">
+                            <select style="width: 80%;height: 20px;text-align:center; text-align-last:center;" name="flsName<?=$i?>">
                                 <option></option>
                                 <?php
 
@@ -621,61 +518,31 @@
                     <tr>
                         <td colspan="4">服务费辅料费总计</td>
                         <td colspan="4" id="fwfflfhj"><?=$hd_fwfflfzj?></td>
-                        <td colspan="2">结款方式</td>
-                        <td colspan="2">
-                            <select style="height: 20px;width:80%" name="jkfs">
+                        <td colspan="1">结款方式</td>
+                        <td colspan="3">
+                            
+                            <select style="height: 20px;width:94%;text-align:center; text-align-last:center;" name="jkfs">
+                                <option></option>
                                 <?php
-                                    if($jkfs=="全现金"){
-                                ?>
-                                    <option selected="selected">全现金</option>
-                                    <option>全授信</option>
-                                    <option>服务费授信，辅料费现金</option>
-                                    <option>服务费现金，辅料费授信</option>
-                                    <option>其他</option>
-                                <?php
-                                    }elseif($jkfs=="全授信"){
-                                ?>
-                                    <option>全现金</option>
-                                    <option selected="selected">全授信</option>
-                                    <option>服务费授信，辅料费现金</option>
-                                    <option>服务费现金，辅料费授信</option>
-                                    <option>其他</option>
-                                <?php  
-                                    }elseif($jkfs=="服务费授信，辅料费现金"){
-                                ?>
-                                    <option>全现金</option>
-                                    <option>全授信</option>
-                                    <option selected="selected">服务费授信，辅料费现金</option>
-                                    <option>服务费现金，辅料费授信</option>
-                                    <option>其他</option>
-                                <?php
-                                    }elseif($jkfs=="服务费现金，辅料费授信"){
-                                ?>
-                                    <option>全现金</option>
-                                    <option>全授信</option>
-                                    <option>服务费授信，辅料费现金</option>
-                                    <option selected="selected">服务费现金，辅料费授信</option>
-                                    <option>其他</option>
-                                <?php
-                                    }elseif($jkfs=="其他"){
-                                ?>
-                                    <option>全现金</option>
-                                    <option>全授信</option>
-                                    <option>服务费授信，辅料费现金</option>
-                                    <option>服务费现金，辅料费授信</option>
-                                    <option selected="selected">其他</option>
-                                <?php
-                                    }else{
+                                    $sqlstr1="select name from fl_jkfs";
+
+                                    $result=mysqli_query($conn,$sqlstr1);
+
+                                    while($myrow=mysqli_fetch_row($result)){
+                                        if($myrow[0]==$jkfs){
+                                            ?>
+                                                <option selected="selected"><?=$myrow[0]?></option>
+                                            <?php
+                                        }else{
+                                            ?>
+                                                <option><?=$myrow[0]?></option>
+                                            <?php
+                                        }
                                         ?>
-                                        <option>全现金</option>
-                                        <option>全授信</option>
-                                        <option>服务费授信，辅料费现金</option>
-                                        <option>服务费现金，辅料费授信</option>
-                                        <option>其他</option>
-                                    <?php        
+    
+                                    <?php
                                     }
                                 ?>
-                                
                             </select>
                         </td>
                     </tr>
@@ -737,14 +604,6 @@
                     
                 </table>
                 
-                <!--
-                <div style="margin-top:30px;margin-left:30px;">
-                    <p style="font-weight:bold">授信单据附件上传</p>
-                    <p style="color:red">(文件名为申请单编号，不能出现中文)</p>
-                    <span style="float: left">上传</span><input type="file" name="upfile" style="float: left;margin-left: 15px;"/>
-                </div>
-                -->
-                
                 <!-- 判断状态，保存0，提交1 -->
                 <input type="hidden"  name="option" value="1" id="option"/>
 
@@ -757,24 +616,3 @@
         </div>
     </body>
 </html>
-
-<script language="javascript">  
-    var submitcount=0;  
-    function submitOnce (form){  
-        if (submitcount == 0){  
-            submitcount++;  
-            return true;  
-        } else{  
-            alert("正在操作，请不要重复提交，谢谢！");  
-            return false;  
-        }  
-    }  
-
-    $("#delete").click(function(){
-
-        id=$("#my_id").val()
-
-        window.location.href="../../controller/fl/flLiucheng.php?option=7&id=" + id;
-    })
-
-</script>

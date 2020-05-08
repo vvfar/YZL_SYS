@@ -1,34 +1,32 @@
 <?php
-    header("content-type:text/html;charset=utf-8");  //格式为utf-8格式
-    //error_reporting(E_ALL || ~E_NOTICE);  //不抛出异常
-    include_once("../../common/conn/conn.php");  //连接数据库
+    header("content-type:text/html;charset=utf-8"); 
+    include_once("../../common/conn/conn.php"); 
     session_start();
     date_default_timezone_set("Asia/Shanghai");
     
-    $username=$_SESSION["username"];  //获取用户名
+    $username=$_SESSION["username"]; 
     
-    $id=$_GET["id"];  //获取辅料单id
+    $id=$_GET["id"]; 
     $option=$_GET["option"]; 
+
+    $sqlstr0="select department from flsqd where id='$id'";
+    $result=mysqli_query($conn,$sqlstr0);
+
+    while($myrow=mysqli_fetch_row($result)){
+        $department=$myrow[0];
+    }
+
+    $sqlstr0="select newLevel from user_form where username='$username'";
+
+    $result=mysqli_query($conn,$sqlstr0);
+
+    while($myrow=mysqli_fetch_row($result)){
+        $newLevel=$myrow[0]; 
+    }
 
     if($option==1){
 
-        $sqlstr0="select department from flsqd where id='$id'";
-        $result=mysqli_query($conn,$sqlstr0);
-
-        while($myrow=mysqli_fetch_row($result)){
-            $department=$myrow[0];
-        }
-
         //找出当前流程序号（同意状态）
-
-        $sqlstr0="select newLevel from user_form where username='$username'";
-
-        $result=mysqli_query($conn,$sqlstr0);
-
-        while($myrow=mysqli_fetch_row($result)){
-            $newLevel=$myrow[0]; 
-        }
-
         if($newLevel=="M"){
             $sqlstr1="select number from flprogress where name='M级审批单据' and no=1";
 
@@ -73,8 +71,15 @@
                 $jkfs=$myrow[0];
             }
 
+            $sqlstr4="select process from fl_jkfs where jkfs='$jkfs'";
+            $result=mysqli_query($conn,$sqlstr4);
 
-            if($jkfs=="全授信"){
+            while($myrow=mysqli_fetch_row($result)){
+                $jkfs_process=$myrow[0];
+            }
+
+
+            if($jkfs_process="商务运营"){
 
                 if($name=="财务审批单据"){
     
@@ -149,12 +154,6 @@
             while($myrow=mysqli_fetch_row($result)){
                 $jkfs=$myrow[0];
             }
-
-            ?>
-                <script>
-                    alert("<?=$name?>")
-                </script>
-            <?php
 
             if($jkfs=="全现金"){
 

@@ -109,9 +109,6 @@
     //M级审批单据
     if($name == "M级审批单据"){
         
-
-
-        
         $sqlstr3="select username from user_form where department like '%$department%' and newLevel='M'";
             
         $result=mysqli_query($conn,$sqlstr3);

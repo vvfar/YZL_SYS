@@ -59,54 +59,9 @@
     }elseif($progress == 4){
         $id=$_GET["id"];
 
-        $sqlstr3="select no,company,store from contract where id='$id'";
+        $sqlstr1="update contract set status = '已归档' where id='$id'"; 
+        $result=mysqli_query($conn,$sqlstr1);
 
-        $result=mysqli_query($conn,$sqlstr3);
-
-        while($myrow=mysqli_fetch_row($result)){
-            $no=$myrow[0];
-            $companyName=$myrow[1];
-            $storeName=$myrow[2];
-        }
-
-        $sqlstr4="select count(*) from sq where contractNo='$no' and companyName='$companyName' and storeName='$storeName'";
-        
-        $result=mysqli_query($conn,$sqlstr4);
-
-        while($myrow=mysqli_fetch_row($result)){
-            $sq_count=$myrow[0];
-        }
-        
-        if($sq_count == 0){
-            echo "<script>alert('请先提交授权！');window.location.href='../../home/contract/contract_line.php?id=".$id."&option=合同'</script>";
-
-        }else{
-            $sqlstr5="select status from sq where contractNo='$no' and companyName='$companyName' and storeName='$storeName'";
-            $result=mysqli_query($conn,$sqlstr5);
-
-            while($myrow=mysqli_fetch_row($result)){
-                $status=$myrow[0];
-            }
-
-            if($status != "已归档"){
-                echo "<script>alert('请先审核授权！');window.location.href='../../home/contract/contract_line.php?id=".$id."&option=合同'</script>";
-            }else{
-                $sqlstr7="select id from store where client='$companyName' and storeName='$storeName'";
-
-                $result=mysqli_query($conn,$sqlstr7);
-
-                while($myrow=mysqli_fetch_row($result)){
-                    $storeID=$myrow[0];
-                }
-
-                $sqlstr6="update store set htsq='合同授权已提交' where id=$storeID";
-                
-                $result=mysqli_query($conn,$sqlstr6);
-
-                $sqlstr1="update contract set status = '已归档' where id='$id'"; 
-                $result=mysqli_query($conn,$sqlstr1);
-            }
-        }
     }elseif($progress == 5){
         //审核拒绝
         $id=$_GET["id"];

@@ -34,8 +34,10 @@
                     $newLevel=$myrow[1];
                 }
 
+                date_default_timezone_set("Asia/Shanghai");
+                $dateMonth=date('Y-m', time());
+                
                 if(!isset($_GET["date"])){
-                    date_default_timezone_set("Asia/Shanghai");
                     $date=date('Y-m-d', time());
                 }else{
                     $date=$_GET["date"];
@@ -123,7 +125,7 @@
                     <?php    
                         $year=substr($date,0,4);
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,a.staff,b.backMoney,d.hkTarget,a.status,c.backMoney from store_data_hk b,store a join (select storeID,sum(backMoney) as backMoney from store_data_hk where date <= '$date' and date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID left join store_target d on a.storeID=d.storeID and d.dateMonth='2020-04'  where a.storeID=b.storeID and b.date='$date' and a.status='正常' ";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,a.staff,b.backMoney,d.hkTarget,a.status,c.backMoney from store_data_hk b,store a join (select storeID,sum(backMoney) as backMoney from store_data_hk where date like '%$dateMonth%' group by storeID) c on a.storeID=c.storeID left join store_target d on a.storeID=d.storeID and d.dateMonth='$dateMonth'  where a.storeID=b.storeID and b.date='$date' and a.status='正常' ";
 
                         if($newLevel !="ADMIN" and $department != "商务运营部"){
                             if($newLevel == "KA"){

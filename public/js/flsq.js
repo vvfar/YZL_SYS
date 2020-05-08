@@ -363,7 +363,7 @@ $(document).ready(function(){
         }else if($(".sqdbh span").html()=="辅料订单编号重复，请修改！"){
             alert("辅料订单编号重复，请修改！")
         }else{
-            if($("select[name='jkfs']").val() != "全现金" && $("select[name='jkfs']").val() != "其他"){
+            if($("select[name='jkfs']").val() !="全现金" && $("select[name='jkfs']").val() !="标费补贴" && $("select[name='jkfs']").val() !="预付费领标" && $("select[name='jkfs']").val() !="其他" ){
                 if($("select[name='sxid']").val() =="" || $("input[name='sxmoney']").val() ==""){
                     alert("请填写授信信息！")
                 }else{
@@ -478,6 +478,24 @@ $(document).ready(function(){
             $("#option").attr("value",0)
             $("#hd_submit").click()
         }       
-    })    
+    }) 
+    
+    var submitcount=0;  
+    function submitOnce (form){  
+        if (submitcount == 0){  
+            submitcount++;  
+            return true;  
+        } else{  
+            alert("正在操作，请不要重复提交，谢谢！");  
+            return false;  
+        }  
+    }  
+
+    $("#delete").click(function(){
+
+        id=$("#my_id").val()
+
+        window.location.href="../../controller/fl/flLiucheng.php?option=7&id=" + id;
+    })
 })
 

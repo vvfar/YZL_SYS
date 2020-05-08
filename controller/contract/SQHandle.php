@@ -142,6 +142,43 @@
         if($progress == 4){
             $id=$_GET['id'];
 
+            $sqlstr3="select contractNo,companyName,storeName from sq where id='$id'";
+
+            $result=mysqli_query($conn,$sqlstr3);
+    
+            while($myrow=mysqli_fetch_row($result)){
+                $no=$myrow[0];
+                $companyName=$myrow[1];
+                $storeName=$myrow[2];
+            }
+    
+            $sqlstr4="select count(*) from contract where no='$no' and company='$companyName' and store='$storeName'";
+
+            $result=mysqli_query($conn,$sqlstr4);
+    
+            while($myrow=mysqli_fetch_row($result)){
+                $contract_count=$myrow[0];
+            }
+            
+            if($contract_count == 0){
+                echo "<script>alert('请先提交合同！');window.location.href='../../home/contract/sq_line.php?id=".$id."&option=授权'</script>";
+    
+            }else{
+                $sqlstr5="select status from contract where no='$no' and company='$companyName' and store='$storeName'";
+                $result=mysqli_query($conn,$sqlstr5);
+    
+                while($myrow=mysqli_fetch_row($result)){
+                    $status=$myrow[0];
+                }
+    
+                if($status != "已归档"){
+                    echo "<script>alert('请先审核合同！');window.location.href='../../home/contract/sq_line.php?id=".$id."&option=授权'</script>";
+                }else{    
+                    $sqlstr1="update sq set status = '已归档' where id='$id'"; 
+                    $result=mysqli_query($conn,$sqlstr1);
+                }
+            }
+
             //授权归档后新增店铺
             $sqlstr3="select companyName,storeName,pingTai,category,department,contractNo,status,shr from sq where id=$id";
 
@@ -214,45 +251,13 @@
                     $storeID="YZL-".$storeID_sql;
                 }
 
-                if($contract_count >0){
-                    $sqlstr5="select status from contract where no='$contractNo' and store='$storeName' and company='$companyName'";
-                
-                    while($myrow=mysqli_fetch_row($result)){
-                        $status2=$myrow[0];
-                    }
+                $sqlstr7="insert into store values('$maxID'+1,'$storeID','$companyName','$storeName','$pingTai','$category','$department','$staff','正常','$date','','','$date','合同授权已提交')";                
+                $result=mysqli_query($conn,$sqlstr7);
 
-                    if($status2=="已归档"){
-                        
-                        $sqlstr7="insert into store values('$maxID'+1,'$storeID','$companyName','$storeName','$pingTai','$category','$department','$staff','','','正常','$date','','','$date','合同授权已提交')";
+                $sqlstr8="update store_no set no='$storeID_sql' where id=1";
+                $result=mysqli_query($conn,$sqlstr8);
                     
-                        $result=mysqli_query($conn,$sqlstr7);
-
-                        $sqlstr8="update store_no set no='$storeID_sql' where id=1";
-                        
-                        $result=mysqli_query($conn,$sqlstr8);
-                    }else{
-                        $sqlstr7="insert into store values('$maxID'+1,'$storeID','$companyName','$storeName','$pingTai','$category','$department','$staff','','','正常','$date','','','$date','合同进行中授权已提交')";
-                    
-                        $result=mysqli_query($conn,$sqlstr7);
-
-                        $sqlstr8="update store_no set no='$storeID_sql' where id=1";
-                        
-                        $result=mysqli_query($conn,$sqlstr8);
-                    }
-
-                }else{
-                    $sqlstr7="insert into store values('$maxID'+1,'$storeID','$companyName','$storeName','$pingTai','$category','$department','$staff','','','正常','$date','','','$date','合同未提交授权已提交')";
-                    
-                    $result=mysqli_query($conn,$sqlstr7);
-
-                    $sqlstr8="update store_no set no='$storeID_sql' where id=1";
-                        
-                    $result=mysqli_query($conn,$sqlstr8);
-                }
             }
-            
-            $sqlstr1="update sq set status = '已归档' where id='$id'";
-
 
         }elseif($progress == 5){
             //审核拒绝
@@ -285,8 +290,6 @@
             <?php
         }
     }
-    
-    
     
     //mysqli_free_result($result);
     mysqli_close($conn);

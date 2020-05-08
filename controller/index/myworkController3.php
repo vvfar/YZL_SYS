@@ -11,6 +11,7 @@
     date_default_timezone_set("Asia/Shanghai");
     
     $date=date('Y-m-d', time());
+    $dateMonth=date('Y-m', time());
 
     $date_arr=explode("-",$date);
 
@@ -46,7 +47,7 @@
 
 
 
-    $sqlstr2="select sum(storeTarget)  from store where staff='$username'";
+    $sqlstr2="select sum(storeTarget)  from store_target where storeID =any (select storeID from store where staff='$username') and dateMonth='$dateMonth'";
 
     $result=mysqli_query($conn,$sqlstr2);
 
@@ -62,7 +63,7 @@
         $num3=$myrow[0];
     }
 
-    $sqlstr4="select sum(storeTarget)  from store where '$department' like concat('%',department,'%')";
+    $sqlstr4="select sum(storeTarget)  from store_target where storeID =any (select storeID from store where '$department' like concat('%',department,'%')) and dateMonth='$dateMonth'";
 
     $result=mysqli_query($conn,$sqlstr4);
 
@@ -78,7 +79,7 @@
         $num5=$myrow[0];
     }
 
-    $sqlstr6="select sum(hkTarget)  from store where staff='$username'";
+    $sqlstr6="select sum(hkTarget)  from store_target where storeID =any (select storeID from store where staff='$username') and dateMonth='$dateMonth'";
 
     $result=mysqli_query($conn,$sqlstr6);
 
@@ -94,7 +95,7 @@
         $num7=$myrow[0];
     }
 
-    $sqlstr8="select sum(hkTarget)  from store where '$department' like concat('%',department,'%')";
+    $sqlstr8="select sum(hkTarget)  from store_target where storeID =any (select storeID from store where '$department' like concat('%',department,'%')) and dateMonth='$dateMonth'";
 
     $result=mysqli_query($conn,$sqlstr8);
 

@@ -197,26 +197,29 @@
                         }
 
                         ?>
+
+                        <div style="border:1px solid #ccc;width:1000px;padding:5px;margin-top:60px;">
                             <p>补充合同：</p>
                             <p style="margin-top:10px"><?=$content?></p>
 
                             <?php
                                 if($department == "商务运营部" and $status2 == "待归档"){
                             ?>
-                                <div style="width:1000px;">
+                                <div style="width:1000px;height:40px;padding:10px;">
                                     <button class="btn btn-sm btn-danger" style="float:right" id="no2">拒绝</button>
                                     <button class="btn btn-sm btn-success" style="float:right;margin-right:10px;" id="yes2">同意</button>
                                 </div>
                             <?php
                                 }elseif($shr2==$username and $status2 == "审核拒绝"){
                                     ?>
-                                        <div style="width:1000px;">
+                                        <div style="width:1000px;height:40px;padding:10px;">
                                             <button class="btn btn-sm btn-info" style="float:right" id="edit_contractAdd">重新编辑</button>
                                         </div>
                                     <?php
                                 }
                             ?>
-
+                        </div>
+                        
                         <?php
 
                     }
