@@ -48,7 +48,7 @@
 
                 $sqlstr3="select count(*) as total from store where status='正常'";
 
-                if($newLevel !="ADMIN" and $department != "商务运营部"){
+                if($newLevel !="ADMIN" and $department != "商业运营部"){
                     if($newLevel == "KA"){
                         $sqlstr3=$sqlstr3." and staff like '%$username%'"; 
                     }else{
@@ -103,7 +103,7 @@
                         
                         $sqlstr2="select id,storeID,client,storeName,department,staff,createDate,htsq,link from store where 1=1";
                         
-                        if($newLevel !="ADMIN" and $department != "商务运营部"){
+                        if($newLevel !="ADMIN" and $department != "商业运营部"){
                             if($newLevel == "KA"){
                                 $sqlstr2=$sqlstr2." and staff like '%$username%'"; 
                             }else{

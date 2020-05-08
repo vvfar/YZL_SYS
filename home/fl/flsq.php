@@ -266,7 +266,7 @@
                         <td><input type="text" value="<?=$phone?>" placeholder="请填写联系电话" class="w8" name="phone" maxlength="13"/></td>
                         <td>运输方式</td>
                         <td>
-                            <select style="height: 20px;width:150px;text-align:center; text-align-last:center;" name="driving">
+                            <select style="height: 20px;width:150px;text-align:center; text-align-last:center;" id="driving" name="driving">
                                 <option></option>
                                 <?php
 

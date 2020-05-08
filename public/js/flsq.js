@@ -358,7 +358,7 @@ $(document).ready(function(){
             $("input[name='people']").val() =="" || $("input[name='department']").val() =="" || 
             $("input[name='date']").val() =="" ||  $("input[name='address']").val() =="" || 
             $("input[name='connection']").val() =="" ||  $("input[name='phone']").val() =="" ||
-            $("input[name='sd']").val() =="" ||  $("input[name='ywy']").val() ==""){
+            $("input[name='sd']").val() =="" || $("#driving").val() ==""){
             alert("请将表单填写完整！")
         }else if($(".sqdbh span").html()=="辅料订单编号重复，请修改！"){
             alert("辅料订单编号重复，请修改！")

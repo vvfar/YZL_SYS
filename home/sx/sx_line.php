@@ -270,7 +270,7 @@
             <p style="margin-left:50px;">剩余金额回款方式：<?=$syjehkfs?></p>
             
             <?php
-                if($syhkje !=0 and $department !="财务部" and $department !="商务运营部" and $status == "已生效"){
+                if($syhkje !=0 and $department !="财务部" and $department !="商业运营部" and $status == "已生效"){
                     ?>
                         <p><a href="companyManger2.php?no=<?=$sqid?>" style="margin-left:50px;margin-top:10px" class="btn btn-info btn-sm">填写回款单</a></p>
                     <?php
@@ -317,7 +317,7 @@
                     <?php
                 }
 
-                if($my_department == "商务运营部" and $status == "待归档"){
+                if($my_department == "商业运营部" and $status == "待归档"){
                     ?>
                         <div style="float:left;margin-left:945px">
                             <button class="btn btn-sm btn-success" style="float:left;" id="agree">同意</button>

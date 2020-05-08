@@ -127,7 +127,7 @@
 
                 $sqlstr3="select count(*) as total from contract where not status like '%已归档%'";
 
-                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
+                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部"){
                     if($newLevel == "KA"){
                         $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
                     }else{
@@ -155,7 +155,7 @@
 
                 $sqlstr2="select id,no,company,pingtai,category,department,money,sales,service,re_date,'合同',status,shr,shTime from contract where not status like '%已归档%'";
                 
-                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
+                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部"){
                     if($newLevel == "KA"){
                         $sqlstr2=$sqlstr2." and shr like '%$username%'"; 
                     }else{

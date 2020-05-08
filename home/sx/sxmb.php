@@ -73,7 +73,7 @@
                     </div>
                     <div style="margin-top:30px;">
                         <p>俞兆林品牌管理有限公司签署：</p>    
-                        <p>申请人：<span style="text-decoration: underline;" class="middleLine"></span>部门领导：<span style="text-decoration: underline;" class="middleLine"></span>总经理：<span style="text-decoration: underline;" class="middleLine"></span>商务运营(COC)：<span style="text-decoration: underline;" class="middleLine"></span></p>
+                        <p>申请人：<span style="text-decoration: underline;" class="middleLine"></span>部门领导：<span style="text-decoration: underline;" class="middleLine"></span>总经理：<span style="text-decoration: underline;" class="middleLine"></span>商业运营(COC)：<span style="text-decoration: underline;" class="middleLine"></span></p>
                     </div>
                 </div>
                 <hr>

@@ -296,7 +296,7 @@
                     $sqlstr3=$sqlstr3." and a.department='$s_department'";
                 }
 
-                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部" and $chooseInfo !="事业部"){
+                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部" and $chooseInfo !="事业部"){
                     $sqlstr3=$sqlstr3." and (a.department='$department' or a.gxDepartment like '%$department%')";
                 }
 
@@ -319,7 +319,7 @@
                 </h4>
 
                 <?php
-                    if($department =="财务部" or $department == "商务运营部" or $newLevel =="ADMIN"){
+                    if($department =="财务部" or $department == "商业运营部" or $newLevel =="ADMIN"){
                         ?>
                             <div style="float:right;margin-right:33px;margin-top:20px;">
                                 <?php
@@ -402,7 +402,7 @@
                             $sqlstr2=$sqlstr2." and a.department='$s_department'";
                         }
         
-                        if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部" and $chooseInfo !="事业部"){
+                        if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部" and $chooseInfo !="事业部"){
                             $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%')";
                         }
 

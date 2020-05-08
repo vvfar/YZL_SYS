@@ -11,10 +11,35 @@
     $progress=$_GET["progress"];
 
     if($progress ==1){
-        $no=$_POST["no"];
+
         $id=$_GET["id"];
 
+        $no=$_POST["no"];
         $content=$_POST["content"];
+
+        $fileName="";
+
+        if(!empty($_FILES['upfile']['name'])){
+    
+            $fileinfo=$_FILES['upfile'];
+            if($fileinfo['size']<2097152 && $fileinfo['size']>0){
+                //echo $fileName;
+    
+                $path="../../common/file/contractAdd_file/".$_FILES["upfile"]["name"];
+                move_uploaded_file($fileinfo['tmp_name'],$path);
+                
+                $fileName=$_FILES['upfile']['name'];   
+            }else{
+                echo "<script>alert('照片过大无法上传！');window.location.href='../../home/contract/contractAddition.php'</script>";
+            }
+        }else{
+            if($id == ""){
+                echo "<script>alert('保证金不为0必须上传收据！');window.location.href='../../home/contract/contractAddition.php'</script>";
+            }
+            
+        }
+
+
 
         $sqlstr="select max(id) from contract_add";
         $result=mysqli_query($conn,$sqlstr);
@@ -28,9 +53,9 @@
         }
         
         if($id == ""){
-            $sqlstr2="insert into contract_add values('$maxID'+1,'$no','$content','待归档','$username','$date')";
+            $sqlstr2="insert into contract_add values('$maxID'+1,'$no','$content','待归档','$username','$date','$fileName')";
         }else{
-            $sqlstr2="update contract_add set content='$content',status='待归档' where id='$id'";
+            $sqlstr2="update contract_add set content='$content',status='待归档',file='$fileName' where id='$id'";
         }
         
 

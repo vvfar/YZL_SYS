@@ -258,7 +258,7 @@
 
 
                         if($department=="义乌部"){
-                            if($status_pop=="义乌打包发货" or $status_pop=="商务运营归档单据"){
+                            if($status_pop=="义乌打包发货" or $status_pop=="商业运营归档单据"){
                             ?>
                                 <tr>
                                     <td colspan="6">物流方式</td>
@@ -355,7 +355,7 @@
                         if($shr_arr1 == $username){
                             
 
-                            if($department == "商务运营部" and $status_pop=="商务运营归档单据" ){
+                            if($department == "商业运营部" and $status_pop=="商业运营归档单据" ){
                                 ?>
                                     <button type="button" class="btn btn-info btn-sm" id="yes" style="margin-left:50px;">已记录</button>
                                 <?php
@@ -368,7 +368,7 @@
                         
                         }
                         
-                        if($department=="义乌部" and $status_pop=="商务运营归档单据"){
+                        if($department=="义乌部" and $status_pop=="商业运营归档单据"){
                             ?>
                                 <button type="button" class="btn btn-info btn-sm" id="edit_YW" style="margin-left:37px;">修改单据</button>
                             <?php

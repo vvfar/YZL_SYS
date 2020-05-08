@@ -20,7 +20,7 @@
     $client=$_POST["client"];
     $storeName=$_POST["storeName"];
 
-    if($my_department =="商务运营部"){
+    if($my_department =="商业运营部"){
         $salesMoney=$_POST["salesMoney"];
         $salesNum=$_POST["salesNum"];
         $backMoney="";
@@ -34,7 +34,7 @@
     $date=$_POST["dateTime"];
 
     
-    if($my_department =="商务运营部"){
+    if($my_department =="商业运营部"){
         $sqlstr1="select max(id) from store_data_sales";
         $result=mysqli_query($conn,$sqlstr1);
     

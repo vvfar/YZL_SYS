@@ -95,7 +95,7 @@
                     <p style="border-bottom:1px solid #ddd;padding:5px;float:left">登记日期：<?=$re_date?></p>
                     
                     <?php
-                        if($department=="商务运营部" or $newLevel == "ADMIN"){
+                        if($department=="商业运营部" or $newLevel == "ADMIN"){
                             ?>
                                 <button class="btn btn-sm btn-info" style="float:left;margin-left:698px;" onclick="changeContract()">修改合同</button>
                                 <button class="btn btn-sm btn-danger" style="float:left;margin-left:10px" onclick="delContract()">删除合同</button>
@@ -158,7 +158,7 @@
                 
                 <?php
 
-                    if($department == "商务运营部" and $status == "待归档"){
+                    if($department == "商业运营部" and $status == "待归档"){
                         ?>
 
                         <div style="width:1000px;">
@@ -186,7 +186,7 @@
                     }
 
                     if($count > 0){
-                        $sqlstr5="select id,content,status,shr from contract_add where no='$no'";
+                        $sqlstr5="select id,content,status,shr,file from contract_add where no='$no'";
 
                         $result=mysqli_query($conn,$sqlstr5);
                         
@@ -194,6 +194,7 @@
                             $content=$myrow[1];
                             $status2=$myrow[2];
                             $shr2=$myrow[3];
+                            $file=$myrow[4];
                         }
 
                         ?>
@@ -203,7 +204,14 @@
                             <p style="margin-top:10px"><?=$content?></p>
 
                             <?php
-                                if($department == "商务运营部" and $status2 == "待归档"){
+                                if($file != ""){
+                                    ?>
+                                        <a class="btn btn-info btn-sm" style="margin-top:10px;" href="../../common/file/contractAdd_file/<?=$file?>">附件下载</a>
+                                    <?php
+                                }
+                            ?>
+                            <?php
+                                if($department == "商业运营部" and $status2 == "待归档"){
                             ?>
                                 <div style="width:1000px;height:40px;padding:10px;">
                                     <button class="btn btn-sm btn-danger" style="float:right" id="no2">拒绝</button>
@@ -218,6 +226,8 @@
                                     <?php
                                 }
                             ?>
+
+
                         </div>
                         
                         <?php

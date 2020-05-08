@@ -49,7 +49,7 @@
 
                 $sqlstr3="select count(*) as total from store a,store_data_sales b where a.storeID=b.storeID and a.storeID='$storeID'";
 
-                if($newLevel !="ADMIN" and $department != "商务运营部"){
+                if($newLevel !="ADMIN" and $department != "商业运营部"){
                     if($newLevel == "KA"){
                         $sqlstr3=$sqlstr3." and a.staff like '%$username%'"; 
                     }else{
@@ -158,7 +158,7 @@
 
                         $sqlstr2="select a.storeID,a.client,a.storeName,a.pingTai,a.category,b.salesMoney,b.salesNum,b.date,a.id from store a,store_data_sales b where a.storeID=b.storeID and a.storeID='$storeID'";
                         
-                        if($newLevel !="ADMIN" and $department != "商务运营部"){
+                        if($newLevel !="ADMIN" and $department != "商业运营部"){
                             if($newLevel == "KA"){
                                 $sqlstr2=$sqlstr2." and a.staff like '%$username%'"; 
                             }else{
@@ -184,7 +184,7 @@
                                 <td><?=$number?></td>
 
                                 <?php
-                                    if($department == "商务运营部"){
+                                    if($department == "商业运营部"){
                                         ?>
                                             <td><a href="uploadStore.php?id=<?=$id?>&date=<?=$myrow[6]?>" target="_blank"><?=$myrow[0]?></a></td>
                                         <?php

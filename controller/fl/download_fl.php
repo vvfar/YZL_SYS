@@ -27,7 +27,7 @@
 
         $sqlstr2="select * from flsqd where 1=1 ";
 
-        if($newLevel != "ADMIN" and $department !="财务部" and $department !="商务运营部"){
+        if($newLevel != "ADMIN" and $department !="财务部" and $department !="商业运营部"){
             $sqlstr2=$sqlstr2." and shr like '%$username%'";
         }
     

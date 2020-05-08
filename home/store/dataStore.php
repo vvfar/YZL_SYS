@@ -56,7 +56,7 @@
 
                 $sqlstr3="select count(*) as total from store a,store_data_sales b where a.storeID=b.storeID and b.date='$date' and a.status='正常'";
 
-                if($newLevel !="ADMIN" and $department != "商务运营部"){
+                if($newLevel !="ADMIN" and $department != "商业运营部"){
                     if($newLevel == "KA"){
                         $sqlstr3=$sqlstr3." and a.staff like '%$username%'"; 
                     }else{
@@ -84,7 +84,7 @@
 
                 <div style="float:right;margin-top:20px;">
                     <?php
-                        if($department == "商务运营部"){
+                        if($department == "商业运营部"){
                             ?>
                                 <button class="btn btn-sm btn-info" style="float:right;margin-left:10px;" id="download">下载模板</button>
                                 <button class="btn btn-sm btn-warning" style="float:right;margin-left:10px;"  id="upload" data-toggle="modal" data-target="#myModal">上传数据</button>  
@@ -133,7 +133,7 @@
 
                         $sqlstr2="select a.storeID,a.client,a.storeName,a.staff,b.salesMoney,d.storeTarget,a.status,c.sumMoney from store_data_sales b,store a join (select storeID,sum(salesMoney) as sumMoney from store_data_sales where date like '%$dateMonth%' group by storeID) c on a.storeID=c.storeID left join store_target d on a.storeID=d.storeID and d.dateMonth='$dateMonth' where a.storeID=b.storeID and b.date='$date' and a.status='正常' ";
 
-                        if($newLevel !="ADMIN" and $department != "商务运营部"){
+                        if($newLevel !="ADMIN" and $department != "商业运营部"){
                             if($newLevel == "KA"){
                                 $sqlstr2=$sqlstr2." and a.staff like '%$username%'"; 
                             }else{

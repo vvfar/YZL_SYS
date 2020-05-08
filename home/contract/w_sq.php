@@ -127,7 +127,7 @@
 
                 $sqlstr3="select count(*) as total from sq where not status like '%已归档%'";
 
-                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
+                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部"){
                     if($newLevel == "KA"){
                         $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
                     }else{
@@ -154,7 +154,7 @@
 
                 $sqlstr2="select id,no,companyName,pingtai,category,department,bzj,'/','/',re_date,'授权',status,shr,shTime from sq where not status like '%已归档%'";
                 
-                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商务运营部"){
+                if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部"){
                     if($newLevel == "KA"){
                         $sqlstr2=$sqlstr2." and shr like '%$username%'"; 
                     }else{

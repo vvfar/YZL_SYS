@@ -64,7 +64,7 @@
                     $sqlstr3= $sqlstr3." and a.companyName like '%$companyName%'";
                 }
 
-                if($newLevel !="ADMIN" and $department != "商务运营部" and $department !="财务部"){
+                if($newLevel !="ADMIN" and $department != "商业运营部" and $department !="财务部"){
                     if($newLevel == "KA"){
                         $sqlstr3=$sqlstr3." and a.ywy='$username' ";
                     }else{
@@ -126,7 +126,7 @@
                             $sqlstr2=$sqlstr2." and a.companyName like '%$companyName%'";
                         }
                         
-                        if($newLevel !="ADMIN" and $department != "商务运营部" and $department !="财务部"){
+                        if($newLevel !="ADMIN" and $department != "商业运营部" and $department !="财务部"){
                             if($newLevel == "KA"){
                                 $sqlstr2=$sqlstr2." and a.ywy='$username' ";
                             }else{

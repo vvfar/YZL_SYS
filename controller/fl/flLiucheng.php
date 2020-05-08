@@ -71,7 +71,7 @@
                 $jkfs=$myrow[0];
             }
 
-            $sqlstr4="select process from fl_jkfs where jkfs='$jkfs'";
+            $sqlstr4="select process from fl_jkfs where name='$jkfs'";
             $result=mysqli_query($conn,$sqlstr4);
 
             while($myrow=mysqli_fetch_row($result)){
@@ -79,7 +79,7 @@
             }
 
 
-            if($jkfs_process="商务运营"){
+            if($jkfs_process=="商业运营"){
 
                 if($name=="财务审批单据"){
     
@@ -118,12 +118,7 @@
             $qqstatus_arr=explode(",",$qqstatus);
             $status_last=array_pop($qqstatus_arr);
 
-            if($status_last=="商务运营归档单据"){
-                $sqlstr2="select number from flprogress where name='$status_last'";
-            }else{
-                $sqlstr2="select number from flprogress where name='商务运营审批授信'";
-            }
-            
+            $sqlstr2="select number from flprogress where name='$status_last'";
 
             $result=mysqli_query($conn,$sqlstr2);
 
@@ -131,16 +126,19 @@
                 $number=$myrow[0];  
             }
 
+            
+
              //找出下个流程的状态，审核人，时间
              $sqlstr3="select name,sp from flprogress where number='$number'+1  and no=1";
-        
+
              $result=mysqli_query($conn,$sqlstr3);
  
              while($myrow=mysqli_fetch_row($result)){
                  $name=$myrow[0];
                  $sp=$myrow[1];
              }
- 
+
+
              $sp=$qqshr.",".$sp;
              $name2=$qqstatus.",".$name;
  
@@ -157,7 +155,7 @@
 
             if($jkfs=="全现金"){
 
-                if($name=="商务运营审批授信"){
+                if($name=="商业运营审批授信"){
     
                     //找出下个流程信息,财务审批跳过授信登记
                     $sqlstr2="select name,sp from flprogress where number='$number'+2  and no=1";
@@ -345,8 +343,6 @@
         <?php
     }
 
-
-    mysqli_free_result($result);
     mysqli_close($conn);
 
 ?>

@@ -60,7 +60,7 @@
         }elseif($username == $ywy and $status == "已拒绝"){
             $count_sx=$count_sx+1;
             $link_sx='../../home/sx/zhangmu.php';
-        }elseif($department == "商务运营部" and  $status == "待归档"){
+        }elseif($department == "商业运营部" and  $status == "待归档"){
             $count_sx=$count_sx+1;
         }
     }
@@ -81,7 +81,7 @@
 
         if($shr == $ywy and $status == "审核拒绝" and $newLevel == "KA"){
             $count_contract=$count_contract+1;
-        }elseif($department == "商务运营部" and  $status == "待归档"){
+        }elseif($department == "商业运营部" and  $status == "待归档"){
             $count_contract=$count_contract+1;
         }
     }
@@ -101,7 +101,7 @@
 
         if($shr == $ywy and $status == "审核拒绝" and $newLevel == "KA"){
             $count_sq=$count_sq+1;
-        }elseif($department == "商务运营部" and  $status == "待归档"){
+        }elseif($department == "商业运营部" and  $status == "待归档"){
             $count_sq=$count_sq+1;
 
         }

@@ -112,7 +112,7 @@
 
                 <?php
                     if($htsq =="合同授权已提交"){
-                        if($my_department == "商务运营部"){
+                        if($my_department == "商业运营部"){
                             ?>
                                 <div class="form-group" style="clear: both;margin-bottom:0px;">
                                     <p style="width: 100px;font-size: 14px;float: left;margin-top: 20px;">销售额</p>

@@ -26,7 +26,7 @@
         $sqlstr2="select a.storeID,a.client,a.storeName,a.staff,b.backMoney,a.hkTarget,a.status,c.backMoney,b.date from store_data_hk b,store a join (select storeID,sum(backMoney) as backMoney from store_data_hk where date >= '2020-01-01' group by storeID) c on a.storeID=c.storeID where a.storeID=b.storeID ";
     }
 
-    if($newLevel !="ADMIN" and $department != "商务运营部"){
+    if($newLevel !="ADMIN" and $department != "商业运营部"){
         if($newLevel == "KA"){
             $sqlstr2=$sqlstr2." and a.staff like '%$username%'"; 
         }else{

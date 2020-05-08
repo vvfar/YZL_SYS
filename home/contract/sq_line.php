@@ -88,7 +88,7 @@
                     <p style="border-bottom:1px solid #ddd;padding:5px;float:left">登记日期：<?=$re_date?></p>
                     
                     <?php
-                        if($my_department=="商务运营部" or $newLevel=="ADMIN"){
+                        if($my_department=="商业运营部" or $newLevel=="ADMIN"){
                             ?>
                                 <button class="btn btn-sm btn-info" style="float:left;margin-left:698px;" onclick="changeSQ()">修改授权</button>
                                 <button class="btn btn-sm btn-danger" style="float:left;margin-left:10px" onclick="delSQ()">删除授权</button>
@@ -149,7 +149,7 @@
 
                 <?php
 
-                    if($my_department == "商务运营部"){
+                    if($my_department == "商业运营部"){
                         ?>
 
                         <div style="width:1000px;">
@@ -229,7 +229,7 @@
                 ?>
                     window.location.href="../../controller/contract/SQHandle.php?id=<?=$id?>&progress=2"
                 <?php
-            }elseif($my_department == "商务运营部"){
+            }elseif($my_department == "商业运营部"){
                 ?>
                     window.location.href="../../controller/contract/SQHandle.php?id=<?=$id?>&progress=4"
                 <?php

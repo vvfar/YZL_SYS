@@ -87,7 +87,12 @@
                         <p style="font-size: 14px;margin-top: 60px;">补充信息（1000字以内）</p>
                         <textarea class="form-control" name="content" style="width:370px;height:150px;margin-top: 12px;"><?=$content?></textarea>
                     </div>
-                    <div style="clear: both;position:relative;top:10px;">
+                    <div class="form-group" style="clear:both">
+                        <span style="width:100px;float:left">附件上传</span>
+                        <input type="file" name="upfile" style="width:200px;float:left;margin-bottom:10px;"/>
+                        <p style="clear:both;font-size:12px;color:red">上传附件名称为：合同编号_add.jpg</p>
+                    </div>
+                    <div>
                         <button type="submit" class="btn btn-success btn-md">提交信息</button>
                     </div>
                 </form>

@@ -24,7 +24,7 @@
     $sqlstr2="select * from sxhk_form where status='已审核' ";
     
 
-    if($newLevel !="ADMIN" and $department != "商务运营部" and $department != "财务部"){
+    if($newLevel !="ADMIN" and $department != "商业运营部" and $department != "财务部"){
         if($newLevel == "KA"){
             $sqlstr2=$sqlstr2." and ywy='$username'"; 
         }else{
