@@ -112,8 +112,6 @@
                         <?php
                             $sqlstr1="select client from store where staff='$username' and status='正常' and htsq='合同授权已提交'";
 
-                            echo $sqlstr1;
-
                             $result=mysqli_query($conn,$sqlstr1);
         
                             while($myrow=mysqli_fetch_row($result)){

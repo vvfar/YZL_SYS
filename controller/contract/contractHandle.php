@@ -35,8 +35,15 @@
         $isservice=$_POST['isservice'];
         $note=$_POST['note'];
         $oldNo=$_POST['oldNo'];
+        $contractType=$_POST['contractType'];
         $re_date=date('Y-m-d', time());
     
+        if($contractType=="工厂合同"){
+            $store=$company;
+            $pingtai="工厂";
+        }
+
+
         $sqlstr="select max(id) from contract";
         $result=mysqli_query($conn,$sqlstr);
 
@@ -49,9 +56,9 @@
         }
 
         if($id==""){
-            $sqlstr1="insert into contract values('$maxID'+1,'$re_date','$no','$department','$pingtai','$category','$company','$store','$input_time','$input_time2','$money','$ismoney','$sales','$issales','$service','$isservice','$note','待归档','$oldNo','$username','$time')";
+            $sqlstr1="insert into contract values('$maxID'+1,'$re_date','$no','$department','$pingtai','$category','$company','$store','$input_time','$input_time2','$money','$ismoney','$sales','$issales','$service','$isservice','$note','待归档','$oldNo','$username','$time','$contractType')";
         }else{
-            $sqlstr1="update contract set no='$no',company='$company',store='$store',pingtai='$pingtai',category='$category',money='$money',ismoney='$ismoney',sales='$sales',issales='$issales',service='$isservice',note='$note',oldNo='$oldNo',status='待归档',shr='$username',shTime='$time' where id='$id'";
+            $sqlstr1="update contract set no='$no',company='$company',store='$store',pingtai='$pingtai',category='$category',money='$money',ismoney='$ismoney',sales='$sales',issales='$issales',service='$isservice',note='$note',oldNo='$oldNo',status='待归档',shr='$username',shTime='$time',contractType='$contractType' where id='$id'";
         }
         
     

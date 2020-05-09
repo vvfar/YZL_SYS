@@ -44,7 +44,7 @@
 
                 <div style="margin-top:10px;">
                     <p>辅料名称：</p>
-                    <input type="text" value="<?=$fl_name?>" placeholder="请输入辅料名称" class="form-control" name="fl_name" style="width: 300px;margin-top:10px;">
+                    <input type="text" value="<?=$fl_name?>" placeholder="请输入辅料名称" class="form-control" name="fl_name" style="width: 300px;margin-top:10px;" readOnly>
                 </div>
 
                 <div style="margin-top:10px;">

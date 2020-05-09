@@ -41,6 +41,12 @@
         $fileName="";
         $fileName2="";
     
+        if($sqType=="工厂授权"){
+            $storeName=$companyName;
+            $pingtai="工厂";
+        }
+
+
         $fileStatus=TRUE;
     
         if($bzj != '0'){

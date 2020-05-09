@@ -46,7 +46,7 @@
 
                     $pagesize=10;
 
-                    $sqlstr1="select count(*) as total from fl";
+                    $sqlstr1="select count(*) as total from fl where not fl_name like '%(赠)%'";
                     
                     $result=mysqli_query($conn,$sqlstr1);
                     $info=mysqli_fetch_array($result);
@@ -58,7 +58,7 @@
                         $pagecount=ceil($total/$pagesize);
                     }
 
-                    $sqlstr2="select * from fl limit ".($page-1)*$pagesize.",$pagesize";
+                    $sqlstr2="select * from fl where not fl_name like '%(赠)%' order by fl_name asc limit ".($page-1)*$pagesize.",$pagesize";
                     $result=mysqli_query($conn,$sqlstr2);
 
                     while($myrow=mysqli_fetch_row($result)){
@@ -104,7 +104,7 @@
         </div>
 
         <!-- Excel导入模态框 -->
-        <form action="../../controller/adminHandle/addFL.php?option='add'" method="POST" style="margin-left: 50px;">
+        <form action="../../controller/adminHandle/addFL.php?option=add" method="POST" style="margin-left: 50px;">
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" style="width:400px;">
                     <div class="modal-content">

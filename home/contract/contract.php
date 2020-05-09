@@ -48,6 +48,7 @@
                         $isservice=$myrow[15];
                         $note=$myrow[16];
                         $oldNo=$myrow[18];
+                        $contractType=$myrow[21];
                     }
                 }else{
                     $id="";
@@ -68,6 +69,7 @@
                     $isservice="";
                     $note="";
                     $oldNo="";
+                    $contractType="";
                 }
 
                 mysqli_free_result($result);
@@ -103,14 +105,32 @@
                         <input type="text" class="form-control" name="no" value="<?=$no?>" placeholder="请输入合同编号" style="width: 250px;float: left;margin-top: 15px;">
                     </div>
                     <div class="form-group" style="clear: both;">
+                        <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">合同类型</p>
+                        <select class="form-control" style="width: 250px;float: left;margin-top: 15px;" name="contractType" id="contractType">
+                            <?php
+                                if($contractType == "工厂合同"){
+                                    ?>
+                                        <option>销售合同</option>
+                                        <option selected>工厂合同</option>
+                                    <?php
+                                }else{
+                                    ?>
+                                        <option>销售合同</option>
+                                        <option>工厂合同</option>
+                                    <?php
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">公司名称</p>
                         <input type="text" class="form-control" name="company" value="<?=$company?>" placeholder="请输入公司名称" style="width: 250px;float: left;margin-top: 15px;">
                     </div>
-                    <div class="form-group" style="clear: both;">
+                    <div class="form-group store_name" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">店铺名</p>
                         <input type="text" class="form-control" name="store" value="<?=$store?>" placeholder="请输入店铺名" style="width: 250px;float: left;margin-top: 15px;">
                     </div>
-                    <div class="form-group" style="clear: both;">
+                    <div class="form-group store_pingtai" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">授权平台</p>
                         <input type="text" class="form-control" name="pingtai" value="<?=$pingtai?>" placeholder="请输入授权平台" style="width: 250px;float: left;margin-top: 15px;">
                     </div>
@@ -168,7 +188,7 @@
                     </div>
                     <div class="form-group" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">是否共享服务费</p>
-                        <select class="form-control" style="width: 250px;float: left;margin-top: 15px;" name="isservice">
+                        <select class="form-control" style="width: 250px;float:left;margin-top: 15px;" name="isservice">
                             <?php
                                 if($isservice=="是"){
                                     ?>
@@ -261,4 +281,16 @@
         language:'cn',
         pickerPosition: "bottom-left"
     });
+
+    $("#contractType").change(function(){
+        contract_type=$(this).val();
+
+        if(contract_type=="销售合同"){
+            $(".store_name").css("display","")
+            $(".store_pingtai").css("display","")
+        }else{
+            $(".store_name").css("display","none")
+            $(".store_pingtai").css("display","none")
+        }
+    })
 </script>

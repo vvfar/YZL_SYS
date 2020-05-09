@@ -23,7 +23,7 @@ window.onload=function(){
         }
     })
 
-    /*
+
     //数据图表（销售）
     var myChart=echarts.init(document.getElementById('data_body'),"light");
 
@@ -79,7 +79,7 @@ window.onload=function(){
         }
     })
 
-*/
+
     //注意进度条依赖 element 模块，否则无法进行正常渲染和功能性操作
     layui.use('element', function(){
         var element = layui.element;
@@ -201,6 +201,7 @@ window.onload=function(){
     })
 
 
+    /*
      //数据图表（销售）
      var myChart2=echarts.init(document.getElementById('data_body_two'),"light");
 
@@ -255,7 +256,7 @@ window.onload=function(){
  
          }
      })
- 
+     */
  
     
 }

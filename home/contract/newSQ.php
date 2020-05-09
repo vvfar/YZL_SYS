@@ -90,18 +90,33 @@
                         <input type="text" class="form-control" name="no" value="<?=$no?>" placeholder="请输入授权编号" style="width: 250px;float: left;margin-top: 15px;">
                     </div>
                     <div class="form-group" style="clear: both;">
+                        <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">授权类型</p>
+                        <select class="form-control" style="width: 250px;float: left;margin-top: 15px;" name="sqType" id="sqType">
+                            <?php
+                                if($sqType == "工厂授权"){
+                                    ?>
+                                        <option>销售授权</option>
+                                        <option selected>工厂授权</option>
+                                    <?php
+                                }else{
+                                    ?>
+                                        <option>销售授权</option>
+                                        <option>工厂授权</option>
+                                    <?php
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">客户名称</p>
                         <input type="text" class="form-control" name="companyName" value="<?=$companyName?>" placeholder="请输入客户名称" style="width: 250px;float: left;margin-top: 15px;">
                     </div>
-                    <div class="form-group" style="clear: both;">
+                    <div class="form-group store_name" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">店铺名称</p>
                         <input type="text" class="form-control" name="storeName" value="<?=$storeName?>" placeholder="请输入店铺名称" style="width: 250px;float: left;margin-top: 15px;">
                     </div>
-                    <div class="form-group" style="clear: both;">
-                        <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">授权类型</p>
-                        <input type="text" class="form-control" name="sqType" value="<?=$sqType?>" placeholder="请输入授权类型" style="width: 250px;float: left;margin-top: 15px;">
-                    </div>
-                    <div class="form-group" style="clear: both;">
+                    
+                    <div class="form-group store_pingtai" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">授权平台</p>
                         <input type="text" class="form-control" name="pingtai" value="<?=$pingTai?>" placeholder="请输入授权平台" style="width: 250px;float: left;margin-top: 15px;">
                     </div>
@@ -116,7 +131,7 @@
                     </div>
                     <div class="form-group" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">保证金</p>
-                        <input type="text" class="form-control" name="bzj" value="<?=$bzj?>" placeholder="请输入保证金" style="width: 250px;float: left;margin-top: 15px;">
+                        <input type="text" class="form-control" name="bzj" value="<?=$bzj?>" placeholder="请输入保证金" style="width: 250px;float: left;margin-top: 15px;" oninput="value=value.replace(/[^\d]/g,'')">
                     </div>
                     <div class="form-group" style="clear: both;">
                         <span style="float: left;margin-top:20px;">上传保证金收据</span><input type="file" name="upfile" style="float: left;margin-left: 25px;margin-top:20px;"/><span style="position:relative;top:23px;font-size:12px;color:red">*文件名(编号_bzj.jpg)</span>
@@ -192,4 +207,16 @@
         language:'cn',
         pickerPosition: "bottom-left"
     });
+
+    $("#sqType").change(function(){
+        sq_type=$(this).val();
+
+        if(sq_type=="销售授权"){
+            $(".store_name").css("display","")
+            $(".store_pingtai").css("display","")
+        }else{
+            $(".store_name").css("display","none")
+            $(".store_pingtai").css("display","none")
+        }
+    })
 </script>
