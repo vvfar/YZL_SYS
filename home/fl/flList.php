@@ -76,10 +76,10 @@
 
             $pagesize=15;
 
-            $sqlstr3="select count(*) as total from flsqd where not status like '%已归档单据%' and not status like '%作废%' and (not status='KA级提交单据' and not shr='$username')";
+            $sqlstr3="select count(*) as total from flsqd where (not status like '%已归档单据%' and not status like '%品牌部归档%') and not status like '%作废%' and (not status='KA级提交单据' and not shr='$username')";
 
             if($newLevel !="ADMIN"){
-                $sqlstr3=$sqlstr3." and shr like '%$username%'";
+                $sqlstr3=$sqlstr3." and (shr like '%$username%' or ywy like '%$username%')";
             }
 
             if($input_time !=""){
@@ -169,10 +169,10 @@
                 
                     <?php
 
-                        $sqlstr2="select id,no,company,people,date,date2,status,shr from flsqd where not status like '%已归档单据%' and not status like '%作废%'  and (not status='KA级提交单据' and not shr='$username')";
+                        $sqlstr2="select id,no,company,people,date,date2,status,shr from flsqd where (not status like '%已归档单据%' and not status like '%品牌部归档%') and not status like '%作废%'  and (not status='KA级提交单据' and not shr='$username')";
 
                         if($newLevel !="ADMIN"){
-                            $sqlstr2=$sqlstr2." and shr like '%$username%'";
+                            $sqlstr2=$sqlstr2." and (shr like '%$username%' or ywy like '%$username%')";
                         }
 
                         if($input_time !=""){

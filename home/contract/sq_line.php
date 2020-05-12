@@ -149,7 +149,7 @@
 
                 <?php
 
-                    if($my_department == "商业运营部"){
+                    if($my_department == "商业运营部" and $status == "待归档"){
                         ?>
 
                         <div style="width:1000px;">

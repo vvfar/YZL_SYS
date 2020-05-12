@@ -32,11 +32,6 @@
             }else{
                 echo "<script>alert('照片过大无法上传！');window.location.href='../../home/contract/contractAddition.php'</script>";
             }
-        }else{
-            if($id == ""){
-                echo "<script>alert('保证金不为0必须上传收据！');window.location.href='../../home/contract/contractAddition.php'</script>";
-            }
-            
         }
 
 

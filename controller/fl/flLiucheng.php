@@ -265,7 +265,7 @@
             $sqlstr8="delete from use_sx where fl_no = (select no from flsqd where id=$id)";
             $result=mysqli_query($conn,$sqlstr8);
 
-            echo "<script>alert(1);window.location.href='../../home/fl/flsq.php?id=$id'</script>";
+            echo "<script>window.location.href='../../home/fl/flsq.php?id=$id'</script>";
             
         }else{
             echo "<script>window.location.href='../../home/fl/flsq.php?id=$id'</script>";

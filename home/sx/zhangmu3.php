@@ -273,8 +273,12 @@
                     $sqlstr3= $sqlstr3." and a.companyName like '%$companyName%'";
                 }
 
-                if($newLevel !="ADMIN" and $department !="财务部"){
-                    $sqlstr3=$sqlstr3." and (a.department='$department' or a.gxDepartment like '%$department%')";
+                if($newLevel !="ADMIN" and $department != "商业运营部" and $department != "财务部"){
+                    if($newLevel == "KA"){
+                        $sqlstr3=$sqlstr3." and a.ywy='$username'"; 
+                    }else{
+                        $sqlstr3=$sqlstr3." and (a.department='$department' or a.gxDepartment like '%$department%' or '$department' like concat('%',a.department,'%'))";
+                    }
                 }
                 
                 $result=mysqli_query($conn,$sqlstr3);
@@ -324,8 +328,12 @@
                             $sqlstr2=$sqlstr2." and a.companyName like '%$companyName%'";
                         }
                         
-                        if($newLevel !="ADMIN" and $department !="财务部"){
-                            $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%')";
+                        if($newLevel !="ADMIN" and $department != "商业运营部" and $department != "财务部"){
+                            if($newLevel == "KA"){
+                                $sqlstr2=$sqlstr2." and a.ywy='$username'"; 
+                            }else{
+                                $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%' or '$department' like concat('%',a.department,'%'))";
+                            }
                         }
 
                         $sqlstr2=$sqlstr2." order by a.date1 desc limit ".($page-1)*$pagesize.",$pagesize";

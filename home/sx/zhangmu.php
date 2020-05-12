@@ -66,8 +66,12 @@
                     $sqlstr3= $sqlstr3." and a.companyName like '%$companyName%'";
                 }
 
-                if($department !="商业运营部" and $newLevel != "ADMIN"){
-                    $sqlstr3=$sqlstr3." and (a.department='$department' or a.gxDepartment like '%$department%')";
+                if($newLevel !="ADMIN" and $department != "商业运营部" and $department != "财务部"){
+                    if($newLevel == "KA"){
+                        $sqlstr3=$sqlstr3." and a.ywy='$username'"; 
+                    }else{
+                        $sqlstr3=$sqlstr3." and (a.department='$department' or a.gxDepartment like '%$department%' or '$department' like concat('%',a.department,'%'))";
+                    }
                 }
                 
                 $result=mysqli_query($conn,$sqlstr3);
@@ -106,6 +110,7 @@
                         <th>授信金额</th>
                         <th>剩余应还</th>
                         <th>已使用额度</th>
+                        <th>状态</th>
                         <th style="width:100px;">登记日期</th>
                     </tr>
 
@@ -123,8 +128,12 @@
                             $sqlstr2=$sqlstr2." and a.companyName like '%$companyName%'";
                         }
                         
-                        if($department !="商业运营部" and $newLevel != "ADMIN"){
-                            $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%')";
+                        if($newLevel !="ADMIN" and $department != "商业运营部" and $department != "财务部"){
+                            if($newLevel == "KA"){
+                                $sqlstr2=$sqlstr2." and a.ywy='$username'"; 
+                            }else{
+                                $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%' or '$department' like concat('%',a.department,'%'))";
+                            }
                         }
 
                         $sqlstr2=$sqlstr2." order by a.date1 desc limit ".($page-1)*$pagesize.",$pagesize";
@@ -153,7 +162,7 @@
                                 <?php
                                     }
                                 ?>
-
+                                <td><?=$myrow[9]?></td>
                                 <td><?=$myrow[1]?></td>
                             </tr>
                         <?php

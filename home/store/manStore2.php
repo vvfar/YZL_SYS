@@ -99,7 +99,6 @@
                         <th>负责人</th>
                         <th>创建日期</th>
                         <th>操作</th>
-                        <th>资质</th>
                     </tr>
                 
                     <?php    
@@ -168,26 +167,6 @@
 
                                     ?>
                                     
-                                </td>
-                                <td>
-                                    <?php
-                                        if($htsq=="合同授权已提交"){
-                                            ?>
-                                                <span class="label label-success">合</span>
-                                                <span class="label label-info">授</span>
-                                            <?php
-                                        }elseif($htsq=="合同进行中授权已提交"){
-                                            ?>
-                                                <span class="label label-warning">合</span>
-                                                <span class="label label-info">授</span>
-                                            <?php
-                                        }elseif($htsq=="合同未提交授权已提交"){
-                                            ?>
-                                                <span class="label label-danger">合</span>
-                                                <span class="label label-info">授</span>
-                                            <?php
-                                        }
-                                    ?>
                                 </td>
                             </tr>
                             <?php

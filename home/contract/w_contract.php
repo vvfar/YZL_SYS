@@ -228,9 +228,9 @@
                                 ?>
    
                                 <td><?=$companyName?></td>
-                                <td class="category" style="width:130px"><p style="margin:0"><?=$pingTai?></p></td>
-                                <td class="category" style="width:130px"><p style="margin:0"><?=$category?></p></td>
-                                <td style="width:190px"><?=$department?></td>
+                                <td class="category"><p style="margin:0"><?=$pingTai?></p></td>
+                                <td class="category"><p style="margin:0"><?=$category?></p></td>
+                                <td class="department"><p style="margin:0"><?=$department?></p></td>
                                 <td><?=$status?></td>
                                 <td><?=$re_date?></td>
                             </tr>
@@ -325,6 +325,13 @@
 
     .category p{
         width: 130px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+    }
+
+    .department p{
+        width: 80px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow:ellipsis;

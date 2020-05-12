@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
@@ -34,7 +33,6 @@
                     $department=$myrow[0];
                     $newLevel=$myrow[1];
                 }
-
 
                 //分页代码
                 if(!isset($_GET["page"]) || !is_numeric($_GET["page"])){
@@ -68,10 +66,21 @@
 
             ?>
 
-            <div style="clear: both;border-radius: 6px;">
+            <div style="clear: both;border-radius: 6px;width:1030px;">
                 <div class="nav nav-pills" style="float:left;margin-top:15px;margin-left:30px;">
                     <li role="presentation" class="active"><a href="#">合作店铺</a></li>
                     <li role="presentation"><a href="manStore2.php">不合作店铺</a></li>
+                </div>
+
+                <div style="float:right;margin-top:20px;">
+                    <?php
+                        if($newLevel == "M"){
+                            ?>
+                                <button class="btn btn-sm btn-info" style="float:right;margin-left:10px;" id="download">下载模板</button>
+                                <button class="btn btn-sm btn-warning" style="float:right;margin-left:10px;"  id="upload" data-toggle="modal" data-target="#myModal">上传数据</button>  
+                            <?php
+                        }
+                    ?>
                 </div>
             </div>
             
@@ -96,7 +105,6 @@
                         <th>负责人</th>
                         <th>创建日期</th>
                         <th>操作</th>
-                        <th>资质</th>
                     </tr>
                 
                     <?php    
@@ -167,26 +175,6 @@
                                     ?>
                                     
                                 </td>
-                                <td>
-                                    <?php
-                                        if($htsq=="合同授权已提交"){
-                                            ?>
-                                                <span class="label label-success">合</span>
-                                                <span class="label label-info">授</span>
-                                            <?php
-                                        }elseif($htsq=="合同进行中授权已提交"){
-                                            ?>
-                                                <span class="label label-warning">合</span>
-                                                <span class="label label-info">授</span>
-                                            <?php
-                                        }elseif($htsq=="合同未提交授权已提交"){
-                                            ?>
-                                                <span class="label label-danger">合</span>
-                                                <span class="label label-info">授</span>
-                                            <?php
-                                        }
-                                    ?>
-                                </td>
                             </tr>
                             <?php
                         }
@@ -256,6 +244,33 @@
                 </div>
             
             </div>
+
+            <!-- Excel导入模态框 -->
+            <form method="POST" action="../../controller/store/uploadStoreTarget.php" enctype="multipart/form-data">
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">
+                                    上传店铺目标
+                                </h4>
+                            </div>
+                            
+                            <div class="modal-body" style="height: 200px;">
+                                <div class="form-group" style="clear: both;">
+                                    <span style="margin-top:20px;">上传店铺数据文件</span>
+                                    <input type="file" name="excel" style="margin-top:20px;"/>
+                                </div>
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">上传</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </body>
 </html>
@@ -296,5 +311,13 @@
 
     $("#newStore").click(function(){
         window.location.href="newStore.php"
+    })
+
+    $("#download").click(function(){
+        window.location.href="../../controller/store/downloadStoreYJMB.php"
+    })
+
+    $("#downloadAll").click(function(){
+        window.location.href="../../controller/store/downloadStoreData.php?option=1"
     })
 </script>

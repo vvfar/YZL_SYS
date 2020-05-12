@@ -275,9 +275,9 @@
                                     $result=mysqli_query($conn,$sqlstr1);
 
                                     while($myrow=mysqli_fetch_row($result)){
-                                        if($myrow[0]==$wlfs){
+                                        if($myrow[0]==$driving){
                                             ?>
-                                                <option selected="selected"><?=$myrow[0]?></option>
+                                                <option selected><?=$myrow[0]?></option>
                                             <?php
                                         }else{
                                             ?>
@@ -531,7 +531,7 @@
                                     while($myrow=mysqli_fetch_row($result)){
                                         if($myrow[0]==$jkfs){
                                             ?>
-                                                <option selected="selected"><?=$myrow[0]?></option>
+                                                <option selected><?=$myrow[0]?></option>
                                             <?php
                                         }else{
                                             ?>
@@ -564,7 +564,9 @@
                             <select name="sxid" style="height:20px;width:80%" id="sxid">
                                 <option></option>
                                 <?php
-                                    $sqlstr4="select distinct a.sqid from sx_form a,use_sx b where a.sqid=b.sqid and (a.department='$department' or a.gxDepartment='$department') and a.status='已生效' and b.newMoney > 0";
+                                    $sqlstr4="select distinct a.sqid from sx_form a,use_sx b where a.sqid=b.sqid and (a.department='$my_department' or a.gxDepartment='$my_department') and a.status='已生效' and b.newMoney > 0";
+                                    
+                                    echo $sqlstr4;
 
                                     $result4=mysqli_query($conn,$sqlstr4);
 

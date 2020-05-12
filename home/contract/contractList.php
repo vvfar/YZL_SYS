@@ -127,11 +127,7 @@
                 $sqlstr3="select count(*) as total from contract where status like '%已归档%'";
 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部"){
-                    if($newLevel == "KA"){
-                        $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
-                    }else{
-                        $sqlstr3=$sqlstr3." and '$department' like concat('%',department,'%') ";
-                    }
+                    $sqlstr3=$sqlstr3." and '$department' like concat('%',department,'%') ";
                 }
 
                 if($clientName !=""){
@@ -222,9 +218,9 @@
                                 ?>
                                 
                                 <td><?=$companyName?></td>
-                                <td class="category" style="width:130px"><p style="margin:0"><?=$pingTai?></p></td>
-                                <td class="category" style="width:130px"><p style="margin:0"><?=$category?></p></td>
-                                <td style="width:190px"><?=$department?></td>
+                                <td class="category"><p style="margin:0"><?=$pingTai?></p></td>
+                                <td class="category"><p style="margin:0"><?=$category?></p></td>
+                                <td class="department"><p style="margin:0"><?=$department?></p></td>
                                 <td><?=$status?></td>
                                 <td><?=$re_date?></td>
                             </tr>
@@ -323,6 +319,14 @@
         overflow: hidden;
         text-overflow:ellipsis;
     }
+
+    .department p{
+        width: 80px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+    }
+
 </style>
 
 <script>

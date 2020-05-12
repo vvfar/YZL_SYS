@@ -76,10 +76,10 @@
 
             $pagesize=15;
 
-            $sqlstr3="select count(*) as total from flsqd where status like '%已归档单据%' or status like '%作废%' ";
+            $sqlstr3="select count(*) as total from flsqd where (status like '%已归档单据%' or status like '%品牌部归档%' or status like '%作废%') ";
 
-            if($newLevel !="ADMIN"){
-                $sqlstr3=$sqlstr3." and shr like '%$username%'";
+            if($newLevel !="ADMIN" and $department !="商业运营部" and $department !="义乌部"){
+                $sqlstr3=$sqlstr3." and (shr like '%$username%' or ywy like '%$username%')";
             }
 
             if($input_time !=""){
@@ -167,7 +167,7 @@
                 <button class="btn btn-success btn-sm search_bar_btn" id="download_fl">下载</button>
             </div>
 
-            <div class="clearfix">
+            <div class="clearfix" >
                 <div class="fy_span">
                     <h4>
                         <span class="label label-info">共<?=$total?>条</span>
@@ -178,7 +178,7 @@
                     <a href="oldflDone.php">旧系统辅料</a>
                 </div>
 
-                <table class="table table-responsive table-bordered table-hover td1" style="margin-bottom:0px;margin-top:15px;">
+                <table class="table table-responsive table-bordered table-hover td1" style="position:relative;top:10px;margin-bottom:0px;margin-top:35px;clear:both">
                     <tr>
                         <th>序号</th>
                         <th>编号</th>
@@ -191,10 +191,10 @@
 
                     <?php
                         
-                        $sqlstr2="select id,no,company,people,date,date2,status,shr,allTime from flsqd where (status like '%已归档单据%' or status like '%作废%') ";
+                        $sqlstr2="select id,no,company,people,date,date2,status,shr,allTime from flsqd where (status like '%已归档单据%' or status like '%品牌部归档%' or status like '%作废%') ";
 
-                        if($newLevel !="ADMIN"){
-                            $sqlstr2=$sqlstr2." and shr like '%$username%'";
+                        if($newLevel !="ADMIN" and $department !="商业运营部" and $department !="义乌部"){
+                            $sqlstr2=$sqlstr2." and (shr like '%$username%' or ywy like '%$username%')";
                         }
 
                         if($input_time !=""){
@@ -264,22 +264,23 @@
                 </table>
 
                 <div style="margin-left: 20px;">
-                    <ul class="pager" style="float:left;width:150px;">
+                    <ul class="pager" style="float:left;width:150px;margin-top:20px">
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                             if($page>1)
                                 echo $page-1;
                             else
                                 echo 1;  
-                        ?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>">上一页</a></li>
+                        ?>">上一页</a></li>
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                             if($page<$pagecount)
                                 echo $page+1;
                             else
                                 echo $pagecount;  
-                        ?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>">下一页</a></li>
+                        ?>">下一页</a></li>
                     </ul>
+
                     <div style="float:left;margin-left:580px;width:321px;">
-                        <ul class="pagination" style="float:right">
+                        <ul class="pagination" style="float:right;margin-top:20px">
                             <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>">&laquo;</a></li>
                             <?php
                                 if($pagecount<=5){
@@ -300,20 +301,30 @@
                                             ?>
                                                 <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>"><?=$i?></a></li>
                                             <?php
-                                        }elseif(($i>=$page-2 or $i<=$page+2) and $page !=$pagecount){
+                                        }elseif(($i>=$page-2 and $i<=$page+2 and $page>3) and $page !=$pagecount){
                                             ?>
                                                 <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>"><?=$i?></a></li>
                                             <?php
+                                        }elseif($i<=5){
+                                            if($page<=3){
+                                            ?>
+                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>"><?=$i?></a></li>
+                                            <?php
+                                            }
                                         }
                                     }
                                 }
                                 
                             ?>
-
-                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $pagecount; ?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>">&raquo;</a></li>
+                            
+                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i-1?>&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>">&raquo;</a></li>
                         </ul>
                     </div>
                 </div>
+
+
+
+                
             </div>
         </div>
     </body>

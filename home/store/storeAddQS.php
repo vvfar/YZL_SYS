@@ -52,11 +52,10 @@
                     $category=$myrow[5];
                     $department=$myrow[6];
                     $staff=$myrow[7];
-                    $storeTarget=$myrow[8];
-                    $createDate=$myrow[11];
-                    $link=$myrow[13];
-                    $staff_time=$myrow[14];
-                    $htsq=$myrow[15];
+                    $createDate=$myrow[9];
+                    $link=$myrow[11];
+                    $staff_time=$myrow[12];
+                    $htsq=$myrow[13];
                 }
             ?>
 
