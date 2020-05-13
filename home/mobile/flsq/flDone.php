@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_登陆网站</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="../../lib\bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
-        <script src="../../lib\bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+        <link href="../../../public/lib/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
+        <script src="../../../public/lib/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     </head>
     <body>
         <?php
-            include_once("../../conn/conn.php");
+            include_once("../../../common/conn/conn.php");
             
             session_start();
 

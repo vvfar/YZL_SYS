@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_登陆网站</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="../../lib\bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
-        <script src="../../lib\bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+        <link href="../../../public/lib/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
+        <script src="../../../public/lib/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     </head>
     <body>
         <?php
-            include_once("../../conn/conn.php");
+            include_once("../../../common/conn/conn.php");
             
             session_start();
 
@@ -33,13 +33,13 @@
                 echo("<script>alert('请先登录！');window.location.href='../login.php'</script>");
             }
 
-            $sqlstr1="select department,level from user_form where username='$username'";
+            $sqlstr1="select department,newLevel from user_form where username='$username'";
 
             $result=mysqli_query($conn,$sqlstr1);
     
             while($myrow=mysqli_fetch_row($result)){
                 $department=$myrow[0];
-                $level=$myrow[1];
+                $newLevel=$myrow[1];
             }
         ?>
 
@@ -58,7 +58,7 @@
 
             <ul data-role="listview" data-filter="true" data-input="#myFilter1" data-theme="g">
                 <?php
-                    if($department !="数据中心"){
+                    if($newLevel !="ADMIN"){
                         $sqlstr2="select id,no,company,people,date,date2,status,shr from flsqd where (shr like '%$username%' or csr like '%$username%' or (department= '$department' and status='待业务员审核')) and (not status like '%品牌部归档%' and not status like '%作废%')";
                     }else{
                         $sqlstr2="select id,no,company,people,date,date2,status,shr from flsqd where (not status like '%品牌部归档%' and not status like '%作废%')";
@@ -83,7 +83,7 @@
                 ?>
                 <li>
                     <a href="flLine.php?id=<?=$myrow[0]?>" data-ajax="false">
-                        <p style="font-size:16px;color:skyblue;font-weight:bold"><?=$myrow[2]?><img src="../../img/renz.png" width='20px;' style="position: relative;top:-2px;left:3px;"/></p>
+                        <p style="font-size:16px;color:skyblue;font-weight:bold"><?=$myrow[2]?><img src="../../../public/img/renz.png" width='20px;' style="position: relative;top:-2px;left:3px;"/></p>
                         <div>
                             <span class="label label-warning"><?=$status?></span>
                             <span class="label label-primary" style="margin-left: 5px;"  data-filtertext="<?=$shr?>"><?=$shr?></span>

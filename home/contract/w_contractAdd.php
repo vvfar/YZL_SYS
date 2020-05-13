@@ -153,7 +153,7 @@
                 }
 
 
-                $sqlstr2="select b.id,a.no,b.company,a.content,a.status,a.date,a.shr from contract_add a,contract b where not a.status like '%已归档%' and a.no=b.no";
+                $sqlstr2="select b.id,a.no,b.company,a.content,a.status,a.date,a.shr,b.department from contract_add a,contract b where not a.status like '%已归档%' and a.no=b.no";
                 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部"){
                     if($newLevel == "KA"){
@@ -189,6 +189,7 @@
                         <th>序号</th>
                         <th>合同编号</th>
                         <th>公司名称</th>
+                        <th>事业部</th>
                         <th>补充信息</th>
                         <th>状态</th>
                         <th>登记日期</th>
@@ -204,6 +205,7 @@
                             $status=$myrow[4];
                             $re_date=$myrow[5];
                             $shr=$myrow[6];
+                            $department=$myrow[7];
                     ?>
                             <tr>
                                 <td><?=$i+($page-1)*$pagesize?></td>
@@ -221,6 +223,7 @@
                                 ?>
                                 <td><?=$companyName?></td>
                                 <td class="category" style="width:130px"><p style="margin:0"><?=$content?></p></td>
+                                <td class="category" style="width:130px"><?=$department?></td>
                                 <td class="category" style="width:130px"><p style="margin:0"><?=$status?></p></td>
                                 <td class="category" style="width:130px"><p style="margin:0"><?=$re_date?></p></td>   
                             </tr>

@@ -6,21 +6,19 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_登陆网站</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="../../lib\bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
-        <script src="../../lib\bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+        <link href="../../../public/lib/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
+        <script src="../../../public/lib/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     </head>
     <body>
 
-
-
         <div data-role="header" data-theme="b" data-position="fixed">
             <a href="#" data-role="button" data-icon="back" data-rel="back">后退</a>
             <h1>辅料单详情</h1>
             <?php
-                include_once("../../conn/conn.php");
+                include_once("../../../common/conn/conn.php");
                 error_reporting(E_ALL || ~E_NOTICE);
 
                 session_start();
@@ -458,14 +456,14 @@
 
 <script>
     <?php
-        if($shr_arr1==$username and $department != "义乌" and $status !="义乌审批单据"){
+        if($shr_arr1==$username and $department != "义乌部" and $status !="义乌打包发货"){
             ?>
             $("#yes").click(function(){
-                window.location.href="../../formHandle/flLiucheng.php?id=<?=$id?>&option=1"
+                window.location.href="../../../controller/fl/flLiucheng.php?id=<?=$id?>&option=1"
             })
         
             $("#no").click(function(){
-                window.location.href="../../formHandle/flLiucheng.php?id=<?=$id?>&option=0"
+                window.location.href="../../../controller/fl/flLiucheng.php?id=<?=$id?>&option=0"
             })
     <?php
         }else{
@@ -477,11 +475,11 @@
                 wlprice=$("#wlprice").val()
                 note=$("#note").val()
 
-                window.location.href="../../formHandle/flLiucheng.php?id=<?=$id?>&option=3&wlfs=" + wlfs + "&wlno=" + wlno + "&wlprice=" + wlprice + "&note=" + note
+                window.location.href="../../../controller/fl/flLiucheng.php?id=<?=$id?>&option=3&wlfs=" + wlfs + "&wlno=" + wlno + "&wlprice=" + wlprice + "&note=" + note
             })
         
             $("#no").click(function(){
-                window.location.href="../../formHandle/flLiucheng.php?id=<?=$id?>&option=0"
+                window.location.href="../../../controller/fl/flLiucheng.php?id=<?=$id?>&option=0"
             })
         <?php
 
@@ -489,8 +487,9 @@
     ?>
    
    $("#yes4").click(function(){
-        window.location.href="../../flsq.php?id=<?=$id?>"
+        window.location.href="../../../controller/fl/flLiucheng.php?id=<?=$id?>&option=6"
     })
+   
 
     //打印页面
     var printPage= function(){

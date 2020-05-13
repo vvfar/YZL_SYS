@@ -45,7 +45,7 @@
             <div class="headerBar">
                 <div class="headerImg"><img src="/common/file/user_icon/<?=$headerImg?>" width="100%" height="100%" style="border-radius:100%; overflow:hidden;"/></div>
                 <div class="userInfo">
-                    <p><span id="time"></span><?=$_SESSION['username']?></p>
+                    <p><span id="time"></span><span id="username"><?=$_SESSION['username']?><p></p>
                 </div>
                 
                 

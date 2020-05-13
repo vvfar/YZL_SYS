@@ -322,7 +322,7 @@
         <script>
             if(screen.width<600){
                 alert("提交成功！")
-                window.location.href="../mobile/flsq/flList.php"
+                window.location.href="../../home/mobile/flsq/flList.php"
             }else{
                 alert("提交成功！")
                 window.location.href="../../home/fl/flList.php"
@@ -334,7 +334,7 @@
         <script>
             if(screen.width<600){
                 alert("提交失败！")
-                window.location.href="../mobile/flsq/flList.php"
+                window.location.href="../../home/mobile/flsq/flList.php"
             }else{
                 alert("提交失败！")
                 window.location.href="../../home/fl/flList.php"

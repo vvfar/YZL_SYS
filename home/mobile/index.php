@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_登陆网站</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="../lib\bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
-        <script src="../lib\bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+        <link href="../../public/lib/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
+        <script src="../../public/lib\bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -17,7 +17,7 @@
             <a href="#" data-role="button" id="logout">退出</a>
             <h1>手机版——首页</h1>
             <?php
-                include_once("../conn/conn.php");
+                include_once("../../common/conn/conn.php");
                 session_start();
                 if(isset($_SESSION["username"])){
                     $username=$_SESSION["username"];
@@ -39,7 +39,7 @@
         </div>
 
         <div data-role="content">
-            <img src="../img/timg.jpg" style="width:100%;margin-bottom:20px;">
+            <img src="../../public/img/timg.jpg" style="width:100%;margin-bottom:20px;">
 
             <div class="ui-grid-b">
                 <div class="ui-block-a"><a href="flsq/flList.php" data-role="button" data-icon="home" data-iconpos="top">辅料申请</a></div>
@@ -67,7 +67,7 @@
     })
 
     $("#logout").click(function(){
-        window.location.href="../formHandle/account/logoutHandle.php"; 
+        window.location.href="../../controller/account/logoutHandle.php"; 
     })
 </script>
 

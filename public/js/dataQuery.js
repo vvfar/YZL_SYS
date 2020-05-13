@@ -1,4 +1,13 @@
 window.onload=function(){
+    initData()
+}
+
+
+function initData(changeData,no){
+
+
+    username=$("#username").html()
+
     chooseOne=$("#chooseOne").val()
     chooseTwo=$("#chooseTwo").val()
     chooseThree=$("#chooseThree").val()
@@ -8,14 +17,177 @@ window.onload=function(){
     chooseSeven=$("#chooseSeven").val()
 
     data={
-            chooseOne:chooseOne,
-            chooseTwo:chooseTwo,
-            chooseThree:chooseThree,
-            chooseFour:chooseFour,
-            chooseFive:chooseFive,
-            chooseSix:chooseSix,
-            chooseSeven:chooseSeven,
+        username:username,
+        chooseOne:chooseOne,
+        chooseTwo:chooseTwo,
+        chooseThree:chooseThree,
+        chooseFour:chooseFour,
+        chooseFive:chooseFive,
+        chooseSix:chooseSix,
+        chooseSeven:chooseSeven,
+    }
+
+    console.log(JSON.stringify(data))
+
+    $.ajax({
+        type:"post",
+        async:false,
+        url:"../../controller/index/dataQueryControllerBar.php",
+        data:data,
+        dataType:"json",
+        success:function(result){
+
+            if(result){
+                for(var i=0;i<result.length;i++){
+                    if(no==1 || no==undefined){
+                        $("#chooseTwo").html(function(){
+                            str="<option>全部</option>"
+    
+                            if(result[i].name=="department"){
+                                
+                                for(var j=0;j<result[i].value.length;j++){
+                                    if(changeData==result[i].value[j]){
+                                        str=str+"<option selected>" + result[i].value[j] +"</option>"
+                                    }else{
+                                        str=str+"<option>" + result[i].value[j] +"</option>"
+                                    }
+                                    
+                                    
+                                }
+                                return str
+                            }
+                            
+                        })
+                    }
+                    
+                    if(no==1 || no==undefined){
+                        $("#chooseThree").html(function(){
+                            str="<option>全部</option>"
+
+                            if(result[i].name=="pingtai"){
+                                for(var j=0;j<result[i].value.length;j++){
+                                    if(changeData==result[i].value[j]){
+                                        str=str+"<option selected>" + result[i].value[j] +"</option>"
+                                    }else{
+                                        str=str+"<option>" + result[i].value[j] +"</option>"
+                                    }
+                                    
+                                }
+                                return str
+                            }
+                            
+                        })
+                    }
+
+                    if(no==1 || no==undefined){
+                        $("#chooseFour").html(function(){
+                            str="<option>全部</option>"
+
+                            if(result[i].name=="category"){
+                                for(var j=0;j<result[i].value.length;j++){
+                                    if(changeData==result[i].value[j]){
+                                        str=str+"<option selected>" + result[i].value[j] +"</option>"
+                                    }else{
+                                        str=str+"<option>" + result[i].value[j] +"</option>"
+                                    }
+                                    
+                                }
+                                return str
+                            }
+                            
+                        })
+                    }
+
+                    if(no==1 || no==undefined){
+                        $("#chooseFive").html(function(){
+                            str="<option>全部</option>"
+
+                            if(result[i].name=="storeName"){
+                                for(var j=0;j<result[i].value.length;j++){
+                                    if(changeData==result[i].value[j]){
+                                        str=str+"<option selected>" + result[i].value[j] +"</option>"
+                                    }else{
+                                        str=str+"<option>" + result[i].value[j] +"</option>"
+                                    }
+                                    
+                                }
+                                return str
+                            }
+                            
+                        })
+                    }
+
+                    if(no==1 || no==undefined){
+                        $("#chooseSix").html(function(){
+                            str="<option>全部</option>"
+
+                            if(result[i].name=="ywy"){
+                                for(var j=0;j<result[i].value.length;j++){
+                                    if(changeData==result[i].value[j]){
+                                        str=str+"<option selected>" + result[i].value[j] +"</option>"
+                                    }else{
+                                        str=str+"<option>" + result[i].value[j] +"</option>"
+                                    }
+                                    
+                                }
+                                return str
+                            }
+                            
+                        })
+                    }
+
+                    if(no==6 || no==undefined){
+                        $("#chooseSeven").html(function(){
+                            str=""
+
+                            if(result[i].name=="time"){
+                                for(var j=0;j<result[i].value.length;j++){
+                                    if(changeData==result[i].value[j]){
+                                        str=str+"<option selected>" + result[i].value[j] +"</option>"
+                                    }else{
+                                        str=str+"<option>" + result[i].value[j] +"</option>"
+                                    }
+                                    
+                                }
+                                return str
+                            }
+                            
+                        })
+                    }
+                    
+                }
+            }
+        },
+
+        error:function(XMLHttpRequest, textStatus, errorThrown){
+            console.log("数据错误")
         }
+    })
+
+    $.ajax({
+        type:"post",
+        async:true,
+        url:"../../controller/index/dataQueryController1.php",
+        data:data,
+        dataType:"json",
+        success:function(result){
+            if(result){
+                for(var i=0;i<result.length;i++){
+                    $("#title").html(result[0].value)
+                    $("#mytime").html(result[1].value)
+                    $("#num").html(result[2].value)
+                    $("#tb").html(result[3].value)
+                    $("#hb").html(result[4].value)
+                    
+                }
+            }
+        },
+
+        error:function(XMLHttpRequest, textStatus, errorThrown){
+            console.log("数据错误")
+        }
+    })
+
 
     //第一个框
     $.ajax({

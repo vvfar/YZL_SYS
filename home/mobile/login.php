@@ -6,8 +6,8 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_数据中心平台（手机版）</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
-        <link href="../lib\bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
-        <script src="../lib\bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
+        <link href="../../../public/lib/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet"/>
+        <script src="../../../public/lib/bootstrap-3.3.7-dist/js/jquery-3.3.1.min.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -18,9 +18,9 @@
         </div>
 
         <div data-role="content">
-            <img src="../img/timg.jpg" style="width:100%;margin-bottom:20px;">
+            <img src="../../../public/img/timg.jpg" style="width:100%;margin-bottom:20px;">
 
-            <form style="border:1px solid #cccccc;padding: 20px;padding-bottom: 40px;border-radius: 5px;" method="post" action="../formHandle/account/loginHandle.php" data-ajax="false">
+            <form style="border:1px solid #cccccc;padding: 20px;padding-bottom: 40px;border-radius: 5px;" method="post" action="../../../controller/account/loginHandle.php" data-ajax="false">
                 <h4 style="font-weight: bold;">账号登陆</h4>
                 <hr>
                 <div class="form-group">

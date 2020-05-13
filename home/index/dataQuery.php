@@ -24,42 +24,23 @@
         <div style="margin-left: 180px;">
             <div class="chooseInfo" style="margin-left:30px;margin-top:30px;">
                 <p>筛选条件</p>
-                <select id ="chooseOne">
+                <select id ="chooseOne" onchange="initData()">
                     <option>销售额</option>
                     <option>回款</option>
                 </select>
                 <p>部门</p>
-                <select id ="chooseTwo">
-                    <option>全部</option>
-                    <option>内衣（京东）事业管理部</option>
-                </select>
+                <select id ="chooseTwo"  onchange="initData($(this).val(),1)"></select>
                 <p>平台</p>
-                <select id ="chooseThree">
-                    <option>全部</option>
-                    <option>京东</option>
-                </select>
+                <select id ="chooseThree" onchange="initData($(this).val(),2)"></select>
                 <p>类目</p>
-                <select id ="chooseFour">
-                    <option>全部</option>
-                    <option>内衣</option>
-                </select>
+                <select id ="chooseFour" onchange="initData($(this).val(),3)"></select>
                 <p>店铺</p>
-                <select id ="chooseFive">
-                    <option>全部</option>
-                    <option>test01</option>
-                </select>
+                <select id ="chooseFive" onchange="initData($(this).val(),4)"></select>
                 <p>业务员</p>
-                <select id ="chooseSix">
-                    <option>全部</option>
-                    <option>欧阳雅香</option>
-                </select>
+                <select id ="chooseSix" onchange="initData($(this).val(),5)"></select>
                 <p>时间段</p>
-                <select id ="chooseSeven">
-                    <option>日</option>
-                    <option>周</option>
-                    <option>月</option>
-                    <option>年</option>
-                </select>
+                <select id ="chooseSeven" onchange="initData($(this).val(),6)"></select>
+
                 <button style="margin-left:10px;font-size:12px;padding:2px;">导出数据</button>
             </div>
             <div style="margin-left:20px;">
@@ -189,5 +170,7 @@
     ul li{
         margin-top:2px
     }
+
+    
 </style>
 

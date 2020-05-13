@@ -106,7 +106,7 @@
                         }
 
                         if($dup_data >0){
-                            $sqlstr3="update store_target set storeTarget='$storeTarget',hkTarget='$hkTarget',dateMonth='$dateMonth' where storeID='$storeID' and date='$date'";
+                            $sqlstr3="update store_target set storeTarget='$storeTarget',hkTarget='$hkTarget',dateMonth='$dateMonth' where storeID='$storeID' and dateMonth='$dateMonth'";
                         }else{
                             $sqlstr3="insert into store_target values('$maxID','$storeID','$storeTarget','$hkTarget','$dateMonth')";
                         }
@@ -121,7 +121,7 @@
                     ?>
                         <script>
                             alert("数据提交成功")
-                            window.location.href="../../home/store/dataStore.php"
+                            window.location.href="../../home/store/manStore.php"
                         </script>
                     <?php
                 }
@@ -129,7 +129,7 @@
                 ?>
                     <script>
                         alert("文件过大")
-                        window.location.href="../../home/store/dataStore.php"
+                        window.location.href="../../home/store/manStore.php"
                     </script>
                 <?php
                 

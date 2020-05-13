@@ -31,7 +31,7 @@
     if($chooseOne == "销售额"){
         $sqlstr1="select sum(b.salesMoney) from store a,store_data_sales b where a.storeID=b.storeID ";
     }else if($chooseOne == "回款"){
-
+        $sqlstr1="select sum(b.backMoney) from store a,store_data_hk b where a.storeID=b.storeID ";
     }
 
     //事业部
