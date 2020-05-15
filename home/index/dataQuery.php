@@ -97,8 +97,8 @@
             
             <div style="clear:both;margin-left:20px;">
                 <div class="data_div_large">
-                    <p class="title">图表</p>
-                    <button class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled>周</button>
+                    <p class="title" id="title4"></p>
+                    <button id="btn04" class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled></button>
                     
                     <div style="clear:both">
                         <hr style="margin-top:30px">
@@ -110,7 +110,7 @@
 
                 </div>
                 <div class="data_div">
-                    <p class="title" id="title5">新开拓店铺</p>
+                    <p class="title" id="title5"></p>
                     <button id="mytime5" class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled></button>
                     
                     <div style="clear:both">
@@ -127,7 +127,7 @@
                     </div>
                 </div>
                 <div class="data_div">
-                    <p class="title" id="title6">终止合作店铺</p>
+                    <p class="title" id="title6"></p>
                     <button id="mytime6" class="layui-btn layui-btn-normal  layui-btn-xs" style="float:right;padding:0px 6px 0px 6px;height:20px" disabled></button>
                     
                     <div style="clear:both">

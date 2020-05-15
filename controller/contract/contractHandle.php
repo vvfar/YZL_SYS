@@ -38,7 +38,7 @@
         $contractType=$_POST['contractType'];
         $re_date=date('Y-m-d', time());
     
-        if($contractType=="工厂合同"){
+        if($contractType=="供应商合同"){
             $store=$company;
             $pingtai="工厂";
         }

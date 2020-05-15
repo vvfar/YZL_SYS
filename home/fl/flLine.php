@@ -344,7 +344,7 @@
                     }
                 ?>
                     
-                <div style="margin-left: 933px;">
+                <div style="width:1040px;">
                     <?php
 
                         $arr_shr=explode(",",$shr);
@@ -357,27 +357,28 @@
 
                             if($department == "商业运营部" and $status_pop=="商业运营归档单据" ){
                                 ?>
-                                    <button type="button" class="btn btn-info btn-sm" id="yes" style="margin-left:50px;">已记录</button>
+                                    <button type="button" class="btn btn-info btn-sm" id="yes" style="float:right;margin-left:50px;">已记录</button>
                                 <?php
                             }elseif($status_pop !="待KA审核单据"){
                                 ?>
-                                    <button type="button" class="btn btn-success btn-sm" id="yes">同意</button>
-                                    <button type="button" class="btn btn-danger btn-sm" id="no" style="margin-left:10px;">拒绝</button>
+                                    <button type="button" class="btn btn-danger btn-sm" id="no" style="float:right;margin-left:10px;">拒绝</button>
+                                    <button type="button" class="btn btn-success btn-sm" id="yes" style="float:right;">同意</button>
                                 <?php
                             }
-                        
                         }
                         
                         if($department=="义乌部" and $status_pop=="商业运营归档单据"){
                             ?>
-                                <button type="button" class="btn btn-info btn-sm" id="edit_YW" style="margin-left:37px;">修改单据</button>
+                                <button type="button" class="btn btn-info btn-sm" id="edit_YW" style="float:right;margin-left:37px;">修改单据</button>
                             <?php
                         }
 
                         if(sizeof($arr_shr)==0){
                             if($shr_arr3 == $username){
                             ?>
-                                <button type="button" class="btn btn-info btn-sm" id="yes4" style="margin-left:37px;margin-top:10px;">修改单据</button>
+                                <div style="width:105px">
+                                    <button type="button" class="btn btn-info btn-sm" id="yes4" style="float:right;">修改单据</button>
+                                </div>
                             <?php
                             }
                         }
@@ -394,7 +395,7 @@
                         if($status_pop=="待KA审核单据" and $department==$department2){
                             if($people == $username){
                             ?>
-                                <button type="button" class="btn btn-info btn-sm" id="yes4" style="margin-left:37px;">修改单据</button>
+                                <button type="button" class="btn btn-info btn-sm" id="yes4" style="float:right;margin-left:37px;">修改单据</button>
                             <?php
                             }
                         }
@@ -403,7 +404,7 @@
 
             
             <div style="clear:both;margin-left:40px;" class="sh_time">
-                <p>单据审核过程：</p>
+                <p style="margin-top:80px;">单据审核过程：</p>
                 <?php
                     for($i=0;$i<sizeof($allTime_arr);$i++){
                     ?>

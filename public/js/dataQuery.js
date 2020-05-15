@@ -5,7 +5,6 @@ window.onload=function(){
 
 function initData(changeData,no){
 
-
     username=$("#username").html()
 
     chooseOne=$("#chooseOne").val()
@@ -15,6 +14,39 @@ function initData(changeData,no){
     chooseFive=$("#chooseFive").val()
     chooseSix=$("#chooseSix").val()
     chooseSeven=$("#chooseSeven").val()
+
+    $("#title4").html(chooseOne)
+
+    if(chooseSeven==null){
+        $("#btn04").html("日")
+    }else{
+        $("#btn04").html(chooseSeven)
+    }
+    
+
+    if(chooseTwo==null){
+        chooseTwo="全部"
+    }
+
+    if(chooseThree==null){
+        chooseThree="全部"
+    }
+
+    if(chooseFour==null){
+        chooseFour="全部"
+    }
+
+    if(chooseFive==null || chooseTwo=="全部"){
+        chooseFive="全部"
+    }
+
+    if(chooseSix==null){
+        chooseSix="全部"
+    }
+
+    if(chooseSeven==null){
+        chooseSeven="全部"
+    }
 
     data={
         username:username,
@@ -216,9 +248,10 @@ function initData(changeData,no){
 
     //第二个框
     $.ajax({
-        type:"get",
+        type:"post",
         async:true,
         url:"../../controller/index/dataQueryController2.php",
+        data:data,
         dataType:"json",
         success:function(result){
             if(result){
@@ -240,8 +273,9 @@ function initData(changeData,no){
 
     //第三个框
     $.ajax({
-        type:"get",
+        type:"post",
         async:true,
+        data:data,
         url:"../../controller/index/dataQueryController3.php",
         dataType:"json",
         success:function(result){
@@ -290,6 +324,7 @@ function initData(changeData,no){
     $.ajax({
         type:"post",
         async:true,
+        data:data,
         url:"../../controller/index/dataQueryController4.php",
         dataType:"json",
         success:function(result){
@@ -336,8 +371,9 @@ function initData(changeData,no){
 
     //第五个框
     $.ajax({
-        type:"get",
+        type:"post",
         async:true,
+        data:data,
         url:"../../controller/index/dataQueryController5.php",
         dataType:"json",
         success:function(result){
@@ -358,10 +394,11 @@ function initData(changeData,no){
         }
     })
 
-    //第二个框
+    //第六个框
     $.ajax({
-        type:"get",
+        type:"post",
         async:true,
+        data:data,
         url:"../../controller/index/dataQueryController6.php",
         dataType:"json",
         success:function(result){

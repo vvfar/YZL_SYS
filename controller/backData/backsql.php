@@ -6,8 +6,9 @@
     $name=$_GET['name'];
 
     if($_GET['option']==0){
-        $mysqlstr="mysqldump -uroot -proot --databases yzl_database > ../../common/backup/".$name;
+        $mysqlstr="E:\phpstudy_pro\Extensions\MySQL5.7.26\bin\mysqldump -u root -proot --databases yzl_database > ../../common/backup/".$name;
         exec($mysqlstr);
+        
         echo "<script>alert('数据库备份成功！');location='../../admin/manager/manager_backup.php'</script>";
     }elseif($_GET['option']==1){
         $mysqlstr="mysql -uroot -proot yzl_database < ../../common/backup/".$name;

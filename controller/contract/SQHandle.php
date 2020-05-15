@@ -41,7 +41,7 @@
         $fileName="";
         $fileName2="";
     
-        if($sqType=="工厂授权"){
+        if($sqType=="生产授权"){
             $storeName=$companyName;
             $pingtai="工厂";
         }

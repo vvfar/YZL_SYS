@@ -108,15 +108,15 @@
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">合同类型</p>
                         <select class="form-control" style="width: 250px;float: left;margin-top: 15px;" name="contractType" id="contractType">
                             <?php
-                                if($contractType == "工厂合同"){
+                                if($contractType == "供应商合同"){
                                     ?>
-                                        <option>销售合同</option>
-                                        <option selected>工厂合同</option>
+                                        <option>经销商合同</option>
+                                        <option selected>供应商合同</option>
                                     <?php
                                 }else{
                                     ?>
-                                        <option>销售合同</option>
-                                        <option>工厂合同</option>
+                                        <option>经销商合同</option>
+                                        <option>供应商合同</option>
                                     <?php
                                 }
                             ?>

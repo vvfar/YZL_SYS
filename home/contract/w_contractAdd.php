@@ -222,8 +222,8 @@
                                     }
                                 ?>
                                 <td><?=$companyName?></td>
-                                <td class="category" style="width:130px"><p style="margin:0"><?=$content?></p></td>
                                 <td class="category" style="width:130px"><?=$department?></td>
+                                <td class="category" style="width:130px"><p style="margin:0"><?=$content?></p></td>
                                 <td class="category" style="width:130px"><p style="margin:0"><?=$status?></p></td>
                                 <td class="category" style="width:130px"><p style="margin:0"><?=$re_date?></p></td>   
                             </tr>

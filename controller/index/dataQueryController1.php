@@ -1,11 +1,13 @@
 <?php
-    //解决中文乱码
+
     header("content-type:text/html;charset=utf-8");
     include_once("../../common/conn/conn.php");
     error_reporting(E_ALL || ~E_NOTICE);
 
     date_default_timezone_set("Asia/Shanghai");
-    $date1=date('Y-m-d', time());  //签署日期
+    $date1=date('Y-m-d', time());
+    $dateMonth=date('Y-m', time());
+    $dateYear=date('Y', time());
 
     session_start();   
     $username=$_SESSION["username"];
@@ -59,15 +61,18 @@
         $sqlstr1=$sqlstr1."and a.staff='$chooseFour' ";
     }
 
+    if($chooseSeven != "月" and $chooseSeven != "年"){
+        $chooseSeven = "日";
+    }
+    
+
     //时间段
     if($chooseSeven == "日"){
         $sqlstr1=$sqlstr1."and b.date='$date1' ";
-    }elseif($chooseSeven == "周"){
-
     }elseif($chooseSeven == "月"){
-        
+        $sqlstr1=$sqlstr1."and b.date like '%$dateMonth%' ";
     }elseif($chooseSeven == "年"){
-        
+        $sqlstr1=$sqlstr1."and b.date like '%$dateYear%' ";
     }
 
     $result=mysqli_query($conn,$sqlstr1);
@@ -78,8 +83,6 @@
 
     $tb=0;
     $hb=0;
-
-
 
     $data='[
         {"name":"title","value":"'.$chooseOne.'"},

@@ -47,7 +47,7 @@
                         <?php
 
                             function show_file(){
-                                $folder_name="./backup";
+                                $folder_name="../../common/backup";
                                 $d_open=opendir($folder_name);
                                 $num=0;
                                 while($file=readdir($d_open)){
@@ -72,7 +72,7 @@
 
             <div style="clear: both;position: relative;top:60px;margin-left:40px;">
                 <!--<p>备份物理地址：D:\phpstudy\PHPTutorial\WWW\test\backup</p>-->
-                <p>备份物理地址：D:\phpstudy_pro\WWW\test\backup</p>
+                <p>备份物理地址：D:\phpstudy_pro\WWW\common\backup</p>
             </div> 
         </div>
     </body>

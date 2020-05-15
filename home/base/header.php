@@ -30,8 +30,10 @@
             }        
         ?>
         <div class="header_bar">
-            <div class="logo" style="position: fixed">
-                <p>俞兆林数据平台</p>
+            <div class="logo" style="position: fixed;background-color:white;border-right: 1px solid #ccc;">
+                
+                <img src="/public/img/logo.png" style="width:60px;margin-left:20px;float:left;margin-top:-10px;"/>
+                <p style="float:left;color:rgb(108,19,24);margin-left:10px;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: bold;">CRM平台</p>
             </div>
 
             <div style="float:left;height:40px">

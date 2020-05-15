@@ -202,7 +202,7 @@
                             $companyName=$myrow[2];
                             $content=$myrow[3];
                             $re_date=$myrow[4];
-                            $department=$myrow[5];
+                            $department=$myrow[6];
                     ?>
                             <tr>
                                 <td><?=$i+($page-1)*$pagesize?></td>

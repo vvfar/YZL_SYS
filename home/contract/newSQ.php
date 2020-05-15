@@ -93,15 +93,15 @@
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">授权类型</p>
                         <select class="form-control" style="width: 250px;float: left;margin-top: 15px;" name="sqType" id="sqType">
                             <?php
-                                if($sqType == "工厂授权"){
+                                if($sqType == "生产授权"){
                                     ?>
                                         <option>销售授权</option>
-                                        <option selected>工厂授权</option>
+                                        <option selected>生产授权</option>
                                     <?php
                                 }else{
                                     ?>
                                         <option>销售授权</option>
-                                        <option>工厂授权</option>
+                                        <option>生产授权</option>
                                     <?php
                                 }
                             ?>

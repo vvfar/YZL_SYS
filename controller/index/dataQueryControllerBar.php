@@ -5,7 +5,7 @@
     error_reporting(E_ALL || ~E_NOTICE);
 
     date_default_timezone_set("Asia/Shanghai");
-    $date1=date('Y-m-d', time());  //签署日期
+    $date1=date('Y-m-d', time()); 
 
     session_start();   
     $username=$_SESSION["username"];
@@ -51,7 +51,7 @@
 
     $sqlstr1="select distinct pingtai from store";
 
-    if($chooseTwo !=""){
+    if($chooseTwo !="全部"){
         $sqlstr1=$sqlstr1." where department='$chooseTwo'";
     }
 
@@ -70,7 +70,7 @@
 
     $sqlstr1="select distinct category from store";
 
-    if($chooseTwo !=""){
+    if($chooseTwo !="全部"){
         $sqlstr1=$sqlstr1." where department='$chooseTwo'";
     }
 
@@ -89,7 +89,7 @@
 
     $sqlstr1="select distinct storeName from store where 1=1";
 
-    if($chooseTwo !=""){
+    if($chooseTwo !="全部"){
         $sqlstr1=$sqlstr1." and department='$chooseTwo'";
     }
     
@@ -109,7 +109,7 @@
 
     $sqlstr1="select distinct username from user_form";
 
-    if($chooseTwo !=""){
+    if($chooseTwo !="全部"){
         $sqlstr1=$sqlstr1." where department='$chooseTwo'";
     }
 

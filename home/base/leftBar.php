@@ -33,7 +33,7 @@
                     <li class="leftbar0Z2"><a href="/home/index/myWork.php">我的工作</a></li>
 
                     <?php
-                        if($newLevel == "ADMIN"){
+                        if($newLevel == "ADMIN" and $username !="崔总"){
                             ?>
                                 <li class="leftbar0Z3"><a href="/home/index/dataQuery.php">数据平台</a></li>
                             <?php
