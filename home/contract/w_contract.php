@@ -128,11 +128,11 @@
                 $sqlstr3="select count(*) as total from contract where not status like '%已归档%'";
 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部"){
-                    if($newLevel == "KA"){
-                        $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
-                    }else{
+                    //if($newLevel == "KA"){
+                    //    $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
+                    //}else{
                         $sqlstr3=$sqlstr3." and '$department' like concat('%',department,'%') ";
-                    }
+                    //}
                     
                 }
 
@@ -156,11 +156,12 @@
                 $sqlstr2="select id,no,company,pingtai,category,department,money,sales,service,re_date,'合同',status,shr,shTime from contract where not status like '%已归档%'";
                 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部"){
-                    if($newLevel == "KA"){
-                        $sqlstr2=$sqlstr2." and shr like '%$username%'"; 
-                    }else{
+                
+                    //if($newLevel == "KA"){
+                    //    $sqlstr2=$sqlstr2." and shr like '%$username%'"; 
+                    //}else{
                         $sqlstr2=$sqlstr2." and '$department' like concat('%',department,'%') ";
-                    }
+                    //}
                     
                 }
 
@@ -171,7 +172,7 @@
                     $sqlstr2=$sqlstr2." and contractID like '%$contractID%'";
                 }
 
-                $sqlstr2=$sqlstr2." limit ".($page-1)*$pagesize.",$pagesize";
+                $sqlstr2=$sqlstr2." order by re_date desc limit ".($page-1)*$pagesize.",$pagesize";
 
                 $result=mysqli_query($conn,$sqlstr2);
 

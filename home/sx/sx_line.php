@@ -103,7 +103,7 @@
                         
                         <div style="clear:both"></div>
                         <!-- Excel导入模态框,确认是否作废单据 -->
-                        <form method="POST" action="formHandle/sxLiucheng.php?id=<?=$sxid?>&option=3">
+                        <form method="POST" action="../../controller/sx/sxLiucheng.php?id=<?=$sxid?>&option=3">
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top:30%">
                                 <div class="modal-dialog">
                                     <div class="modal-content" style="width:350px;">
@@ -409,11 +409,11 @@
 
 <script>
     $("#yes").click(function(){
-        window.location.href="formHandle/sxLiucheng.php?id=<?=$sxid?>&option=1"
+        window.location.href="../../controller/sx/sxLiucheng.php?id=<?=$sxid?>&option=1"
     })
 
     $("#no").click(function(){
-        window.location.href="formHandle/sxLiucheng.php?id=<?=$sxid?>&option=0"
+        window.location.href="../../controller/sx/sxLiucheng.php?id=<?=$sxid?>&option=0"
     })
 
     $("#edit").click(function(){

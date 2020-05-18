@@ -63,7 +63,7 @@
                                 $content="";
                             }
 
-                            $sqlstr="select no from contract where shr='$username'";
+                            $sqlstr="select no from contract where department='$department'";
 
                             $result=mysqli_query($conn,$sqlstr);
 

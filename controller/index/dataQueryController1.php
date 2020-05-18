@@ -6,8 +6,16 @@
 
     date_default_timezone_set("Asia/Shanghai");
     $date1=date('Y-m-d', time());
+    $date2=date("Y-m-d", strtotime("-1 month"));
+    $date3=date("Y-m-d", strtotime("-1 year"));
+
     $dateMonth=date('Y-m', time());
+    $dateMonth2=date('Y-m', strtotime("-1 month"));
+    $dateMonth3=date('Y-m', strtotime("-1 year"));
+
     $dateYear=date('Y', time());
+    $dateYear2=date('Y', strtotime("-1 year"));
+    $dateYear3=date('Y', strtotime("-1 year"));
 
     session_start();   
     $username=$_SESSION["username"];
@@ -68,28 +76,58 @@
 
     //时间段
     if($chooseSeven == "日"){
-        $sqlstr1=$sqlstr1."and b.date='$date1' ";
+        $sqlstr=$sqlstr1."and b.date='$date1' ";  //当期
+        $sqlstr2=$sqlstr1."and b.date='$date2' ";  //环比
+        $sqlstr3=$sqlstr1."and b.date='$date3' ";   //同比
     }elseif($chooseSeven == "月"){
-        $sqlstr1=$sqlstr1."and b.date like '%$dateMonth%' ";
+        $sqlstr=$sqlstr1."and b.date like '%$dateMonth%' "; //当期
+        $sqlstr2=$sqlstr1."and b.date like '%$dateMonth2%' ";  //环比
+        $sqlstr3=$sqlstr1."and b.date like '%$dateMonth3%' ";   //同比
     }elseif($chooseSeven == "年"){
-        $sqlstr1=$sqlstr1."and b.date like '%$dateYear%' ";
+        $sqlstr=$sqlstr1."and b.date like '%$dateYear%' ";  //当期
+        $sqlstr2=$sqlstr1."and b.date like '%$dateYear2%' ";  //环比
+        $sqlstr3=$sqlstr1."and b.date like '%$dateYear3%' ";  //同比
     }
 
-    $result=mysqli_query($conn,$sqlstr1);
+    $result=mysqli_query($conn,$sqlstr);
     
     while($myrow=mysqli_fetch_row($result)){
         $num=$myrow[0];
     }
 
-    $tb=0;
-    $hb=0;
+    $result=mysqli_query($conn,$sqlstr2);
+    
+    while($myrow=mysqli_fetch_row($result)){
+        $num2=$myrow[0];
+    }
+
+    $result=mysqli_query($conn,$sqlstr3);
+    
+    while($myrow=mysqli_fetch_row($result)){
+        $num3=$myrow[0];
+    }
+
+    
+    if($num3 !="" and $num !=""){
+        $tb=($num-$num3)/$num3*100;
+    }else{
+        $tb=0;
+    }
+
+    if($num2 !="" and $num !=""){
+        $hb=($num-$num2)/$num3*100;
+    }else{
+        $hb=0;
+    }
+    
+    
 
     $data='[
         {"name":"title","value":"'.$chooseOne.'"},
         {"name":"time","value":"'.$chooseSeven.'"},
         {"name":"num","value":"'.number_format($num, 2).'"},
-        {"name":"tb","value":"'.$tb.'"},
-        {"name":"hb","value":"'.$hb.'"}  
+        {"name":"tb","value":"'.number_format($tb, 2).'"},
+        {"name":"hb","value":"'.number_format($hb, 2).'"}  
     ]';
 
     echo $data;

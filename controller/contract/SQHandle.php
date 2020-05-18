@@ -36,6 +36,7 @@
         $input_time=$_POST['input_time'];
         $input_time2=$_POST['input_time2'];
         $re_date=date('Y-m-d', time());
+        $note=$_POST['note'];
         
     
         $fileName="";
@@ -115,12 +116,12 @@
         if($fileStatus==TRUE){
             
             if($id==""){
-                $sqlstr1="insert into sq values('$maxID'+1,'$no','$companyName','$storeName','$sqType','$pingtai','$category','$department','$input_time','$input_time2','$contract_no','$bzj','$fileAll','$re_date','待归档','$username','$time')";
+                $sqlstr1="insert into sq values('$maxID'+1,'$no','$companyName','$storeName','$sqType','$pingtai','$category','$department','$input_time','$input_time2','$contract_no','$bzj','$fileAll','$re_date','待归档','$username','$time','$note')";
             }else{
                 if($fileAll != ""){
-                    $sqlstr1="update sq set no='$no',companyName='$companyName',storeName='$storeName',sqType='$sqType',pingTai='$pingtai',category='$category',date1='$input_time',date2='$input_time2',contractNo='$contract_no',bzj='$bzj',fileName='$fileAll',status='待归档',shr='$username',shTime='$time' where id='$id'";
+                    $sqlstr1="update sq set no='$no',companyName='$companyName',storeName='$storeName',sqType='$sqType',pingTai='$pingtai',category='$category',date1='$input_time',date2='$input_time2',contractNo='$contract_no',bzj='$bzj',fileName='$fileAll',status='待归档',shr='$username',shTime='$time',note='$note' where id='$id'";
                 }else{
-                    $sqlstr1="update sq set no='$no',companyName='$companyName',storeName='$storeName',sqType='$sqType',pingTai='$pingtai',category='$category',date1='$input_time',date2='$input_time2',contractNo='$contract_no',bzj='$bzj',status='待归档',shr='$username',shTime='$time' where id='$id'";
+                    $sqlstr1="update sq set no='$no',companyName='$companyName',storeName='$storeName',sqType='$sqType',pingTai='$pingtai',category='$category',date1='$input_time',date2='$input_time2',contractNo='$contract_no',bzj='$bzj',status='待归档',shr='$username',shTime='$time',note='$note' where id='$id'";
                 }    
             }
         }

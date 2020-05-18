@@ -59,6 +59,7 @@
                             $status=$myrow[14];
                             $shr=$myrow[15];
                             $shTime=$myrow[16];
+                            $note=$myrow[17];
                         }
                     }
                     
@@ -146,6 +147,8 @@
                         <td>/万</td>
                     </tr>
                 </table>
+                
+                <p style="margin-bottom:10px;">备注信息：<?=$note?></p>
 
                 <?php
 

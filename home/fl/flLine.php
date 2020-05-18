@@ -313,7 +313,7 @@
                             <?php
                                 if($file_name !=""){
                             ?>
-                                <td colspan="6"><a href="sx_file/<?=$file_name?>"><?=$sqid?></a></td>
+                                <td colspan="6"><a href="../../common/file/sx_file/<?=$file_name?>" target="_blank"><?=$sqid?></a></td>
                             <?php
                                 }else{
                             ?>
@@ -333,12 +333,12 @@
 
                     if($file !="" and (explode(".",$file)[1]=="jpg" or explode(".",$file)[1]=="png")){
                 ?>
-                    <p style="margin-left:40px;" class="fj"><a href="fl_file/<?=$file?>">照片预览</a></p>
+                    <p style="margin-left:40px;" class="fj"><a href="../../common/file/fl_file/<?=$file?>">照片预览</a></p>
                     <span style="margin-left:40px;margin-bottom:50px;">文件名：<?=$file?></span>
                 <?php
                     }else if($file !="" and explode(".",$file)[1] !="jpg"){
                     ?>
-                        <p style="margin-left:40px;" class="fj"><a href="fl_file/<?=$file?>">下载附件</a></p>
+                        <p style="margin-left:40px;" class="fj"><a href="../../common/file/fl_file/<?=$file?>">下载附件</a></p>
                         <span style="margin-left:40px;margin-bottom:50px;">文件名：<?=$file?></span>
                     <?php
                     }

@@ -110,7 +110,7 @@
                     <select name="companyName" class="form-control" style="width: 250px;float: left;margin-top: 15px;">
                         <option></option>
                         <?php
-                            $sqlstr1="select client from store where staff='$username' and status='正常' and htsq='合同授权已提交'";
+                            $sqlstr1="select distinct client from store where staff='$username' and status='正常' and htsq='合同授权已提交'";
 
                             $result=mysqli_query($conn,$sqlstr1);
         

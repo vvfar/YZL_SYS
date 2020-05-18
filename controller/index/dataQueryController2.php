@@ -6,8 +6,16 @@
 
     date_default_timezone_set("Asia/Shanghai");
     $date1=date('Y-m-d', time());
+    $date2=date("Y-m-d", strtotime("-1 month"));
+    $date3=date("Y-m-d", strtotime("-1 year"));
+
     $dateMonth=date('Y-m', time());
+    $dateMonth2=date('Y-m', strtotime("-1 month"));
+    $dateMonth3=date('Y-m', strtotime("-1 year"));
+
     $dateYear=date('Y', time());
+    $dateYear2=date('Y', strtotime("-1 year"));
+    $dateYear3=date('Y', strtotime("-1 year"));
 
     session_start();   
     $username=$_SESSION["username"];
@@ -67,13 +75,19 @@
     }
     
 
-    //时间段
-    if($chooseSeven == "日"){
-        $sqlstr1=$sqlstr1."and b.date='$date1' ";
+     //时间段
+     if($chooseSeven == "日"){
+        $sqlstr=$sqlstr1."and b.date='$date1' ";  //当期
+        $sqlstr2=$sqlstr1."and b.date='$date2' ";  //环比
+        $sqlstr3=$sqlstr1."and b.date='$date3' ";   //同比
     }elseif($chooseSeven == "月"){
-        $sqlstr1=$sqlstr1."and b.date like '%$dateMonth%' ";
+        $sqlstr=$sqlstr1."and b.date like '%$dateMonth%' "; //当期
+        $sqlstr2=$sqlstr1."and b.date like '%$dateMonth2%' ";  //环比
+        $sqlstr3=$sqlstr1."and b.date like '%$dateMonth3%' ";   //同比
     }elseif($chooseSeven == "年"){
-        $sqlstr1=$sqlstr1."and b.date like '%$dateYear%' ";
+        $sqlstr=$sqlstr1."and b.date like '%$dateYear%' ";  //当期
+        $sqlstr2=$sqlstr1."and b.date like '%$dateYear2%' ";  //环比
+        $sqlstr3=$sqlstr1."and b.date like '%$dateYear3%' ";  //同比
     }
 
     $result=mysqli_query($conn,$sqlstr1);
@@ -120,17 +134,26 @@
     }
     
 
-    //时间段
-    if($chooseSeven == "日"){
-        $sqlstr1=$sqlstr1."and b.date='$date1' ";
+   //时间段
+   if($chooseSeven == "日"){
+        $sqlstr=$sqlstr1."and date='$date1' ";  //当期
+        $sqlstr2=$sqlstr1."and date='$date2' ";  //环比
+        $sqlstr3=$sqlstr1."and date='$date3' ";   //同比
     }elseif($chooseSeven == "月"){
-        $sqlstr1=$sqlstr1."and b.date like '%$dateMonth%' ";
+        $sqlstr=$sqlstr1."and date like '%$dateMonth%' "; //当期
+        $sqlstr2=$sqlstr1."and date like '%$dateMonth2%' ";  //环比
+        $sqlstr3=$sqlstr1."and date like '%$dateMonth3%' ";   //同比
     }elseif($chooseSeven == "年"){
-        $sqlstr1=$sqlstr1."and b.date like '%$dateYear%' ";
+        $sqlstr=$sqlstr1."and date like '%$dateYear%' ";  //当期
+        $sqlstr2=$sqlstr1."and date like '%$dateYear2%' ";  //环比
+        $sqlstr3=$sqlstr1."and date like '%$dateYear3%' ";  //同比
     }
 
-    $result=mysqli_query($conn,$sqlstr1);
-    
+    //当期
+    $result=mysqli_query($conn,$sqlstr);
+
+    echo $sqlstr;
+
     $num_t=0;
 
     while($myrow=mysqli_fetch_row($result)){
@@ -142,10 +165,40 @@
     }else{
         $percent="100";
     }
+
+    //环比
+    $result=mysqli_query($conn,$sqlstr2);
+    
+    $num_t2=0;
+
+    while($myrow=mysqli_fetch_row($result)){
+        $num_t2=$myrow[0];
+    }
+
+    if($num_t2 !=0){
+        $percent2=number_format($num/$num_t2, 2);
+    }else{
+        $percent2="100";
+    }
+
+    //同比
+    $result=mysqli_query($conn,$sqlstr3);
+
+    $num_t3=0;
+
+    while($myrow=mysqli_fetch_row($result)){
+        $num_t3=$myrow[0];
+    }
+
+    if($num_t3 !=0){
+        $percent3=number_format($num/$num_t3, 2);
+    }else{
+        $percent3="100";
+    }
     
 
-    $tb=0;
-    $hb=0;
+    $tb=($percent-$percent3)/$percent3*100;
+    $hb=($percent-$percent2)/$percent2*100;
 
     $data='[
         {"name":"title","value":"完成比"},

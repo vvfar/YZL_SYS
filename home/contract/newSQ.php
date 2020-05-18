@@ -59,6 +59,7 @@
                             $contractNo=$myrow[10];
                             $bzj=$myrow[11];
                             $fileName=$myrow[12];
+                            $note=$myrow[17];
                         }
                     }else{
                         $id="";
@@ -73,6 +74,7 @@
                         $contractNo="";
                         $bzj="";
                         $fileName="";
+                        $note="";
                     }
     
                     mysqli_free_result($result);
@@ -155,6 +157,10 @@
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
+                    </div>
+                    <div class="form-group store_pingtai" style="clear: both;">
+                        <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">备注</p>
+                        <input type="text" class="form-control" name="note" value="<?=$note?>" placeholder="请输入备注信息" style="width: 250px;float: left;margin-top: 15px;">
                     </div>
                     <div style="clear: both;position:relative;top:10px;">
                         <button type="submit" class="btn btn-success btn-md">提交信息</button>

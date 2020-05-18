@@ -270,7 +270,7 @@
                         ?>">下一页</a></li>
                     </ul>
 
-                    <div style="float:left;margin-left:550px;width:321px;">
+                    <div style="float:left;margin-left:580px;width:321px;">
                         <ul class="pagination" style="float:right;margin-top:0">
                             <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1&status=<?=$status2?>&time=<?=$time?>&input_time=<?=$input_time?>&input_time2=<?=$input_time2?>&clientName=<?=$clientName?>">&laquo;</a></li>
                             <?php

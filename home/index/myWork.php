@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta http-equiv="refresh" content="600">
         <title>俞兆林_我的工作</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\css\myWork.css" rel="stylesheet"/>
@@ -89,11 +90,15 @@
             </div>
 
             <div class="data_line" style="float:left">
-                <p class="title" style="float:left">数据图表</p>
+                <p class="title" style="float:left">销售数据</p>
+                
                 <div class="layui-carousel-ind" style="float:right;width:42px;margin-top:35px">
+                    
                     <ul style="background:0 0">
+                    <!--
                         <li class="layui-this"  style="background-color:#999"></li>
                         <li style="background-color:#c2c2c2"></li>
+                    -->
                     </ul>
                 </div>
                 
@@ -109,7 +114,7 @@
                 -->
             </div>
 
-            <div style="float:left;width:280px;">
+            <div style="float:left;width:290px;">
                 <div class="sales" style="width:280px;">
                     <p class="title">销售数据</p>
 
