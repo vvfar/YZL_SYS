@@ -8,7 +8,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-theme.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
         <link href="..\..\public/css\flList.css" rel="stylesheet"/>
@@ -105,7 +104,7 @@
             $count=0;
         ?>
 
-        <div class="flList_div">
+        <div class="flList_div" style="position:relative;top:50px;">
             <div class="search_bar">
                 <p class="search_bar_p1">辅料单查询</p>
 

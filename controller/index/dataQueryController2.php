@@ -99,9 +99,9 @@
 
     //销售额目标&回款目标
     if($chooseOne == "销售额"){
-        $sqlstr1="select sum(storeTarget) from store_target ";
+        $sqlstr1="select sum(storeTarget) from store_target where 1=1 ";
     }else if($chooseOne == "回款"){
-        $sqlstr1="select sum(hkTarget) from store_target ";
+        $sqlstr1="select sum(hkTarget) from store_target where 1=1 ";
     }
 
     //事业部
@@ -136,28 +136,32 @@
 
    //时间段
    if($chooseSeven == "日"){
-        $sqlstr=$sqlstr1."and date='$date1' ";  //当期
-        $sqlstr2=$sqlstr1."and date='$date2' ";  //环比
-        $sqlstr3=$sqlstr1."and date='$date3' ";   //同比
+        $sqlstr=$sqlstr1."and dateMonth like '%$dateMonth%' ";  //当期
+        $sqlstr2=$sqlstr1."and dateMonth '%$dateMonth2%' ";  //环比
+        $sqlstr3=$sqlstr1."and dateMonth '%$dateMonth3%' ";   //同比
     }elseif($chooseSeven == "月"){
-        $sqlstr=$sqlstr1."and date like '%$dateMonth%' "; //当期
-        $sqlstr2=$sqlstr1."and date like '%$dateMonth2%' ";  //环比
-        $sqlstr3=$sqlstr1."and date like '%$dateMonth3%' ";   //同比
+        $sqlstr=$sqlstr1."and dateMonth like '%$dateMonth%' "; //当期
+        $sqlstr2=$sqlstr1."and dateMonth like '%$dateMonth2%' ";  //环比
+        $sqlstr3=$sqlstr1."and dateMonth like '%$dateMonth3%' ";   //同比
     }elseif($chooseSeven == "年"){
-        $sqlstr=$sqlstr1."and date like '%$dateYear%' ";  //当期
-        $sqlstr2=$sqlstr1."and date like '%$dateYear2%' ";  //环比
-        $sqlstr3=$sqlstr1."and date like '%$dateYear3%' ";  //同比
+        $sqlstr=$sqlstr1."and dateMonth like '%$dateYear%' ";  //当期
+        $sqlstr2=$sqlstr1."and dateMonth like '%$dateYear2%' ";  //环比
+        $sqlstr3=$sqlstr1."and dateMonth like '%$dateYear3%' ";  //同比
     }
 
     //当期
     $result=mysqli_query($conn,$sqlstr);
 
-    echo $sqlstr;
-
     $num_t=0;
 
     while($myrow=mysqli_fetch_row($result)){
-        $num_t=$myrow[0];
+        if($chooseSeven == "日"){
+            $num_t=$myrow[0]/30;
+        }elseif($chooseSeven == "月"){
+            $num_t=$myrow[0];
+        }elseif($chooseSeven == "年"){
+            $num_t=$myrow[0];
+        }
     }
 
     if($num_t !=0){
@@ -165,6 +169,9 @@
     }else{
         $percent="100";
     }
+
+
+
 
     //环比
     $result=mysqli_query($conn,$sqlstr2);
@@ -197,8 +204,8 @@
     }
     
 
-    $tb=($percent-$percent3)/$percent3*100;
-    $hb=($percent-$percent2)/$percent2*100;
+    $tb=number_format(($percent-$percent3)/$percent3*100,2);
+    $hb=number_format(($percent-$percent2)/$percent2*100,2);
 
     $data='[
         {"name":"title","value":"完成比"},

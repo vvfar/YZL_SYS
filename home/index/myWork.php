@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta http-equiv="refresh" content="600">
         <title>俞兆林_我的工作</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\css\myWork.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
@@ -31,7 +31,7 @@
             }
         ?>
 
-        <div class="container1">
+        <div class="container1" style="margin-top:40px">
             <div class="willDo">
                 <p class="title">代办事项</p>
                 <div id="willDo_ajax">

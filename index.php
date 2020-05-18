@@ -17,7 +17,7 @@
             include 'home/base/leftBar.php'; 
         ?>
 
-        <div class="container1">
+        <div class="container1" style="margin-top:60px">
             <div class="dongtai">
                 <p class="title">公司动态</p> 
                 <table class="table table-hover ggl_tb" style="width:250px;margin:0;margin-top:10px">
@@ -105,7 +105,7 @@
                     </tr>
                     <?php
 
-                        $sqlstr="select * from files order by id desc limit 8";
+                        $sqlstr="select * from files order by id desc limit 7";
                         $result=mysqli_query($conn,$sqlstr);
                     
                         while($myrow=mysqli_fetch_row($result)){

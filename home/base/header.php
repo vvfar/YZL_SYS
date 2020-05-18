@@ -29,7 +29,7 @@
                 <?php    
             }        
         ?>
-        <div class="header_bar">
+        <div class="header_bar" style="position:fixed;background-color:#fff;z-index:99999;width:100%;">
             <div class="logo" style="position: fixed;background-color:white;border-right: 1px solid #ccc;">
                 
                 <img src="/public/img/logo.png" style="width:60px;margin-left:20px;float:left;margin-top:-10px;"/>

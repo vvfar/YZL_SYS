@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_我的工作</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
@@ -21,7 +21,7 @@
         <?php include '../base/header.php' ?>
         <?php include '../base/leftBar.php' ?>
 
-        <div style="margin-left: 180px;">
+        <div style="margin-left: 180px;margin-top:60px">
             <div class="chooseInfo" style="margin-left:30px;margin-top:30px;">
                 <p>筛选条件</p>
                 <select id ="chooseOne" onchange="initData()">

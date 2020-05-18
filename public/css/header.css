@@ -5,7 +5,7 @@
 
 @media screen and (max-width:1299px){}
 */
-.header_bar{border-bottom:1px #cccccc solid;height:40px;}
+.header_bar{border-bottom:1px #cccccc solid;height:40px;z-index:99999;width:100%;top:0px}
 .headerBar{margin-left:280px;}
 .logo{background-color:#70041c;width:180px;float: left;height:40px}
 .logo p{text-align: center;vertical-align: middle;line-height: 40px;font-size: 18px;color: #ffffff;font-weight: 400px;}

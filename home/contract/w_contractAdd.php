@@ -20,7 +20,7 @@
         <?php include '..\base\header.php' ?>
         <?php include '..\base\leftBar.php' ?>
 
-        <div style="margin-left: 180px;">
+        <div style="margin-left: 180px;margin-top:50px">
             <div class="nav nav-pills" style="float: left;margin-left:30px;">
                 <div style="clear: both;border-radius: 6px;">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
