@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_店铺合同</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
@@ -50,7 +50,7 @@
 
 
         <div class="content">
-            <div style="margin-left: 180px;">
+            <div style="margin-left: 180px;margin-top:50px">
                 <div style="margin-left:830px;position:relative;top:30px;">
                     <button class="btn btn-sm btn-warning btn-download" style="float:left;margin-left:10px;">下载</button>
                     <button class="btn btn-sm btn-info btn-blue" style="float:left;margin-left:10px;">返回</button>

@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_辅料申请</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css\flDone.css" rel="stylesheet"/>
@@ -123,7 +123,7 @@
         ?>
 
 
-        <div class="flList_div">
+        <div class="flList_div" style="margin-top:50px">
             <div class="search_bar">
                 <p class="search_bar_p1">辅料单查询</p>
 

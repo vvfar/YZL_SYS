@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_后台管理</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
@@ -23,11 +23,11 @@
                 include("..\..\home\base\manager_header.php");
             ?>
 
-            <div style="width:1040px">
+            <div style="width:1060px">
                 <button class="btn btn-sm btn-success" style="float:right" id="createUser">新增文件</button>
             </div>
             
-            <table class="table table-responsive table-bordered table-hover" style="margin-top: 70px;width: 1000px;margin-left: 40px;">
+            <table class="table table-responsive table-bordered table-hover" style="margin-top: 70px;width: 1020px;margin-left: 40px;">
                 <tr>
                     <th style="width:300px;">标题</th>
                     <th>发布者</th>

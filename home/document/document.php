@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_文件下载</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
@@ -17,7 +17,7 @@
         <?php include '../base/header.php' ?>
         <?php include '../base/leftBar.php' ?>
 
-        <div style="margin-left: 180px;">
+        <div style="margin-left: 180px;margin-top:50px;">
             <div style="position: relative;top: 30px;margin-left: 50px;">
                 <p style="margin-bottom: 20px;font-size:16px">文件下载</p>
                 <table class="table table-responsive table-hover table-bordered "  style="width: 850px;">

@@ -111,14 +111,15 @@
                     <li class="leftbar9Z3"><a href="/home/document/document.php">文件下载</a></li> 
                 </div>
 
-                <?php
-                    if($newLevel=="ADMIN"){
-                ?>
-                    <li class="leftbar12"><i class="layui-icon layui-icon-password"></i><a href="/admin/manager/manager_index.php">后台管理</a></li>
-                <?php
-                    }
-                ?>
-            
+                <div>
+                    <?php
+                        if($newLevel=="ADMIN"){
+                    ?>
+                        <li class="leftbar12"><i class="layui-icon layui-icon-password"></i><a href="/admin/manager/manager_index.php">后台管理</a></li>
+                    <?php
+                        }
+                    ?>
+                </div>
             </ul>
         </div>
     </body>

@@ -140,6 +140,7 @@
                                 <div class="form-group" style="clear: both;margin-bottom:0px;">
                                     <p style="width: 100px;font-size: 14px;float: left;margin-top: 20px;">回款登记</p>
                                     <input type="text" class="form-control" name="backMoney" placeholder="请输入回款登记" style="width: 200px;float: left;margin-top: 15px;" value="<?=$hk?>">
+                                    <p style="color:red;font-size:12px;float:left">*仅需填写服务费回款</p>
                                 </div>
                                 <div class="form-group" style="clear: both;margin-bottom:0px;">
                                     <p style="width: 100px;font-size: 14px;float: left;margin-top: 20px;">店铺链接</p>

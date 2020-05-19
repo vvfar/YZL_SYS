@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_后台管理</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
@@ -25,10 +25,10 @@
 
             <div class="nav nav-pills" style="float:left;margin-left:40px;">
                 <li role="presentation" class="active"><a href="#">辅料流程</a></li>
-                <button class="btn btn-success btn-sm" style="float:left;margin-left:845px;margin-top:10px;"  data-toggle="modal" data-target="#myModal">添加流程</button>
+                <button class="btn btn-success btn-sm" style="float:left;margin-left:865px;margin-top:10px;"  data-toggle="modal" data-target="#myModal">添加流程</button>
             </div>
 
-            <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;top: 20px;width: 1000px;margin-left: 40px;">
+            <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;top: 20px;width: 1020px;margin-left: 40px;">
                 <tr>
                     <th>标题</th>
                     <th>操作</th>

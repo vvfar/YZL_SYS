@@ -16,7 +16,7 @@
         <?php include '../base/header.php' ?>
         <?php include '../base/leftBar.php' ?>
 
-        <div style="margin-left: 180px;margin-top:20px">
+        <div style="margin-left: 180px;margin-top:80px">
             <div style="margin-left: 40px;">
 
                 <?php

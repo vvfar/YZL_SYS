@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_用户管理</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
@@ -18,7 +18,7 @@
         <?php include '../base/header.php' ?>
         <?php include '../base/leftBar.php' ?>
 
-        <div style="margin-left: 180px;">
+        <div style="margin-left: 180px;margin-top:50px;">
 
             <ul class="breadcrumb" style="padding-left:30px;">
                 <li><a href="dataStore.php">店铺信息</a></li>

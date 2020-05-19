@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_后台管理</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css/header.css" rel="stylesheet"/>
@@ -26,10 +26,10 @@
             <div class="nav nav-pills" style="float:left;margin-left:40px;">
                 <li role="presentation" class="active"><a href="#">系统日志</a></li>
                 <li role="presentation"><a href="manager_backup.php">数据备份</a></li>
-                <button id="del_log" class="btn btn-success btn-sm" style="float:left;margin-left:755px;margin-top:10px;"  data-toggle="modal" data-target="#myModal">清除日志</button>
+                <button id="del_log" class="btn btn-success btn-sm" style="float:left;margin-left:780px;margin-top:10px;"  data-toggle="modal" data-target="#myModal">清除日志</button>
             </div>
 
-            <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;top: 20px;width: 1000px;margin-left: 40px;">
+            <table class="table table-responsive table-bordered table-hover" style="clear:both;position:relative;top: 20px;width: 1025px;margin-left: 40px;">
                 <tr>
                     <th>登录账号</th>
                     <th>登录时间</th>

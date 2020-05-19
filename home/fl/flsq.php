@@ -21,7 +21,7 @@
         <?php include '../base/header.php' ?>
         <?php include '../base/leftBar.php' ?>
         
-        <div class="flsq_div">
+        <div class="flsq_div" style="margin-top:50px;">
             
             <?php
                 error_reporting(E_ALL || ~E_NOTICE);

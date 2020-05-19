@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_辅料申请</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
         <link href="..\..\public\css\header.css" rel="stylesheet"/>
         <link href="..\..\public\css\flLine.css" rel="stylesheet"/>
@@ -95,7 +95,7 @@
 
         ?>
 
-        <div style="margin-left: 180px;">
+        <div style="margin-left: 180px;margin-top:50px;">
             
             <div style="float:left;width:1040px;margin-top:20px;">
                 <div style="float:left;">
