@@ -1,6 +1,8 @@
 <?php
     header("Content-Type:text/html;charset=utf-8");
 
+    $phone=$_GET['phone'];
+
     function send_sms($phone,$message) {
         $appkey = "zlsy66";
         $appcode = "1000";
@@ -49,15 +51,11 @@
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
 
         $res = curl_exec($curl);  //执行会话
-        
-        echo $res;
 
         curl_close($curl);   // 关闭会话，释放资源。
         
     }
 
-    send_sms("18516097646",'【兆林实业】您的验证码为：123456');
-    
     $chars = array("1", "2",  "3", "4", "5", "6", "7", "8", "9" ); 
     $charsLen = count($chars) - 1; 
     shuffle($chars);   
@@ -67,5 +65,9 @@
         $yzm .= $chars[mt_rand(0, $charsLen)]; 
     } 
 
+    send_sms($phone,'【上海兆林实业】您的CRM系统的验证码为：'.$yzm);
+
     echo $yzm;
+
+
 ?>

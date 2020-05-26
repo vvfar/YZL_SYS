@@ -360,10 +360,19 @@
                                     <button type="button" class="btn btn-info btn-sm" id="yes" style="float:right;margin-left:50px;">已记录</button>
                                 <?php
                             }elseif($status_pop !="待KA审核单据"){
-                                ?>
-                                    <button type="button" class="btn btn-danger btn-sm" id="no" style="float:right;margin-left:10px;">拒绝</button>
-                                    <button type="button" class="btn btn-success btn-sm" id="yes" style="float:right;">同意</button>
-                                <?php
+                                if($department2=="财务部"){
+                                    ?>
+                                        <button type="button" class="btn btn-danger btn-sm" id="no" style="float:right;margin-left:10px;">拒绝</button>
+                                        <button type="button" class="agree_yzm btn btn-success btn-sm" style="float:right;"  data-toggle="modal" data-target="#myModal2">同意</button>
+                                    <?php
+                                }else{
+                                    ?>
+                                        <button type="button" class="btn btn-danger btn-sm" id="no" style="float:right;margin-left:10px;">拒绝</button>
+                                        <button type="button" class="btn btn-success btn-sm" id="yes" style="float:right;">同意</button>
+                                    <?php
+                                }
+
+                               
                             }
                         }
                         
@@ -419,7 +428,7 @@
             </div>
         </div>
 
-        <!-- Excel导入模态框 -->
+        <!-- 作废模态框 -->
         <form method="POST" action="../../controller/fl/zffl.php" enctype="multipart/form-data">
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -438,6 +447,50 @@
                         
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger">作废</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        
+        <?php
+            $sqlstr6="select phone from user_form where username='$username'";
+            
+            $result=mysqli_query($conn,$sqlstr6);
+                
+            while($myrow=mysqli_fetch_row($result)){
+                $phone=$myrow[0];
+            }
+            
+        ?>
+
+        <!-- 财务短信验证码模态框 -->
+        <form method="POST" action="../../controller/fl/flLiucheng.php?id=<?=$id?>&option=1" enctype="multipart/form-data">
+            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top:20%;left:20%">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width:400px;">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">
+                                短信验证码
+                            </h4>
+                        </div>
+                        
+                        <div class="modal-body" style="height: 150px;">
+                            <p>发送验证码手机：<span id="phone"><?=$phone?></span></p>
+                            <span id="yzm" style="display:none"></span>
+                            <p style="margin-top:20px;">请输入短信验证码：</p>
+                            <div style="margin-top:10px;">    
+                                <input type="text" placeholder="请输入短信验证码" class="form-control" name="yzm" id="user_yzm" style="width:200px;float:left"/>
+                                <button type="button" class="agree_yzm btn btn-sm btn-info" style="float:left;margin-top:2px;margin-left:10px;">重新发送</button>      
+                                <!--<span style="float:left;margin-top:7px;margin-left:20px;">60s</span>-->
+                            </div>                        
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" id="submit_yzm">确认</button>
+                            <button type="submit" class="btn btn-success" id="hd_submit_yzm" style="display:none">确认</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                         </div> 
                     </div>
@@ -492,6 +545,35 @@
 
         window.location.href="../../controller/fl/flLiucheng.php?id=<?=$id?>&option=8&wlfs=" + wlfs + "&wlno=" + wlno + "&wlprice=" + wlprice + "&note=" + note
     })
+
+    $(".agree_yzm").click(function(){
+        
+        phone=$("#phone").html()
+
+        $.ajax({
+            type:"get",
+            async:true,
+            url:"../../controller/fl/fl_yzm.php?phone=" + phone,
+            dataType:"json",
+            success:function(result){
+                $("#yzm").html(result)
+                alert("发送成功！")
+            }
+        })
+    })
+
+    $("#submit_yzm").click(function(){
+        user_yzm=$("#user_yzm").val();
+        sys_yzm=$("#yzm").html();
+
+        if(user_yzm !=sys_yzm){
+            alert("验证码错误！")
+        }else{
+            $("#hd_submit_yzm").click()
+        }
+    })
+
+
 
     //打印页面
     var printPage= function(){
