@@ -28,7 +28,7 @@
         $sqlstr2=$sqlstr2." and a.date3 >= '$date1' and a.date3 <= '$date2'";
     }
 
-    if($newLevel !="数据中心" and $department !="财务部" ){
+    if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部" ){
         $sqlstr2=$sqlstr2." and a.department='$department'";
     }
 

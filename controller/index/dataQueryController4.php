@@ -34,30 +34,36 @@
     $chooseFive=$_POST['chooseFive'];
     $chooseSix=$_POST['chooseSix'];
     $chooseSeven=$_POST['chooseSeven'];
+    $chooseEight=$_POST['chooseEight'];
 
     $object=$chooseTwo;
 
 
-    if($chooseSeven=="日" or $chooseSeven=="全部"){
-        if($chooseOne=="销售额"){
-            $sqlstr1="select sum(a.salesMoney),a.date from store_data_sales a,store b where a.storeID=b.storeID ";
-        }else if($chooseOne == "回款"){
-            $sqlstr1="select sum(a.backMoney),a.date from store_data_hk,store b where a.storeID=b.storeID ";
+    if($chooseEight=="默认"){
+        if($chooseSeven=="日" or $chooseSeven=="全部"){
+            if($chooseOne=="销售额"){
+                $sqlstr1="select sum(a.salesMoney),a.date from store_data_sales a,store b where a.storeID=b.storeID ";
+            }else if($chooseOne == "回款"){
+                $sqlstr1="select sum(a.backMoney),a.date from store_data_hk,store b where a.storeID=b.storeID ";
+            }
+    
+        }elseif($chooseSeven=="月"){
+            if($chooseOne=="销售额"){
+                $sqlstr1="select sum(a.salesMoney),left(a.date,7) as month from store_data_sales a,store b where a.storeID=b.storeID ";
+            }else if($chooseOne == "回款"){
+                $sqlstr1="select sum(a.backMoney),left(a.date,7) as month from store_data_hk,store b where a.storeID=b.storeID ";
+            }
+        }elseif($chooseSeven=="年"){
+            if($chooseOne=="销售额"){
+                $sqlstr1="select sum(a.salesMoney),left(a.date,4) as year from store_data_sales a,store b where a.storeID=b.storeID ";
+            }else if($chooseOne == "回款"){
+                $sqlstr1="select sum(a.backMoney),left(a.date,4) as year from store_data_hk,store b where a.storeID=b.storeID ";
+            }
         }
-
-    }elseif($chooseSeven=="月"){
-        if($chooseOne=="销售额"){
-            $sqlstr1="select sum(a.salesMoney),left(a.date,7) as month from store_data_sales a,store b where a.storeID=b.storeID ";
-        }else if($chooseOne == "回款"){
-            $sqlstr1="select sum(a.backMoney),left(a.date,7) as month from store_data_hk,store b where a.storeID=b.storeID ";
-        }
-    }elseif($chooseSeven=="年"){
-        if($chooseOne=="销售额"){
-            $sqlstr1="select sum(a.salesMoney),left(a.date,4) as year from store_data_sales a,store b where a.storeID=b.storeID ";
-        }else if($chooseOne == "回款"){
-            $sqlstr1="select sum(a.backMoney),left(a.date,4) as year from store_data_hk,store b where a.storeID=b.storeID ";
-        }
+    }else{
+        $sqlstr1="select sum(a.salesMoney),a.date from store_data_sales a,store b where a.storeID=b.storeID ";
     }
+    
     
     //事业部
     if($chooseTwo != "全部"){
@@ -84,13 +90,16 @@
         $sqlstr1=$sqlstr1."and b.staff='$chooseFour' ";
     }
 
-
-    if($chooseSeven=="日" or $chooseSeven=="全部"){
-        $sqlstr1=$sqlstr1."group by date limit 0,30";
-    }elseif($chooseSeven=="月"){
-        $sqlstr1=$sqlstr1."group by month limit 0,12";
-    }elseif($chooseSeven=="年"){
-        $sqlstr1=$sqlstr1."group by year limit 0,10";
+    if($chooseEight=="默认"){
+        if($chooseSeven=="日" or $chooseSeven=="全部"){
+            $sqlstr1=$sqlstr1."group by date limit 0,30";
+        }elseif($chooseSeven=="月"){
+            $sqlstr1=$sqlstr1."group by month limit 0,12";
+        }elseif($chooseSeven=="年"){
+            $sqlstr1=$sqlstr1."group by year limit 0,10";
+        }
+    }else{
+        $sqlstr1=$sqlstr1."and a.date like '%$chooseEight%' group by a.date";
     }
 
     $result=mysqli_query($conn,$sqlstr1);

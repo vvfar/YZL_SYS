@@ -37,6 +37,7 @@
     $chooseFive=$_POST['chooseFive'];
     $chooseSix=$_POST['chooseSix'];
     $chooseSeven=$_POST['chooseSeven'];
+    $chooseEight=$_POST['chooseEight'];
 
     //销售额&回款
     if($chooseOne == "销售额"){
@@ -75,20 +76,27 @@
     }
     
 
-     //时间段
-     if($chooseSeven == "日"){
-        $sqlstr=$sqlstr1."and b.date='$date1' ";  //当期
-        $sqlstr2=$sqlstr1."and b.date='$date2' ";  //环比
-        $sqlstr3=$sqlstr1."and b.date='$date3' ";   //同比
-    }elseif($chooseSeven == "月"){
-        $sqlstr=$sqlstr1."and b.date like '%$dateMonth%' "; //当期
-        $sqlstr2=$sqlstr1."and b.date like '%$dateMonth2%' ";  //环比
-        $sqlstr3=$sqlstr1."and b.date like '%$dateMonth3%' ";   //同比
-    }elseif($chooseSeven == "年"){
-        $sqlstr=$sqlstr1."and b.date like '%$dateYear%' ";  //当期
-        $sqlstr2=$sqlstr1."and b.date like '%$dateYear2%' ";  //环比
-        $sqlstr3=$sqlstr1."and b.date like '%$dateYear3%' ";  //同比
+    if($chooseEight=="默认"){
+        //时间段
+        if($chooseSeven == "日"){
+            $sqlstr=$sqlstr1."and b.date='$date1' ";  //当期
+            $sqlstr2=$sqlstr1."and b.date='$date2' ";  //环比
+            $sqlstr3=$sqlstr1."and b.date='$date3' ";   //同比
+        }elseif($chooseSeven == "月"){
+            $sqlstr=$sqlstr1."and b.date like '%$dateMonth%' "; //当期
+            $sqlstr2=$sqlstr1."and b.date like '%$dateMonth2%' ";  //环比
+            $sqlstr3=$sqlstr1."and b.date like '%$dateMonth3%' ";   //同比
+        }elseif($chooseSeven == "年"){
+            $sqlstr=$sqlstr1."and b.date like '%$dateYear%' ";  //当期
+            $sqlstr2=$sqlstr1."and b.date like '%$dateYear2%' ";  //环比
+            $sqlstr3=$sqlstr1."and b.date like '%$dateYear3%' ";  //同比
+        }
+    }else{
+        $sqlstr=$sqlstr1."and b.date like '%$chooseEight%' "; //当期
+        $sqlstr2=$sqlstr1."and b.date like '%$chooseEight%' ";  //环比
+        $sqlstr3=$sqlstr1."and b.date like '%$chooseEight%' ";   //同比
     }
+     
 
     $result=mysqli_query($conn,$sqlstr1);
     
@@ -135,18 +143,24 @@
     
 
    //时间段
-   if($chooseSeven == "日"){
-        $sqlstr=$sqlstr1."and dateMonth like '%$dateMonth%' ";  //当期
-        $sqlstr2=$sqlstr1."and dateMonth '%$dateMonth2%' ";  //环比
-        $sqlstr3=$sqlstr1."and dateMonth '%$dateMonth3%' ";   //同比
-    }elseif($chooseSeven == "月"){
-        $sqlstr=$sqlstr1."and dateMonth like '%$dateMonth%' "; //当期
-        $sqlstr2=$sqlstr1."and dateMonth like '%$dateMonth2%' ";  //环比
-        $sqlstr3=$sqlstr1."and dateMonth like '%$dateMonth3%' ";   //同比
-    }elseif($chooseSeven == "年"){
-        $sqlstr=$sqlstr1."and dateMonth like '%$dateYear%' ";  //当期
-        $sqlstr2=$sqlstr1."and dateMonth like '%$dateYear2%' ";  //环比
-        $sqlstr3=$sqlstr1."and dateMonth like '%$dateYear3%' ";  //同比
+   if($chooseEight=="默认"){
+        if($chooseSeven == "日"){
+            $sqlstr=$sqlstr1."and dateMonth like '%$dateMonth%' ";  //当期
+            $sqlstr2=$sqlstr1."and dateMonth like '%$dateMonth2%' ";  //环比
+            $sqlstr3=$sqlstr1."and dateMonth like '%$dateMonth3%' ";   //同比
+        }elseif($chooseSeven == "月"){
+            $sqlstr=$sqlstr1."and dateMonth like '%$dateMonth%' "; //当期
+            $sqlstr2=$sqlstr1."and dateMonth like '%$dateMonth2%' ";  //环比
+            $sqlstr3=$sqlstr1."and dateMonth like '%$dateMonth3%' ";   //同比
+        }elseif($chooseSeven == "年"){
+            $sqlstr=$sqlstr1."and dateMonth like '%$dateYear%' ";  //当期
+            $sqlstr2=$sqlstr1."and dateMonth like '%$dateYear2%' ";  //环比
+            $sqlstr3=$sqlstr1."and dateMonth like '%$dateYear3%' ";  //同比
+        }
+   }else{
+        $sqlstr=$sqlstr1."and dateMonth like '%$chooseEight%' "; //当期
+        $sqlstr2=$sqlstr1."and dateMonth like '%$chooseEight%' ";  //环比
+        $sqlstr3=$sqlstr1."and b.dateMonth like '%$chooseEight%' ";   //同比
     }
 
     //当期

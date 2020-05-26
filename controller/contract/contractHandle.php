@@ -58,7 +58,7 @@
         if($id==""){
             $sqlstr1="insert into contract values('$maxID'+1,'$re_date','$no','$department','$pingtai','$category','$company','$store','$input_time','$input_time2','$money','$ismoney','$sales','$issales','$service','$isservice','$note','待归档','$oldNo','$username','$time','$contractType')";
         }else{
-            $sqlstr1="update contract set no='$no',company='$company',store='$store',pingtai='$pingtai',category='$category',money='$money',ismoney='$ismoney',sales='$sales',issales='$issales',service='$isservice',note='$note',oldNo='$oldNo',status='待归档',shr='$username',shTime='$time',contractType='$contractType' where id='$id'";
+            $sqlstr1="update contract set no='$no',company='$company',store='$store',pingtai='$pingtai',category='$category',money='$money',ismoney='$ismoney',sales='$sales',issales='$issales',service='$service',isservice='$isservice',note='$note',oldNo='$oldNo',status='待归档',shr='$username',shTime='$time',contractType='$contractType' where id='$id'";
         }
         
     

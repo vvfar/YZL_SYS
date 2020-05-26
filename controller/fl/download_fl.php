@@ -36,9 +36,9 @@
         }
     
         if($status=="已完成"){
-            $sqlstr2=$sqlstr2." and status like '%已归档单据%' ";
+            $sqlstr2=$sqlstr2." and status like '%归档%' ";
         }elseif($status=="未完成"){
-            $sqlstr2=$sqlstr2." and not status like '%已归档单据%' ";
+            $sqlstr2=$sqlstr2." and not status like '%归档%' ";
         }
     
         if($input_time != ""){
@@ -71,7 +71,7 @@
         }
     
         if($status=="已完成"){
-            $sqlstr2=$sqlstr2." and status like '%品牌部归档%' ";
+            $sqlstr2=$sqlstr2." and status like '%归档%' ";
         }
     
         if($input_time != ""){

@@ -8,8 +8,8 @@
         <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
-        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css?v=2" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css?v=2" rel="stylesheet"/>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="form-group" style="clear: both;">
                         <p style="width: 120px;font-size: 14px;float: left;margin-top: 22px;">保证金</p>
-                        <input type="text" class="form-control" name="bzj" value="<?=$bzj?>" placeholder="请输入保证金" style="width: 250px;float: left;margin-top: 15px;" oninput="value=value.replace(/[^\d]/g,'')">
+                        <input type="text" class="form-control" name="bzj" value="<?=$bzj?>" placeholder="请输入保证金" style="width: 250px;float: left;margin-top: 15px;"  oninput="value=value.replace(/[^\d.]/g,'')">
                     </div>
                     <div class="form-group" style="clear: both;">
                         <span style="float: left;margin-top:20px;">上传保证金收据</span><input type="file" name="upfile" style="float: left;margin-left: 25px;margin-top:20px;"/><span style="position:relative;top:23px;font-size:12px;color:red">*文件名(编号_bzj.jpg)</span>

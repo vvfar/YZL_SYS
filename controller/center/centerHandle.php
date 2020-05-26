@@ -32,43 +32,30 @@
             $sqlstr1="update user_form set email='$email' where username='$username'";
         }
 
+        $result=mysqli_query($conn,$sqlstr1);
+
+        if($result){
+            echo "<script>alert('提交成功！');window.location.href='../../home/center/center.php'</script>";
+        }else{
+            echo "<script>alert('提交失败！');window.location.href='../../home/center/center.php'</script>";
+        }
+
     }elseif($option ==2){
         //修改密码
 
         $new_pwd1=$_POST["newPwd1"];
-        $new_pwd2=$_POST["newPwd2"];
+        
+        $sqlstr1="update user_form set password='$new_pwd1' where username='$username'";
+        
+        $result=mysqli_query($conn,$sqlstr1);
 
-        if($new_pwd1 =="" || $new_pwd2 == ""){
-            ?>
-            <script>
-                alert("密码信息未填写！")
-                windows.location.href="../center.php";
-            </script>
-            
-            <?php
-        }elseif(strlen($new_pwd1)<6 || strlen($new_pwd1) > 18){
-            ?>
-            <script>
-                alert("密码长度填写不符合要求！")
-                windows.location.href="../center.php";
-            </script>
-            
-            <?php
-        }elseif($new_pwd1 != $new_pwd2){
-            ?>
-            <script>
-                alert("密码与确认密码输入不一致！")
-                windows.location.href="../center.php";
-            </script>
-            
-            <?php
+        if($result){
+            echo "<script>alert('提交成功！');window.location.href='../../controller/account/logoutHandle.php'</script>";
         }else{
-            session_start();
-
-            $username=$_SESSION['username'];
-
-            $sqlstr1="update user_form set password='$new_pwd1' where username='$username'";
+            echo "<script>alert('提交失败！');";
         }
+    
+    
     }elseif($option ==3){
         //上传头像
 
@@ -107,23 +94,7 @@
         }
     }
 
-    $result=mysqli_query($conn,$sqlstr1);
-
-    if($result){
-        ?> 
-        <script>
-            alert("提交成功！");
-            window.location.href="../../home/center/center.php";
-        </script>
-        <?php
-    }else{
-        ?>
-        <script>
-            alert("提交失败！");
-            window.location.href="../../home/center/center.php";
-        </script>
-        <?php
-    }
+    
 
     mysqli_free_result($result);
     mysqli_close($conn);

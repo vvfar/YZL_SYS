@@ -29,6 +29,7 @@
     $chooseFive=$_POST['chooseFive'];
     $chooseSix=$_POST['chooseSix'];
     $chooseSeven=$_POST['chooseSeven'];
+    $chooseEight=$_POST['chooseEight'];
 
     //销售额&回款
     if($chooseOne == "销售额"){
@@ -65,16 +66,18 @@
     if($chooseSeven != "月" and $chooseSeven != "年"){
         $chooseSeven = "日";
     }
-    
-    
 
     //时间段
-    if($chooseSeven == "日"){
-        $sqlstr1=$sqlstr1."and b.date='$date1' ";
-    }elseif($chooseSeven == "月"){
-        $sqlstr1=$sqlstr1."and b.date like '%$dateMonth%' ";
-    }elseif($chooseSeven == "年"){
-        $sqlstr1=$sqlstr1."and b.date like '%$dateYear%' ";
+    if($chooseEight=="默认"){
+        if($chooseSeven == "日"){
+            $sqlstr1=$sqlstr1."and b.date='$date1' ";
+        }elseif($chooseSeven == "月"){
+            $sqlstr1=$sqlstr1."and b.date like '%$dateMonth%' ";
+        }elseif($chooseSeven == "年"){
+            $sqlstr1=$sqlstr1."and b.date like '%$dateYear%' ";
+        }
+    }else{
+        $sqlstr1=$sqlstr1."and b.date like '%$chooseEight%' "; //当期
     }
 
     $sqlstr1=$sqlstr1." group by a.staff order by ";
@@ -92,13 +95,19 @@
     $staff_list1='[';
     $staff_list_str="";
 
+    $number_list1='[';
+    $number_list_str="";
+
     while($myrow=mysqli_fetch_row($result)){
+        $number_list_str=$number_list_str.'"'.$chooseOne.'：￥'.number_format($myrow[0],2).'",';
         $staff_list_str=$staff_list_str.'"'.$myrow[1].'",';
     }
 
     $staff_list_str = substr($staff_list_str,0,strlen($staff_list_str)-1);
+    $number_list_str = substr($number_list_str,0,strlen($number_list_str)-1);
 
     $staff_list=$staff_list1.$staff_list_str.']';
+    $number_list=$number_list1.$number_list_str.']';
 
     $tb=0;
     $hb=0;
@@ -106,7 +115,8 @@
     $data='[
         {"name":"title","value":"业绩排名"},
         {"name":"time","value":"'.$chooseSeven.'"},
-        {"name":"rank","value":'.$staff_list.'}
+        {"name":"rank","value":'.$staff_list.'},
+        {"name":"number","value":'.$number_list.'}
     ]';
 
     echo $data;

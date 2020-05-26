@@ -5,11 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_店铺合同</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
-        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css?v=2" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css?v=2" rel="stylesheet"/>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
@@ -56,6 +56,12 @@
                         $clientName="";
                     }
 
+                    if(isset($_GET['storeName'])){
+                        $storeName=$_GET['storeName'];
+                    }else{
+                        $storeName="";
+                    }
+
                     if(isset($_GET['status'])){
                         $status=$_GET['status'];
                     }else{
@@ -72,17 +78,22 @@
                         if($contractID !=""){
                             ?>
                                 <option selected>合同编号</option>
-                                <option>公司名称</option>
+                                <option>店铺名</option>
                             <?php
                         }elseif($clientName !=""){
                             ?>
                                 <option>合同编号</option>
-                                <option selected>公司名称</option>
+                                <option>店铺名</option>
+                            <?php
+                        }elseif($storeName !=""){
+                            ?>
+                                <option>合同编号</option>
+                                <option selected>店铺名</option>
                             <?php
                         }else{
                             ?>
                                 <option>合同编号</option>
-                                <option>公司名称</option>
+                                <option>店铺名</option>
                             <?php
                         }
                     ?>
@@ -92,17 +103,17 @@
                     if($contractID !=""){
                         ?>
                             <input type="text" class="form-control" id="contractID" placeholder="请输入合同编号" style="width:200px;float: left;margin-left: 10px;" value="<?=$contractID?>">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;display:none" value="">
+                            <input type="text" class="form-control" id="storeName" placeholder="请输入店铺名" style="width:200px;float: left;margin-left: 10px;display:none" value="">
                         <?php
-                    }elseif($clientName !=""){
+                    }elseif($storeName !=""){
                         ?>
                             <input type="text" class="form-control" id="contractID" placeholder="请输入合同编号" style="width:200px;float: left;margin-left: 10px;display:none" value="">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;" value="<?=$clientName?>">
+                            <input type="text" class="form-control" id="storeName" placeholder="请输入店铺名" style="width:200px;float: left;margin-left: 10px;" value="<?=$storeName?>">
                         <?php
                     }else{
                         ?>
                             <input type="text" class="form-control" id="contractID" placeholder="请输入合同编号" style="width:200px;float: left;margin-left: 10px;" value="">
-                            <input type="text" class="form-control" id="clientName" placeholder="请输入公司名称" style="width:200px;float: left;margin-left: 10px;display:none" value="">
+                            <input type="text" class="form-control" id="storeName" placeholder="请输入店铺名" style="width:200px;float: left;margin-left: 10px;display:none" value="">
                         <?php
                     }
                 ?>
@@ -125,22 +136,26 @@
                 $pagesize=15;
 
 
-                $sqlstr3="select count(*) as total from contract_add where not status like '%已归档%'";
+                $sqlstr3="select count(*) as total from contract_add a where not a.status like '%已归档%'";
 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部"){
                     if($newLevel == "KA"){
-                        $sqlstr3=$sqlstr3." and shr like '%$username%'"; 
+                        $sqlstr3=$sqlstr3." and a.shr like '%$username%'"; 
                     }else{
-                        $sqlstr3=$sqlstr3." and shr = any( select username from user_form where '".$department."' like concat('%',department,'%'))";
+                        $sqlstr3=$sqlstr3." and a.shr = any( select username from user_form where '".$department."' like concat('%',department,'%'))";
                     }
                     
                 }
 
                 if($clientName !=""){
-                    $sqlstr3=$sqlstr3." and company like '%$clientName%'";
+                    $sqlstr3=$sqlstr3." and b.company like '%$clientName%'";
                 }elseif($contractID !=""){
-                    $sqlstr3=$sqlstr3." and contractID like '%$contractID%'";
+                    $sqlstr3=$sqlstr3." and a.no like '%$contractID%'";
+                }elseif($storeName !=""){
+                    $sqlstr3=$sqlstr3." and a.store like '%$storeName%'";
                 }
+
+                
 
                 $result=mysqli_query($conn,$sqlstr3);
                 $info=mysqli_fetch_array($result);
@@ -153,7 +168,7 @@
                 }
 
 
-                $sqlstr2="select b.id,a.no,b.company,a.content,a.status,a.date,a.shr,b.department from contract_add a,contract b where not a.status like '%已归档%' and a.no=b.no";
+                $sqlstr2="select b.id,a.no,a.company,a.store,a.status,a.date,a.shr,b.department from contract_add a,contract b where not a.status like '%已归档%' and a.no=b.no";
                 
                 if($newLevel !="ADMIN" and $department !="财务部" and $department !="商业运营部"){
                     if($newLevel == "KA"){
@@ -168,13 +183,16 @@
                     $sqlstr2=$sqlstr2." and b.company like '%$clientName%'";
                 }elseif($contractID !=""){
                     $sqlstr2=$sqlstr2." and a.no like '%$contractID%'";
+                }elseif($storeName !=""){
+                    $sqlstr2=$sqlstr2." and a.store like '%$storeName%'";
                 }
 
-                $sqlstr2=$sqlstr2." limit ".($page-1)*$pagesize.",$pagesize";
+                $sqlstr2=$sqlstr2." group by a.id limit ".($page-1)*$pagesize.",$pagesize";
 
                 $result=mysqli_query($conn,$sqlstr2);
 
                 $i=1;
+
             ?>
             
             <div style="clear:both;">
@@ -189,8 +207,8 @@
                         <th>序号</th>
                         <th>合同编号</th>
                         <th>公司名称</th>
+                        <th>店铺名</th>
                         <th>事业部</th>
-                        <th>补充信息</th>
                         <th>状态</th>
                         <th>登记日期</th>
                     </tr>
@@ -201,7 +219,7 @@
                             $id=$myrow[0];
                             $no=$myrow[1];
                             $companyName=$myrow[2];
-                            $content=$myrow[3];
+                            $storeName=$myrow[3];
                             $status=$myrow[4];
                             $re_date=$myrow[5];
                             $shr=$myrow[6];
@@ -222,8 +240,8 @@
                                     }
                                 ?>
                                 <td><?=$companyName?></td>
-                                <td class="category" style="width:130px"><?=$department?></td>
-                                <td class="category" style="width:130px"><p style="margin:0"><?=$content?></p></td>
+                                <td class="category" style="width:130px"><p style="margin:0"><?=$storeName?></p></td>
+                                <td class="category" style="width:130px"><p style="margin:0"><?=$department?></p></td>
                                 <td class="category" style="width:130px"><p style="margin:0"><?=$status?></p></td>
                                 <td class="category" style="width:130px"><p style="margin:0"><?=$re_date?></p></td>   
                             </tr>
@@ -329,21 +347,31 @@
         if($("#status").val()=="合同编号"){
             $("#contractID").css("display","inline");
             $("#clientName").css("display","none");
+            $("#storeName").css("display","none");
             $("#optionID").attr("value","1");
         }else if($("#status").val()=="公司名称"){
             $("#contractID").css("display","none");
             $("#clientName").css("display","inline");
+            $("#storeName").css("display","none");
             $("#optionID").attr("value","2");
+        }else if($("#status").val()=="店铺名"){
+            $("#contractID").css("display","none");
+            $("#clientName").css("display","none");
+            $("#storeName").css("display","inline");
+            $("#optionID").attr("value","3");
         }
     })
 
     $("#query_contract").click(function(){
         if($("#optionID").val()=="1"){
             contractID=$("#contractID").val();
-            window.location.href="w_contract.php?contractID=" +contractID + "&clientName=" + "&status=待审核";
+            window.location.href="w_contractAdd.php?contractID=" +contractID + "&clientName=" + "&storeName=" + "&status=待审核";
         }else if($("#optionID").val()=="2"){
             clientName=$("#clientName").val();
-            window.location.href="w_contract.php?contractID=" + "&clientName=" + clientName + "&status=待审核";
+            window.location.href="w_contractAdd.php?contractID=" + "&clientName=" + clientName + "&storeName=" +  "&status=待审核";
+        }else if($("#optionID").val()=="3"){
+            storeName=$("#storeName").val();
+            window.location.href="w_contractAdd.php?contractID=" + "&clientName=" + "&storeName=" + storeName + "&status=待审核";
         }
     })
 

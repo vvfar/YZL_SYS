@@ -11,6 +11,12 @@
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
     </head>
     <body style="width: 100%;height: 100%;position: fixed;">
+        <?php
+            session_start();
+            session_unset();
+            session_destroy();
+        ?>
+
         <div class="login_content">
             <img src="..\..\public\img\timg.jpg">
 

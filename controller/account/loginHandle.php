@@ -25,8 +25,7 @@
             
             session_start();
             $_SESSION["username"]=$username;
-            $_SESSION["department"]=$myrow['department'];
-            $_SESSION["level"]=$myrow['level'];
+            $_SESSION["password"]=$myrow['password'];
 
             $status=true;
 

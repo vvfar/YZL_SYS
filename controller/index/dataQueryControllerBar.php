@@ -123,6 +123,43 @@
 
     $ywy_list=$ywy_list."]";
 
+    //日期控件
+    $date_list="[";
+
+    if($chooseOne == "销售额"){
+        if($chooseSeven == "日" or $chooseSeven == "全部"){
+            $sqlstr1="select distinct date from store_data_sales ";
+        }elseif($chooseSeven == "月"){
+            $sqlstr1="select distinct left(date,7) from store_data_sales ";
+        }elseif($chooseSeven == "年"){
+            $sqlstr1="select distinct left(date,4) from store_data_sales ";
+        }
+        
+    }else{
+        if($chooseSeven == "日" or $chooseSeven == "全部"){
+            $sqlstr1="select distinct date from store_data_hk ";
+        }elseif($chooseSeven == "月"){
+            $sqlstr1="select distinct left(date,7) from store_data_hk ";
+        }elseif($chooseSeven == "年"){
+            $sqlstr1="select distinct left(date,4) from store_data_sales ";
+        }
+    }
+
+
+    if($chooseTwo !="全部"){
+        $sqlstr1=$sqlstr1." where department='$chooseTwo'";
+    }
+
+    $result=mysqli_query($conn,$sqlstr1);
+
+    while($myrow=mysqli_fetch_row($result)){
+        $date_list=$date_list.'"'.$myrow[0].'",';  
+    }
+
+    $date_list = substr($date_list,0,strlen($date_list)-1);
+
+    $date_list=$date_list."]";
+
 
     $data='[
         {"name":"department","value":'.$department_list.'},
@@ -130,9 +167,11 @@
         {"name":"category","value":'.$category_list.'},
         {"name":"storeName","value":'.$store_list.'},
         {"name":"ywy","value":'.$ywy_list.'},
-        {"name":"time","value":["日","月","年"]}
+        {"name":"time","value":["日","月","年"]},
+        {"name":"date","value":'.$date_list.'}
    ]';
 
     echo $data;
     
 ?>
+    

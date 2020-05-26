@@ -7,8 +7,8 @@
         <title>俞兆林_后台管理</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
-        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css?v=2" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css?v=2" rel="stylesheet"/>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\js\manager_header.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>

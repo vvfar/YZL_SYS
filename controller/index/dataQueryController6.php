@@ -37,6 +37,7 @@
     $chooseFive=$_POST['chooseFive'];
     $chooseSix=$_POST['chooseSix'];
     $chooseSeven=$_POST['chooseSeven'];
+    $chooseEight=$_POST['chooseEight'];
 
     $sqlstr1="select count(*) from store where status='关闭' ";
 
@@ -72,18 +73,22 @@
     
 
     //时间段
-    if($chooseSeven == "日"){
-        $sqlstr=$sqlstr1."and createDate='$date1' ";  //当期
-        $sqlstr2=$sqlstr1."and createDate='$date2' ";  //环比
-        $sqlstr3=$sqlstr1."and createDate='$date3' ";   //同比
-    }elseif($chooseSeven == "月"){
-        $sqlstr=$sqlstr1."and createDate like '%$dateMonth%' "; //当期
-        $sqlstr2=$sqlstr1."and createDate like '%$dateMonth2%' ";  //环比
-        $sqlstr3=$sqlstr1."and createDate like '%$dateMonth3%' ";   //同比
-    }elseif($chooseSeven == "年"){
-        $sqlstr=$sqlstr1."and createDate like '%$dateYear%' ";  //当期
-        $sqlstr2=$sqlstr1."and createDate like '%$dateYear2%' ";  //环比
-        $sqlstr3=$sqlstr1."and createDate like '%$dateYear3%' ";  //同比
+    if($chooseEight=="默认"){
+        if($chooseSeven == "日"){
+            $sqlstr=$sqlstr1."and createDate='$date1' ";  //当期
+            $sqlstr2=$sqlstr1."and createDate='$date2' ";  //环比
+            $sqlstr3=$sqlstr1."and createDate='$date3' ";   //同比
+        }elseif($chooseSeven == "月"){
+            $sqlstr=$sqlstr1."and createDate like '%$dateMonth%' "; //当期
+            $sqlstr2=$sqlstr1."and createDate like '%$dateMonth2%' ";  //环比
+            $sqlstr3=$sqlstr1."and createDate like '%$dateMonth3%' ";   //同比
+        }elseif($chooseSeven == "年"){
+            $sqlstr=$sqlstr1."and createDate like '%$dateYear%' ";  //当期
+            $sqlstr2=$sqlstr1."and createDate like '%$dateYear2%' ";  //环比
+            $sqlstr3=$sqlstr1."and createDate like '%$dateYear3%' ";  //同比
+        }
+    }else{
+        $sqlstr=$sqlstr1."and createDate like '%$chooseEight%' "; //当期
     }
 
     //当期

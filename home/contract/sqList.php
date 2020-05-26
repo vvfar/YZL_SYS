@@ -8,8 +8,8 @@
         <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
-        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css?v=2" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css?v=2" rel="stylesheet"/>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
@@ -345,10 +345,10 @@
     $("#query_contract").click(function(){
         if($("#optionID").val()=="1"){
             sqID=$("#sqID").val();
-            window.location.href="sqList.php?sqID=" +sqID + "&clientName=" + "&status=待审核";
+            window.location.href="sqList.php?sqID=" +sqID + "&clientName=" + "&status=已审核";
         }else if($("#optionID").val()=="2"){
             clientName=$("#clientName").val();
-            window.location.href="sqList.php?sqID=" + "&clientName=" + clientName + "&status=待审核";
+            window.location.href="sqList.php?sqID=" + "&clientName=" + clientName + "&status=已审核";
         }
     })
 

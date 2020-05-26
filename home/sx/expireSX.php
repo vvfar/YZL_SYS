@@ -8,8 +8,8 @@
         <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
-        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css?v=2" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css?v=2" rel="stylesheet"/>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
@@ -101,8 +101,9 @@
                         <th>业务员</th>
                         <th>授信金额</th>
                         <th>期数</th>
-                        <th>当前应还</th>
-                        <th>当前已还</th>
+                        <th>应收</th>
+                        <th>已收</th>
+                        <th>未收</th>
                         <th>到期时间</th>
                         <th>逾期天数</th>
                     </tr>
@@ -224,6 +225,7 @@
                                             <td><?=$qs?></td>
                                             <td><?=$all_jhhk?></td>
                                             <td><?=$all_sjhk?></td>
+                                            <td><?php echo $all_jhhk-$all_sjhk?></td>
                                             <td><?=$expireDate?></td>
                                             <td><?=$yqsj?></td>
                                         </tr>
@@ -364,6 +366,6 @@
 
 <script type="text/javascript">  
     var downloadYQ=function(){
-        window.location.href="formHandle/downloadSX_YQ.php"
+        window.location.href="../../controller/sx/downloadSX_YQ.php"
     }
 </script>

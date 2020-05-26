@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-        <link href="/public/css/leftbar.css" rel="stylesheet"/>
+        <link href="/public/css/leftbar.css?v=2" rel="stylesheet"/>
         <link rel="stylesheet" href="/public/lib/layui/css/layui.css" ></script>
         <script src="/public/js/leftBar.js"></script>
         <script src="/public/lib/layui/layui.js"></script>

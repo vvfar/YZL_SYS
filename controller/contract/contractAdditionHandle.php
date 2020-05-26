@@ -12,17 +12,29 @@
 
     if($progress ==1){
 
-        $id=$_GET["id"];
+        $id=$_POST["id"];
 
         $no=$_POST["no"];
+        $company=$_POST["company"];
+        $store=$_POST["store"];
+        $pingtai=$_POST["pingtai"];
+        $category=$_POST["category"];
+        $money=$_POST["money"];
+        $ismoney=$_POST["ismoney"];
+        $sales=$_POST["sales"];
+        $issales=$_POST["issales"];
+        $service=$_POST["service"];
+        $isservice=$_POST["isservice"];
         $content=$_POST["content"];
+        $input_time=$_POST["input_time"];
+        $input_time2=$_POST["input_time2"];
 
         $fileName="";
 
         if(!empty($_FILES['upfile']['name'])){
     
             $fileinfo=$_FILES['upfile'];
-            if($fileinfo['size']<2097152 && $fileinfo['size']>0){
+            if($fileinfo['size']<20971520 && $fileinfo['size']>0){
                 //echo $fileName;
     
                 $path="../../common/file/contractAdd_file/".$_FILES["upfile"]["name"];
@@ -33,8 +45,6 @@
                 echo "<script>alert('照片过大无法上传！');window.location.href='../../home/contract/contractAddition.php'</script>";
             }
         }
-
-
 
         $sqlstr="select max(id) from contract_add";
         $result=mysqli_query($conn,$sqlstr);
@@ -48,9 +58,10 @@
         }
         
         if($id == ""){
-            $sqlstr2="insert into contract_add values('$maxID'+1,'$no','$content','待归档','$username','$date','$fileName')";
+            $sqlstr2="insert into contract_add values('$maxID'+1,'$no','$content','待归档','$username','$date','$fileName','$pingtai','$category','$company','$store','$input_time','$input_time2','$money','$ismoney','$sales','$issales','$service','$isservice')";
         }else{
-            $sqlstr2="update contract_add set content='$content',status='待归档',file='$fileName' where id='$id'";
+            $sqlstr2="update contract_add set content='$content',status='待归档',file='$fileName',pingtai='$pingtai',category='$category',company='$company',store='$store',input_time='$input_time',input_time2='$input_time2',money='$money',ismoney='$ismoney',".
+                    "sales='$sales',issales='$issales',service='$service',isservice='$isservice' where id='$id'";
         }
         
 
@@ -73,17 +84,17 @@
             <?php
         }
     }else{
-        $no=$_GET["no"];
+        $id=$_GET["id"];
         $option=$_GET["option"];
         
         if($option ==1){
-            $sqlstr2="update contract_add set status ='已归档' where no='$no'";
+            $sqlstr2="update contract_add set status ='已归档' where id='$id'";
         }else{
-            $sqlstr2="update contract_add set status ='审核拒绝' where no='$no'";
+            $sqlstr2="update contract_add set status ='审核拒绝' where id='$id'";
         }
         
         $result=mysqli_query($conn,$sqlstr2);
-        
+
         if($result){
             ?>
             <script>

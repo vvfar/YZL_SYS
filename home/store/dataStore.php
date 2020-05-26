@@ -8,8 +8,8 @@
         <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\css\leftbar.css" rel="stylesheet"/>
-        <link href="..\..\public\css\header.css" rel="stylesheet"/>
+        <link href="..\..\public\css\leftbar.css?v=2" rel="stylesheet"/>
+        <link href="..\..\public\css\header.css?v=2" rel="stylesheet"/>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
@@ -130,8 +130,9 @@
                 
                     <?php    
                         $year=substr($date,0,4);
+                        $dateMonth2=substr($date,0,10);
 
-                        $sqlstr2="select a.storeID,a.client,a.storeName,a.staff,b.salesMoney,d.storeTarget,a.status,c.sumMoney from store_data_sales b,store a join (select storeID,sum(salesMoney) as sumMoney from store_data_sales where date like '%$dateMonth%' group by storeID) c on a.storeID=c.storeID left join store_target d on a.storeID=d.storeID and d.dateMonth='$dateMonth' where a.storeID=b.storeID and b.date='$date' and a.status='正常' ";
+                        $sqlstr2="select a.storeID,a.client,a.storeName,a.staff,b.salesMoney,d.storeTarget,a.status,c.sumMoney from store_data_sales b,store a join (select storeID,sum(salesMoney) as sumMoney from store_data_sales where date like '%$dateMonth2%' group by storeID) c on a.storeID=c.storeID left join store_target d on a.storeID=d.storeID and d.dateMonth='$dateMonth2' where a.storeID=b.storeID and b.date='$date' and a.status='正常' ";
 
                         if($newLevel !="ADMIN" and $department != "商业运营部"){
                             if($newLevel == "KA"){

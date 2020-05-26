@@ -1,24 +1,25 @@
 <?php
     header("content-type:text/html;charset=utf-8");
-    include_once("../conn/conn.php");
+    include_once("../../common/conn/conn.php");
     error_reporting(E_ALL || ~E_NOTICE);
     session_start();
 
     $username=$_SESSION['username'];
 
-    $sqlstr1="select department from user_form where username='$username'";
+    $sqlstr1="select department,newLevel from user_form where username='$username'";
 
     $result=mysqli_query($conn,$sqlstr1);
 
     while($myrow=mysqli_fetch_row($result)){
         $department=$myrow[0];
+        $newLevel=$myrow[1];
     }
 
     $sqlstr2="select distinct a.id,a.date1,a.sqid,a.companyName,a.department,a.ywy,a.sqmoney,". 
             "b.dhkje,a.status2,a.status,c.newMoney,a.dateTime,a.hkje,b.date2,b.sjhkje,a.date3,a.wyfl ".
             "from sx_form a,hk_form b,use_sx c where a.sqid=b.sqid and a.sqid=c.sqid and a.status='已生效'";
 
-    if($department !="数据中心" and $department !="财务"){
+    if($newLevel !="ADMIN" and $department !="财务部"){
         $sqlstr2=$sqlstr2." and (a.department='$department' or a.gxDepartment like '%$department%')";
     }
 
@@ -115,7 +116,7 @@
                 $expireDate="";
             }
 
-            if($expireDate >       $date2 or $expireDate < $date1){
+            if($expireDate > $date2 or $expireDate < $date1){
                 $expireDate="";
             }
             
@@ -128,13 +129,14 @@
                 $data2[$key][6]=$qs;
                 $data2[$key][7]=$all_jhhk;
                 $data2[$key][8]=$all_sjhk;
-                $data2[$key][9]=$expireDate;
-                $data2[$key][10]=$yqsj;
+                $data2[$key][9]=$all_jhhk-$all_sjhk;
+                $data2[$key][10]=$expireDate;
+                $data2[$key][11]=$yqsj;
             }
         }
     }
 
-    $header=array('授信编号','公司名称','事业部','业务员','授信金额','期数','当前应还','当前已还','到期时间','剩余天数');
+    $header=array('授信编号','公司名称','事业部','业务员','授信金额','期数','应收','已收','未收','到期时间','剩余天数');
     
     function createtable($list,$filename,$header=array(),$index = array()){ 
         header("Content-type:application/vnd.ms-excel"); 
@@ -152,7 +154,7 @@
             exit($strexport);  
     }
 
-    $list2=range(1,10);
+    $list2=range(1,11);
 
     createtable($data2,$date1.'即将到期单据',$header,$list2);
     mysqli_free_result($result);

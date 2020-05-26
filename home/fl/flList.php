@@ -8,8 +8,8 @@
         <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="../../public/lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="../../public/lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="../../public/css\leftbar.css" rel="stylesheet"/>
-        <link href="../../public/css\header.css" rel="stylesheet"/>
+        <link href="../../public/css\leftbar.css?v=2" rel="stylesheet"/>
+        <link href="../../public/css\header.css?v=2" rel="stylesheet"/>
         <link href="../../public/css\flList.css" rel="stylesheet"/>
         <script src="../../public/lib\flotr2\flotr2.min.js"></script>
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
@@ -205,9 +205,11 @@
                                 <td><?=$count+$countF?></td>
 
                                 <?php
-                                    $no=$myrow[2];
-                                    $company=$myrow[3];
-                                    $people=$myrow[4];
+                                    $id=$myrow[0];
+                                    $no=$myrow[1];
+                                    $company=$myrow[2];
+                                    $people=$myrow[3];
+                                    $startTime=$myrow[4];
 
                                     $arr_status=explode(",",$myrow[6]);
                                     $status=array_pop($arr_status);
@@ -215,21 +217,44 @@
                                     $arr_shr=explode(",",$myrow[7]);
                                     $shr=array_pop($arr_shr);
 
-                                    //如果用户名是当前审核人
-                                    if($username == $shr){
-                                        ?>
-                                        <td><a href="flLine.php?id=<?=$myrow[0]?>" style="color:red" target="_blank"><?=$myrow[1]?></a></td>
-                                        <?php
-                                    }else{
-                                        ?>
-                                        <td><a href="flLine.php?id=<?=$myrow[0]?>" style="color:green" target="_blank"><?=$myrow[1]?></a></td>
-                                        <?php
+                                    //加入key
+                                    $sqlstr5="select count(*) from fl_key where fl_no='$id'";
+                                    
+                                    $result5=mysqli_query($conn,$sqlstr5);
+
+                                    while($myrow=mysqli_fetch_row($result5)){
+                                        $key_count=$myrow[0];
                                     }
+
+                                    if($key_count==0 and $status == "义乌打包发货"){
+                                        if($newLevel == "ADMIN"){
+                                            ?>
+                                                <td><a href="flLine.php?id=<?=$id?>" style="color:red" target="_blank"><?=$no?></a></td>
+                                            <?php
+                                        }else{
+                                            ?>
+                                                <td><?=$no?></td>
+                                            <?php
+                                        }
+                                    }else{
+                                        //如果用户名是当前审核人
+                                        if($username == $shr){
+                                            ?>
+                                            <td><a href="flLine.php?id=<?=$id?>" style="color:red" target="_blank"><?=$no?></a></td>
+                                            <?php
+                                        }else{
+                                            ?>
+                                            <td><a href="flLine.php?id=<?=$id?>" style="color:green" target="_blank"><?=$no?></a></td>
+                                            <?php
+                                        }
+                                    }
+
+                                    
                                 ?>
 
-                                <td><?=$no?></td>
                                 <td><?=$company?></td>
                                 <td><?=$people?></td>
+                                <td><?=$startTime?></td>
                                 <td><?=$status?></td>
                                 <td><?=$shr?></td>
                             </tr>

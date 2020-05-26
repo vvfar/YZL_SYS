@@ -5,10 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>俞兆林_个人中心</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
+        <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
-        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
-        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css?v=2" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css?v=2" rel="stylesheet"/>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
     </head>
     <body>
@@ -58,14 +58,14 @@
 
                 <div style="clear: both" class="my_nav">
                     <ul>
-                        <li class="nav_h" style="border-bottom: 2px solid red;" id="info">基本资料</li>
-                        <li id="pwd">修改密码</li>
+                        <li class="nav_h"  id="info">基本资料</li>
+                        <li id="pwd" style="border-bottom: 2px solid red;">修改密码</li>
                         <li id="head">修改头像</li>
                     </ul>
                 </div>
 
                 <div style="clear: both;position:relative;top:30px;width:950px;height:400px;font-size: 14px;border:1px solid #cccccc;padding:20px;border-radius: 5px;">
-                    <div id="page1">
+                    <div id="page1" style="display: none">
                         <p style="font-weight: bold;margin-bottom:15px;">个人信息</p>
                         <p>用户名：<?=$username?></p>
                         <div>
@@ -100,15 +100,21 @@
                             </form>
                         </div>
                     </div>
-                    <div id="page2" style="display: none">
+
+                    <div id="page2">
                         <p style="font-weight: bold">密码修改</p>
                         <form method="POST" action="../../controller/center/centerHandle.php?option=2">
                             <div class="form-group">
-                                新密码：<input type="password" name="newPwd1" class="form-control" style="width:200px;"/>
-                                <p style="font-size: 12px;color:red;margin-top:10px;">密码必须6-18位</p>
-                                确认密码：<input type="password" name="newPwd2" class="form-control" style="width:200px;"/>
+                                <p style="margin-top:10px;">新密码</p>
+                                <input type="password" id="newPwd1" name="newPwd1" class="form-control" style="width:250px;margin-top:5px;"/>
+                                
+                                <p style="font-size: 12px;color:red;margin-top:10px;">*密码至少为8位，并包含字母、数字，以及键盘上的符号（如 !、@、#等）</p>
+                                <p style="margin-top:10px;">确认密码</p>
+                                <input type="password" id="newPwd2" name="newPwd2" class="form-control" style="width:250px;margin-top:5px;"/>
                             </div>
-                            <button type="submit" class="btn btn-success btn-sm">提交</button>
+                            <button type="button" class="btn btn-success btn-sm" id="submit">确认修改</button>
+                            <button type="reset" class="btn btn-warning btn-sm" style="margin-left:5px;">重置表单</button>
+                            <button type="submit" class="btn btn-success btn-sm" id="hidden_submit" style="display:none">提交</button>
                         </form>
                     </div>
                     <div id="page3" style="display: none">
@@ -230,5 +236,44 @@
         $("#email").css("display","inline")
         $("#email_link").css("display","inline")
         $(".form_email").css("display","none")
+    })
+
+    $("#submit").click(function(){
+        postForm=false;
+        msg="";
+
+        newPwd1=$("#newPwd1").val();
+        newPwd2=$("#newPwd2").val();
+
+        if($.trim(newPwd1) == "" || $.trim(newPwd2) == ""){
+            msg="新密码或确认密码不能为空！";
+        }else{
+            if($.trim(newPwd1) != $.trim(newPwd2)){
+                msg="新密码与确认密码不一致！";
+            }else{
+                if(newPwd1.length<8){
+                    msg="新密码小于8位！";
+                }else{
+                    reg=/^(?=.*[a-zA-Z])(?=.*[1-9])(?=.*[\W]).{8,}$/;
+
+                    if(reg.test(newPwd1)){
+                        msg="";
+                        postForm=true;
+                    }else{
+                        msg="密码必须包含字母、数字以及特殊字符！";
+                    }
+
+                }
+            }
+        }
+
+        if(postForm==true){
+            $("#hidden_submit").click();
+        }else{
+            alert(msg)
+        }
+
+
+        
     })
 </script>

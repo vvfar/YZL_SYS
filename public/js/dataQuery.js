@@ -14,6 +14,7 @@ function initData(changeData,no){
     chooseFive=$("#chooseFive").val()
     chooseSix=$("#chooseSix").val()
     chooseSeven=$("#chooseSeven").val()
+    chooseEight=$("#chooseEight").val()
 
     $("#title4").html(chooseOne)
 
@@ -48,6 +49,11 @@ function initData(changeData,no){
         chooseSeven="全部"
     }
 
+    if(chooseEight==null){
+        chooseEight="默认"
+    }
+    
+
     data={
         username:username,
         chooseOne:chooseOne,
@@ -57,6 +63,7 @@ function initData(changeData,no){
         chooseFive:chooseFive,
         chooseSix:chooseSix,
         chooseSeven:chooseSeven,
+        chooseEight:chooseEight,
     }
 
     console.log(JSON.stringify(data))
@@ -186,6 +193,25 @@ function initData(changeData,no){
                             
                         })
                     }
+
+                    //if(no==7 || no==undefined){
+                        $("#chooseEight").html(function(){
+                            str="<option>默认</option>"
+
+                            if(result[i].name=="date"){
+                                for(var j=0;j<result[i].value.length;j++){
+                                    if(changeData==result[i].value[j]){
+                                        str=str+"<option selected>" + result[i].value[j] +"</option>"
+                                    }else{
+                                        str=str+"<option>" + result[i].value[j] +"</option>"
+                                    }
+                                    
+                                }
+                                return str
+                            }
+                            
+                        })
+                    //}
                     
                 }
             }
@@ -297,6 +323,16 @@ function initData(changeData,no){
                             }else{
                                 str=str + "<li><span style='background-color:grey;color:#fff;padding-left:5px;padding-right:5px;border-radius:3px;'>" + (j+1) +"</span><span style='margin-left:10px'>" +result[2].value[j] + "</span></li>"
                             }  
+                        }
+
+                        return str;
+                    })
+
+                    str=""
+
+                    $("#number").html(function(){
+                        for(var j=0;j<result[3].value.length;j++){
+                            str=str + "<li><span style='margin-left:10px;'>" +result[3].value[j] + "</span></li>"
                         }
 
                         return str;

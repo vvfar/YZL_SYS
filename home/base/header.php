@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-        <link href="/../public/css/header.css" rel="stylesheet"/>
+        <link href="/../public/css/header.css?v=2" rel="stylesheet"/>
         <script src="/../public/js/header.js"></script>
     </head>
 
@@ -11,11 +11,36 @@
             
             if(isset($_SESSION['username'])){
                 $username=$_SESSION['username'];
+                $password=$_SESSION["password"];
+
                 $sqlstr1="select headImg from user_form where username='$username'";
                 $result=mysqli_query($conn,$sqlstr1);
 
                 while($myrow=mysqli_fetch_row($result)){
                     $headerImg=$myrow[0];
+                }
+
+                ?>
+                    <script>
+                        var leftBar_path=window.location.pathname;
+
+                        leftBar_path=leftBar_path.split("/");
+                        leftBar_path=leftBar_path.pop()
+                    
+                    </script>
+                <?php
+
+                
+                if($password == "123456"){
+                    ?>
+                        <script>
+
+                            if(leftBar_path != "center.php"){
+                                alert("密码为默认密码，请立即修改！")
+                                window.location.href="../../home/center/center.php"
+                            }
+                        </script>
+                    <?php
                 }
             }else{
                 ?>

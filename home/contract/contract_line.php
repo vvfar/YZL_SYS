@@ -8,8 +8,8 @@
         <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="..\..\public\lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
-        <link href="..\..\public\css/leftbar.css" rel="stylesheet"/>
-        <link href="..\..\public\css/header.css" rel="stylesheet"/>
+        <link href="..\..\public\css/leftbar.css?v=2" rel="stylesheet"/>
+        <link href="..\..\public\css/header.css?v=2" rel="stylesheet"/>
         <script src="..\..\public\lib\flotr2\flotr2.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
@@ -54,8 +54,11 @@
                             $input_time=$myrow[8];
                             $input_time2=$myrow[9];
                             $money=$myrow[10];
+                            $ismoney=$myrow[11];
                             $sales=$myrow[12];
+                            $issales=$myrow[13];
                             $service=$myrow[14];
+                            $isservice=$myrow[15];
                             $note=$myrow[16];
                             $status=$myrow[17];
                             $oldNo=$myrow[18];
@@ -106,29 +109,6 @@
 
                 <div style="clear:both;">
                     <p style="float:left;margin-top:20px;">基本信息：</p>
-                    
-                    <?php
-                        $sqID="";
-
-                        $sqlstr1="select id from sq where contractNo='$no'and companyName='$company' and storeName='$store'";
-
-                        $result=mysqli_query($conn,$sqlstr1);
-
-                        while($myrow=mysqli_fetch_row($result)){
-                            $sqID=$myrow[0];
-                        }
-                        
-                        if($sqID !=""){
-                            ?>
-                                <a href="sq_line.php?id=<?=$sqID?>&option=授权" style="float:left;margin-top:20px;margin-left:845px;" target="_blank">查看店铺授权</a>
-                            <?php
-                        }else{
-                            ?>
-                                <a href="#" style="float:left;margin-top:20px;margin-left:860px;">无店铺授权</a>
-                            <?php
-                        }
-                    ?>
-                    
                 </div>
 
                 <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:50px">
@@ -148,11 +128,38 @@
                     </tr>
                     <tr>
                         <th>保证金</th>
-                        <td colspan="2"><?=$money?></td>
+                        <td colspan="2">
+                            <?=$money?>
+                            <?php
+                                if($ismoney == "是"){
+                                    echo "(共享)";
+                                }else{
+                                    echo "(不共享)";
+                                }
+                            ?>
+                        </td>
                         <th>销售额</th>
-                        <td><?=$sales?>万</td>
+                        <td>
+                            <?=$sales?>万
+                            <?php
+                                if($issales == "是"){
+                                    echo "(共享)";
+                                }else{
+                                    echo "(不共享)";
+                                }
+                            ?>
+                        </td>
                         <th>服务费</th>
-                        <td><?=$service?>万</td>
+                        <td>
+                            <?=$service?>万
+                            <?php
+                                if($isservice == "是"){
+                                    echo "(共享)";
+                                }else{
+                                    echo "(不共享)";
+                                }
+                            ?>
+                        </td>
                     </tr>
                 </table>
                 
@@ -168,6 +175,7 @@
 
                         <?php
                     }
+
 
                     if(($status=="审核拒绝" or $status == "待归档") and $username == $shr){
                         ?>
@@ -186,49 +194,120 @@
                     }
 
                     if($count > 0){
-                        $sqlstr5="select id,content,status,shr,file from contract_add where no='$no'";
+
+                        $sqlstr5="select * from contract_add where no='$no' and status='待归档' ";
 
                         $result=mysqli_query($conn,$sqlstr5);
                         
+                        $count=1;
+
                         while($myrow=mysqli_fetch_row($result)){
-                            $content=$myrow[1];
-                            $status2=$myrow[2];
-                            $shr2=$myrow[3];
-                            $file=$myrow[4];
+                            
+                            $id_add=$myrow[0];
+                            $company_add=$myrow[9];
+                            $store_add=$myrow[10];
+                            $pingtai_add=$myrow[7];
+                            $category_add=$myrow[8];
+                            $bzj_add=$myrow[13];
+                            $isbzj_add=$myrow[14];
+                            $sales_add=$myrow[15];
+                            $issales_add=$myrow[16];
+                            $service_add=$myrow[17];
+                            $isservice_add=$myrow[18];
+                            $content=$myrow[2];
+                            $status2=$myrow[3];
+                            $shr2=$myrow[4];
+                            $file=$myrow[6];
+
+                            ?>
+                                <div style="border:1px solid #ccc;width:1000px;padding:5px;margin-top:60px;">
+                                    <p>补充合同 <?=$count?>：</p>
+
+                                    <table class="table table-responsive table-bordered table-hover" style="width:990px;margin-top:20px">
+                                        <tr>
+                                            <th>公司名称</th>
+                                            <td colspan="7"><?=$company_add?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>店铺名称</th>
+                                            <td colspan="7"><?=$store_add?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>授权平台</th>
+                                            <td colspan="2"><?=$pingtai_add?></td>
+                                            <th>授权类目</th>
+                                            <td colspan="3"><?=$category_add?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>保证金</th>
+                                            <td colspan="2">
+                                                <?=$bzj_add?>
+                                                <?php
+                                                    if($isbzj_add == "是"){
+                                                        echo "(共享)";
+                                                    }else{
+                                                        echo "(不共享)";
+                                                    }
+                                                ?>
+                                            </td>
+                                            <th>销售额</th>
+                                            <td>
+                                                <?=$sales_add?>万
+                                                <?php
+                                                    if($issales_add == "是"){
+                                                        echo "(共享)";
+                                                    }else{
+                                                        echo "(不共享)";
+                                                    }
+                                                ?>
+                                            </td>
+                                            <th>服务费</th>
+                                            <td>
+                                                <?=$service_add?>万
+                                                <?php
+                                                    if($isservice_add == "是"){
+                                                        echo "(共享)";
+                                                    }else{
+                                                        echo "(不共享)";
+                                                    }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <p style="margin-top:10px"><?=$content?></p>
+
+                                    <?php
+                                        if($file != ""){
+                                            ?>
+                                                <a class="btn btn-info btn-sm" style="margin-top:10px;" href="../../common/file/contractAdd_file/<?=$file?>">附件下载</a>
+                                            <?php
+                                        }
+                                    ?>
+                                    <?php
+                                        if($department == "商业运营部" and $status2 == "待归档"){
+                                    ?>
+                                        <div style="width:1000px;height:40px;padding:10px;">
+                                            <button class="btn btn-sm btn-danger" style="float:right" id="no2">拒绝</button>
+                                            <button class="btn btn-sm btn-success" style="float:right;margin-right:10px;" id="yes2">同意</button>
+                                        </div>
+                                    <?php
+                                        }elseif($shr2==$username and ($status2 == "审核拒绝" or $status2 == "待归档")){
+                                            ?>
+                                                <div style="width:1000px;height:40px;padding:10px;">
+                                                    <button class="btn btn-sm btn-info" style="float:right" id="edit_contractAdd">重新编辑</button>
+                                                </div>
+                                            <?php
+                                        }
+                                    ?>
+                                </div>
+                            <?php
+                            $count=$count+1;
                         }
 
                         ?>
 
-                        <div style="border:1px solid #ccc;width:1000px;padding:5px;margin-top:60px;">
-                            <p>补充合同：</p>
-                            <p style="margin-top:10px"><?=$content?></p>
-
-                            <?php
-                                if($file != ""){
-                                    ?>
-                                        <a class="btn btn-info btn-sm" style="margin-top:10px;" href="../../common/file/contractAdd_file/<?=$file?>">附件下载</a>
-                                    <?php
-                                }
-                            ?>
-                            <?php
-                                if($department == "商业运营部" and $status2 == "待归档"){
-                            ?>
-                                <div style="width:1000px;height:40px;padding:10px;">
-                                    <button class="btn btn-sm btn-danger" style="float:right" id="no2">拒绝</button>
-                                    <button class="btn btn-sm btn-success" style="float:right;margin-right:10px;" id="yes2">同意</button>
-                                </div>
-                            <?php
-                                }elseif($shr2==$username and $status2 == "审核拒绝"){
-                                    ?>
-                                        <div style="width:1000px;height:40px;padding:10px;">
-                                            <button class="btn btn-sm btn-info" style="float:right" id="edit_contractAdd">重新编辑</button>
-                                        </div>
-                                    <?php
-                                }
-                            ?>
-
-
-                        </div>
+                        
                         
                         <?php
 
@@ -236,7 +315,54 @@
 
                 ?>
 
-                <p style="margin-top: 50px;">合同完整店铺列表：</p>
+                <p style="margin-top: 50px;">授权店铺列表：</p>
+
+                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:10px;">
+                    
+                    <tr>
+                        <th>授权编号</th>
+                        <th>公司名称</th>
+                        <th>授权平台</th>
+                        <th>授权类目</th>
+                        <th>事业部</th>
+                        <th>登记日期</th>
+                    </tr>
+
+                    <?php
+                        $sqID="";
+
+                        $sqlstr1="select id,no,companyName,pingtai,category,department,bzj,'/','/',re_date,'授权',status,shr,shTime from sq where contractNo='$no' ";
+
+                        $result=mysqli_query($conn,$sqlstr1);
+
+                        while($myrow=mysqli_fetch_row($result)){
+
+                            $id=$myrow[0];
+                            $isContract=$myrow[10];
+                            $contractID=$myrow[1];
+                            $companyName=$myrow[2];
+                            $pingTai=$myrow[3];
+                            $category=$myrow[4];
+                            $department=$myrow[5];
+                            $re_date=$myrow[9];
+                            $status=$myrow[11];
+                            $shr=$myrow[12];
+
+                            ?>
+                                <tr>
+                                    <td><a href="sq_line.php?id=<?=$id?>&option=授权" target="_blank"><?=$contractID?></a></td>   
+                                    <td><?=$companyName?></td>
+                                    <td class="category" style="width:130px"><p style="margin:0"><?=$pingTai?></p></td>
+                                    <td class="category" style="width:130px"><p style="margin:0"><?=$category?></p></td>
+                                    <td style="width:190px"><?=$department?></td>
+                                    <td><?=$re_date?></td>
+                                </tr>
+                            <?php
+                        }
+                    ?>
+                </table>
+
+                <p style="margin-top: 50px;">主合同店铺列表：</p>
 
                 <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:10px;">
                     
@@ -254,7 +380,48 @@
                     </tr>
 
                     <?php
-                        $sqlstr1="select company,store,pingtai,category,money,ismoney,sales,issales,service,isservice from contract where no='$no'";
+                        $sqlstr1="select company,store,pingtai,category,money,ismoney,sales,issales,service,isservice from contract where no='$no' and status='已归档' ";
+
+                        $result=mysqli_query($conn,$sqlstr1);
+
+                        while($myrow=mysqli_fetch_row($result)){
+                            ?>
+                                <tr>
+                                    <td style="width:200px;"><?=$myrow[0]?></td>
+                                    <td style="width:200px;"><?=$myrow[1]?></td>
+                                    <td><?=$myrow[2]?></td>
+                                    <td><?=$myrow[3]?></td>
+                                    <td><?=$myrow[4]?></td>
+                                    <td><?=$myrow[5]?></td>
+                                    <td><?=$myrow[6]?></td>
+                                    <td><?=$myrow[7]?></td>
+                                    <td><?=$myrow[8]?></td>
+                                    <td><?=$myrow[9]?></td>
+                                </tr>
+                            <?php
+                        }
+                    ?>
+                </table>
+
+                <p style="margin-top: 50px;">补充合同店铺列表：</p>
+
+                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:10px;">
+                    
+                    <tr>
+                        <th>公司名称</th>
+                        <th>店铺名称</th>
+                        <th>授权平台</th>
+                        <th>授权类目</th>
+                        <th>保证金</th>
+                        <th>是否共享保证金</th>
+                        <th>销售额（万）</th>
+                        <th>是否共享销售额</th>
+                        <th>服务费（万）</th>
+                        <th>是否共享服务费</th>
+                    </tr>
+
+                    <?php
+                        $sqlstr1="select company,store,pingtai,category,money,ismoney,sales,issales,service,isservice from contract_add where no='$no' and status='已归档' ";
 
                         $result=mysqli_query($conn,$sqlstr1);
 
@@ -316,7 +483,7 @@
 
     td{
         text-align: center;
-        width:100px;
+        width:150px;
         height:40px;
         line-height:40px;
         vertical-align: middle;
@@ -359,11 +526,11 @@
     })
 
     $("#yes2").click(function(){
-        window.location.href="../../controller/contract/contractAdditionHandle.php?no=<?=$no?>&progress=2&option=1"
+        window.location.href="../../controller/contract/contractAdditionHandle.php?id=<?=$id_add?>&progress=2&option=1"
     })
 
     $("#no2").click(function(){
-        window.location.href="../../controller/contract/contractAdditionHandle.php?no=<?=$no?>&progress=2&option=0"
+        window.location.href="../../controller/contract/contractAdditionHandle.php?id=<?=$id_add?>&progress=2&option=0"
     })
 
     $("#no").click(function(){
@@ -371,7 +538,7 @@
     })
 
     $("#edit_contractAdd").click(function(){
-        window.location.href="../../home/contract/contractAddition.php?id=<?=$id?>";
+        window.location.href="../../home/contract/contractAddition.php?id=<?=$id_add?>";
     })
 
     var changeContract=function(){
