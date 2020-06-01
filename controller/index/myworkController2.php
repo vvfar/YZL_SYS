@@ -35,10 +35,10 @@
             
         }
 
-    }elseif($newLevel == "M"){
+    }elseif($newLevel == "M" and $username !="崔立德" and $username !="宋歌"){
         $object=$department;
 
-        $sqlstr1="select sum(a.salesMoney),a.date from store_data_sales a,store b where a.storeID=b.storeID and '$department' like concat('%',department,'%') group by date limit 0,30";
+        $sqlstr1="select sum(salesMoney),date from store_data_sales where staff=any(select staff from store where '$department' like concat('%',department,'%')) group by date limit 0,30";
 
         $result=mysqli_query($conn,$sqlstr1);
 
@@ -53,7 +53,7 @@
     }else{
         $object="全公司";
 
-        $sqlstr1="select sum(a.salesMoney),a.date from store_data_sales a,store b where a.storeID=b.storeID group by date limit 0,30";
+        $sqlstr1="select sum(salesMoney),date from store_data_sales group by date limit 0,30";
 
         $result=mysqli_query($conn,$sqlstr1);
 

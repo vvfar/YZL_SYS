@@ -235,9 +235,11 @@
 
                             <tr>
                                 <?php
-                                    $no=$myrow[2];
-                                    $company=$myrow[3];
-                                    $people=$myrow[4];
+                                    $id=$myrow[0];
+                                    $no=$myrow[1];
+                                    $company=$myrow[2];
+                                    $people=$myrow[3];
+                                    $startTime=$myrow[4];
 
                                     $arr_status=explode(",",$myrow[6]);
                                     $status=array_pop($arr_status);
@@ -248,10 +250,38 @@
                                 ?>
                                 
                                 <td><?=$count+$countF?></td>
-                                <td><a href="flLine.php?id=<?=$myrow[0]?>" target="_blank"><?=$myrow[1]?></a></td>
-                                <td><?=$no?></td>
+
+                                <?php
+
+                                    //加入key
+                                    $sqlstr5="select count(*) from fl_key where fl_no='$id'";
+                                    
+                                    $result5=mysqli_query($conn,$sqlstr5);
+
+                                    while($myrow=mysqli_fetch_row($result5)){
+                                        $key_count=$myrow[0];
+                                    }
+
+                                    if($key_count==0 and ($status == "义乌打包发货" or $status == "商业运营归档单据" or $status == "已归档单据")){
+                                        if($newLevel == "ADMIN"){
+                                            ?>
+                                                <td><a href="flLine.php?id=<?=$id?>" target="_blank" style="color:red"><?=$no?></a></td>
+                                            <?php
+                                        }else{
+                                            ?>
+                                                <td><a href="flLine.php?id=<?=$id?>" target="_blank"><?=$no?></a></td>
+                                            <?php
+                                        }
+                                    }else{
+                                        ?>
+                                            <td><a href="flLine.php?id=<?=$id?>" target="_blank"><?=$no?></a></td>
+                                        <?php
+                                    }
+                                ?>
+                                
                                 <td><?=$company?></td>
                                 <td><?=$people?></td>
+                                <td><?=$startTime?></td>
                                 <td><?=$allTime?></td>
                                 <td><?=$status?></td>
                             </tr>

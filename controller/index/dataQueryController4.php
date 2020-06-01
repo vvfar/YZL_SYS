@@ -42,64 +42,66 @@
     if($chooseEight=="默认"){
         if($chooseSeven=="日" or $chooseSeven=="全部"){
             if($chooseOne=="销售额"){
-                $sqlstr1="select sum(a.salesMoney),a.date from store_data_sales a,store b where a.storeID=b.storeID ";
+                $sqlstr1="select sum(salesMoney),date from store_data_sales where  staff= any(select staff from store where 1=1 ";
             }else if($chooseOne == "回款"){
-                $sqlstr1="select sum(a.backMoney),a.date from store_data_hk,store b where a.storeID=b.storeID ";
+                $sqlstr1="select sum(backMoney),date from store_data_hk where staff= any(select staff from store where 1=1  ";
             }
     
         }elseif($chooseSeven=="月"){
             if($chooseOne=="销售额"){
-                $sqlstr1="select sum(a.salesMoney),left(a.date,7) as month from store_data_sales a,store b where a.storeID=b.storeID ";
+                $sqlstr1="select sum(salesMoney),left(date,7) as month from store_data_sales where staff= any(select staff from store where 1=1  ";
             }else if($chooseOne == "回款"){
-                $sqlstr1="select sum(a.backMoney),left(a.date,7) as month from store_data_hk,store b where a.storeID=b.storeID ";
+                $sqlstr1="select sum(backMoney),left(date,7) as month from store_data_hk where staff= any(select staff from store where 1=1  ";
             }
         }elseif($chooseSeven=="年"){
             if($chooseOne=="销售额"){
-                $sqlstr1="select sum(a.salesMoney),left(a.date,4) as year from store_data_sales a,store b where a.storeID=b.storeID ";
+                $sqlstr1="select sum(salesMoney),left(date,4) as year from store_data_sales where staff= any(select staff from store where 1=1  ";
             }else if($chooseOne == "回款"){
-                $sqlstr1="select sum(a.backMoney),left(a.date,4) as year from store_data_hk,store b where a.storeID=b.storeID ";
+                $sqlstr1="select sum(backMoney),left(date,4) as year from store_data_hk where staff= any(select staff from store where 1=1  ";
             }
         }
     }else{
-        $sqlstr1="select sum(a.salesMoney),a.date from store_data_sales a,store b where a.storeID=b.storeID ";
+        $sqlstr1="select sum(salesMoney),date from store_data_sales where  staff= any(select staff from store where 1=1 ";
     }
     
-    
+
     //事业部
     if($chooseTwo != "全部"){
-        $sqlstr1=$sqlstr1."and b.department='$chooseTwo' ";
+        $sqlstr1=$sqlstr1."and department='$chooseTwo' ";
     }
 
     //平台
     if($chooseThree != "全部"){
-        $sqlstr1=$sqlstr1."and b.pingtai='$chooseThree' ";
+        $sqlstr1=$sqlstr1."and pingtai='$chooseThree' ";
     }
 
     //类目
     if($chooseFour != "全部"){
-        $sqlstr1=$sqlstr1."and b.category='$chooseThree' ";
+        $sqlstr1=$sqlstr1."and category='$chooseFour' ";
     }
 
     //店铺
     if($chooseFive != "全部"){
-        $sqlstr1=$sqlstr1."and b.storeName='$chooseFive' ";
+        $sqlstr1=$sqlstr1."and storeName='$chooseFive' ";
     }
 
     //业务员
     if($chooseSix != "全部"){
-        $sqlstr1=$sqlstr1."and b.staff='$chooseFour' ";
+        $sqlstr1=$sqlstr1."and staff='$chooseFour' ";
     }
+
+    $sqlstr1=$sqlstr1.") ";
 
     if($chooseEight=="默认"){
         if($chooseSeven=="日" or $chooseSeven=="全部"){
-            $sqlstr1=$sqlstr1."group by date limit 0,30";
+            $sqlstr1=$sqlstr1." and date_sub(curdate(), INTERVAL 30 DAY) <= date  group by date limit 0,30";
         }elseif($chooseSeven=="月"){
-            $sqlstr1=$sqlstr1."group by month limit 0,12";
+            $sqlstr1=$sqlstr1." group by month limit 0,12";
         }elseif($chooseSeven=="年"){
-            $sqlstr1=$sqlstr1."group by year limit 0,10";
+            $sqlstr1=$sqlstr1." group by year limit 0,10";
         }
     }else{
-        $sqlstr1=$sqlstr1."and a.date like '%$chooseEight%' group by a.date";
+        $sqlstr1=$sqlstr1."and date like '%$chooseEight%' group by date";
     }
 
     $result=mysqli_query($conn,$sqlstr1);
@@ -115,7 +117,7 @@
 
     
     if(sizeof($data)==0){
-        $str='{"dateTime_xssj":"暂无数据","number_xssj":"0","object_xssj":"'.$object.'"}';
+        $str='{"dateTime_xssj":"暂无数据","number_xssj":"0","object_xssj":"'.$object.'","sqlstr1":"'.$sqlstr1.'"}';
 
         array_push($data,$str);
     }

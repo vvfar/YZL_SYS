@@ -25,8 +25,8 @@
                 <div style="clear: both;border-radius: 6px;">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
                         <li role="presentation" class="active"><a href="#">合同</a></li>
-                        <li role="presentation"><a href="contract_AddList.php">补充合同</a></li>
-                        <li role="presentation"><a href="sqList.php">授权</a></li>
+                        <li role="presentation" style="display:none"><a href="contract_AddList.php">补充合同</a></li>
+                        <li role="presentation" style="display:none"><a href="sqList.php">授权</a></li>
                     </div>
                 </div>
 
@@ -190,7 +190,7 @@
                         while($myrow=mysqli_fetch_row($result)){
                             $id=$myrow[0];
                             $isContract=$myrow[10];
-                            $contractID=$myrow[1];
+                            $contractID2=$myrow[1];
                             $companyName=$myrow[2];
                             $pingTai=$myrow[3];
                             $category=$myrow[4];
@@ -208,11 +208,11 @@
                                 <?php
                                     if($isContract=="合同"){
                                 ?>
-                                    <td><a href="contract_line.php?id=<?=$id?>&option=合同"><?=$contractID?></a></td>
+                                    <td><a href="contract_line.php?id=<?=$id?>&option=合同"><?=$contractID2?></a></td>
                                 <?php
                                     }elseif($isContract=="授权"){
                                 ?>
-                                    <td><a href="sq_line.php?id=<?=$id?>&option=授权"><?=$contractID?></a></td>
+                                    <td><a href="sq_line.php?id=<?=$id?>&option=授权"><?=$contractID2?></a></td>
                                 <?php
                                     }
                                 ?>
@@ -240,13 +240,13 @@
                                 echo $page-1;
                             else
                                 echo 1;  
-                        ?>">上一页</a></li>
+                        ?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=已审核">上一页</a></li>
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                             if($page<$pagecount)
                                 echo $page+1;
                             else
                                 echo $pagecount;  
-                        ?>">下一页</a></li>
+                        ?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=已审核">下一页</a></li>
                     </ul>
 
                     <div style="float:left;margin-left:530px;width:321px;">
@@ -257,11 +257,11 @@
                                     for($i=1;$i<=$pagecount;$i++){
                                         if($i==$page){
                                             ?>
-                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=已审核"><?=$i?></a></li>
                                             <?php
                                         }else{
                                             ?>
-                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=已审核"><?=$i?></a></li>
                                             <?php
                                         }
                                     }
@@ -269,16 +269,16 @@
                                     for($i=1;$i<=$pagecount;$i++){
                                         if($i==$page){
                                             ?>
-                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=已审核"><?=$i?></a></li>
                                             <?php
                                         }elseif(($i>=$page-2 and $i<=$page+2 and $page>3) and $page !=$pagecount){
                                             ?>
-                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=已审核"><?=$i?></a></li>
                                             <?php
                                         }elseif($i<=5){
                                             if($page<=3){
                                             ?>
-                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=已审核"><?=$i?></a></li>
                                             <?php
                                             }
                                         }
@@ -287,7 +287,7 @@
                                 
                             ?>
                             
-                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $pagecount; ?>">&raquo;</a></li>
+                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $pagecount; ?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=已审核">&raquo;</a></li>
                         </ul>
                     </div>
                 

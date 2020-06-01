@@ -14,7 +14,7 @@ $(document).ready(function(){
             $.ajax({
                 type:"get",
                 async:false,
-                url:"../../controller/fl/fldj.php?fl=" +fl,
+                url:"../../controller/fl/fldj.php?fl=" +encodeURIComponent(fl),
                 //dataType:"json",
                 success:function(result){
                     
@@ -26,6 +26,11 @@ $(document).ready(function(){
 
             return fl_price
         })
+
+        $(this).parent().siblings(".flfxj").html(
+            parseFloat($(this).parent().siblings(".dj").children().val()*$(this).parent().siblings(".sl").children().val()).toFixed(2)
+        )
+        
     })
 
     $(".sqsl").children().blur(function(){
@@ -118,6 +123,10 @@ $(document).ready(function(){
 
         })
         $("#flslhj").html(sum)
+    })
+
+    $(".flno").children().change(function(){
+        $(".sl").children().blur()
     })
 
     $(".dj").children().blur(function(){

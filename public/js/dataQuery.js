@@ -70,7 +70,7 @@ function initData(changeData,no){
 
     $.ajax({
         type:"post",
-        async:false,
+        async:true,
         url:"../../controller/index/dataQueryControllerBar.php",
         data:data,
         dataType:"json",
@@ -79,6 +79,7 @@ function initData(changeData,no){
             if(result){
                 for(var i=0;i<result.length;i++){
                     if(no==1 || no==undefined){
+
                         $("#chooseTwo").html(function(){
                             str="<option>全部</option>"
     
@@ -222,6 +223,7 @@ function initData(changeData,no){
         }
     })
 
+
     $.ajax({
         type:"post",
         async:true,
@@ -246,31 +248,6 @@ function initData(changeData,no){
         }
     })
 
-
-    //第一个框
-    $.ajax({
-        type:"post",
-        async:true,
-        url:"../../controller/index/dataQueryController1.php",
-        data:data,
-        dataType:"json",
-        success:function(result){
-            if(result){
-                for(var i=0;i<result.length;i++){
-                    $("#title").html(result[0].value)
-                    $("#mytime").html(result[1].value)
-                    $("#num").html(result[2].value)
-                    $("#tb").html(result[3].value)
-                    $("#hb").html(result[4].value)
-                    
-                }
-            }
-        },
-
-        error:function(XMLHttpRequest, textStatus, errorThrown){
-            console.log("数据错误")
-        }
-    })
 
     //第二个框
     $.ajax({
@@ -297,6 +274,7 @@ function initData(changeData,no){
         }
     })
 
+    
     //第三个框
     $.ajax({
         type:"post",
@@ -349,61 +327,7 @@ function initData(changeData,no){
         }
     })
 
-    //第四个框
-    var myChart=echarts.init(document.getElementById('data_body'),"light");
-
-    myChart.showLoading();
-
-    var names=[];
-    var numbers=[];
-
-    $.ajax({
-        type:"post",
-        async:true,
-        data:data,
-        url:"../../controller/index/dataQueryController4.php",
-        dataType:"json",
-        success:function(result){
-            if(result){
-                for(var i=0;i<result.length;i++){
-                    names.push(result[i].dateTime_xssj);
-                    numbers.push(result[i].number_xssj);
-                    object=result[i].object_xssj;
-                }
-            }
-
-            myChart.hideLoading();
-        
-            var option={
-                title:{
-                    text:'',
-                    subtext:object,
-                    x:'left' 
-                },
-                tooltip:{
-                    trigger:'item',
-                },
-                legend:{
-                    orient:'vertical', 
-                    left:'right',  
-                    data:['销量']
-                },
-                
-                xAxis:{
-                    data:names
-                },
-                yAxis:{},
-                series:[{
-                    name:'销量',
-                    type:'line',
-                    data:numbers
-                }]
-            }
-
-            myChart.setOption(option);
-
-        }
-    })
+    
 
     //第五个框
     $.ajax({
@@ -454,5 +378,63 @@ function initData(changeData,no){
             console.log("数据错误")
         }
     })
-    
+
+    //第四个框
+    var myChart=echarts.init(document.getElementById('data_body'),"light");
+
+    myChart.showLoading();
+
+    var names=[];
+    var numbers=[];
+
+    $.ajax({
+        type:"post",
+        async:true,
+        data:data,
+        url:"../../controller/index/dataQueryController4.php",
+        dataType:"json",
+        success:function(result){
+            if(result[0].dateTime_xssj != null){
+                for(var i=0;i<result.length;i++){
+                    names.push(result[i].dateTime_xssj);
+                    numbers.push(result[i].number_xssj);
+                    object=result[i].object_xssj;
+                }
+            }
+            
+
+            myChart.hideLoading();
+        
+            var option={
+                title:{
+                    text:'',
+                    subtext:object,
+                    x:'left' 
+                },
+                tooltip:{
+                    trigger:'item',
+                },
+                legend:{
+                    orient:'vertical', 
+                    left:'right',  
+                    data:['销量']
+                },
+                
+                xAxis:{
+                    data:names
+                },
+                yAxis:{},
+                series:[{
+                    name:'销量',
+                    type:'line',
+                    data:numbers
+                }]
+            }
+
+            myChart.setOption(option);
+
+        }
+    })
+
+
 }

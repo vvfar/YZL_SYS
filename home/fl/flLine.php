@@ -128,9 +128,6 @@
                 </div>
             </div>
 
-            
-            
-
                 <table class="tb1" border="1" cellspacing="0" style="clear:both;position: relative;top:20px;margin-left:40px;width:1000px;margin-bottom:30px;">
                     <tr>
                         <td colspan="4" style="width:147px;">申请单位</td>
@@ -328,7 +325,7 @@
                             <td colspan="6"><?=$newMoney+$nowUseMoney?></td>
                         </tr>
                 </table>
-                    
+                <!--  
                 <?php
 
                     if($file !="" and (explode(".",$file)[1]=="jpg" or explode(".",$file)[1]=="png")){
@@ -343,6 +340,7 @@
                     <?php
                     }
                 ?>
+                -->
                     
                 <div style="width:1040px;">
                     <?php

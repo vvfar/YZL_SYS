@@ -4,19 +4,7 @@
     include_once("../../common/conn/conn.php");
     error_reporting(E_ALL || ~E_NOTICE);
 
-    date_default_timezone_set("Asia/Shanghai");
-    $date1=date('Y-m-d', time());
-    $date2=date("Y-m-d", strtotime("-1 month"));
-    $date3=date("Y-m-d", strtotime("-1 year"));
-
-    $dateMonth=date('Y-m', time());
-    $dateMonth2=date('Y-m', strtotime("-1 month"));
-    $dateMonth3=date('Y-m', strtotime("-1 year"));
-
-    $dateYear=date('Y', time());
-    $dateYear2=date('Y', strtotime("-1 year"));
-    $dateYear3=date('Y', strtotime("-1 year"));
-
+    
     session_start();   
     $username=$_SESSION["username"];
 
@@ -38,63 +26,94 @@
     $chooseSeven=$_POST['chooseSeven'];
     $chooseEight=$_POST['chooseEight'];
 
+    if($chooseEight=="默认"){
+        date_default_timezone_set("Asia/Shanghai");
+        $date=time();
+    }else{
+        $date=$chooseEight;
+    }
+
+    if($chooseEight=="默认"){
+        $date1=date('Y-m-d');
+        $date2=date('Y-m-d', strtotime("-1 month"));
+        $date3=date('Y-m-d', strtotime("-1 year"));
+
+        $dateMonth=date('Y-m');
+        $dateMonth2=date('Y-m', strtotime("-1 month"));
+        $dateMonth3=date('Y-m', strtotime("-1 year"));
+
+        $dateYear=date('Y');
+        $dateYear2=date('Y', strtotime("-1 year"));
+        $dateYear3=date('Y', strtotime("-1 year"));
+    }else{
+        $date1=date('Y-m-d', strtotime("$date"));
+        $date2=date('Y-m-d', strtotime("$date -1 month"));
+        $date3=date('Y-m-d', strtotime("$date -1 year"));
+
+        $dateMonth=$date;
+        $dateMonth2=date('Y-m', strtotime("$date -1 month"));
+        $dateMonth3=date('Y-m', strtotime("$date -1 year"));
+
+        $dateYear=date('Y', strtotime("$date -1 year"));
+        $dateYear2=date('Y', strtotime("$date -1 year"));
+        $dateYear3=date('Y', strtotime("$date -1 year"));
+    }
+
+
     //销售额&回款
     if($chooseOne == "销售额"){
-        $sqlstr1="select sum(b.salesMoney) from store a,store_data_sales b where a.storeID=b.storeID ";
+        $sqlstr1="select sum(salesMoney) from store_data_sales where staff= any(select staff from store where 1=1 ";
     }else if($chooseOne == "回款"){
-        $sqlstr1="select sum(b.backMoney) from store a,store_data_hk b where a.storeID=b.storeID ";
+        $sqlstr1="select sum(backMoney) from store_data_hk where  staff= any(select staff from store where 1=1 ";
     }
 
     //事业部
     if($chooseTwo != "全部"){
-        $sqlstr1=$sqlstr1."and a.department='$chooseTwo' ";
+        $sqlstr1=$sqlstr1."and department='$chooseTwo' ";
     }
 
     //平台
     if($chooseThree != "全部"){
-        $sqlstr1=$sqlstr1."and a.pingtai='$chooseThree' ";
+        $sqlstr1=$sqlstr1."and pingtai='$chooseThree' ";
     }
 
     //类目
     if($chooseFour != "全部"){
-        $sqlstr1=$sqlstr1."and a.category='$chooseThree' ";
+        $sqlstr1=$sqlstr1."and category='$chooseThree' ";
     }
 
     //店铺
     if($chooseFive != "全部"){
-        $sqlstr1=$sqlstr1."and a.storeName='$chooseFive' ";
+        $sqlstr1=$sqlstr1."and storeName='$chooseFive' ";
     }
 
     //业务员
     if($chooseSix != "全部"){
-        $sqlstr1=$sqlstr1."and a.staff='$chooseFour' ";
+        $sqlstr1=$sqlstr1."and staff='$chooseFour' ";
     }
 
     if($chooseSeven != "月" and $chooseSeven != "年"){
         $chooseSeven = "日";
     }
     
+    $sqlstr1=$sqlstr1.") ";
 
     //时间段
-    if($chooseEight == "默认"){
-        if($chooseSeven == "日"){
-            $sqlstr=$sqlstr1."and b.date='$date1' ";  //当期
-            $sqlstr2=$sqlstr1."and b.date='$date2' ";  //环比
-            $sqlstr3=$sqlstr1."and b.date='$date3' ";   //同比
-        }elseif($chooseSeven == "月"){
-            $sqlstr=$sqlstr1."and b.date like '%$dateMonth%' "; //当期
-            $sqlstr2=$sqlstr1."and b.date like '%$dateMonth2%' ";  //环比
-            $sqlstr3=$sqlstr1."and b.date like '%$dateMonth3%' ";   //同比
-        }elseif($chooseSeven == "年"){
-            $sqlstr=$sqlstr1."and b.date like '%$dateYear%' ";  //当期
-            $sqlstr2=$sqlstr1."and b.date like '%$dateYear2%' ";  //环比
-            $sqlstr3=$sqlstr1."and b.date like '%$dateYear3%' ";  //同比
-        }
-    }else{
-        $sqlstr=$sqlstr1."and b.date like '%$chooseEight%' "; //当期
-        $sqlstr2=$sqlstr1."and b.date like '%$chooseEight%' ";  //环比
-        $sqlstr3=$sqlstr1."and b.date like '%$chooseEight%' ";   //同比
+
+    if($chooseSeven == "日"){
+        $sqlstr=$sqlstr1."and date='$date1' ";  //当期
+        $sqlstr2=$sqlstr1."and date='$date2' ";  //环比
+        $sqlstr3=$sqlstr1."and date='$date3' ";   //同比
+    }elseif($chooseSeven == "月"){
+        $sqlstr=$sqlstr1."and date like '%$dateMonth%' "; //当期
+        $sqlstr2=$sqlstr1."and date like '%$dateMonth2%' ";  //环比
+        $sqlstr3=$sqlstr1."and date like '%$dateMonth3%' ";   //同比
+    }elseif($chooseSeven == "年"){
+        $sqlstr=$sqlstr1."and date like '%$dateYear%' ";  //当期
+        $sqlstr2=$sqlstr1."and date like '%$dateYear2%' ";  //环比
+        $sqlstr3=$sqlstr1."and date like '%$dateYear3%' ";  //同比
     }
+
     
 
     $result=mysqli_query($conn,$sqlstr);
@@ -135,7 +154,10 @@
         {"name":"time","value":"'.$chooseSeven.'"},
         {"name":"num","value":"'.number_format($num, 2).'"},
         {"name":"tb","value":"'.number_format($tb, 2).'"},
-        {"name":"hb","value":"'.number_format($hb, 2).'"}  
+        {"name":"hb","value":"'.number_format($hb, 2).'"},
+        {"name":"现销售额","value":"'.$sqlstr.'"},
+        {"name":"环比销售额","value":"'.$sqlstr2.'"},
+        {"name":"同比销售额","value":"'.$sqlstr3.'"}
     ]';
 
     echo $data;

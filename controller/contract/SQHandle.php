@@ -159,7 +159,7 @@
                 $storeName=$myrow[2];
             }
     
-            $sqlstr4="select count(*) from contract where no='$no' and company='$companyName' and store='$storeName'";
+            $sqlstr4="select count(*) from contract where no='$no' ";
 
             $result=mysqli_query($conn,$sqlstr4);
     
@@ -171,7 +171,7 @@
                 echo "<script>alert('请先提交合同！');window.location.href='../../home/contract/sq_line.php?id=".$id."&option=授权'</script>";
     
             }else{
-                $sqlstr5="select status from contract where no='$no' and company='$companyName' and store='$storeName'";
+                $sqlstr5="select status from contract where no='$no' ";
                 $result=mysqli_query($conn,$sqlstr5);
     
                 while($myrow=mysqli_fetch_row($result)){

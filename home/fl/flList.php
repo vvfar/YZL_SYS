@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=0.5">
         <title>俞兆林_辅料申请</title>
+        <meta http-equiv="refresh" content="300">
         <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="../../public/lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
         <link href="../../public/lib\bootstrap-3.3.7-dist\css\bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
@@ -226,7 +227,7 @@
                                         $key_count=$myrow[0];
                                     }
 
-                                    if($key_count==0 and $status == "义乌打包发货"){
+                                    if($key_count==0 and ($status == "义乌打包发货" or $status == "商业运营归档单据" or $status == "已归档单据")){
                                         if($newLevel == "ADMIN"){
                                             ?>
                                                 <td><a href="flLine.php?id=<?=$id?>" style="color:red" target="_blank"><?=$no?></a></td>

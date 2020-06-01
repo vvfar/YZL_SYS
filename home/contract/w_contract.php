@@ -25,8 +25,8 @@
                 <div style="clear: both;border-radius: 6px;">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
                         <li role="presentation" class="active"><a href="w_contract.php">合同</a></li>
-                        <li role="presentation"><a href="w_contractAdd.php">补充合同</a></li>
-                        <li role="presentation"><a href="w_sq.php">授权</a></li>
+                        <li role="presentation" style="display:none"><a href="w_contractAdd.php">补充合同</a></li>
+                        <li role="presentation" style="display:none"><a href="w_sq.php">授权</a></li>
                     </div>
                 </div>
 
@@ -203,7 +203,7 @@
                         while($myrow=mysqli_fetch_row($result)){
                             $id=$myrow[0];
                             $isContract=$myrow[10];
-                            $contractID=$myrow[1];
+                            $contractID2=$myrow[1];
                             $companyName=$myrow[2];
                             $pingTai=$myrow[3];
                             $category=$myrow[4];
@@ -219,11 +219,11 @@
                                 <?php
                                     if($status =="审核拒绝" and $shr==$username){
                                         ?>
-                                            <td><a href="contract_line.php?id=<?=$id?>&option=合同" style="color:red"><?=$contractID?></a></td>
+                                            <td><a href="contract_line.php?id=<?=$id?>&option=合同" style="color:red"><?=$contractID2?></a></td>
                                         <?php
                                     }else{
                                         ?>
-                                            <td><a href="contract_line.php?id=<?=$id?>&option=合同"><?=$contractID?></a></td>
+                                            <td><a href="contract_line.php?id=<?=$id?>&option=合同"><?=$contractID2?></a></td>
                                         <?php
                                     }
                                 ?>
@@ -251,28 +251,28 @@
                                 echo $page-1;
                             else
                                 echo 1;  
-                        ?>">上一页</a></li>
+                        ?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=待审核">上一页</a></li>
                         <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php
                             if($page<$pagecount)
                                 echo $page+1;
                             else
                                 echo $pagecount;  
-                        ?>">下一页</a></li>
+                        ?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=待审核">下一页</a></li>
                     </ul>
 
                     <div style="float:left;margin-left:530px;width:321px;">
                         <ul class="pagination" style="float:right">
-                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1">&laquo;</a></li>
+                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=1&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=待审核">&laquo;</a></li>
                             <?php
                                 if($pagecount<=5){
                                     for($i=1;$i<=$pagecount;$i++){
                                         if($i==$page){
                                             ?>
-                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=待审核"><?=$i?></a></li>
                                             <?php
                                         }else{
                                             ?>
-                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=待审核"><?=$i?></a></li>
                                             <?php
                                         }
                                     }
@@ -280,16 +280,16 @@
                                     for($i=1;$i<=$pagecount;$i++){
                                         if($i==$page){
                                             ?>
-                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li  class="active"><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=待审核"><?=$i?></a></li>
                                             <?php
                                         }elseif(($i>=$page-2 and $i<=$page+2 and $page>3) and $page !=$pagecount){
                                             ?>
-                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=待审核"><?=$i?></a></li>
                                             <?php
                                         }elseif($i<=5){
                                             if($page<=3){
                                             ?>
-                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>"><?=$i?></a></li>
+                                                <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?=$i?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=待审核"><?=$i?></a></li>
                                             <?php
                                             }
                                         }
@@ -298,7 +298,7 @@
                                 
                             ?>
                             
-                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $pagecount; ?>">&raquo;</a></li>
+                            <li><a href="<?php echo $_SERVER['PHP_SELF']?>?page=<?php echo $pagecount; ?>&contractID=<?=$contractID?>&clientName=<?=$clientName?>&status=待审核">&raquo;</a></li>
                         </ul>
                     </div>
                 

@@ -42,7 +42,7 @@
     }elseif($newLevel == "M"){
         $object=$department;
 
-        $sqlstr1="select sum(a.backMoney),a.date from store_data_hk a,store b where a.storeID=b.storeID and '$department' like concat('%',department,'%') group by date limit 0,30";
+        $sqlstr1="select sum(backMoney),date from store_data_hk where staff =any( '$department' like concat('%',department,'%')) group by date limit 0,30";
 
         $result=mysqli_query($conn,$sqlstr1);
 
@@ -57,7 +57,7 @@
     }else{
         $object="全公司";
 
-        $sqlstr1="select sum(a.backMoney),a.date from store_data_hk a,store b where a.storeID=b.storeID group by date limit 0,30";
+        $sqlstr1="select sum(backMoney),date from store_data_hk group by date limit 0,30";
 
         $result=mysqli_query($conn,$sqlstr1);
 

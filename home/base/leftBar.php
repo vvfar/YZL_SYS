@@ -42,11 +42,11 @@
                     
                 </div>
 
-                <li class="leftbar7"><i class="layui-icon layui-icon-template-1"></i><a href="#">合同授权</a></li>
+                <li class="leftbar7"><i class="layui-icon layui-icon-template-1"></i><a href="#">公司合同</a></li>
                 <div class="leftbar7Z zcd">
-                    <li class="leftbar7Z2"><a href="/home/contract/contract.php">新增合同授权</a></li>
-                    <li class="leftbar7Z3"><a href="/home/contract/w_contract.php">待审核合同授权</a></li>
-                    <li class="leftbar7Z1"><a href="/home/contract/contractList.php">已审核合同授权</a></li>
+                    <li class="leftbar7Z2"><a href="/home/contract/contract.php">新增合同</a></li>
+                    <li class="leftbar7Z3"><a href="/home/contract/w_contract.php">待审核合同</a></li>
+                    <li class="leftbar7Z1"><a href="/home/contract/contractList.php">已审核合同</a></li>
                 </div>
 
                 <li class="leftbar1"><i class="layui-icon layui-icon-rmb"></i><a href="#">授信申请</a></li>

@@ -25,8 +25,8 @@
                 <div style="clear: both;border-radius: 6px;">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
                         <li role="presentation"><a href="w_contract.php">合同</a></li>
-                        <li role="presentation"><a href="w_contractAdd.php">补充合同</a></li>
-                        <li role="presentation" class="active"><a href="#">授权</a></li>
+                        <li role="presentation" style="display:none"><a href="w_contractAdd.php">补充合同</a></li>
+                        <li role="presentation" class="active" style="display:none"><a href="#">授权</a></li>
                         
                     </div>
                 </div>
@@ -168,7 +168,7 @@
                     $sqlstr2=$sqlstr2." and no like '%$sqID%'";
                 }
                 
-                $sqlstr2=$sqlstr2." limit ".($page-1)*$pagesize.",$pagesize";
+                $sqlstr2=$sqlstr2." order by id desc limit ".($page-1)*$pagesize.",$pagesize";
 
                 $result=mysqli_query($conn,$sqlstr2);
 

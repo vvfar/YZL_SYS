@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=0.8">
+        <meta name="renderer" content=webkit>
         <title>俞兆林_辅料申请</title>
         <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" media="screen" />
         <link href="../../public/lib\bootstrap-3.3.7-dist\css\bootstrap.css" rel="stylesheet"/>
@@ -12,7 +13,7 @@
         <link href="../../public/css/header.css?v=2" rel="stylesheet"/>
         <link href="../../public/css/flsq.css" rel="stylesheet"/>
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\jquery-3.3.1.min.js"></script>
-        <script src="../../public/js/flsq.js"></script>
+        <script src="../../public/js/flsq.js?v=6"></script>
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="../../public/lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
     </head>
@@ -494,7 +495,7 @@
                             ?> 
                             </select>
                         </td>
-                        <td class="dj"><input type="text" value="<?=$dj_arr[$i]?>" name="dj<?=$i?>"/></td>
+                        <td class="dj"><input type="text" value="<?=$dj_arr[$i]?>" name="dj<?=$i?>" readonly/></td>
                         <td class="sl"><input type="text" value="<?=$sl_arr[$i]?>" name="sl<?=$i?>"/></td>
                         <td class="flfxj"><?=$flfxj_arr[$i]?></td>
                     </tr>

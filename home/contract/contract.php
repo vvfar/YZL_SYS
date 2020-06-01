@@ -80,8 +80,8 @@
                 <div style="border-radius: 6px;margin-top:50px">
                     <div class="nav nav-pills" style="float:left;margin-top:15px;position:relative;right:5px;">
                         <li role="presentation" class="active"><a href="#">新增合同</a></li>
-                        <li role="presentation"><a href="contractAddition.php">新增补充合同</a></li>
-                        <li role="presentation"><a href="newSQ.php">新增授权</a></li>
+                        <li role="presentation" style="display:none"><a href="contractAddition.php">新增补充合同</a></li>
+                        <li role="presentation" style="display:none"><a href="newSQ.php">新增授权</a></li>
                     </div>
                 </div>
                 
@@ -285,11 +285,9 @@
     $("#contractType").change(function(){
         contract_type=$(this).val();
 
-        if(contract_type=="销售合同"){
-            $(".store_name").css("display","")
+        if(contract_type=="经销商合同"){
             $(".store_pingtai").css("display","")
         }else{
-            $(".store_name").css("display","none")
             $(".store_pingtai").css("display","none")
         }
     })

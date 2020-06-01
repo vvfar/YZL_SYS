@@ -85,7 +85,7 @@ window.onload=function(){
         var element = layui.element;
     });
 
-
+    /*
     //销售数据
 
     $.ajax({
@@ -199,7 +199,7 @@ window.onload=function(){
             }
         }
     })
-
+*/
 
     /*
      //数据图表（销售）

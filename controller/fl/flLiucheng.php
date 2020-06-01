@@ -36,77 +36,85 @@
         //同意流程
         
         $status_arr=explode(",",$status);
+        $shr_arr=explode(",",$shr);
+
         $status_now=array_pop($status_arr);
-        
-        $sqlstr3="select number from flprogress where name='$status_now' ";
-        $result=mysqli_query($conn,$sqlstr3);
+        $shr_now=array_pop($shr_arr);
 
-        while($myrow=mysqli_fetch_row($result)){
-            $number=$myrow[0];
-        }
-
-        $number_forward=$number+1;
-
-        $sqlstr4="select name,sp from flprogress where number='$number_forward' ";
-        $result=mysqli_query($conn,$sqlstr4);
-
-        while($myrow=mysqli_fetch_row($result)){
-            $status_forward=$myrow[0];
-            $sp_forward=$myrow[1];
-        }
-
-        if(($jkfs=="全现金" and $status_forward == "商业运营审批授信") or (($jkfs=="全授信" or $jkfs=="标费补贴") and $status_forward == "财务审批单据")){
-
-            $sqlstr5="select number from flprogress where name='$status_forward' ";
-
-            $result=mysqli_query($conn,$sqlstr5);
-
+        if($shr_now==$username){
+            $sqlstr3="select number from flprogress where name='$status_now' ";
+            $result=mysqli_query($conn,$sqlstr3);
+    
             while($myrow=mysqli_fetch_row($result)){
                 $number=$myrow[0];
             }
-
-            $number=$number+1;
-
-            $sqlstr6="select name,sp from flprogress where number='$number' ";
-
-            $result=mysqli_query($conn,$sqlstr6);
-
+    
+            $number_forward=$number+1;
+    
+            $sqlstr4="select name,sp from flprogress where number='$number_forward' ";
+            $result=mysqli_query($conn,$sqlstr4);
+    
             while($myrow=mysqli_fetch_row($result)){
                 $status_forward=$myrow[0];
                 $sp_forward=$myrow[1];
-            }      
-        }
-
-        $status_new=$status.",".$status_forward;
-        $sp_new=$shr.",".$sp_forward;
-        $shTime_new=$shTime.",".$time;
-
-        if($status_forward=="已归档单据"){
-            $sqlstr_fl="update flsqd set status='$status_new',shr='$sp_new',allTime='$shTime_new',date2='$time' where id='$id'";
+            }
+    
+            if(($jkfs=="全现金" and $status_forward == "商业运营审批授信") or (($jkfs=="全授信" or $jkfs=="标费补贴") and $status_forward == "财务审批单据")){
+    
+                $sqlstr5="select number from flprogress where name='$status_forward' ";
+    
+                $result=mysqli_query($conn,$sqlstr5);
+    
+                while($myrow=mysqli_fetch_row($result)){
+                    $number=$myrow[0];
+                }
+    
+                $number=$number+1;
+    
+                $sqlstr6="select name,sp from flprogress where number='$number' ";
+    
+                $result=mysqli_query($conn,$sqlstr6);
+    
+                while($myrow=mysqli_fetch_row($result)){
+                    $status_forward=$myrow[0];
+                    $sp_forward=$myrow[1];
+                }      
+            }
+    
+            $status_new=$status.",".$status_forward;
+            $sp_new=$shr.",".$sp_forward;
+            $shTime_new=$shTime.",".$time;
+    
+            if($status_forward=="已归档单据"){
+                $sqlstr_fl="update flsqd set status='$status_new',shr='$sp_new',allTime='$shTime_new',date2='$time',file='$username' where id='$id'";
+            }else{
+                $sqlstr_fl="update flsqd set status='$status_new',shr='$sp_new',allTime='$shTime_new',file='$username' where id='$id'";
+            }
+    
+            $result=mysqli_query($conn,$sqlstr_fl);
+    
+            //财务，商业运营加入key
+            if($my_department=="财务部" or ($my_department=="商业运营部" and $status_forward !="已归档单据")){
+    
+                //获取辅料申请单最大ID
+                $sqlstr="select max(id) from fl_key";
+                $result=mysqli_query($conn,$sqlstr);
+    
+                while($myrow=mysqli_fetch_row($result)){
+                    $maxID=$myrow[0];
+                }
+    
+                if($maxID==""){
+                    $maxID=0;
+                }
+    
+                $sqlstr_k="insert into fl_key values('$maxID'+1,'$id',1,'$time')";
+                $result=mysqli_query($conn,$sqlstr_k);
+            }
         }else{
-            $sqlstr_fl="update flsqd set status='$status_new',shr='$sp_new',allTime='$shTime_new' where id='$id'";
+            echo "<script>alert('请勿重复提交表单！');window.location.href='../../home/fl/flLine.php?id=$id'</script>";
         }
-
-        $result=mysqli_query($conn,$sqlstr_fl);
-
-        //财务，商业运营加入key
-        if($my_department=="财务部" or ($my_department=="商业运营部" and $status !="已归档单据")){
-
-            //获取辅料申请单最大ID
-            $sqlstr="select max(id) from fl_key";
-            $result=mysqli_query($conn,$sqlstr);
-
-            while($myrow=mysqli_fetch_row($result)){
-                $maxID=$myrow[0];
-            }
-
-            if($maxID==""){
-                $maxID=0;
-            }
-
-            $sqlstr_k="insert into fl_key values('$maxID'+1,'$id',1,'$time')";
-            $result=mysqli_query($conn,$sqlstr_k);
-        }
+        
 
     
     }elseif($option==3){
@@ -154,7 +162,7 @@
         $allTime=$allTime.",".$time;
 
         //将下个流程信息放入
-        $sqlstr3="update flsqd set status='$name',shr='$sp',csr='',allTime='$allTime',wlfs='$wlfs',wlno='$wlno',wlprice='$wlprice',note='$note',allTime='$allTime' where id='$id'";
+        $sqlstr3="update flsqd set status='$name',shr='$sp',csr='',allTime='$allTime',wlfs='$wlfs',wlno='$wlno',wlprice='$wlprice',note='$note',allTime='$allTime',file='$username' where id='$id'";
 
         $result=mysqli_query($conn,$sqlstr3);
 

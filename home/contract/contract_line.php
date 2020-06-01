@@ -107,8 +107,13 @@
                     ?>
                 </div>
 
-                <div style="clear:both;">
+                <div style="clear:both;width:1000px;">
                     <p style="float:left;margin-top:20px;">基本信息：</p>
+                    <div style="float:right;margin-top:20px;">
+                        <p style="float:left">所属事业部：<?=$department2?></p>
+                        <p style="float:left;margin-left:20px;">业务员：<?=$shr?></p>
+                    </div>
+
                 </div>
 
                 <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:50px">
@@ -220,6 +225,7 @@
                             $file=$myrow[6];
 
                             ?>
+                            <div style="display:none">
                                 <div style="border:1px solid #ccc;width:1000px;padding:5px;margin-top:60px;">
                                     <p>补充合同 <?=$count?>：</p>
 
@@ -275,6 +281,8 @@
                                         </tr>
                                     </table>
 
+                                   
+
                                     <p style="margin-top:10px"><?=$content?></p>
 
                                     <?php
@@ -307,60 +315,85 @@
 
                         ?>
 
-                        
-                        
                         <?php
 
                     }
 
                 ?>
+                <p>备注信息：</p>
+                <p style="width:1000px;margin-top:10px;"><?=$note?></p>
+                <p style="width:1000px;margin-top:10px;">原合同编号：</p>
+                <?php
+                    $sqlstr3="select count(*) from contract where no='$oldNo'";
 
-                <p style="margin-top: 50px;">授权店铺列表：</p>
+                    $result=mysqli_query($conn,$sqlstr1);
 
-                <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:10px;">
-                    
-                    <tr>
-                        <th>授权编号</th>
-                        <th>公司名称</th>
-                        <th>授权平台</th>
-                        <th>授权类目</th>
-                        <th>事业部</th>
-                        <th>登记日期</th>
-                    </tr>
+                    while($myrow=mysqli_fetch_row($result)){
+                        $count=$myrow[0];
+                    }
 
-                    <?php
-                        $sqID="";
+                    if($count==0){
+                        ?>
+                            <p style="width:1000px;"><?=$oldNo?></p>
+                        <?php
+                    }else{
+                        ?>
+                            <p style="width:1000px;"><a href="contract_line.php?no=<?=$oldNo?>"><?=$oldNo?></a></p>
+                        <?php
+                    }
+                ?>
+                
+                <div style="display:none">
+                    <p style="margin-top: 50px;">授权店铺列表：</p>
 
-                        $sqlstr1="select id,no,companyName,pingtai,category,department,bzj,'/','/',re_date,'授权',status,shr,shTime from sq where contractNo='$no' ";
+                    <table class="table table-responsive table-bordered table-hover" style="width:1000px;margin-top:10px;">
+                        
+                        <tr>
+                            <th>授权编号</th>
+                            <th>公司名称</th>
+                            <th>授权平台</th>
+                            <th>授权类目</th>
+                            <th>事业部</th>
+                            <th>登记日期</th>
+                        </tr>
 
-                        $result=mysqli_query($conn,$sqlstr1);
+                        <?php
+                            $sqID="";
 
-                        while($myrow=mysqli_fetch_row($result)){
+                            $sqlstr1="select id,no,companyName,pingtai,category,department,bzj,'/','/',re_date,'授权',status,shr,shTime from sq where contractNo='$no' ";
 
-                            $id=$myrow[0];
-                            $isContract=$myrow[10];
-                            $contractID=$myrow[1];
-                            $companyName=$myrow[2];
-                            $pingTai=$myrow[3];
-                            $category=$myrow[4];
-                            $department=$myrow[5];
-                            $re_date=$myrow[9];
-                            $status=$myrow[11];
-                            $shr=$myrow[12];
+                            $result=mysqli_query($conn,$sqlstr1);
 
-                            ?>
-                                <tr>
-                                    <td><a href="sq_line.php?id=<?=$id?>&option=授权" target="_blank"><?=$contractID?></a></td>   
-                                    <td><?=$companyName?></td>
-                                    <td class="category" style="width:130px"><p style="margin:0"><?=$pingTai?></p></td>
-                                    <td class="category" style="width:130px"><p style="margin:0"><?=$category?></p></td>
-                                    <td style="width:190px"><?=$department?></td>
-                                    <td><?=$re_date?></td>
-                                </tr>
-                            <?php
-                        }
-                    ?>
-                </table>
+                            while($myrow=mysqli_fetch_row($result)){
+
+                                $id_sq=$myrow[0];
+                                $isContract=$myrow[10];
+                                $contractID=$myrow[1];
+                                $companyName=$myrow[2];
+                                $pingTai=$myrow[3];
+                                $category=$myrow[4];
+                                $department=$myrow[5];
+                                $re_date=$myrow[9];
+                                $status=$myrow[11];
+                                $shr=$myrow[12];
+
+                                ?>
+                                    <tr>
+                                        <td><a href="sq_line.php?id=<?=$id_sq?>&option=授权" target="_blank"><?=$contractID?></a></td>   
+                                        <td><?=$companyName?></td>
+                                        <td class="category" style="width:130px"><p style="margin:0"><?=$pingTai?></p></td>
+                                        <td class="category" style="width:130px"><p style="margin:0"><?=$category?></p></td>
+                                        <td style="width:190px"><?=$department?></td>
+                                        <td><?=$re_date?></td>
+                                    </tr>
+                                <?php
+                            }
+                        ?>
+                    </table>
+                </div>
+                
+                
+
 
                 <p style="margin-top: 50px;">主合同店铺列表：</p>
 
@@ -380,7 +413,7 @@
                     </tr>
 
                     <?php
-                        $sqlstr1="select company,store,pingtai,category,money,ismoney,sales,issales,service,isservice from contract where no='$no' and status='已归档' ";
+                        $sqlstr1="select company,store,pingtai,category,money,ismoney,sales,issales,service,isservice from contract where no='$no' ";
 
                         $result=mysqli_query($conn,$sqlstr1);
 
@@ -402,6 +435,8 @@
                         }
                     ?>
                 </table>
+                
+                <!--
 
                 <p style="margin-top: 50px;">补充合同店铺列表：</p>
 
@@ -443,32 +478,8 @@
                         }
                     ?>
                 </table>
-
-                <p>备注信息：</p>
-                <p style="width:1000px;"><?=$note?></p>
-                <p>原合同编号：</p>
-
-                
-                <?php
-                    $sqlstr3="select count(*) from contract where no='$oldNo'";
-
-                    $result=mysqli_query($conn,$sqlstr1);
-
-                    while($myrow=mysqli_fetch_row($result)){
-                        $count=$myrow[0];
-                    }
-
-                    if($count==0){
-                        ?>
-                            <p style="width:1000px;"><?=$oldNo?></p>
-                        <?php
-                    }else{
-                        ?>
-                            <p style="width:1000px;"><a href="contract_line.php?no=<?=$oldNo?>"><?=$oldNo?></a></p>
-                        <?php
-                    }
-                ?>
-                
+                -->
+         
             </div>
             
         </div>

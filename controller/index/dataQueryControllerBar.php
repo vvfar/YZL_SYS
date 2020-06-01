@@ -32,7 +32,7 @@
     //事业部控件
     $department_list="[";
 
-    $sqlstr1="select distinct department from user_form";
+    $sqlstr1="select distinct department from store ";
 
     $result=mysqli_query($conn,$sqlstr1);
 
@@ -46,18 +46,19 @@
 
     $department_list=$department_list."]";
 
+
     //平台控件
     $pingtai_list="[";
 
-    $sqlstr1="select distinct pingtai from store";
+    $sqlstr2="select distinct pingtai from store";
 
     if($chooseTwo !="全部"){
-        $sqlstr1=$sqlstr1." where department='$chooseTwo'";
+        $sqlstr2=$sqlstr2." where department='$chooseTwo'";
     }
 
-    $result=mysqli_query($conn,$sqlstr1);
+    $result2=mysqli_query($conn,$sqlstr2);
 
-    while($myrow=mysqli_fetch_row($result)){
+    while($myrow=mysqli_fetch_row($result2)){
         $pingtai_list=$pingtai_list.'"'.$myrow[0].'",';  
     }
 
@@ -68,13 +69,13 @@
     //类目控件
     $category_list="[";
 
-    $sqlstr1="select distinct category from store";
+    $sqlstr3="select distinct category from store";
 
     if($chooseTwo !="全部"){
-        $sqlstr1=$sqlstr1." where department='$chooseTwo'";
+        $sqlstr3=$sqlstr3." where department='$chooseTwo'";
     }
 
-    $result=mysqli_query($conn,$sqlstr1);
+    $result=mysqli_query($conn,$sqlstr3);
 
     while($myrow=mysqli_fetch_row($result)){
         $category_list=$category_list.'"'.$myrow[0].'",';  
@@ -87,14 +88,14 @@
     //店铺控件
     $store_list="[";
 
-    $sqlstr1="select distinct storeName from store where 1=1";
+    $sqlstr4="select distinct storeName from store where 1=1";
 
     if($chooseTwo !="全部"){
-        $sqlstr1=$sqlstr1." and department='$chooseTwo'";
+        $sqlstr4=$sqlstr4." and department='$chooseTwo'";
     }
     
 
-    $result=mysqli_query($conn,$sqlstr1);
+    $result=mysqli_query($conn,$sqlstr4);
 
     while($myrow=mysqli_fetch_row($result)){
         $store_list=$store_list.'"'.$myrow[0].'",';  
@@ -107,13 +108,13 @@
     //业务员控件
     $ywy_list="[";
 
-    $sqlstr1="select distinct username from user_form";
+    $sqlstr5="select distinct username from user_form";
 
     if($chooseTwo !="全部"){
-        $sqlstr1=$sqlstr1." where department='$chooseTwo'";
+        $sqlstr5=$sqlstr5." where department='$chooseTwo'";
     }
 
-    $result=mysqli_query($conn,$sqlstr1);
+    $result=mysqli_query($conn,$sqlstr5);
 
     while($myrow=mysqli_fetch_row($result)){
         $ywy_list=$ywy_list.'"'.$myrow[0].'",';  
@@ -124,33 +125,33 @@
     $ywy_list=$ywy_list."]";
 
     //日期控件
-    $date_list="[";
+    $date_list_1="[";
 
     if($chooseOne == "销售额"){
         if($chooseSeven == "日" or $chooseSeven == "全部"){
-            $sqlstr1="select distinct date from store_data_sales ";
+            $sqlstr6="select distinct date from store_data_sales ";
         }elseif($chooseSeven == "月"){
-            $sqlstr1="select distinct left(date,7) from store_data_sales ";
+            $sqlstr6="select distinct left(date,7) from store_data_sales ";
         }elseif($chooseSeven == "年"){
-            $sqlstr1="select distinct left(date,4) from store_data_sales ";
+            $sqlstr6="select distinct left(date,4) from store_data_sales ";
         }
         
     }else{
         if($chooseSeven == "日" or $chooseSeven == "全部"){
-            $sqlstr1="select distinct date from store_data_hk ";
+            $sqlstr6="select distinct date from store_data_hk ";
         }elseif($chooseSeven == "月"){
-            $sqlstr1="select distinct left(date,7) from store_data_hk ";
+            $sqlstr6="select distinct left(date,7) from store_data_hk ";
         }elseif($chooseSeven == "年"){
-            $sqlstr1="select distinct left(date,4) from store_data_sales ";
+            $sqlstr6="select distinct left(date,4) from store_data_sales ";
         }
     }
 
 
     if($chooseTwo !="全部"){
-        $sqlstr1=$sqlstr1." where department='$chooseTwo'";
+        $sqlstr6=$sqlstr6." where staff= any( select staff from store where department='$chooseTwo')";
     }
 
-    $result=mysqli_query($conn,$sqlstr1);
+    $result=mysqli_query($conn,$sqlstr6);
 
     while($myrow=mysqli_fetch_row($result)){
         $date_list=$date_list.'"'.$myrow[0].'",';  
@@ -158,7 +159,8 @@
 
     $date_list = substr($date_list,0,strlen($date_list)-1);
 
-    $date_list=$date_list."]";
+    $date_list=$date_list_1.$date_list."]";
+
 
 
     $data='[
@@ -168,7 +170,8 @@
         {"name":"storeName","value":'.$store_list.'},
         {"name":"ywy","value":'.$ywy_list.'},
         {"name":"time","value":["日","月","年"]},
-        {"name":"date","value":'.$date_list.'}
+        {"name":"date","value":'.$date_list.'},
+        {"name":"sql","value":"'.$sqlstr6.'"}
    ]';
 
     echo $data;
