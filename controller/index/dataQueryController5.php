@@ -54,7 +54,7 @@
 
     //类目
     if($chooseFour != "全部"){
-        $sqlstr1=$sqlstr1."and category='$chooseThree' ";
+        $sqlstr1=$sqlstr1."and category='$chooseFour' ";
     }
 
     //店铺
@@ -64,7 +64,7 @@
 
     //业务员
     if($chooseSix != "全部"){
-        $sqlstr1=$sqlstr1."and staff='$chooseFour' ";
+        $sqlstr1=$sqlstr1."and staff='$chooseSix' ";
     }
 
     if($chooseSeven != "月" and $chooseSeven != "年"){

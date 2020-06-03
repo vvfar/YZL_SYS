@@ -40,7 +40,7 @@
 
     //事业部
     if($chooseTwo != "全部"){
-        $sqlstr1=$sqlstr1."and a.department='$chooseTwo' ";
+        $sqlstr1=$sqlstr1." and a.department='$chooseTwo' ";
     }
 
     //平台
@@ -50,7 +50,7 @@
 
     //类目
     if($chooseFour != "全部"){
-        $sqlstr1=$sqlstr1."and a.category='$chooseThree' ";
+        $sqlstr1=$sqlstr1."and a.category='$chooseFour' ";
     }
 
     //店铺
@@ -60,7 +60,7 @@
 
     //业务员
     if($chooseSix != "全部"){
-        $sqlstr1=$sqlstr1."and a.staff='$chooseFour' ";
+        $sqlstr1=$sqlstr1."and a.staff='$chooseSix' ";
     }
 
     if($chooseSeven != "月" and $chooseSeven != "年"){
@@ -70,14 +70,14 @@
     //时间段
     if($chooseEight=="默认"){
         if($chooseSeven == "日"){
-            $sqlstr1=$sqlstr1."and b.date='$date1' ";
+            $sqlstr1=$sqlstr1." and b.date='$date1' ";
         }elseif($chooseSeven == "月"){
-            $sqlstr1=$sqlstr1."and b.date like '%$dateMonth%' ";
+            $sqlstr1=$sqlstr1." and b.date like '%$dateMonth%' ";
         }elseif($chooseSeven == "年"){
-            $sqlstr1=$sqlstr1."and b.date like '%$dateYear%' ";
+            $sqlstr1=$sqlstr1." and b.date like '%$dateYear%' ";
         }
     }else{
-        $sqlstr1=$sqlstr1."and b.date like '%$chooseEight%' "; //当期
+        $sqlstr1=$sqlstr1." and b.date like '%$chooseEight%' "; //当期
     }
 
     $sqlstr1=$sqlstr1." group by a.staff order by ";
@@ -116,7 +116,11 @@
         {"name":"title","value":"业绩排名"},
         {"name":"time","value":"'.$chooseSeven.'"},
         {"name":"rank","value":'.$staff_list.'},
-        {"name":"number","value":'.$number_list.'}
+        {"name":"number","value":'.$number_list.'},
+        {"name":"number","value":"'.$sqlstr1.'"}
+
+        
+
     ]';
 
     echo $data;

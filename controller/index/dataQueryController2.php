@@ -61,9 +61,9 @@
 
     //销售额&回款
     if($chooseOne == "销售额"){
-        $sqlstr1="select sum(salesMoney) from store_data_sales  where staff= any(select staff from store where 1=1 ";
+        $sqlstr1="select sum(salesMoney) from store_data_sales  where storeID= any(select storeID from store where 1=1 ";
     }else if($chooseOne == "回款"){
-        $sqlstr1="select sum(backMoney) from store_data_hk where staff= any(select staff from store  where 1=1 ";
+        $sqlstr1="select sum(backMoney) from store_data_hk where storeID= any(select storeID from store  where 1=1 ";
     }
 
     //事业部
@@ -78,7 +78,7 @@
 
     //类目
     if($chooseFour != "全部"){
-        $sqlstr1=$sqlstr1."and category='$chooseThree' ";
+        $sqlstr1=$sqlstr1."and category='$chooseFour' ";
     }
 
     //店铺
@@ -88,7 +88,7 @@
 
     //业务员
     if($chooseSix != "全部"){
-        $sqlstr1=$sqlstr1."and staff='$chooseFour' ";
+        $sqlstr1=$sqlstr1."and staff='$chooseSix' ";
     }
 
     $sqlstr1=$sqlstr1.") ";

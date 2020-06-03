@@ -14,7 +14,7 @@
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
         <script src="..\..\public\lib\bootstrap-3.3.7-dist\js\bootstrap-datetimepicker.js"></script>
         <script src="..\..\public\lib\echarts\dist\echarts.min.js"></script>
-        <script src="..\..\public\js\dataQuery.js"></script>
+        <script src="..\..\public\js\dataQuery.js?v=1"></script>
     </head>
     <body>
         <?php include_once("../../common/conn/conn.php") ?>

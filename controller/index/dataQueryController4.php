@@ -36,32 +36,47 @@
     $chooseSeven=$_POST['chooseSeven'];
     $chooseEight=$_POST['chooseEight'];
 
+    if($chooseEight=="默认"){
+        if($chooseSeven=="日"){
+            $chooseEight=$date1;
+        }elseif($chooseSeven=="月"){
+            $chooseEight=$dateMonth;
+        }else{
+            $chooseEight=$dateYear;
+        }
+    }
+    
+
     $object=$chooseTwo;
 
 
     if($chooseEight=="默认"){
         if($chooseSeven=="日" or $chooseSeven=="全部"){
             if($chooseOne=="销售额"){
-                $sqlstr1="select sum(salesMoney),date from store_data_sales where  staff= any(select staff from store where 1=1 ";
+                $sqlstr1="select sum(salesMoney),date from store_data_sales where  storeID= any(select storeID from store where 1=1 ";
             }else if($chooseOne == "回款"){
-                $sqlstr1="select sum(backMoney),date from store_data_hk where staff= any(select staff from store where 1=1  ";
+                $sqlstr1="select sum(backMoney),date from store_data_hk where storeID= any(select storeID from store where 1=1  ";
             }
     
         }elseif($chooseSeven=="月"){
             if($chooseOne=="销售额"){
-                $sqlstr1="select sum(salesMoney),left(date,7) as month from store_data_sales where staff= any(select staff from store where 1=1  ";
+                $sqlstr1="select sum(salesMoney),left(date,7) as month from store_data_sales where storeID= any(select storeID from store where 1=1  ";
             }else if($chooseOne == "回款"){
-                $sqlstr1="select sum(backMoney),left(date,7) as month from store_data_hk where staff= any(select staff from store where 1=1  ";
+                $sqlstr1="select sum(backMoney),left(date,7) as month from store_data_hk where storeID= any(select storeID from store where 1=1  ";
             }
         }elseif($chooseSeven=="年"){
             if($chooseOne=="销售额"){
-                $sqlstr1="select sum(salesMoney),left(date,4) as year from store_data_sales where staff= any(select staff from store where 1=1  ";
+                $sqlstr1="select sum(salesMoney),left(date,7) as month from store_data_sales where storeID= any(select storeID from store where 1=1  ";
             }else if($chooseOne == "回款"){
-                $sqlstr1="select sum(backMoney),left(date,4) as year from store_data_hk where staff= any(select staff from store where 1=1  ";
+                $sqlstr1="select sum(backMoney),left(date,7) as month from store_data_hk where storeID= any(select storeID from store where 1=1  ";
             }
         }
     }else{
-        $sqlstr1="select sum(salesMoney),date from store_data_sales where  staff= any(select staff from store where 1=1 ";
+        if($chooseSeven=="日" or $chooseSeven=="月"){
+            $sqlstr1="select sum(salesMoney),date from store_data_sales where  storeID= any(select storeID from store where 1=1 ";
+        }else{
+            $sqlstr1="select sum(salesMoney),left(date,7) as month from store_data_sales where storeID= any(select storeID from store where 1=1  ";
+        }
     }
     
 
@@ -87,29 +102,27 @@
 
     //业务员
     if($chooseSix != "全部"){
-        $sqlstr1=$sqlstr1."and staff='$chooseFour' ";
+        $sqlstr1=$sqlstr1."and staff='$chooseSix' ";
     }
 
     $sqlstr1=$sqlstr1.") ";
 
-    if($chooseEight=="默认"){
-        if($chooseSeven=="日" or $chooseSeven=="全部"){
-            $sqlstr1=$sqlstr1." and date_sub(curdate(), INTERVAL 30 DAY) <= date  group by date limit 0,30";
-        }elseif($chooseSeven=="月"){
-            $sqlstr1=$sqlstr1." group by month limit 0,12";
-        }elseif($chooseSeven=="年"){
-            $sqlstr1=$sqlstr1." group by year limit 0,10";
-        }
-    }else{
-        $sqlstr1=$sqlstr1."and date like '%$chooseEight%' group by date";
+
+    if($chooseSeven=="日" or $chooseSeven=="全部"){
+        $sqlstr1=$sqlstr1." and date_sub('".$chooseEight."', INTERVAL 30 DAY) < date  group by date limit 0,30";
+    }elseif($chooseSeven=="月"){
+        $sqlstr1=$sqlstr1." and date like '%".$chooseEight."%' group by date";
+    }elseif($chooseSeven=="年"){
+        $sqlstr1=$sqlstr1." and left(date,7) like '%".$chooseEight."%' group by left(date,7)";
     }
+    
 
     $result=mysqli_query($conn,$sqlstr1);
 
 
     while($myrow=mysqli_fetch_row($result)){
 
-        $str='{"dateTime_xssj":"'.$myrow[1].'","number_xssj":"'.$myrow[0].'","object_xssj":"'.$object.'"}';
+        $str='{"line":"'.$chooseOne.'","dateTime_xssj":"'.$myrow[1].'","number_xssj":"'.round($myrow[0]/10000,2).'","object_xssj":"'.$object.'"}';
 
         array_push($data,$str);
         
@@ -117,7 +130,7 @@
 
     
     if(sizeof($data)==0){
-        $str='{"dateTime_xssj":"暂无数据","number_xssj":"0","object_xssj":"'.$object.'","sqlstr1":"'.$sqlstr1.'"}';
+        $str='{"line":"'.$chooseOne.'","dateTime_xssj":"暂无数据","number_xssj":"0","object_xssj":"'.$object.'","sqlstr1":"'.$sqlstr1.'"}';
 
         array_push($data,$str);
     }

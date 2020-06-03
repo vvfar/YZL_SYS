@@ -231,7 +231,8 @@
                     </div>
 
                     <div style="clear: both;position:relative;top:10px;">
-                        <button type="submit" class="btn btn-success btn-md">提交信息</button>
+                        <button id="submit" type="button" class="btn btn-success btn-md">提交信息</button>
+                        <button id="hd_submit" type="submit" class="btn btn-success btn-md" style="display:none">提交信息</button>
                     </div>
                 </form>
 
@@ -289,6 +290,17 @@
             $(".store_pingtai").css("display","")
         }else{
             $(".store_pingtai").css("display","none")
+        }
+    })
+
+    $("#submit").click(function(){
+        input_time=$("#input_time").val();
+        input_time2=$("#input_time2").val();
+
+        if(input_time == "" || input_time2 == ""){
+            alert("合同期限必须填写");
+        }else{
+            $("#hd_submit").click();
         }
     })
 </script>

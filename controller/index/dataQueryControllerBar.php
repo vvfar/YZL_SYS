@@ -27,12 +27,27 @@
     $chooseFive=$_POST['chooseFive'];
     $chooseSix=$_POST['chooseSix'];
     $chooseSeven=$_POST['chooseSeven'];
+    $username=$_POST['username'];
+
+    $sqlstr0="select department,newLevel from user_form where username='$username'";
+
+    $result=mysqli_query($conn,$sqlstr0);
+
+    while($myrow=mysqli_fetch_row($result)){
+        $my_department=$myrow[0];
+        $newLevel=$myrow[1];
+    }
 
 
     //事业部控件
     $department_list="[";
 
-    $sqlstr1="select distinct department from store ";
+    $sqlstr1="select distinct department from store where 1=1 ";
+
+    if(($newLevel !="" and $newLevel !="ADMIN") and strpos($my_department,'/') != true){
+        $sqlstr1=$sqlstr1."and department='$my_department'";
+    }
+
 
     $result=mysqli_query($conn,$sqlstr1);
 
@@ -50,12 +65,21 @@
     //平台控件
     $pingtai_list="[";
 
-    $sqlstr2="select distinct pingtai from store";
+    $sqlstr2="select distinct pingtai from store where 1=1 ";
 
     if($chooseTwo !="全部"){
-        $sqlstr2=$sqlstr2." where department='$chooseTwo'";
+        $sqlstr2=$sqlstr2."and department='$chooseTwo' ";
     }
 
+    if(($newLevel !="" and $newLevel !="ADMIN") and strpos($my_department,'/') != true){
+        if($newLevel =="M"){
+            $sqlstr2=$sqlstr2."and department='$my_department' ";
+        }else{
+            $sqlstr2=$sqlstr2."and staff='$username' ";
+        }
+        
+    }
+    
     $result2=mysqli_query($conn,$sqlstr2);
 
     while($myrow=mysqli_fetch_row($result2)){
@@ -69,10 +93,19 @@
     //类目控件
     $category_list="[";
 
-    $sqlstr3="select distinct category from store";
+    $sqlstr3="select distinct category from store where 1=1 ";
 
     if($chooseTwo !="全部"){
-        $sqlstr3=$sqlstr3." where department='$chooseTwo'";
+        $sqlstr3=$sqlstr3."and department='$chooseTwo'";
+    }
+
+    if(($newLevel !="" and $newLevel !="ADMIN") and strpos($my_department,'/') != true){
+        if($newLevel =="M"){
+            $sqlstr3=$sqlstr3."and department='$my_department' ";
+        }else{
+            $sqlstr3=$sqlstr3."and staff='$username' ";
+        }
+        
     }
 
     $result=mysqli_query($conn,$sqlstr3);
@@ -88,10 +121,19 @@
     //店铺控件
     $store_list="[";
 
-    $sqlstr4="select distinct storeName from store where 1=1";
+    $sqlstr4="select distinct storeName from store where 1=1 ";
 
     if($chooseTwo !="全部"){
-        $sqlstr4=$sqlstr4." and department='$chooseTwo'";
+        $sqlstr4=$sqlstr4." and department='$chooseTwo' ";
+    }
+
+    if(($newLevel !="" and $newLevel !="ADMIN") and strpos($my_department,'/') != true){
+        if($newLevel =="M"){
+            $sqlstr4=$sqlstr4."and department='$my_department' ";
+        }else{
+            $sqlstr4=$sqlstr4."and staff='$username' ";
+        }
+        
     }
     
 
@@ -108,10 +150,19 @@
     //业务员控件
     $ywy_list="[";
 
-    $sqlstr5="select distinct username from user_form";
+    $sqlstr5="select distinct username from user_form where (newLevel = 'KA' or newLevel = 'M') ";
 
     if($chooseTwo !="全部"){
-        $sqlstr5=$sqlstr5." where department='$chooseTwo'";
+        $sqlstr5=$sqlstr5." and department='$chooseTwo' ";
+    }
+
+    if(($newLevel !="" and $newLevel !="ADMIN") and strpos($my_department,'/') != true){
+        if($newLevel =="M"){
+            $sqlstr5=$sqlstr5."and department='$my_department' ";
+        }else{
+            $sqlstr5=$sqlstr5."and username='$username' ";
+        }
+        
     }
 
     $result=mysqli_query($conn,$sqlstr5);

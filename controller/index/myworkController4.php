@@ -9,7 +9,7 @@
     $username=$_SESSION["username"];
 
     date_default_timezone_set("Asia/Shanghai");
-    $date1=date('Y-m-d', time())
+    $date1=date('Y-m-d', time());
     $lastMonthDate = date("Y-m-d",strtotime("-30 day"));
 
     $sqlstr0="select department,newLevel from user_form where username='$username'";

@@ -240,6 +240,7 @@
                                     $company=$myrow[2];
                                     $people=$myrow[3];
                                     $startTime=$myrow[4];
+                                    $endTime=$myrow[5];
 
                                     $arr_status=explode(",",$myrow[6]);
                                     $status=array_pop($arr_status);
@@ -282,7 +283,7 @@
                                 <td><?=$company?></td>
                                 <td><?=$people?></td>
                                 <td><?=$startTime?></td>
-                                <td><?=$allTime?></td>
+                                <td><?=$endTime?></td>
                                 <td><?=$status?></td>
                             </tr>
                             <?php

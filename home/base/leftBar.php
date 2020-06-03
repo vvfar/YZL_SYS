@@ -31,15 +31,7 @@
                 <div class="leftbar0Z zcd">
                     <li class="leftbar0Z1"><a href="/index.php">公司门户</a></li>
                     <li class="leftbar0Z2"><a href="/home/index/myWork.php">我的工作</a></li>
-
-                    <?php
-                        if($newLevel == "ADMIN" and $username !="崔总"){
-                            ?>
-                                <li class="leftbar0Z3"><a href="/home/index/dataQuery.php">数据平台</a></li>
-                            <?php
-                        }
-                    ?>
-                    
+                    <li class="leftbar0Z3"><a href="/home/index/dataQuery.php">数据平台</a></li>
                 </div>
 
                 <li class="leftbar7"><i class="layui-icon layui-icon-template-1"></i><a href="#">公司合同</a></li>

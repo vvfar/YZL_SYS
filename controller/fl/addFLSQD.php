@@ -80,7 +80,6 @@
         $flfxj=$flfxj.(float)$_POST['dj'.$i]*(float)$_POST['sl'.$i].",";
     }
 
-
     //获取辅料申请单最大ID
     $sqlstr="select max(id) from flsqd";
     $result=mysqli_query($conn,$sqlstr);
@@ -164,17 +163,13 @@
                     "'$amount','$price','$fls','$fwfxj','$flsName','$dj','$sl','$flfxj','$sd','$jkfs',".
                     "'$wlfs','$wlno','$wlprice','$note','$hd_sqslhj','$hd_fwfhj','$hd_flsl','$hd_flfhjsh',".
                     "'$hd_fwfflfzj','$hd_count'+1,'$ywy','$name','','','$sp','','$date','$fileName')";
-                
-                    
             //已被保存或提交后拒绝的单据
             }else{
                 $sqlstr1="update flsqd set no='$no',company='$company',people='$people',department='$department',date='$date',address='$address',".
-                "connection='$connection',phone='$phone',driving='$driving',ishs='$ishs',category='$category',productNo='$productNo',productName='$productName',".
+                "connection='$connection',phone='$phone',driving='$driving',ishs='$ishs',category='$category',productName='$productName',productNo='$productNo',".
                 "amount='$amount',price='$price',fls='$fls',fwfxj='$fwfxj',flsName='$flsName',dj='$dj',sl='$sl',flfxj='$flfxj',sd='$sd',jkfs='$jkfs',".
                 "wlfs='$wlfs',wlno='$wlno',wlprice='$wlprice',note='$note',hd_sqslhj='$hd_sqslhj',hd_fwfhj='$hd_fwfhj',hd_flsl='$hd_flsl',hd_flfhjsh='$hd_flfhjsh',".
                 "hd_fwfflfzj='$hd_fwfflfzj',hd_count='$hd_count'+1,ywy='$ywy',status='$name',shr='$sp',csr='',allTime='$date',file='$fileName' where id='$id'";
-            
-                
             }    
         }else{
             //点击一键保存的执行流程
@@ -189,16 +184,18 @@
                     "'$wlfs','$wlno','$wlprice','$note','$hd_sqslhj','$hd_fwfhj','$hd_flsl','$hd_flfhjsh',".
                     "'$hd_fwfflfzj','$hd_count'+1,'$ywy','KA级提交单据','','','$username','','','$fileName')";
             }else{
+
                 $sqlstr1="update flsqd set no='$no',company='$company',people='$people',department='$department',date='$date',address='$address',".
-                "connection='$connection',phone='$phone',driving='$driving',ishs='$ishs',category='$category',productNo='$productNo',productName='$productName',".
+                "connection='$connection',phone='$phone',driving='$driving',ishs='$ishs',category='$category',productName='$productName',productNo='$productNo',".
                 "amount='$amount',price='$price',fls='$fls',fwfxj='$fwfxj',flsName='$flsName',dj='$dj',sl='$sl',flfxj='$flfxj',sd='$sd',jkfs='$jkfs',".
                 "wlfs='$wlfs',wlno='$wlno',wlprice='$wlprice',note='$note',hd_sqslhj='$hd_sqslhj',hd_fwfhj='$hd_fwfhj',hd_flsl='$hd_flsl',hd_flfhjsh='$hd_flfhjsh',".
                 "hd_fwfflfzj='$hd_fwfflfzj',hd_count='$hd_count'+1,ywy='$ywy',status='KA级提交单据',shr='$username',csr='',allTime='',file='$fileName' where id='$id'";
+            
+                
             }
         }
-        
-        
-        $result=mysqli_query($conn,$sqlstr1);
+
+        $result9=mysqli_query($conn,$sqlstr1);
     
         //提交后扣减授信金额
         if($sqid !="" and $usesqmoney !=""){
@@ -237,7 +234,7 @@
 
 
     //提交后跳转页面
-    if($result){
+    if($result9){
         echo "<script>alert('提交成功！')</script>";
 
         if($option ==1){

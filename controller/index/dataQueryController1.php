@@ -54,7 +54,7 @@
         $dateMonth2=date('Y-m', strtotime("$date -1 month"));
         $dateMonth3=date('Y-m', strtotime("$date -1 year"));
 
-        $dateYear=date('Y', strtotime("$date -1 year"));
+        $dateYear=date('Y', strtotime("$date"));
         $dateYear2=date('Y', strtotime("$date -1 year"));
         $dateYear3=date('Y', strtotime("$date -1 year"));
     }
@@ -62,9 +62,9 @@
 
     //销售额&回款
     if($chooseOne == "销售额"){
-        $sqlstr1="select sum(salesMoney) from store_data_sales where staff= any(select staff from store where 1=1 ";
+        $sqlstr1="select sum(salesMoney) from store_data_sales where storeID= any(select storeID from store where 1=1 ";
     }else if($chooseOne == "回款"){
-        $sqlstr1="select sum(backMoney) from store_data_hk where  staff= any(select staff from store where 1=1 ";
+        $sqlstr1="select sum(backMoney) from store_data_hk where  storeID= any(select storeID from store where 1=1 ";
     }
 
     //事业部
@@ -79,7 +79,7 @@
 
     //类目
     if($chooseFour != "全部"){
-        $sqlstr1=$sqlstr1."and category='$chooseThree' ";
+        $sqlstr1=$sqlstr1."and category='$chooseFour' ";
     }
 
     //店铺
@@ -89,7 +89,7 @@
 
     //业务员
     if($chooseSix != "全部"){
-        $sqlstr1=$sqlstr1."and staff='$chooseFour' ";
+        $sqlstr1=$sqlstr1."and staff='$chooseSix' ";
     }
 
     if($chooseSeven != "月" and $chooseSeven != "年"){
@@ -135,14 +135,14 @@
     }
 
     
-    if($num3 !="" and $num !=""){
+    if($num3 !="" and $num !="" and $chooseSeven !="年"){
         $tb=($num-$num3)/$num3*100;
     }else{
         $tb=0;
     }
 
     if($num2 !="" and $num !=""){
-        $hb=($num-$num2)/$num3*100;
+        $hb=($num-$num2)/$num2*100;
     }else{
         $hb=0;
     }
