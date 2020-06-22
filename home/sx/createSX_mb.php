@@ -17,6 +17,7 @@
         $startDate=$myrow[16];
         $endDate=$myrow[17];
         $reDate=$myrow[4];
+        $bpeople=$myrow[25];
         $dateTime=explode(",",$myrow[8]);
         $hkje=explode(",",$myrow[9]);
         $wyfl=explode(",",$myrow[10]);
@@ -31,16 +32,17 @@
     $html='
         <div class="zw" style="font-family:楷体;font-size:16px;line-height:28px;">
             <div class="zw_content">
-                <p class="hd middle" style="text-align:center">授信欠据</p>
+                <p class="hd middle" style="text-align:center;font-size:28px;">授信额度协议</p>
                 <p class="middle" >编号：（<span style="text-decoration: underline;">'.$no.'</span>）</p>
                 <p style="margin-top:28px;">尊敬的上海俞兆林品牌管理有限公司领导：</p>
-                <p style="text-indent: 2em;"><span style="text-decoration: underline;" class="longLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>（下称欠款人）因业务需求向上海俞兆林品牌管理有限公司申领商标、防伪标、合格证等（下称商标辅料），每次申领需向上海俞兆林品牌管理有限公司支付相关品牌服务费，为方便双方合作，现向<span style="text-decoration: underline;">上海俞兆林品牌管理有限公司</span>申请给与<span style="text-decoration: underline;">'.$company.'</span>&nbsp;<span id="xs" style="text-decoration: underline;">'.$sqmoney.'</span>元（大写人民币<span id="ds" style="text-decoration: underline;">'.$ds.'</span>）授信额度，授信手续费<span style="text-decoration: underline;">'.$sxf.'</span>元，授信额度有效期限为<span style="text-decoration: underline;">'.$startDate_arr[0].'</span>年<span style="text-decoration: underline;">'.$startDate_arr[1].'</span>月<span style="text-decoration: underline;">'.$startDate_arr[2].'</span>日至<span style="text-decoration: underline;">'.$endDate_arr[0].'</span>年<span style="text-decoration: underline;">'.$endDate_arr[1].'</span>月<span style="text-decoration: underline;">'.$endDate_arr[2].'</span>日。在授信额度用完时，再次申领辅料需缴纳相应的标费及辅料费。
-                <p style="text-indent: 2em;">欠款人应当支付的品牌服务费具体金额由产品单价、申领数量及品牌服务费费率共同确定，申领数量及品牌服务费费率固定不变，如果因欠款人申领的商标辅料使用在不同单价的产品上，导致的实际品牌服务费与本授信欠据已确定品牌服务费产生差异的，可以在支付时间截止日之前书面提出异议，进行金额调整。</p>
-                <p style="text-indent: 2em;">欠款人未按还款计划（见附件）还清欠款时，每延期一日需按照应还款日当日银行贷款利息<span style="color:red">双倍</span>的标准向上海俞兆林品牌管理有限公司支付利息，欠款人如超期一年仍未能还清欠款时，上海俞兆林品牌管理有限公司即可凭此据向人民法院起诉，一切费用由欠款人承担，诉讼管辖地为债权人所在地的人民法院，同时永远取消授信资格。</p>
+                <p style="text-indent: 2em;"><span style="text-decoration: underline;" class="longLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>（下称申请人）因业务需求向上海俞兆林品牌管理有限公司申领商标、防伪标、合格证等（下称商标辅料），每次申领需向上海俞兆林品牌管理有限公司支付相关品牌服务费，为方便双方合作，现向<span style="text-decoration: underline;">上海俞兆林品牌管理有限公司</span>申请给与<span style="text-decoration: underline;">'.$company.'</span>&nbsp;<span id="xs" style="text-decoration: underline;">'.$sqmoney.'</span>元（大写人民币<span id="ds" style="text-decoration: underline;">'.$ds.'</span>）授信额度，授信手续费<span style="text-decoration: underline;">'.$sxf.'</span>元，授信额度有效期限为<span style="text-decoration: underline;">'.$startDate_arr[0].'</span>年<span style="text-decoration: underline;">'.$startDate_arr[1].'</span>月<span style="text-decoration: underline;">'.$startDate_arr[2].'</span>日至<span style="text-decoration: underline;">'.$endDate_arr[0].'</span>年<span style="text-decoration: underline;">'.$endDate_arr[1].'</span>月<span style="text-decoration: underline;">'.$endDate_arr[2].'</span>日。在授信额度用完时，再次申领辅料需缴纳额度内未结算的相应的标费及辅料费。
+                <p style="text-indent: 2em;">申请人应当支付的品牌服务费具体金额由产品单价、申领数量及品牌服务费费率共同确定，申领数量及品牌服务费费率固定不变，如果因申请人申领的商标辅料使用在不同单价的产品上，导致的实际品牌服务费与本授信欠据已确定品牌服务费产生差异的，可以在支付时间截止日之前书面提出异议，进行金额调整。</p>
+                <p style="text-indent: 2em;">申请人未按支付计划（见附件）支付款项时，每延期一日需按照应付支付的千分之三向你公司支付逾期利息，申请人如超期仍未能支付款项时，上海俞兆林品牌管理有限公司即可凭此据向上海俞兆林品牌管理有限公司所在地的人民法院起诉，包括律师费以及诉讼费等一切费用由申请人承担，诉讼管辖地为债权人所在地的人民法院。</p>
+				<p style="text-indent: 2em;">上述申请人的债务由保证人（<span style="text-decoration:underline">'.$bpeople.'</span>）提供连带担保。</p>
                 <p style="text-indent: 2em;">此据盖章生效，具有法律效力。</p>
             </div>
-            <div style="margin-top:150px;">
-                <p>欠款人：<span style="text-decoration: underline;" class="longLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>（盖章）（签字）</p>
+            <div style="margin-top:100px;">
+                <p>申请人：<span style="text-decoration: underline;" class="longLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>（盖章）（签字）</p>
                 <p>签署时间：<span style="text-decoration: underline;" class="shortLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>年<span style="text-decoration: underline;" class="vshortLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>月<span style="text-decoration: underline;" class="vshortLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>日</p>
                 <p>签署地点：上海市虹口区东大名路948号19楼</p>
             </div>
@@ -51,7 +53,7 @@
         </div>
 
         <div class="fj" style="font-family:楷体;font-size:16px;margin-top:1000px;">
-            <p style="font-weight:bold;font-size:18px;margin-bottom:20px;">附件：还款计划</p>
+            <p style="font-weight:bold;font-size:18px;margin-bottom:20px;">附件：支付计划</p>
             <table class="table table-responsive table-bordered" style="font-family:楷体;font-size:16px;border-collapse:collapse;" border=1 >
                 <tr>
                     <td colspan="5">授信金额：<span style="text-decoration: underline;">'.$sqmoney.'</span>元   授信起止时间：<span style="text-decoration: underline;">'.$startDate_arr[0].'</span>年<span style="text-decoration: underline;">'.$startDate_arr[1].'</span>月<span style="text-decoration: underline;">'.$startDate_arr[2].'</span>日至<span style="text-decoration: underline;">'.$endDate_arr[0].'</span>年<span style="text-decoration: underline;">'.$endDate_arr[1].'</span>月<span style="text-decoration: underline;">'.$endDate_arr[2].'</span>日</td>
@@ -104,7 +106,9 @@
                 </tr>
             </table>
 
-            <p class="qkr" style="margin-top:40px;">欠款人：<span style="text-decoration: underline;" class="longLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>（盖章）（签字）</p>
+            <p class="qkr" style="margin-top:40px;">申请人：<span style="text-decoration: underline;" class="longLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>（盖章）（签字）</p>
+			<p class="qkr" style="margin-top:20px;">保证人：<span style="text-decoration: underline;" class="longLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+			<p class="qkr" style="margin-top:20px;"><span style="text-decoration: underline;" class="shortLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>年<span style="text-decoration: underline;" class="vshortLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>月<span style="text-decoration: underline;" class="vshortLine">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>日</p>
         </div>
     
         <script>
@@ -175,7 +179,7 @@
             p{margin:0}
 
             .hd{
-                font-size:24px;
+                font-size:28px;
                 font-weight:bold;
             }
         
@@ -242,10 +246,11 @@
     }
     
     //createWord($html,"ccc.doc");
-    downloadWord($html,"授信欠据.doc");
+    downloadWord($html,"授信额度协议.doc");
     
 ?>
 
 <script>
     window.location.href="/sxmb.php?id=<?=$id?>"
 </script>
+

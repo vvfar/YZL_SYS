@@ -236,8 +236,12 @@
                 ?>
 
                 <div class="form-group" style="clear: both;">
-                    <p style="width: 120px;font-size: 14px;float: left;margin-top:5px;">备注</p>
-                    <input type="text" class="form-control" name="note" placeholder="请输入备注信息" style="width: 250px;float: left;">
+                    <p style="width: 120px;font-size: 14px;float: left;margin-top:10px;">保证人</p>
+                    <input type="text" class="form-control" name="bpeople" placeholder="请输入保证人" style="width: 250px;float: left;">
+                </div>
+                <div class="form-group" style="clear: both;">
+                    <p style="width: 120px;font-size: 14px;float: left;margin-top:25px;">备注</p>
+                    <input type="text" class="form-control" name="note" placeholder="请输入备注信息" style="width: 250px;float: left;margin-top:15px;">
                 </div>
 
                 <div class="form-group" style="clear: both;">

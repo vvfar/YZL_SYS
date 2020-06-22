@@ -54,7 +54,7 @@
     while($myrow=mysqli_fetch_row($result)){
         $data[]=str_replace("\t",'',$myrow);
         //$data[]=$myrow;
-        //echo var_dump($data);
+        //echo json_encode($data);
     }
 
     

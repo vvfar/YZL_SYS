@@ -565,7 +565,7 @@
                             <select name="sxid" style="height:20px;width:80%" id="sxid">
                                 <option></option>
                                 <?php
-                                    $sqlstr4="select distinct a.sqid from sx_form a,use_sx b where a.sqid=b.sqid and (a.department='$my_department' or a.gxDepartment='$my_department') and a.status='已生效' and b.newMoney > 0";
+                                    $sqlstr4="select distinct a.sqid from sx_form a,use_sx b where a.sqid=b.sqid and (a.department='$my_department' or a.gxDepartment='$my_department') and a.status !='已作废' and b.newMoney > 0";
                                     
                                     echo $sqlstr4;
 

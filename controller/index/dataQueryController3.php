@@ -118,9 +118,6 @@
         {"name":"rank","value":'.$staff_list.'},
         {"name":"number","value":'.$number_list.'},
         {"name":"number","value":"'.$sqlstr1.'"}
-
-        
-
     ]';
 
     echo $data;

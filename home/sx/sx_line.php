@@ -32,7 +32,7 @@
 
                     $sqlstr1="select a.sqid,a.companyName,a.department,a.ywy,a.date1,a.sqmoney,a.sxf,". 
                     "b.dhkje,a.shr,a.date2,a.date3,a.dateTime,a.hkje,a.wyfl,a.hkfs,a.hkfsbz,b.date2,".
-                    "b.sjhkje,b.hkfs,b.hkfs2,a.file_name,a.status,a.status2,a.allTime,a.note,a.gxDepartment,b.syjehkfs ".
+                    "b.sjhkje,b.hkfs,b.hkfs2,a.file_name,a.status,a.status2,a.allTime,a.note,a.gxDepartment,b.syjehkfs,a.bpeople ".
                     "from sx_form a,hk_form b where a.sqid=b.sqid and a.id=$sxid";
 
                     $result=mysqli_query($conn,$sqlstr1);
@@ -145,10 +145,10 @@
                                 <td><?=$myrow[2]?></td>
                                 <td>申请人</td>
                                 <td><?=$myrow[3]?></td>
+                                <td>保证人</td>
+                                <td><?=$myrow[27]?></td>
                                 <td>签署时间</td>
                                 <td><?=$myrow[4]?></td>
-                                <td>状态</td>
-                                <td><?=$myrow[22]?></td>
                             </tr>
                             <tr>
                                 <td>授信金额</td>

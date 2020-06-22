@@ -515,7 +515,6 @@
 </html>
 
 <style>
-
     th{background-color:lavender}
     th,td{text-align: center;margin: 0;overflow: hidden}
     .to-scroll{overflow-x: scroll;overflow-x: scroll;height: 550px;clear:both}
@@ -524,27 +523,9 @@
     .date_form{clear: both;float:left;margin-top:30px;margin-left:60px}
     .djrq{float:left;margin-top:5px}
     .template{float:left;margin-left:350px;margin-top:2px;}
-
-
-    .pager li a:hover{
-        background-color:#337ab7;
-        color:#fff;
-    }
-
-    .td1 p{
-        text-align:center;
-        width: 150px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow:ellipsis;
-    }
-
-    .td2 p{
-        width: 180px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow:ellipsis;
-    }
+    .pager li a:hover{background-color:#337ab7;color:#fff;}
+    .td1 p{text-align:center;width: 150px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;}
+    .td2 p{width: 180px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;}
 </style>
 
 <script type="text/javascript">  

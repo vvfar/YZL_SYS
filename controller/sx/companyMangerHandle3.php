@@ -11,7 +11,7 @@
 
         if(!empty($_FILES['upfile']['name'])){
             $fileinfo=$_FILES['upfile'];
-            if($fileinfo['size']<2097152 && $fileinfo['size']>0){
+            if($fileinfo['size']<209715200 && $fileinfo['size']>0){
                 $path="../../common/file/sx_file/".$_FILES["upfile"]["name"];
                 move_uploaded_file($fileinfo['tmp_name'],$path);
             }else{

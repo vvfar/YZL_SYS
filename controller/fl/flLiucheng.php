@@ -59,7 +59,7 @@
                 $sp_forward=$myrow[1];
             }
     
-            if(($jkfs=="全现金" and $status_forward == "商业运营审批授信") or (($jkfs=="全授信" or $jkfs=="标费补贴") and $status_forward == "财务审批单据")){
+            if(($jkfs=="全现金" and $status_forward == "商业运营审批单据") or (($jkfs=="全授信" or $jkfs=="标费补贴") and $status_forward == "财务审批单据")){
     
                 $sqlstr5="select number from flprogress where name='$status_forward' ";
     

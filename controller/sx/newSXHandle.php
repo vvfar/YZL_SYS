@@ -16,6 +16,7 @@
     $isgx=$_POST['isgx'];  //是否共享
     $qs=$_POST['qs'];  //回款期数
     $gxCount_val=$_POST['gxCount_val'];  //共享事业部数
+    $bpeople=$_POST['bpeople'];  //保证人
 
     $gxDepartment="";//共享事业部
     if((int)$gxCount_val>0){
@@ -76,36 +77,38 @@
         $maxID=0;
     }
 
-    //防止授信单号重复
     $dup="false";
-
-    $sqlstr10="select name from sx_id";
-    $result10=mysqli_query($conn,$sqlstr10);
-
-    while($myrow=mysqli_fetch_row($result10)){
-        if($sqid==$myrow[0]){
-            $sqid_no=(int)substr($sqid,6,9)+1;
-
-            if($sqid_no<10){
-                $sqid=substr($sqid,0,6)."00".$sqid_no;
-            }elseif($sqid_no<100){
-                $sqid=substr($sqid,0,6)."0".$sqid_no;
-            }else{
-                $sqid=substr($sqid,0,6).$sqid_no;
-            }
-
-            $dup="true";
-        }
-    }
-
-
+    
     if($sx_id_id!=""){
         $sqlstr3="update sx_form set companyName='$companyName',ywy='$username',department='$department',date1='$date1',sqid='$sqid',sqmoney='$sqmoney',sxf='$sxf',dateTime='$dateTime',".
-        "hkje='$hkje',wyfl='$wyfl',hkfs='$hkfs',hkfsbz='$hkjhbz',note='$note',date2='$date2',date3='$date3',isgx='$isgx',gxCount_val='$gxCount_val',gxDepartment='$gxDepartment',status ='待生效' where sqid='$sqid'";
+        "hkje='$hkje',wyfl='$wyfl',hkfs='$hkfs',hkfsbz='$hkjhbz',note='$note',date2='$date2',date3='$date3',isgx='$isgx',gxCount_val='$gxCount_val',gxDepartment='$gxDepartment',status ='待生效',bpeople ='$bpeople' where sqid='$sqid'";
     
     }else{
+        //防止授信单号重复
+        $dup="false";
+
+        $sqlstr10="select name from sx_id";
+        $result10=mysqli_query($conn,$sqlstr10);
+
+        while($myrow=mysqli_fetch_row($result10)){
+            if($sqid==$myrow[0]){
+                $sqid_no=(int)substr($sqid,6,9)+1;
+
+                if($sqid_no<10){
+                    $sqid=substr($sqid,0,6)."00".$sqid_no;
+                }elseif($sqid_no<100){
+                    $sqid=substr($sqid,0,6)."0".$sqid_no;
+                }else{
+                    $sqid=substr($sqid,0,6).$sqid_no;
+                }
+
+                $dup="true";
+            }
+        }
+
+
         $sqlstr3="insert into sx_form values('$maxID'+1,'$companyName','$username','$department','$date1','$sqid','$sqmoney','$sxf','$dateTime',".
-        "'$hkje','$wyfl','$hkfs','$hkjhbz','$note','','','$date2','$date3','待生效','待上传纸质附件','','','$isgx','$gxCount_val','$gxDepartment') ";
+        "'$hkje','$wyfl','$hkfs','$hkjhbz','$note','','','$date2','$date3','待生效','待上传纸质附件','','','$isgx','$gxCount_val','$gxDepartment','$bpeople') ";
     }
 
     $result=mysqli_query($conn,$sqlstr3);
@@ -177,6 +180,6 @@
     <?php
     }
     
-    mysqli_free_result($result);
+    //mysqli_free_result($result);
     mysqli_close($conn);
 ?>
